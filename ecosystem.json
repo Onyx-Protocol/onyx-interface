@@ -1,0 +1,22 @@
+{
+  "apps": [],
+
+  "deploy": {
+    "testnet": {
+      "user": "ubuntu",
+      "host": "20.0.0.149",
+      "ref": "origin/master",
+      "repo": "git@github.com:OnyxProtocol/onyx-protocol-interface.git",
+      "path": "/home/ubuntu/repos/onyx-protocol-ui",
+      "post-deploy": "npm install && npm run build && cp .htaccess build/.htaccess"
+    },
+    "mainnet": {
+      "user": "ubuntu",
+      "host": "20.0.0.10",
+      "ref": "origin/master",
+      "repo": "git@github.com:OnyxProtocol/onyx-protocol-interface.git",
+      "path": "/home/ubuntu/repos/onyx-protocol-ui",
+      "post-deploy": "npm install && npm run build && cp .htaccess build/.htaccess"
+    }
+  }
+}

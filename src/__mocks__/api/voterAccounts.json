@@ -1,0 +1,465 @@
+{
+  "data": [
+    {
+      "rank": 1,
+      "chnStake": 1.674e+27,
+      "address": "0x0e1b719aac361bea234af2a2aa3a19f34d1f1b21",
+      "proposalsVoted": 0,
+      "voteWeight": "53.7052"
+    },
+    {
+      "rank": 2,
+      "chnStake": 5.611962461834e+26,
+      "address": "0xd298602cce1ee780ff8d4f95bcb0f93767f50e49",
+      "proposalsVoted": 0,
+      "voteWeight": "18.0043"
+    },
+    {
+      "rank": 3,
+      "chnStake": 2.812677419886e+26,
+      "address": "0x1b7081943449db22e4d68c5bac45cfc85b44d3a7",
+      "proposalsVoted": 1,
+      "voteWeight": "9.0236"
+    },
+    {
+      "rank": 4,
+      "chnStake": 2.324562998201e+26,
+      "address": "0xe864c9439eb042e969c59dd13d38cfdb28e16d73",
+      "proposalsVoted": 3,
+      "voteWeight": "7.4577"
+    },
+    {
+      "rank": 5,
+      "chnStake": 1.943384329813e+26,
+      "address": "0x944e4585584e61f7ee2b059f3c487e12c9413242",
+      "proposalsVoted": 0,
+      "voteWeight": "6.2348"
+    },
+    {
+      "rank": 6,
+      "chnStake": 1.706680423999e+26,
+      "address": "0x83e0de1c6dd34e07d5b1baf36b367e22c8b6fddf",
+      "proposalsVoted": 0,
+      "voteWeight": "5.4754"
+    },
+    {
+      "rank": 7,
+      "chnStake": 1.4076909247991867e+24,
+      "address": "0xf70ef482cf6dc920fca74f1b9fc717f4d356edaa",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0452"
+    },
+    {
+      "rank": 8,
+      "chnStake": 4.201987e+23,
+      "address": "0xe3983faf4fcc5afa217a509f0140ed76011c3ee1",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0135"
+    },
+    {
+      "rank": 9,
+      "chnStake": 2.6856873194680205e+23,
+      "address": "0x1816faa733ef820551594724ecc6919384dea7c6",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0086"
+    },
+    {
+      "rank": 10,
+      "chnStake": 2.372640153e+23,
+      "address": "0x6a5861a6255bc8ae6c33cc7ae8e0d4b44a123c08",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0076"
+    },
+    {
+      "rank": 11,
+      "chnStake": 1.040786469e+23,
+      "address": "0x41242bf2d454fd68391eeefd7a43c42439db5d8e",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0033"
+    },
+    {
+      "rank": 12,
+      "chnStake": 6.06557377049149e+22,
+      "address": "0x04f5df957ce0405ba0264eca6130161cfaa12571",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0019"
+    },
+    {
+      "rank": 13,
+      "chnStake": 5.1213054395689994e+22,
+      "address": "0xaaa4a8070184a29927646762beef3d3159c48da5",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0016"
+    },
+    {
+      "rank": 14,
+      "chnStake": 3.09222544e+22,
+      "address": "0xbff82f00c915b7d10aa77f34ee3ce3602c5bf830",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0010"
+    },
+    {
+      "rank": 15,
+      "chnStake": 3.0921435763975e+22,
+      "address": "0x278bfd54e7e71346f92ef36c6e34145d14f017cd",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0010"
+    },
+    {
+      "rank": 16,
+      "chnStake": 2.310785861839446e+22,
+      "address": "0x7a550e674c4fa0eead778bba588f8e685cfa4647",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0007"
+    },
+    {
+      "rank": 17,
+      "chnStake": 2.147524370600837e+22,
+      "address": "0xca4112dd58176fb97650b47dd1ed733b364d7eac",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0007"
+    },
+    {
+      "rank": 18,
+      "chnStake": 2e+22,
+      "address": "0x84663d6f00dc19ccad2720c5605fdbc1176c9656",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0006"
+    },
+    {
+      "rank": 19,
+      "chnStake": 1.4865494100000001e+22,
+      "address": "0x6da1b788e40a5adabb28342bd0a6126bb05991ca",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0005"
+    },
+    {
+      "rank": 20,
+      "chnStake": 1.1528469722983693e+22,
+      "address": "0x5eb7675e3cb3e46142d4b7edf3c11a817218ceb8",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0004"
+    },
+    {
+      "rank": 21,
+      "chnStake": 1.01e+22,
+      "address": "0x0df7b9f579ebe6331acb59e9fcab46ea1f08d9d9",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0003"
+    },
+    {
+      "rank": 22,
+      "chnStake": 9.7377049e+21,
+      "address": "0x70935beb4d7ed227325d231b607a68cb62476be1",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0003"
+    },
+    {
+      "rank": 23,
+      "chnStake": 8.3209443e+21,
+      "address": "0x7e73f8c53b004f6f0ac5d45351e10c6e0fb33c46",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0003"
+    },
+    {
+      "rank": 24,
+      "chnStake": 6.6293753e+21,
+      "address": "0x3588ab6c2d1a8a87287bf03af7942da15a0c0a4a",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0002"
+    },
+    {
+      "rank": 25,
+      "chnStake": 5.58649840953e+21,
+      "address": "0x0be9737fe95cc94d17457d09628580269b128625",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0002"
+    },
+    {
+      "rank": 26,
+      "chnStake": 5.302935700000001e+21,
+      "address": "0x76559883771754a942e2d9eadd899dcd2af85a30",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0002"
+    },
+    {
+      "rank": 27,
+      "chnStake": 4.8688525e+21,
+      "address": "0xe250c7540ffc0fe802a3cd1ba907adde9d410051",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0002"
+    },
+    {
+      "rank": 28,
+      "chnStake": 4.7471557e+21,
+      "address": "0x422b8cc415261abaec20690b154ad5559e139378",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0002"
+    },
+    {
+      "rank": 29,
+      "chnStake": 4.1988837e+21,
+      "address": "0x28cce74ec86886339ecbeb46865e36d60be91e36",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 30,
+      "chnStake": 3.939653235783811e+21,
+      "address": "0x01466b1c522a22e3a1b0f7d383c6decb77101761",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 31,
+      "chnStake": 3.275926449839358e+21,
+      "address": "0xdb354d8354484c7a9f62eacc7d5207fe6c56ab92",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 32,
+      "chnStake": 3.03897900262e+21,
+      "address": "0xaa3f3c5de13a699c2cb1bb110766f542df310f35",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 33,
+      "chnStake": 2.5e+21,
+      "address": "0x05c2974d048d90ec5bfa124b6369396727b900fd",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 34,
+      "chnStake": 1.6065574e+21,
+      "address": "0x8da02d597a2616e9ec0c82b2b8366b00d69da29a",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 35,
+      "chnStake": 1.5864481468e+21,
+      "address": "0x4407bb45339af7fefbf55decb64273b89c901193",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0001"
+    },
+    {
+      "rank": 36,
+      "chnStake": 1.557377e+21,
+      "address": "0xe75703c017ddbc04870305659225239abd449263",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 37,
+      "chnStake": 1.557377e+21,
+      "address": "0x994cf01f34c51426bcb12bd30ff7079e280e1140",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 38,
+      "chnStake": 1.3962902e+21,
+      "address": "0x259606019d28e1c8a83c965b3281aa622fb3fbf9",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 39,
+      "chnStake": 1.2743099e+21,
+      "address": "0x14a63e6c69810d9ae58ecfa2d06fb92e9a1bceae",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 40,
+      "chnStake": 1.2568522e+21,
+      "address": "0x3ac72c7e7e2222625eb21c86bff25ce3d526fdb2",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 41,
+      "chnStake": 1.07729413388e+21,
+      "address": "0x946e9d704002e5c60c92d71689129bbbb3f9cf26",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 42,
+      "chnStake": 1.0093176e+21,
+      "address": "0x856d1fa47ffdbac2248fc0de5b127f35a63c6b87",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 43,
+      "chnStake": 985950568850000000000,
+      "address": "0x43af3106db0b6c2b040811ee9917e2cb9ce8f156",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 44,
+      "chnStake": 500000000000000000000,
+      "address": "0x856b63349fb6c818ea7cd7305483ae0ef6956f6c",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 45,
+      "chnStake": 444704792744936800000,
+      "address": "0x96b901da81e7f8d45a297615bc32717f837b8a4e",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 46,
+      "chnStake": 310995800000000000000,
+      "address": "0xfe1c6e1d9fe0f595f5101b9e833ad66523393781",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 47,
+      "chnStake": 305087313710000000000,
+      "address": "0x947b73495418bcd5c1112ad3b2f0247308d77f60",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 48,
+      "chnStake": 300000000000000000000,
+      "address": "0xf8151dbfcf53306ae8dfa62034966f88cb85892b",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 49,
+      "chnStake": 285892312948391580000,
+      "address": "0x348ae4a95fe46c675183143e431e878615c8307f",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 50,
+      "chnStake": 239560439560000000000,
+      "address": "0xc35a71e6debf5c3f50ebcf008bb1ed14a16a5346",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 51,
+      "chnStake": 185775424765138930000,
+      "address": "0x43a5d852de8752e0a373d14a3ffe3f88f6401661",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 52,
+      "chnStake": 137000000000000000000,
+      "address": "0x6a5c256af009abdb4bbd09cb17003edaa723989a",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 53,
+      "chnStake": 100204924000000000000,
+      "address": "0x9ae90acfee9ca60e9c00677e70e738662c8cdee2",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 54,
+      "chnStake": 100000000000000000000,
+      "address": "0xafef0654eb1e890b30c2b4fd44131ff09e2b4149",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 55,
+      "chnStake": 35765004680000000000,
+      "address": "0xb05110bbfacef57b0b26c3ffd3b15c264ce38ba3",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 56,
+      "chnStake": 30182333340000000000,
+      "address": "0x93cafc0a320db75a0d2f44093486af22f8a2d9cb",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 57,
+      "chnStake": 29702222520000000000,
+      "address": "0xa29beecd971d51e1bef93460f7f527026198105e",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 58,
+      "chnStake": 26328010490000000000,
+      "address": "0x6ad9f9d5c2738c80b8070cd31ff83472405a766d",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 59,
+      "chnStake": 25800000000000000000,
+      "address": "0xf488b0817c5cd29c6327af13dcc2e6fde1a772e6",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 60,
+      "chnStake": 20000000000000004000,
+      "address": "0xbed0bcea9c75d3e34d0e4aff2146249f0aa08916",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 61,
+      "chnStake": 10000000000000008000,
+      "address": "0xd2ab34d177b2a1ee9b0dc0f1e0910de1a68e4710",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 62,
+      "chnStake": 3000000000000000000,
+      "address": "0xd98a41b053df9a67a7505a92cb4880cdd4802f4f",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 63,
+      "chnStake": 8589934592,
+      "address": "0x605804662832df2f897ad0b57a2bee10e3aee255",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 64,
+      "chnStake": 16777216,
+      "address": "0x936bc91d85f3250d16794e7369a48d55de68111c",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    },
+    {
+      "rank": 65,
+      "chnStake": 4194304,
+      "address": "0x79506692ee33595e4525843450d07dac445977cf",
+      "proposalsVoted": 0,
+      "voteWeight": "0.0000"
+    }
+  ],
+  "metadata": {
+    "page": 1,
+    "limit": 100,
+    "totalItem": 294,
+    "totalPage": 3
+  }
+}

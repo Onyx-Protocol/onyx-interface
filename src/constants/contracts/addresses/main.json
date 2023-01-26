@@ -1,0 +1,38 @@
+{
+  "comptroller": {
+    "1": "0xCD83e681c42E824f264B62Dca8A4E8FddA6095a9",
+    "5": "0xCD83e681c42E824f264B62Dca8A4E8FddA6095a9"
+  },
+  "oracle": {
+    "1": "0x4F0b895F46b52f0E4032e67d4E7ed1C3EC5F11CF",
+    "5": "0x4F0b895F46b52f0E4032e67d4E7ed1C3EC5F11CF"
+  },
+  "governorBravoDelegator": {
+    "1": "0xdec2F31C3984F3440540DC78Ef21b1369d4eF767",
+    "5": "0xD9b7303683A63c2bd574F093410e85f026fED29a"
+  },
+  "xcnLens": {
+    "1": "0xd6B53469F9695B084522f827C9469c88C2ec0072",
+    "5": "0x1D133323d1f7e8c5642627DeFAf68cFC89cb2583"
+  },
+  "maximillion": {
+    "1": "0x5bA48AF54c8e7ffF2cFcbC6f38f45589b7f801AF",
+    "5": "0x5bA48AF54c8e7ffF2cFcbC6f38f45589b7f801AF"
+  },
+  "xcnStaking": {
+    "1": "0x23445c63feef8d85956dc0f19ade87606d0e19a9",
+    "5": "0x36187260B3628D987b403B15cbB38693A72F9bD7"
+  },
+  "fiPunk": {
+    "1": "0x3035b517f232E251DF3900349785aEa5d13f7452",
+    "5": "0x3035b517f232E251DF3900349785aEa5d13f7452"
+  },
+  "punk": {
+    "1": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+    "5": "0x8ec1ce4ebd9f7bb2385e4f1afbd1d19ee33a1f17"
+  },
+  "liquidationProxy": {
+    "1": "0x737BCfA44a73D85Db314cF9805A46F961de36437",
+    "5": "0x737BCfA44a73D85Db314cF9805A46F961de36437"
+  }
+}
