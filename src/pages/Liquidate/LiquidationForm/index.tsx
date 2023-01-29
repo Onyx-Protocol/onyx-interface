@@ -276,7 +276,7 @@ const LiquidationForm = ({
                   !token.market ||
                   !selectedIds.length ||
                   form.amount >
-                    new BigNumber(token.cTokenBalance).times(token.market.exchangeRate).toNumber()
+                    new BigNumber(token.oTokenBalance).times(token.market.exchangeRate).toNumber()
                 }
                 onClick={handleSubmit}
               >

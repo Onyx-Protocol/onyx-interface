@@ -72,7 +72,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
                     {user.tokens
                       .filter(
                         (token: any) =>
-                          !new BigNumber(token.cTokenBalance).isZero() ||
+                          !new BigNumber(token.oTokenBalance).isZero() ||
                           !new BigNumber(token.storedBorrowBalance).isZero(),
                       )
                       .map((token: any) => (
@@ -84,13 +84,13 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
                           <div className="supplyAmount">
                             Supply:{' '}
                             {token.market.underlyingDecimals === 0 &&
-                              new BigNumber(token.cTokenBalance)
+                              new BigNumber(token.oTokenBalance)
                                 .times(token.market.exchangeRate)
                                 .dp(2, 1)
                                 .toString(10)}{' '}
                             {token.market.underlyingDecimals === 0 && '('}
                             {formatCentsToReadableValue({
-                              value: new BigNumber(token.cTokenBalance)
+                              value: new BigNumber(token.oTokenBalance)
                                 .multipliedBy(getTokenPrice(token))
                                 .times(token.market.exchangeRate)
                                 .multipliedBy(100),
@@ -135,7 +135,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
                       {user.tokens
                         .filter(
                           (token: any) =>
-                            !new BigNumber(token.cTokenBalance).isZero() ||
+                            !new BigNumber(token.oTokenBalance).isZero() ||
                             !new BigNumber(token.storedBorrowBalance).isZero(),
                         )
                         .map((token: any) => (
@@ -148,13 +148,13 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
                             <div className="supplyAmount">
                               Supply:{' '}
                               {token.market.underlyingDecimals === 0 &&
-                                new BigNumber(token.cTokenBalance)
+                                new BigNumber(token.oTokenBalance)
                                   .times(token.market.exchangeRate)
                                   .dp(2, 1)
                                   .toString(10)}{' '}
                               {token.market.underlyingDecimals === 0 && '('}
                               {formatCentsToReadableValue({
-                                value: new BigNumber(token.cTokenBalance)
+                                value: new BigNumber(token.oTokenBalance)
                                   .multipliedBy(getTokenPrice(token))
                                   .times(token.market.exchangeRate)
                                   .multipliedBy(100),

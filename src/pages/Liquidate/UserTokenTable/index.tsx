@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 
 const UserTokenTable = ({ token, markets = [], selectedToken, onSelectSupplyToken }: any) => {
   const styles = useStyles();
-  const supply = new BigNumber(token.cTokenBalance).times(token.market.exchangeRate);
+  const supply = new BigNumber(token.oTokenBalance).times(token.market.exchangeRate);
   const borrow = new BigNumber(token.storedBorrowBalance);
   if (supply.isZero() && (token.market.underlyingDecimals === 0 || borrow.isZero())) {
     return null;
