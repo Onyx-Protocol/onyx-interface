@@ -21,7 +21,7 @@ const getAccountSubGraph = (network: any, address: any): Promise<any> => {
                 id
                 symbol
                 enteredMarket
-                cTokenBalance
+                oTokenBalance
                 storedBorrowBalance
                 market {
                   id
