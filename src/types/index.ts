@@ -124,6 +124,19 @@ export interface Proposal {
   endDate?: Date;
 }
 
+export interface StakeHistory {
+  id: number;
+  address: string;
+  tx_hash: string;
+  block_hash: string;
+  amount: BigNumber;
+  price: string;
+  reward: BigNumber;
+  type: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
 export type VoteSupport = 'FOR' | 'AGAINST' | 'ABSTAIN' | 'NOT_VOTED';
 
 export interface VotersDetails {

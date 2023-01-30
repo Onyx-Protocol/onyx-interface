@@ -33,5 +33,6 @@ export { default as calculatePercentage } from './calculatePercentage';
 export { truncateAddress } from './truncateAddress';
 export { default as parseFunctionSignature } from './parseFunctionSignature';
 export { default as formatToProposal } from './formatToProposal';
+export { default as formatToStakeHistory } from './formatToStakeHistory';
 export { default as getAccountsSubGraph } from './getAccountsSubGraph';
 export { default as getAccountSubGraph } from './getAccountSubGraph';

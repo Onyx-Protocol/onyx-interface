@@ -176,6 +176,7 @@
   "interactive": {
     "copy": {
       "walletAddress": "Wallet address",
+      "txHash": "Transaction Hash",
       "xcnAddress": "XCN address"
     },
     "copyToClipboard": "{{name}} copied to clipboard"
@@ -201,7 +202,8 @@
       "xcn": "XCN",
       "xcnPrediction": "XCN Prediction",
       "fpunk": "Punk Wrapper",
-      "liquidate": "Liquidate"
+      "liquidate": "Liquidate",
+      "stake": "Stake"
     }
   },
   "lunaUstWarningModal": {

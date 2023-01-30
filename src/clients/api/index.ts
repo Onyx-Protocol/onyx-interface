@@ -175,6 +175,9 @@ export { default as getProposals } from './queries/getProposals';
 export * from './queries/getProposals';
 export { default as useGetProposals } from './queries/getProposals/useGetProposals';
 
+export * from './queries/getStakeHistories';
+export { default as useGetStakeHistories } from './queries/getStakeHistories/useGetStakeHistories';
+
 export { default as getProposal } from './queries/getProposals/getProposal';
 export * from './queries/getProposals/getProposal';
 export { default as useGetProposal } from './queries/getProposals/useGetProposal';
