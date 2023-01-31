@@ -9,13 +9,13 @@ import PunkImg from 'assets/img/punk1.png';
 import {
   useBurnWPunks,
   useDepositPunk,
-  useGetOwnedWPunksIds,
   useGetOwnedPunkIds,
+  useGetOwnedWPunksIds,
   useGetProxies,
   useMintWPunks,
   useRegisterProxy,
 } from 'clients/api';
-import { useWPunksContract } from 'clients/contracts/hooks';
+import { usePunkDataContract } from 'clients/contracts/hooks';
 import { AuthContext } from 'context/AuthContext';
 import useSuccessfulTransactionModal from 'hooks/useSuccessfulTransactionModal';
 
@@ -27,7 +27,8 @@ const Wpunks: React.FC = () => {
   const styles = useStyles();
   const { t } = useTranslation();
   const { account }: any = useContext(AuthContext);
-  const WPunksContract = useWPunksContract();
+
+  const punkDataContract = usePunkDataContract();
 
   const { openSuccessfulTransactionModal } = useSuccessfulTransactionModal();
 
@@ -70,7 +71,7 @@ const Wpunks: React.FC = () => {
       id => !images[id],
     );
     if (unknown.length > 0) {
-      Promise.all(unknown.map(tokenId => WPunksContract.methods.punkImageSvg(tokenId).call()))
+      Promise.all(unknown.map(tokenId => punkDataContract.methods.punkImageSvg(tokenId).call()))
         .then(svgs => {
           setImages({
             ...images,
@@ -156,9 +157,7 @@ const Wpunks: React.FC = () => {
 
   return (
     <div>
-      <div css={styles.topTitle}>
-        {t('wpunks.turnPunkIntoERC721')}
-      </div>
+      <div css={styles.topTitle}>{t('wpunks.turnPunkIntoERC721')}</div>
 
       <Paper css={styles.container}>
         <Typography variant="h6" color="white">

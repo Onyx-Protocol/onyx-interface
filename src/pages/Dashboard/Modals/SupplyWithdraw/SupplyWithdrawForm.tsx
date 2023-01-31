@@ -31,7 +31,7 @@ import {
 
 import NftCheckImg from 'assets/img/nft_check.svg';
 import { useGetOTokenCash, useRedeemNFT, useSupplyNFT } from 'clients/api';
-import { useNftContract, useOTokenContract } from 'clients/contracts/hooks';
+import { useNftContract, useOTokenContract, usePunkDataContract } from 'clients/contracts/hooks';
 import { BaseURIs } from 'constants/baseURIs';
 import { SAFE_BORROW_LIMIT_PERCENTAGE } from 'constants/safeBorrowLimitPercentage';
 import { AmountForm, AmountFormProps, ErrorCode } from 'containers/AmountForm';
@@ -86,6 +86,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
   const oTokenContract: any = useOTokenContract(asset.token.id);
 
   const nftTokenContract: any = useNftContract(asset.token);
+  const punkDataContract = usePunkDataContract();
 
   const { account: { address: accountAddress = '' } = {} } = useContext(AuthContext);
   const [nfts, setNFTs] = useState<any>([]);
@@ -182,7 +183,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 tokenIds.map(tokenId =>
                   Promise.all([
                     Promise.resolve(tokenId),
-                    nftTokenContract.methods.punkImageSvg(tokenId).call(),
+                    punkDataContract.methods.punkImageSvg(tokenId).call(),
                   ]),
                 ),
               );

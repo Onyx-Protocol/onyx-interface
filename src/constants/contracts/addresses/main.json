@@ -31,6 +31,10 @@
     "1": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
     "5": "0x8ec1ce4ebd9f7bb2385e4f1afbd1d19ee33a1f17"
   },
+  "punkData": {
+    "1": "0x16f5a35647d6f03d5d3da7b35409d65ba03af3b2",
+    "5": "0xbc54AA0dda12558F9F9524E29C38Dee51Ad0E549"
+  },
   "liquidationProxy": {
     "1": "0x737BCfA44a73D85Db314cF9805A46F961de36437",
     "5": "0x737BCfA44a73D85Db314cF9805A46F961de36437"

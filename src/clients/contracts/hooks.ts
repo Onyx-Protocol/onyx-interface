@@ -17,6 +17,7 @@ import {
   getPunkContract,
   getNftContract,
   getLiquidationProxyContract,
+  getPunkDataContract,
 } from './getters';
 
 export const useTokenContract = (token: Token) => {
@@ -77,6 +78,11 @@ export const usePunkContract = () => {
 export const useNftContract = (token: Token) => {
   const web3 = useWeb3();
   return useMemo(() => getNftContract(token, web3), [web3, token]);
+};
+
+export const usePunkDataContract = () => {
+  const web3 = useWeb3();
+  return useMemo(() => getPunkDataContract(web3), [web3]);
 };
 
 export const useLiquidationProxyContract = () => {
