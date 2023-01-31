@@ -1,7 +1,7 @@
 import { checkForTokenTransactionError } from 'errors';
 
-const registerProxy = async ({ fiPunkContract, accountAddress }: any): Promise<any> => {
-  const resp = await fiPunkContract.methods.registerProxy().send({ from: accountAddress });
+const registerProxy = async ({ WPunksContract, accountAddress }: any): Promise<any> => {
+  const resp = await WPunksContract.methods.registerProxy().send({ from: accountAddress });
 
   return checkForTokenTransactionError(resp);
 };

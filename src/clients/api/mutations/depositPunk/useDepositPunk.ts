@@ -26,7 +26,7 @@ const useDepositPunk = ({ accountAddress }: { accountAddress: string }, options?
           },
         ]);
         queryClient.invalidateQueries([
-          FunctionKey.GET_OWNED_FIPUNK_IDS,
+          FunctionKey.GET_OWNED_WPUNKS_IDS,
           {
             accountAddress,
           },

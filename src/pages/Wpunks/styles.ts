@@ -39,4 +39,8 @@ export const useStyles = () => ({
     background: linear-gradient(123.08deg, rgba(29, 185, 166, 0.2) -33.26%, #1db9a6 88.39%);
     border-radius: 10px;
   `,
+  topTitle: css`
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  `,
 });

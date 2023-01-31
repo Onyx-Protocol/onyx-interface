@@ -5,7 +5,6 @@ import oBayc from 'assets/img/tokens/oBayc.svg';
 import oBusd from 'assets/img/tokens/oBusd.svg';
 import oDai from 'assets/img/tokens/oDai.svg';
 import oEth from 'assets/img/tokens/oEth.svg';
-import oFipunks from 'assets/img/tokens/oFipunks.svg';
 import oGusd from 'assets/img/tokens/oGusd.svg';
 import oLink from 'assets/img/tokens/oLink.svg';
 import oMatic from 'assets/img/tokens/oMatic.svg';
@@ -16,6 +15,7 @@ import oUsdc from 'assets/img/tokens/oUsdc.svg';
 import oUsdp from 'assets/img/tokens/oUsdp.svg';
 import oUsdt from 'assets/img/tokens/oUsdt.svg';
 import oWbtc from 'assets/img/tokens/oWbtc.svg';
+import oWpunks from 'assets/img/tokens/oWpunks.svg';
 import oXcn from 'assets/img/tokens/oXcn.svg';
 
 import OETH_TOKEN_ADDRESSES from '../../contracts/addresses/oEthTokens.json';
@@ -133,11 +133,11 @@ export const TESTNET_OETH_TOKENS = {
     address: OETH_TOKEN_ADDRESSES.bayc[EthChainId.TESTNET],
     asset: oBayc,
   } as Token,
-  fipunks: {
-    id: 'fipunks',
+  wpunks: {
+    id: 'wpunks',
     symbol: 'oPUNK',
     decimals: 0,
-    address: OETH_TOKEN_ADDRESSES.fipunks[EthChainId.TESTNET],
-    asset: oFipunks,
+    address: OETH_TOKEN_ADDRESSES.wpunks[EthChainId.TESTNET],
+    asset: oWpunks,
   } as Token,
 };

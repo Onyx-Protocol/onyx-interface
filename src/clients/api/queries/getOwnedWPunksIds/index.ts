@@ -2,16 +2,16 @@ import BigNumber from 'bignumber.js';
 import { ContractCallContext, ContractCallReturnContext } from 'ethereum-multicall';
 import { getContractAddress } from 'utilities';
 
-import fiPunkAbi from 'constants/contracts/abis/fiPunk.json';
+import wpunksAbi from 'constants/contracts/abis/wpunks.json';
 
-const getOwnedFiPunkIds = async ({ accountAddress, fiPunkContract, multicall }: any): Promise<any> => {
-  const fiPunkBalance = await fiPunkContract.methods.balanceOf(accountAddress).call();
+const getOwnedWPunksIds = async ({ accountAddress, WPunksContract, multicall }: any): Promise<any> => {
+  const wPunksBalance = await WPunksContract.methods.balanceOf(accountAddress).call();
 
-  const contractCallContexts = new Array(Number(fiPunkBalance)).fill(['0']).map((_v, _idx) => {
+  const contractCallContexts = new Array(Number(wPunksBalance)).fill(['0']).map((_v, _idx) => {
     const contractCallContext: ContractCallContext = {
-      reference: `${getContractAddress('fiPunk')}-${_idx}`,
-      contractAddress: getContractAddress('fiPunk'),
-      abi: fiPunkAbi,
+      reference: `${getContractAddress('wpunks')}-${_idx}`,
+      contractAddress: getContractAddress('wpunks'),
+      abi: wpunksAbi,
       calls: [
         {
           reference: 'tokenOfOwnerByIndex',
@@ -37,4 +37,4 @@ const getOwnedFiPunkIds = async ({ accountAddress, fiPunkContract, multicall }: 
   return ownedFiIds;
 };
 
-export default getOwnedFiPunkIds;
+export default getOwnedWPunksIds;
