@@ -862,18 +862,19 @@
     "progressBar": "Xcn Distribution progress",
     "remaining": "Remaining:"
   },
-  "fipunk": {
-    "title": "Your Punks",
-    "fiPunkTitle": "Your fiPunks",
+  "wpunks": {
+    "title": "Your CryptoPunks",
+    "wPunksTitle": "Your Wrapped PUNKS",
     "emptyPunk": "You don’t have any Punks",
     "description": "You need to register your own Proxy for your Punks.",
     "registerProxyBtn": "Register Proxy",
-    "emptyFiPunkOrLockedPunk": "You don't have any fiPunks or locked Punks",
+    "emptyWPUNKSOrLockedPunk": "You don't have any WPUNKS or locked Punks",
     "registerProxyCreatedSuccessfully": "You successfully registered",
     "pleaseAllowTimeForConfirmation": "Please allow a few minutes for your transaction to be confirmed",
     "depositPunkSuccessfully": "You have successfully deposited punk",
-    "mintFiPunkSuccessfully": "You have successfully minted fiPunk",
-    "burnFiPunkSuccessfully": "You have successfully withdrawn fiPunk"
+    "mintWPUNKSSuccessfully": "You have successfully minted WPUNKS",
+    "burnWPUNKSSuccessfully": "You have successfully withdrawn WPUNKS",
+    "turnPunkIntoERC721": "Turn your CryptoPunks into ERC721"
   },
   "liquidate": {
     "users": "Users",

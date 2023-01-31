@@ -8,7 +8,7 @@ import { getTokenByAddress } from 'utilities';
 
 import NftCheckImg from 'assets/img/nft_check.svg';
 import { getOTokenContract } from 'clients/contracts/getters';
-import { useNftContract } from 'clients/contracts/hooks';
+import { usePunkDataContract } from 'clients/contracts/hooks';
 import { useWeb3 } from 'clients/web3';
 import { NULL_ADDRESS } from 'constants/address';
 import { BaseURIs } from 'constants/baseURIs';
@@ -90,9 +90,8 @@ const LiquidationForm = ({
   const oTokenContract: any = token?.market?.id
     ? getOTokenContract(symbol.toLowerCase(), web3)
     : null;
-  const nftTokenContract: any = useNftContract(
-    (markets || []).find((market: any) => market.address === token?.market?.id) || {},
-  );
+
+  const punkDataContract = usePunkDataContract();
 
   useEffect(() => {
     if (token?.market?.underlyingDecimals === 0 && oTokenContract) {
@@ -144,7 +143,7 @@ const LiquidationForm = ({
                     tokenIds.map(tokenId =>
                       Promise.all([
                         Promise.resolve(tokenId),
-                        nftTokenContract.methods.punkImageSvg(tokenId).call(),
+                        punkDataContract.methods.punkImageSvg(tokenId).call(),
                       ]),
                     ),
                   );

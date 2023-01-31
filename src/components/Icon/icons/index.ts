@@ -44,5 +44,5 @@ export { default as bubble } from './bubble';
 export { default as logoMobile } from './logoMobile';
 export { default as person } from './person';
 export { default as magnifier } from './magnifier';
-export { default as fipunkOutlined } from './fipunk';
+export { default as wpunksOutlined } from './wpunks';
 export { default as stake } from './stake';

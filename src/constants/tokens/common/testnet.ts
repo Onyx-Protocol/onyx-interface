@@ -5,7 +5,7 @@ import bayc from 'assets/img/tokens/bayc.svg';
 import busd from 'assets/img/tokens/busd.svg';
 import dai from 'assets/img/tokens/dai.svg';
 import eth from 'assets/img/tokens/eth.svg';
-import fipunks from 'assets/img/tokens/fipunks.svg';
+import wpunks from 'assets/img/tokens/wpunks.svg';
 import gusd from 'assets/img/tokens/gusd.svg';
 import link from 'assets/img/tokens/link.svg';
 import matic from 'assets/img/tokens/matic.svg';
@@ -134,11 +134,11 @@ export const TESTNET_TOKENS = {
     address: TOKEN_ADDRESSES.bayc[EthChainId.TESTNET],
     asset: bayc,
   } as Token,
-  fipunks: {
-    id: 'fipunks',
-    symbol: 'fiPUNKS',
+  wpunks: {
+    id: 'wpunks',
+    symbol: 'WPUNKS',
     decimals: 0,
-    address: TOKEN_ADDRESSES.fipunks[EthChainId.TESTNET],
-    asset: fipunks,
+    address: TOKEN_ADDRESSES.wpunks[EthChainId.TESTNET],
+    asset: wpunks,
   } as Token,
 };

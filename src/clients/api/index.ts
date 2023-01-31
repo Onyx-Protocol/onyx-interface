@@ -90,13 +90,13 @@ export { default as depositPunk } from './mutations/depositPunk';
 export * from './mutations/depositPunk';
 export { default as useDepositPunk } from './mutations/depositPunk/useDepositPunk';
 
-export { default as mintFiPunk } from './mutations/mintFiPunk';
-export * from './mutations/mintFiPunk';
-export { default as useMintFiPunk } from './mutations/mintFiPunk/useMintFiPunk';
+export { default as mintWPunks } from './mutations/mintWPunks';
+export * from './mutations/mintWPunks';
+export { default as useMintWPunks } from './mutations/mintWPunks/useMintWPunks';
 
-export { default as burnFiPunk } from './mutations/burnFiPunk';
-export * from './mutations/burnFiPunk';
-export { default as useBurnFiPunk } from './mutations/burnFiPunk/useBurnFiPunk';
+export { default as burnWPunks } from './mutations/burnWPunks';
+export * from './mutations/burnWPunks';
+export { default as useBurnWPunks } from './mutations/burnWPunks/useBurnWPunks';
 
 // Queries
 
@@ -230,9 +230,9 @@ export { default as getOwnedPunkIds } from './queries/getOwnedPunkIds';
 export * from './queries/getOwnedPunkIds';
 export { default as useGetOwnedPunkIds } from './queries/getOwnedPunkIds/useGetOwnedPunkIds';
 
-export { default as getOwnedFiPunkIds } from './queries/getOwnedFiPunkIds';
-export * from './queries/getOwnedFiPunkIds';
-export { default as useGetOwnedFiPunkIds } from './queries/getOwnedFiPunkIds/useGetOwnedFiPunkIds';
+export { default as getOwnedWPunksIds } from './queries/getOwnedWPunksIds';
+export * from './queries/getOwnedWPunksIds';
+export { default as useGetOwnedWPunksIds } from './queries/getOwnedWPunksIds/useGetOwnedWPunksIds';
 
 export { default as liquidateWithSingleRepay } from './mutations/liquidateWithSingleRepay';
 export * from './mutations/liquidateWithSingleRepay';

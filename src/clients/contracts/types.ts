@@ -4,7 +4,7 @@ export type TokenContract<T extends string = ''> = T extends 'xcn' ? XcnToken : 
 
 export type OTokenContract<T extends string> = T extends 'eth'
   ? OEthToken
-  : T extends 'fipunks'
+  : T extends 'wpunks'
   ? OTokenEx
   : T extends 'bayc'
   ? OTokenEx

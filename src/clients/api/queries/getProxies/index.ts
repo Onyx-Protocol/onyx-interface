@@ -1,5 +1,5 @@
-const getProxies = async ({ fiPunkContract, accountAddress }: any): Promise<string> => {
-  const response = await fiPunkContract.methods['_proxies(address)'](accountAddress).call();
+const getProxies = async ({ WPunksContract, accountAddress }: any): Promise<string> => {
+  const response = await WPunksContract.methods['proxyInfo(address)'](accountAddress).call();
 
   return response;
 };

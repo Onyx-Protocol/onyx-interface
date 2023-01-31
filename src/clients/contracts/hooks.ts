@@ -13,10 +13,11 @@ import {
   getTokenContractByAddress,
   getXcnLensContract,
   getXcnStakingContract,
-  getFiPunkContract,
+  getWPunksContract,
   getPunkContract,
   getNftContract,
   getLiquidationProxyContract,
+  getPunkDataContract,
 } from './getters';
 
 export const useTokenContract = (token: Token) => {
@@ -64,9 +65,9 @@ export const useXcnStakingContract = () => {
   return useMemo(() => getXcnStakingContract(web3), [web3]);
 };
 
-export const useFiPunkContract = () => {
+export const useWPunksContract = () => {
   const web3 = useWeb3();
-  return useMemo(() => getFiPunkContract(web3), [web3]);
+  return useMemo(() => getWPunksContract(web3), [web3]);
 };
 
 export const usePunkContract = () => {
@@ -77,6 +78,11 @@ export const usePunkContract = () => {
 export const useNftContract = (token: Token) => {
   const web3 = useWeb3();
   return useMemo(() => getNftContract(token, web3), [web3, token]);
+};
+
+export const usePunkDataContract = () => {
+  const web3 = useWeb3();
+  return useMemo(() => getPunkDataContract(web3), [web3]);
 };
 
 export const useLiquidationProxyContract = () => {

@@ -7,15 +7,15 @@ import { useTranslation } from 'translation';
 
 import PunkImg from 'assets/img/punk1.png';
 import {
-  useBurnFiPunk,
+  useBurnWPunks,
   useDepositPunk,
-  useGetOwnedFiPunkIds,
   useGetOwnedPunkIds,
+  useGetOwnedWPunksIds,
   useGetProxies,
-  useMintFiPunk,
+  useMintWPunks,
   useRegisterProxy,
 } from 'clients/api';
-import { useFiPunkContract } from 'clients/contracts/hooks';
+import { usePunkDataContract } from 'clients/contracts/hooks';
 import { AuthContext } from 'context/AuthContext';
 import useSuccessfulTransactionModal from 'hooks/useSuccessfulTransactionModal';
 
@@ -23,11 +23,12 @@ import { useStyles } from './styles';
 
 export const ZERO = '0x0000000000000000000000000000000000000000';
 
-const Fpunk: React.FC = () => {
+const Wpunks: React.FC = () => {
   const styles = useStyles();
   const { t } = useTranslation();
   const { account }: any = useContext(AuthContext);
-  const fiPunkContract = useFiPunkContract();
+
+  const punkDataContract = usePunkDataContract();
 
   const { openSuccessfulTransactionModal } = useSuccessfulTransactionModal();
 
@@ -39,11 +40,11 @@ const Fpunk: React.FC = () => {
     accountAddress: account?.address || '',
   });
 
-  const { mutateAsync: mintFiPunk, isLoading: isMintFiPunkLoading } = useMintFiPunk({
+  const { mutateAsync: mintWPunks, isLoading: isMintWPunksLoading } = useMintWPunks({
     accountAddress: account?.address || '',
   });
 
-  const { mutateAsync: burnFiPunk, isLoading: isBurnFiPunkLoading } = useBurnFiPunk({
+  const { mutateAsync: burnWPunks, isLoading: isBurnWPunksLoading } = useBurnWPunks({
     accountAddress: account?.address || '',
   });
 
@@ -53,24 +54,24 @@ const Fpunk: React.FC = () => {
     accountAddress: account?.address || '',
   });
 
-  const { data: ownedFiPunkIds = [], isLoading: ownFiPunkIdsLoading }: any = useGetOwnedFiPunkIds({
+  const { data: ownedWPunksIds = [], isLoading: ownWPunksIdsLoading }: any = useGetOwnedWPunksIds({
     accountAddress: account?.address || '',
   });
   const ownedPunkIds = punkOwners[account?.address || ''] || [];
   const ownedProxyPunkIds = punkOwners[userProxyAddress || '0x'] || [];
   const [loaded, setLoaded] = useState(
-    ownedPunkIds.length > 0 || ownedProxyPunkIds.length > 0 || ownedFiPunkIds.length > 0,
+    ownedPunkIds.length > 0 || ownedProxyPunkIds.length > 0 || ownedWPunksIds.length > 0,
   );
 
   const [images, setImages] = useState<any>({});
   const [selectedId, setSelectedId] = useState('');
 
   useEffect(() => {
-    const unknown = [...ownedPunkIds, ...ownedProxyPunkIds, ...ownedFiPunkIds].filter(
+    const unknown = [...ownedPunkIds, ...ownedProxyPunkIds, ...ownedWPunksIds].filter(
       id => !images[id],
     );
     if (unknown.length > 0) {
-      Promise.all(unknown.map(tokenId => fiPunkContract.methods.punkImageSvg(tokenId).call()))
+      Promise.all(unknown.map(tokenId => punkDataContract.methods.punkImageSvg(tokenId).call()))
         .then(svgs => {
           setImages({
             ...images,
@@ -85,13 +86,13 @@ const Fpunk: React.FC = () => {
         })
         .catch(console.log);
     }
-  }, [images, ownedPunkIds, ownedProxyPunkIds, ownedFiPunkIds, setImages]);
+  }, [images, ownedPunkIds, ownedProxyPunkIds, ownedWPunksIds, setImages]);
 
   useEffect(() => {
-    if (!ownPunkIdsLoading && !ownFiPunkIdsLoading) {
+    if (!ownPunkIdsLoading && !ownWPunksIdsLoading) {
       setLoaded(true);
     }
-  }, [ownPunkIdsLoading, ownFiPunkIdsLoading]);
+  }, [ownPunkIdsLoading, ownWPunksIdsLoading]);
 
   const handleDeposit = async (id: any) => {
     if (!userProxyAddress || userProxyAddress === ZERO || !account?.address) return;
@@ -100,8 +101,8 @@ const Fpunk: React.FC = () => {
     const { transactionHash } = res;
     if (transactionHash) {
       openSuccessfulTransactionModal({
-        title: t('fipunk.depositPunkSuccessfully'),
-        content: t('fipunk.pleaseAllowTimeForConfirmation'),
+        title: t('wpunks.depositPunkSuccessfully'),
+        content: t('wpunks.pleaseAllowTimeForConfirmation'),
         transactionHash,
       });
     }
@@ -112,12 +113,12 @@ const Fpunk: React.FC = () => {
       return;
     }
     setSelectedId(id);
-    const res = await mintFiPunk({ id });
+    const res = await mintWPunks({ id });
     const { transactionHash } = res;
     if (transactionHash) {
       openSuccessfulTransactionModal({
-        title: t('fipunk.mintFiPunkSuccessfully'),
-        content: t('fipunk.pleaseAllowTimeForConfirmation'),
+        title: t('wpunks.mintWPUNKSSuccessfully'),
+        content: t('wpunks.pleaseAllowTimeForConfirmation'),
         transactionHash,
       });
     }
@@ -128,12 +129,12 @@ const Fpunk: React.FC = () => {
       return;
     }
     setSelectedId(id);
-    const res = await burnFiPunk({ id });
+    const res = await burnWPunks({ id });
     const { transactionHash } = res;
     if (transactionHash) {
       openSuccessfulTransactionModal({
-        title: t('fipunk.burnFiPunkSuccessfully'),
-        content: t('fipunk.pleaseAllowTimeForConfirmation'),
+        title: t('wpunks.burnWPUNKSSuccessfully'),
+        content: t('wpunks.pleaseAllowTimeForConfirmation'),
         transactionHash,
       });
     }
@@ -147,8 +148,8 @@ const Fpunk: React.FC = () => {
     const { transactionHash } = res;
     if (transactionHash) {
       openSuccessfulTransactionModal({
-        title: t('fipunk.registerProxyCreatedSuccessfully'),
-        content: t('fipunk.pleaseAllowTimeForConfirmation'),
+        title: t('wpunks.registerProxyCreatedSuccessfully'),
+        content: t('wpunks.pleaseAllowTimeForConfirmation'),
         transactionHash,
       });
     }
@@ -156,9 +157,11 @@ const Fpunk: React.FC = () => {
 
   return (
     <div>
+      <div css={styles.topTitle}>{t('wpunks.turnPunkIntoERC721')}</div>
+
       <Paper css={styles.container}>
         <Typography variant="h6" color="white">
-          {t('fipunk.title')}
+          {t('wpunks.title')}
         </Typography>
         {!loaded && <p>Loading ...</p>}
         <div css={styles.punkList}>
@@ -184,37 +187,37 @@ const Fpunk: React.FC = () => {
           ))}
           {loaded && ownedPunkIds.length === 0 && (
             <Typography variant="h6" color="white">
-              {t('fipunk.emptyPunk')}
+              {t('wpunks.emptyPunk')}
             </Typography>
           )}
         </div>
       </Paper>
       <Paper css={styles.container}>
         <Typography variant="h6" color="white">
-          {t('fipunk.fiPunkTitle')}
+          {t('wpunks.wPunksTitle')}
         </Typography>
         {!loaded && <p>Loading ...</p>}
         {userProxyAddress === ZERO ? (
           <>
             <Typography variant="h6" color="white">
-              {t('fipunk.description')}
+              {t('wpunks.description')}
             </Typography>
             <Button css={styles.button} disabled={isRegisterProxyLoading} onClick={handleRegister}>
-              {t('fipunk.registerProxyBtn')}
+              {t('wpunks.registerProxyBtn')}
             </Button>
           </>
         ) : (
           <div css={styles.punkList}>
-            {(ownedFiPunkIds || []).map((id: any) => (
+            {(ownedWPunksIds || []).map((id: any) => (
               <div css={styles.nftItem} key={id}>
                 {images[id] ? (
                   <div css={styles.nftImg} dangerouslySetInnerHTML={{ __html: images[id] }} />
                 ) : (
                   <img css={styles.nftImg} src={PunkImg} alt="nft" />
                 )}
-                <div css={styles.tokenId}>fiPunk #{id}</div>
+                <div css={styles.tokenId}>WPUNKS #{id}</div>
                 <Button
-                  disabled={id === selectedId && isBurnFiPunkLoading}
+                  disabled={id === selectedId && isBurnWPunksLoading}
                   onClick={() => handleBurn(id)}
                 >
                   Withdraw
@@ -230,16 +233,16 @@ const Fpunk: React.FC = () => {
                 )}
                 <div css={styles.tokenId}>Punk #{id}</div>
                 <Button
-                  disabled={id === selectedId && isMintFiPunkLoading}
+                  disabled={id === selectedId && isMintWPunksLoading}
                   onClick={() => handleMint(id)}
                 >
                   Unlock
                 </Button>
               </div>
             ))}
-            {loaded && ownedFiPunkIds.length === 0 && ownedProxyPunkIds.length === 0 && (
+            {loaded && ownedWPunksIds.length === 0 && ownedProxyPunkIds.length === 0 && (
               <Typography variant="h6" color="white">
-                {t('fipunk.emptyFiPunkOrLockedPunk')}
+                {t('wpunks.emptyWPUNKSOrLockedPunk')}
               </Typography>
             )}
           </div>
@@ -249,4 +252,4 @@ const Fpunk: React.FC = () => {
   );
 };
 
-export default Fpunk;
+export default Wpunks;
