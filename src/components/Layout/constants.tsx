@@ -52,11 +52,11 @@ export const menuItems: MenuItem[] = [
   //   icon: 'liquidate',
   // },
   {
-    href: Path.FPUNK,
+    href: Path.WPUNKS,
     // Translation key: do not remove this comment
     // t('layout.menuItems.xcn')
     i18nKey: 'layout.menuItems.fpunk',
     i18nTitleKey: 'layout.menuItems.fpunk',
-    icon: 'fipunkOutlined',
+    icon: 'wpunksOutlined',
   },
 ];

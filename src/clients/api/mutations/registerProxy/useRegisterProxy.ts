@@ -2,17 +2,17 @@ import { useMutation } from 'react-query';
 
 import registerProxy from 'clients/api/mutations/registerProxy';
 import queryClient from 'clients/api/queryClient';
-import { useFiPunkContract } from 'clients/contracts/hooks';
+import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
 const useRegisterProxy = ({ accountAddress }: { accountAddress: string }, options?: any) => {
-  const fiPunkContract = useFiPunkContract();
+  const WPunksContract = useWPunksContract();
 
   return useMutation(
     FunctionKey.REGISTER_PROXY,
     () =>
       registerProxy({
-        fiPunkContract,
+        WPunksContract,
         accountAddress,
       }),
     {
@@ -25,7 +25,7 @@ const useRegisterProxy = ({ accountAddress }: { accountAddress: string }, option
           },
         ]);
         queryClient.invalidateQueries([
-          FunctionKey.GET_OWNED_FIPUNK_IDS,
+          FunctionKey.GET_OWNED_WPUNKS_IDS,
           {
             accountAddress,
           },

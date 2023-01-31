@@ -1,18 +1,18 @@
 import { useMutation } from 'react-query';
 
-import burnFiPunk from 'clients/api/mutations/burnFiPunk';
+import burnWPunks from 'clients/api/mutations/burnWPunks';
 import queryClient from 'clients/api/queryClient';
-import { useFiPunkContract } from 'clients/contracts/hooks';
+import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
-const useBurnFiPunk = ({ accountAddress }: { accountAddress: string }, options?: any) => {
-  const fiPunkContract = useFiPunkContract();
+const useBurnWPunks = ({ accountAddress }: { accountAddress: string }, options?: any) => {
+  const WPunksContract = useWPunksContract();
 
   return useMutation(
-    FunctionKey.BURN_FIPUNK,
+    FunctionKey.BURN_WPUNKS,
     (params: any) =>
-    burnFiPunk({
-        fiPunkContract,
+    burnWPunks({
+        WPunksContract,
         accountAddress,
         ...params,
       }),
@@ -26,7 +26,7 @@ const useBurnFiPunk = ({ accountAddress }: { accountAddress: string }, options?:
           },
         ]);
         queryClient.invalidateQueries([
-          FunctionKey.GET_OWNED_FIPUNK_IDS,
+          FunctionKey.GET_OWNED_WPUNKS_IDS,
           {
             accountAddress,
           },
@@ -45,4 +45,4 @@ const useBurnFiPunk = ({ accountAddress }: { accountAddress: string }, options?:
   );
 };
 
-export default useBurnFiPunk;
+export default useBurnWPunks;

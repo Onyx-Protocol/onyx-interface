@@ -6,7 +6,7 @@ import { AbiItem } from 'web3-utils';
 import { getWeb3NoAccount } from 'clients/web3';
 import comptrollerAbi from 'constants/contracts/abis/comptroller.json';
 import eth20Abi from 'constants/contracts/abis/eth20.json';
-import fiPunkAbi from 'constants/contracts/abis/fiPunk.json';
+import wpunksAbi from 'constants/contracts/abis/wpunks.json';
 import governorBravoDelegateAbi from 'constants/contracts/abis/governorBravoDelegate.json';
 import interestModelAbi from 'constants/contracts/abis/interestModel.json';
 import maximillionAbi from 'constants/contracts/abis/maximillion.json';
@@ -23,7 +23,7 @@ import { TOKENS } from 'constants/tokens';
 import {
   Comptroller,
   Eth20,
-  FiPunk,
+  Wpunks,
   GovernorBravoDelegate,
   InterestModel,
   Maximillion,
@@ -61,7 +61,7 @@ export const getOTokenContract = <T extends string>(tokenId: T, web3: Web3): OTo
     ) as unknown as OTokenContract<T>;
   }
 
-  if (['fipunks', 'bayc'].includes(tokenId)) {
+  if (['wpunks', 'bayc'].includes(tokenId)) {
     return getContract(
       oTokenExAbi as AbiItem[],
       oEthTokenAddress,
@@ -113,14 +113,14 @@ export const getXcnStakingContract = (web3: Web3) =>
     web3,
   ) as unknown as XcnStaking;
 
-export const getFiPunkContract = (web3: Web3) =>
-  getContract(fiPunkAbi as AbiItem[], getContractAddress('fiPunk'), web3) as unknown as FiPunk;
+export const getWPunksContract = (web3: Web3) =>
+  getContract(wpunksAbi as AbiItem[], getContractAddress('wpunks'), web3) as unknown as Wpunks;
 
 export const getPunkContract = (web3: Web3) =>
   getContract(punkAbi as AbiItem[], getContractAddress('punk'), web3) as unknown as XcnLens;
 
 export const getNftContract = (token: Token, web3: Web3) =>
-  getContract(fiPunkAbi as AbiItem[], token.address, web3);
+  getContract(wpunksAbi as AbiItem[], token.address, web3);
 
 export const getLiquidationProxyContract = (web3: Web3) =>
   getContract(liquidationProxyAbi as AbiItem[], getContractAddress('liquidationProxy'), web3) as unknown as XcnLens;

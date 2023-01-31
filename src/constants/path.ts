@@ -1,7 +1,7 @@
 enum Path {
   ROOT = '/',
   XCN = '/xcn',
-  FPUNK = '/fpunk',
+  WPUNKS = '/wpunks',
   MARKETS = '/markets',
   MARKET_DETAILS = '/market/:oTokenId',
   HISTORY = '/history',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SVGProps } from 'react';
 
-const SvgFiPunkOutlined = (props: SVGProps<SVGSVGElement>) => (
+const SvgWPunksOutlined = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="16"
     height="15"
@@ -21,4 +21,4 @@ const SvgFiPunkOutlined = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default SvgFiPunkOutlined;
+export default SvgWPunksOutlined;

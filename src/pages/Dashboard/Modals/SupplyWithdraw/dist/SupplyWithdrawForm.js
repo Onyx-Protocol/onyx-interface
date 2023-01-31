@@ -146,7 +146,7 @@ exports.SupplyWithdrawContent = function (_a) {
                     : Promise.all(tokenIds.map(function (tokenId) {
                         return Promise.all([
                             Promise.resolve(tokenId),
-                            library.contracts.FiPunk.methods.punkImageSvg(tokenId).call(),
+                            library.contracts.WPunks.methods.punkImageSvg(tokenId).call(),
                         ]);
                     }));
                 fetchPromise

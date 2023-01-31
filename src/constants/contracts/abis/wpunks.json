@@ -5,13 +5,9 @@
                 "internalType": "address",
                 "name": "punkContract",
                 "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "punkData",
-                "type": "address"
             }
         ],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "constructor"
     },
@@ -90,6 +86,19 @@
             {
                 "indexed": false,
                 "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "Paused",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "address",
                 "name": "user",
                 "type": "address"
             },
@@ -129,51 +138,20 @@
         "type": "event"
     },
     {
+        "anonymous": false,
         "inputs": [
             {
+                "indexed": false,
                 "internalType": "address",
-                "name": "",
+                "name": "account",
                 "type": "address"
             }
         ],
-        "name": "_proxies",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
+        "name": "Unpaused",
+        "type": "event"
     },
     {
-        "inputs": [],
-        "name": "_punkContract",
-        "outputs": [
-            {
-                "internalType": "contract IPunkMarket",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "_punkData",
-        "outputs": [
-            {
-                "internalType": "contract IPunkData",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "address",
@@ -188,10 +166,12 @@
         ],
         "name": "approve",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "address",
@@ -207,10 +187,12 @@
                 "type": "uint256"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [],
         "name": "baseURI",
         "outputs": [
@@ -220,10 +202,12 @@
                 "type": "string"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "uint256",
@@ -233,10 +217,12 @@
         ],
         "name": "burn",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "uint256",
@@ -252,14 +238,16 @@
                 "type": "address"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "address",
-                "name": "account",
+                "name": "owner",
                 "type": "address"
             },
             {
@@ -276,10 +264,12 @@
                 "type": "bool"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "uint256",
@@ -289,10 +279,12 @@
         ],
         "name": "mint",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [],
         "name": "name",
         "outputs": [
@@ -302,10 +294,12 @@
                 "type": "string"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [],
         "name": "owner",
         "outputs": [
@@ -315,10 +309,12 @@
                 "type": "address"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "uint256",
@@ -334,43 +330,90 @@
                 "type": "address"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "uint16",
-                "name": "index",
-                "type": "uint16"
-            }
-        ],
-        "name": "punkImageSvg",
+        "constant": false,
+        "inputs": [],
+        "name": "pause",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "paused",
         "outputs": [
             {
-                "internalType": "string",
-                "name": "svg",
-                "type": "string"
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "proxyInfo",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "punkContract",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
         "inputs": [],
         "name": "registerProxy",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [],
         "name": "renounceOwnership",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "address",
@@ -390,10 +433,12 @@
         ],
         "name": "safeTransferFrom",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "address",
@@ -418,14 +463,16 @@
         ],
         "name": "safeTransferFrom",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "address",
-                "name": "operator",
+                "name": "to",
                 "type": "address"
             },
             {
@@ -436,10 +483,27 @@
         ],
         "name": "setApprovalForAll",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": false,
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "baseUri",
+                "type": "string"
+            }
+        ],
+        "name": "setBaseURI",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "bytes4",
@@ -455,10 +519,12 @@
                 "type": "bool"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [],
         "name": "symbol",
         "outputs": [
@@ -468,10 +534,12 @@
                 "type": "string"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "uint256",
@@ -487,10 +555,12 @@
                 "type": "uint256"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "address",
@@ -511,10 +581,12 @@
                 "type": "uint256"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [
             {
                 "internalType": "uint256",
@@ -530,10 +602,12 @@
                 "type": "string"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": true,
         "inputs": [],
         "name": "totalSupply",
         "outputs": [
@@ -543,10 +617,12 @@
                 "type": "uint256"
             }
         ],
+        "payable": false,
         "stateMutability": "view",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "address",
@@ -566,10 +642,12 @@
         ],
         "name": "transferFrom",
         "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
+        "constant": false,
         "inputs": [
             {
                 "internalType": "address",
@@ -579,6 +657,16 @@
         ],
         "name": "transferOwnership",
         "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "unpause",
+        "outputs": [],
+        "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
     }

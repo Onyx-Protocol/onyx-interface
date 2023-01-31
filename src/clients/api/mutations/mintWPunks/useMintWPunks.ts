@@ -1,18 +1,18 @@
 import { useMutation } from 'react-query';
 
-import mintFiPunk from 'clients/api/mutations/mintFiPunk';
+import mintWPunks from 'clients/api/mutations/mintWPunks';
 import queryClient from 'clients/api/queryClient';
-import { useFiPunkContract } from 'clients/contracts/hooks';
+import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
-const useMintFiPunk = ({ accountAddress }: { accountAddress: string }, options?: any) => {
-  const fiPunkContract = useFiPunkContract();
+const useMintWPunks = ({ accountAddress }: { accountAddress: string }, options?: any) => {
+  const WPunksContract = useWPunksContract();
 
   return useMutation(
-    FunctionKey.MINT_FIPUNK,
+    FunctionKey.MINT_WPUNKS,
     (params: any) =>
-      mintFiPunk({
-        fiPunkContract,
+      mintWPunks({
+        WPunksContract,
         accountAddress,
         ...params,
       }),
@@ -26,7 +26,7 @@ const useMintFiPunk = ({ accountAddress }: { accountAddress: string }, options?:
           },
         ]);
         queryClient.invalidateQueries([
-          FunctionKey.GET_OWNED_FIPUNK_IDS,
+          FunctionKey.GET_OWNED_WPUNKS_IDS,
           {
             accountAddress,
           },
@@ -45,4 +45,4 @@ const useMintFiPunk = ({ accountAddress }: { accountAddress: string }, options?:
   );
 };
 
-export default useMintFiPunk;
+export default useMintWPunks;
