@@ -122,7 +122,7 @@ const LiquidateDetail = ({
     tokens.map((token: any) => {
       if (token.enteredMarket) {
         totalCash = totalCash.plus(
-          new BigNumber(token.cTokenBalance)
+          new BigNumber(token.oTokenBalance)
             .times(token.market.collateralFactor)
             .times(token.market.exchangeRate)
             .times(getTokenPrice(token)),

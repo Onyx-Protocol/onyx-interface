@@ -65,7 +65,7 @@ const Liquidate: React.FC = () => {
             const tokenPrice = getTokenPrice(token);
             if (token.enteredMarket) {
               totalCash = totalCash.plus(
-                new BigNumber(token.cTokenBalance)
+                new BigNumber(token.oTokenBalance)
                   .times(token.market.collateralFactor)
                   .times(token.market.exchangeRate)
                   .times(tokenPrice),
@@ -74,7 +74,7 @@ const Liquidate: React.FC = () => {
             const borrow = new BigNumber(token.storedBorrowBalance).times(tokenPrice);
             if (token.market.underlyingDecimals === 0) {
               if (
-                !new BigNumber(token.cTokenBalance).isZero() &&
+                !new BigNumber(token.oTokenBalance).isZero() &&
                 (!minSupply || tokenPrice.toNumber() < minSupply)
               ) {
                 minSupply = tokenPrice.toNumber();
