@@ -51,20 +51,20 @@ export const menuItems: MenuItem[] = [
     i18nTitleKey: 'layout.menuItems.xcn',
     icon: 'xcnOutlined',
   },
-  // {
-  //   href: Path.LIQUIDATE,
-  //   // Translation key: do not remove this comment
-  //   // t('layout.menuItems.xcn')
-  //   i18nKey: 'layout.menuItems.liquidate',
-  //   i18nTitleKey: 'layout.menuItems.liquidate',
-  //   icon: 'liquidate',
-  // },
   {
-    href: Path.WPUNKS,
+    href: Path.LIQUIDATE,
     // Translation key: do not remove this comment
     // t('layout.menuItems.xcn')
-    i18nKey: 'layout.menuItems.fpunk',
-    i18nTitleKey: 'layout.menuItems.fpunk',
-    icon: 'wpunksOutlined',
+    i18nKey: 'layout.menuItems.liquidate',
+    i18nTitleKey: 'layout.menuItems.liquidate',
+    icon: 'liquidate',
   },
+  // {
+  //   href: Path.WPUNKS,
+  //   // Translation key: do not remove this comment
+  //   // t('layout.menuItems.xcn')
+  //   i18nKey: 'layout.menuItems.fpunk',
+  //   i18nTitleKey: 'layout.menuItems.fpunk',
+  //   icon: 'wpunksOutlined',
+  // },
 ];
