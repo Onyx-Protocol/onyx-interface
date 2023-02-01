@@ -3,11 +3,11 @@
 import BigNumber from 'bignumber.js';
 // import { Toggle, ToggleProps } from 'components';
 import React, { useMemo } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Asset } from 'types';
 
 import { useGetUserMarketInfo } from 'clients/api';
-// import { Icon } from 'components/Icon';
+import { Icon } from 'components/Icon';
 import { AuthContext } from 'context/AuthContext';
 
 import Apy from './Apy';
@@ -86,14 +86,14 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
         />
       </div>
 
-      {/* <div css={styles.rowWithPadding}>
+      <div css={styles.rowWithPadding}>
         <div>
           <Link css={styles.link} to="/liquidate">
             Loan Positions
             <Icon name="arrowRight" css={styles.mobileArrow} />
           </Link>
         </div>
-      </div> */}
+      </div>
 
       <Markets
         isXcnEnabled={isXcnEnabled}

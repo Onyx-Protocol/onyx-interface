@@ -13,7 +13,7 @@ import { DisableLunaUstWarningProvider } from 'context/DisableLunaUstWarning';
 import { SuccessfulTransactionModalProvider } from 'context/SuccessfulTransactionModalContext';
 import { ThemeProvider } from 'context/ThemeContext';
 import Dashboard from 'pages/Dashboard';
-import Wpunks from 'pages/Wpunks';
+// import Wpunks from 'pages/Wpunks';
 import History from 'pages/History';
 import Liquidate from 'pages/Liquidate';
 import LiquidateDetail from 'pages/Liquidate/Detail';
@@ -58,7 +58,7 @@ const App = () => (
 
                       <Route exact path={Path.XCN} component={Xcn} />
 
-                      <Route exact path={Path.WPUNKS} component={Wpunks} />
+                      {/* <Route exact path={Path.WPUNKS} component={Wpunks} /> */}
 
                       <Route exact path={Path.LIQUIDATE} component={Liquidate} />
 
