@@ -18,6 +18,7 @@ import {
   getNftContract,
   getLiquidationProxyContract,
   getPunkDataContract,
+  getXcnClaimContract,
 } from './getters';
 
 export const useTokenContract = (token: Token) => {
@@ -63,6 +64,11 @@ export const useGovernorBravoDelegateContract = () => {
 export const useXcnStakingContract = () => {
   const web3 = useWeb3();
   return useMemo(() => getXcnStakingContract(web3), [web3]);
+};
+
+export const useXcnClaimContract = () => {
+  const web3 = useWeb3();
+  return useMemo(() => getXcnClaimContract(web3), [web3]);
 };
 
 export const useWPunksContract = () => {

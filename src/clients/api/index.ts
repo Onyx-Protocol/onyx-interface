@@ -163,6 +163,14 @@ export { default as getCurrentVotes } from './queries/getCurrentVotes';
 export * from './queries/getCurrentVotes';
 export { default as useGetCurrentVotes } from './queries/getCurrentVotes/useGetCurrentVotes';
 
+export { default as getStakingInfos } from './queries/getStakingInfos';
+export * from './queries/getStakingInfos';
+export { default as useGetStakingInfos } from './queries/getStakingInfos/useGetStakingInfos';
+
+export { default as getStakingApy } from './queries/getStakingApy';
+export * from './queries/getStakingApy';
+export { default as useGetStakingApy } from './queries/getStakingApy/useGetStakingApy';
+
 export { default as getTransactions } from './queries/getTransactions';
 export * from './queries/getTransactions';
 export { default as useGetTransactions } from './queries/getTransactions/useGetTransactions';
@@ -241,3 +249,15 @@ export { default as useLiquidateWithSingleRepay } from './mutations/liquidateWit
 export { default as liquidateBorrow } from './mutations/liquidateBorrow';
 export * from './mutations/liquidateBorrow';
 export { default as useLiquidateBorrow } from './mutations/liquidateBorrow/useLiquidateBorrow';
+
+export { default as stakeXcn } from './mutations/stakeXcn';
+export * from './mutations/stakeXcn';
+export { default as useStakeXcn } from './mutations/stakeXcn/useStakeXcn';
+
+export { default as withdrawXcn } from './mutations/withdrawXcn';
+export * from './mutations/withdrawXcn';
+export { default as useWithdrawXcn } from './mutations/withdrawXcn/useWithdrawXcn';
+
+export { default as claimXcn } from './mutations/claimXcn';
+export * from './mutations/claimXcn';
+export { default as useClaimXcn } from './mutations/claimXcn/useClaimXcn';

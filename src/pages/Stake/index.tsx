@@ -1,23 +1,63 @@
+/* eslint-disable no-nested-ternary */
+
 /** @jsxImportSource @emotion/react */
-import { Pagination, Spinner } from 'components';
+import { Button, Pagination, PrimaryButton, Spinner } from 'components';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { generateEthScanUrl, truncateAddress } from 'utilities';
+import {
+  formatPercentage,
+  formatTokensToReadableValue,
+  generateEthScanUrl,
+  getContractAddress,
+  truncateAddress,
+} from 'utilities';
 
 import copyImg from 'assets/img/copy2.svg';
 import linkImg from 'assets/img/link2.svg';
-import { useGetStakeHistories } from 'clients/api';
+import {
+  useClaimXcn,
+  useGetBalanceOf,
+  useGetStakeHistories,
+  useGetStakingApy,
+  useGetStakingInfos,
+} from 'clients/api';
+import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useCopyToClipboard from 'hooks/useCopyToClipboard';
+import useTokenApproval from 'hooks/useTokenApproval';
 
+import { StakeModal, WithdrawModal } from './Modals';
 import { useStyles } from './styles';
 
 export const Stake: React.FC = () => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const { account } = useContext(AuthContext);
+  const { account, openAuthModal } = useContext(AuthContext);
+  const accountAddress = account?.address || '';
 
   const [currentPage, setCurrentPage] = useState(0);
+
+  const [showStakeModal, setShowStakeModal] = useState(false);
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+
+  const xcnToken = TOKENS.xcn;
+
+  const { data: xcnBalance } = useGetBalanceOf({
+    token: xcnToken,
+    accountAddress,
+  });
+
+  const { data: stakingInfo } = useGetStakingInfos({ accountAddress });
+  const { data: stakingApy } = useGetStakingApy();
+
+  const { isTokenApprovalStatusLoading, isTokenApproved, approveToken, isApproveTokenLoading } =
+    useTokenApproval({
+      token: xcnToken,
+      spenderAddress: getContractAddress('xcnStaking'),
+      accountAddress,
+    });
+
+  const { mutateAsync: claimXcn, isLoading: isClaimXcnLoading } = useClaimXcn();
 
   const copyTxHash = useCopyToClipboard(t('interactive.copy.txHash'));
 
@@ -26,7 +66,7 @@ export const Stake: React.FC = () => {
     isFetching: isGetStakeHistoriesFetching,
   } = useGetStakeHistories({
     page: currentPage,
-    address: account?.address,
+    address: accountAddress,
   });
 
   return (
@@ -36,26 +76,81 @@ export const Stake: React.FC = () => {
         <div className="content">
           <div className="info">
             <span>Stake:</span>
-            <span className="value">0.00</span>
+            <span className="value">
+              {formatTokensToReadableValue({
+                value: stakingInfo?.staked.div(1e18),
+                token: TOKENS.xcn,
+                minimizeDecimals: true,
+                addSymbol: false,
+              })}
+            </span>
             <span className="xcn">XCN</span>
 
             <span>Wallet:</span>
-            <span className="value">0.00</span>
+            <span className="value">
+              {formatTokensToReadableValue({
+                value: xcnBalance?.balanceWei.div(1e18),
+                token: TOKENS.xcn,
+                minimizeDecimals: true,
+                addSymbol: false,
+              })}
+            </span>
             <span className="xcn">XCN</span>
 
             <span>Earned:</span>
-            <span className="value">0.00</span>
+            <span className="value">
+              {formatTokensToReadableValue({
+                value: stakingInfo?.earned.div(1e18),
+                token: TOKENS.xcn,
+                minimizeDecimals: true,
+                addSymbol: false,
+              })}
+            </span>
             <span className="xcn">XCN</span>
 
             <span>APR:</span>
-            <span className="value">0.00%</span>
+            <span className="value">{formatPercentage(stakingApy ? stakingApy?.apy : 0)}%</span>
           </div>
           <div className="buttons">
-            <div className="button_row">
-              <div className="button">APPROVE</div>
-              <div className="button disabled">WITHDRAW</div>
-            </div>
-            <div className="button disabled">CLAIM</div>
+            {!accountAddress ? (
+              <Button className="button" onClick={openAuthModal}>
+                {t('connectWallet.connectButton')}
+              </Button>
+            ) : isTokenApprovalStatusLoading ? (
+              <Spinner css={styles.loader} />
+            ) : (
+              <>
+                <div className="button_row">
+                  {isTokenApproved ? (
+                    <PrimaryButton className="button" onClick={() => setShowStakeModal(true)}>
+                      STAKE
+                    </PrimaryButton>
+                  ) : (
+                    <PrimaryButton
+                      loading={isApproveTokenLoading}
+                      className={`button ${isApproveTokenLoading ? 'disabled' : ''}`}
+                      onClick={approveToken}
+                    >
+                      APPROVE
+                    </PrimaryButton>
+                  )}
+                  <PrimaryButton className="button" onClick={() => setShowWithdrawModal(true)}>
+                    WITHDRAW
+                  </PrimaryButton>
+                </div>
+                <PrimaryButton
+                  loading={isClaimXcnLoading}
+                  className={`button ${isClaimXcnLoading ? 'disabled' : ''}`}
+                  onClick={() =>
+                    claimXcn({
+                      accountAddress,
+                    })
+                  }
+                >
+                  CLAIM
+                </PrimaryButton>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -110,6 +205,20 @@ export const Stake: React.FC = () => {
         </div>
         <div className="content-mobile">Mobile Content</div>
       </div>
+      {showStakeModal && (
+        <StakeModal
+          isOpen={showStakeModal}
+          balance={xcnBalance?.balanceWei}
+          onClose={() => setShowStakeModal(false)}
+        />
+      )}
+      {showWithdrawModal && (
+        <WithdrawModal
+          isOpen={showWithdrawModal}
+          balance={stakingInfo?.staked}
+          onClose={() => setShowWithdrawModal(false)}
+        />
+      )}
     </div>
   );
 };

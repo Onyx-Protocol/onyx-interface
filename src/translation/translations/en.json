@@ -880,5 +880,23 @@
     "users": "Users",
     "userAddress": "User Address",
     "tokenList": "Token list"
+  },
+  "stakeWithdraw": {
+    "enterValidAmountStake": "Enter a valid amount to supply",
+    "enterValidAmountWithdraw": "Enter a valid amount to withdraw",
+    "max": "Max",
+    "successfulStakeTransactionModal": {
+      "message": "You successfully staked",
+      "title": "Your supply was successful"
+    },
+    "successfulWithdrawTransactionModal": {
+      "message": "You successfully withdrew",
+      "title": "Your withdrawal was successful"
+    },
+    "stake": "Stake",
+    "stakeBalance": "Stake Balance ({{ tokenSymbol }})",
+    "walletBalance": "Wallet balance: <White>{{amount}}</White>",
+    "withdraw": "Withdraw",
+    "withdrawableAmount": "Withdrawable amount: <White>{{amount}}</White>"
   }
 }

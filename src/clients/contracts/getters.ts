@@ -17,6 +17,7 @@ import oracleAbi from 'constants/contracts/abis/oracle.json';
 import punkAbi from 'constants/contracts/abis/punk.json';
 import punkDataAbi from 'constants/contracts/abis/punkData.json';
 import wpunksAbi from 'constants/contracts/abis/wpunks.json';
+import xcnClaimAbi from 'constants/contracts/abis/xcnClaim.json';
 import xcnLensAbi from 'constants/contracts/abis/xcnLens.json';
 import xcnStakingAbi from 'constants/contracts/abis/xcnStaking.json';
 import xcnTokenAbi from 'constants/contracts/abis/xcnToken.json';
@@ -31,6 +32,7 @@ import {
   Punk,
   PunkData,
   Wpunks,
+  XcnClaim,
   XcnLens,
   XcnStaking,
 } from 'types/contracts';
@@ -116,6 +118,13 @@ export const getXcnStakingContract = (web3: Web3) =>
     web3,
   ) as unknown as XcnStaking;
 
+export const getXcnClaimContract = (web3: Web3) =>
+  getContract(
+    xcnClaimAbi as AbiItem[],
+    getContractAddress('xcnClaim'),
+    web3,
+  ) as unknown as XcnClaim;
+
 export const getWPunksContract = (web3: Web3) =>
   getContract(wpunksAbi as AbiItem[], getContractAddress('wpunks'), web3) as unknown as Wpunks;
 
@@ -123,7 +132,11 @@ export const getPunkContract = (web3: Web3) =>
   getContract(punkAbi as AbiItem[], getContractAddress('punk'), web3) as unknown as Punk;
 
 export const getPunkDataContract = (web3: Web3) =>
-  getContract(punkDataAbi as AbiItem[], getContractAddress('punkData'), web3) as unknown as PunkData;
+  getContract(
+    punkDataAbi as AbiItem[],
+    getContractAddress('punkData'),
+    web3,
+  ) as unknown as PunkData;
 
 export const getNftContract = (token: Token, web3: Web3) =>
   getContract(wpunksAbi as AbiItem[], token.address, web3);
