@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 
 /** @jsxImportSource @emotion/react */
-import { Button, Pagination, PrimaryButton, Spinner } from 'components';
+import { Button, Pagination, PrimaryButton, Spinner, StakeAccordion } from 'components';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -60,6 +60,8 @@ export const Stake: React.FC = () => {
   const { mutateAsync: claimXcn, isLoading: isClaimXcnLoading } = useClaimXcn();
 
   const copyTxHash = useCopyToClipboard(t('interactive.copy.txHash'));
+
+  const [expandedIdx, setExpanded] = React.useState<number | undefined>(0);
 
   const {
     data: { stakeHistories, total } = { stakeHistories: [] },
@@ -203,7 +205,42 @@ export const Stake: React.FC = () => {
             />
           ) : null}
         </div>
-        <div className="content-mobile">Mobile Content</div>
+        <div className="content-mobile">
+          {stakeHistories.map(history => (
+            <StakeAccordion
+              key={history.id}
+              id={history.id}
+              expanded={expandedIdx === history.id}
+              onChange={setExpanded}
+              txHash={history.tx_hash}
+            >
+              <div className="itemList">
+                <div className="item">
+                  <div className="label">Type</div>
+                  <div className="value">{history.type === 0 ? 'Stake' : 'Withdraw'}</div>
+                </div>
+
+                <div className="item">
+                  <div className="label">Amount</div>
+                  <div className="value">
+                    {history.amount.div(1e18).toFixed(4)}{' '}
+                    <span className="usdValue">${Number(history.price).toFixed(2)}</span>
+                  </div>
+                </div>
+
+                <div className="item">
+                  <div className="label">Reward</div>
+                  <div className="value">{history.reward.div(1e18).toFixed(4)}</div>
+                </div>
+
+                <div className="item">
+                  <div className="label">Date</div>
+                  <div className="value">{history.created_at.toLocaleDateString('en-CA')}</div>
+                </div>
+              </div>
+            </StakeAccordion>
+          ))}
+        </div>
       </div>
       {showStakeModal && (
         <StakeModal

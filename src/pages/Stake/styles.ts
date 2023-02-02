@@ -84,6 +84,7 @@ export const useStyles = () => {
     historyForm: css`
       display: flex;
       flex-direction: column;
+      margin-bottom: 50px;
       .header {
         height: 56px;
         background-color: #343a41;
@@ -158,10 +159,47 @@ export const useStyles = () => {
         display: none;
         ${theme.breakpoints.down('md')} {
           display: block;
-          height: 300px;
-          background-color: #2a2f36;
-          border-radius: 0px 0px 14px 14px;
-        }        
+          margin-top: 20px;
+        }
+        
+        .itemList {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          align-items: start;
+          overflow: auto;
+          height: 150px;
+    
+          .item {
+            width: unset;
+            min-width: unset;
+            margin-bottom: 10px;
+  
+            .label {
+              font-weight: bold;
+              color: unset;
+            }
+            .value {
+              font-size: 13px;
+            }
+          }
+
+          .item:not(:last-child) {
+            margin-right: 12px;
+          }
+        }
+  
+        .itemList::-webkit-scrollbar {
+          height: 5px;
+        }
+
+        .itemList::-webkit-scrollbar-track {
+          background-color: #000000;
+        }
+  
+        .itemList::-webkit-scrollbar-thumb {
+          background-color: #1db9a6;
+        }
       }
     `,
   };
