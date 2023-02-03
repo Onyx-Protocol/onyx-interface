@@ -158,7 +158,9 @@ export const useStyles = () => {
       .content-mobile {
         display: none;
         ${theme.breakpoints.down('md')} {
-          display: block;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
           margin-top: 20px;
         }
         

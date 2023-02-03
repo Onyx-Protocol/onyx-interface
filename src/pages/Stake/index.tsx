@@ -170,7 +170,7 @@ export const Stake: React.FC = () => {
           </div>
 
           {stakeHistories.map(history => (
-            <div className="table-record">
+            <div className="table-record" key={history.id}>
               <span>{history.id}</span>
               <span className="txHash">
                 {truncateAddress(history.tx_hash, 6, -4)}

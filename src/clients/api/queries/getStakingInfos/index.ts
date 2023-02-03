@@ -16,6 +16,13 @@ const getStakingInfos = async ({
   xcnStakingContract,
   accountAddress,
 }: GetStakingInfosInput): Promise<GetStakingInfosOutput> => {
+  if (!accountAddress) {
+    return {
+      staked: new BigNumber(0),
+      earned: new BigNumber(0),
+    };
+  }
+
   const respStaked = await xcnStakingContract.methods.getStakingAmount(0, accountAddress).call();
   const respEarned = await xcnStakingContract.methods.pendingReward(0, accountAddress).call();
 

@@ -21,6 +21,12 @@ const getBalanceOf = async ({
 }: GetBalanceOfInput): Promise<GetBalanceOfOutput> => {
   let balanceWei: BigNumber;
 
+  if (!accountAddress) {
+    return {
+      balanceWei: new BigNumber(0),
+    };
+  }
+
   if (token.isNative) {
     const resp = await web3.eth.getBalance(accountAddress);
     balanceWei = new BigNumber(resp);
