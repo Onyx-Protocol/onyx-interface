@@ -27,14 +27,14 @@ export const menuItems: MenuItem[] = [
     i18nTitleKey: 'layout.menuItems.history',
     icon: 'history',
   },
-  {
-    href: Path.STAKE,
-    // Translation key: do not remove this comment
-    // t('layout.menuItems.staking')
-    i18nKey: 'layout.menuItems.stake',
-    i18nTitleKey: 'layout.menuItems.stake',
-    icon: 'stake',
-  },
+  // {
+  //   href: Path.STAKE,
+  //   // Translation key: do not remove this comment
+  //   // t('layout.menuItems.staking')
+  //   i18nKey: 'layout.menuItems.stake',
+  //   i18nTitleKey: 'layout.menuItems.stake',
+  //   icon: 'stake',
+  // },
   {
     href: Path.GOVERNANCE,
     // Translation key: do not remove this comment
@@ -59,12 +59,12 @@ export const menuItems: MenuItem[] = [
     i18nTitleKey: 'layout.menuItems.liquidate',
     icon: 'liquidate',
   },
-  // {
-  //   href: Path.WPUNKS,
-  //   // Translation key: do not remove this comment
-  //   // t('layout.menuItems.xcn')
-  //   i18nKey: 'layout.menuItems.fpunk',
-  //   i18nTitleKey: 'layout.menuItems.fpunk',
-  //   icon: 'wpunksOutlined',
-  // },
+  {
+    href: Path.WPUNKS,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.xcn')
+    i18nKey: 'layout.menuItems.fpunk',
+    i18nTitleKey: 'layout.menuItems.fpunk',
+    icon: 'wpunksOutlined',
+  },
 ];

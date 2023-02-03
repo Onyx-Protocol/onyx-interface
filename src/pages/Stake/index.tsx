@@ -9,6 +9,7 @@ import {
   formatTokensToReadableValue,
   generateEthScanUrl,
   getContractAddress,
+  shortenValueWithSuffix,
   truncateAddress,
 } from 'utilities';
 
@@ -186,11 +187,21 @@ export const Stake: React.FC = () => {
                 </div>
               </span>
               <span>{history.type === 0 ? 'Stake' : 'Withdraw'}</span>
-              <span>
-                {history.amount.div(1e18).toFixed(4)}{' '}
-                <span className="usdValue">${Number(history.price).toFixed(2)}</span>
+              <span className="amount-col">
+                {formatTokensToReadableValue({
+                  value: history.amount.div(1e18),
+                  token: xcnToken,
+                  shortenLargeValue: true,
+                  addSymbol: false,
+                })}{' '}
+                <span className="usdValue">
+                  $
+                  {shortenValueWithSuffix({
+                    value: history.amount.div(1e18).times(history.price),
+                  })}
+                </span>
               </span>
-              <span>{history.reward.div(1e18).toFixed(4)}</span>
+              <span>{history.reward.div(1e18).toFixed(2)}</span>
               <span>{history.created_at.toLocaleDateString('en-CA')}</span>
             </div>
           ))}
@@ -223,14 +234,24 @@ export const Stake: React.FC = () => {
                 <div className="item">
                   <div className="label">Amount</div>
                   <div className="value">
-                    {history.amount.div(1e18).toFixed(4)}{' '}
-                    <span className="usdValue">${Number(history.price).toFixed(2)}</span>
+                    {formatTokensToReadableValue({
+                      value: history.amount.div(1e18),
+                      token: xcnToken,
+                      shortenLargeValue: true,
+                      addSymbol: false,
+                    })}{' '}
+                    <span className="usdValue">
+                      $
+                      {shortenValueWithSuffix({
+                        value: history.amount.div(1e18).times(history.price),
+                      })}
+                    </span>
                   </div>
                 </div>
 
                 <div className="item">
                   <div className="label">Reward</div>
-                  <div className="value">{history.reward.div(1e18).toFixed(4)}</div>
+                  <div className="value">{history.reward.div(1e18).toFixed(2)}</div>
                 </div>
 
                 <div className="item">

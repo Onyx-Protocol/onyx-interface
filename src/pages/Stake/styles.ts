@@ -7,7 +7,7 @@ export const useStyles = () => {
     root: css`
       display: grid;
       grid-template-columns: 1fr 1.8fr;
-      gap: 10px;
+      gap: ${theme.spacing(6)};
       ${theme.breakpoints.down('xl')} {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -66,7 +66,7 @@ export const useStyles = () => {
 
           .button {
             width: 100%;
-            height: 36px;
+            height: 50px;
             background: linear-gradient(123.08deg, rgba(29, 185, 166, 0.2) -33.26%, #1DB9A6 88.39%);
             align-items: center;
             justify-content: center;
@@ -102,14 +102,14 @@ export const useStyles = () => {
 
         .table-header {
           display: grid;
-          grid-template-columns: 30px 1fr 80px 150px 80px 120px;
+          grid-template-columns: 30px 1.5fr 80px 1.25fr 80px 1fr;
           height: 32px;
           align-items: center;
           background-color: #1F242C;
           border-radius: 5px;
           padding: 0px 10px;
           color: #1DB9A6;
-          font-size: 14px;
+          font-size: 15px;
 
           span:not(:first-child) {
             text-align: center;
@@ -118,11 +118,11 @@ export const useStyles = () => {
 
         .table-record {
           display: grid;
-          grid-template-columns: 30px 1fr 80px 150px 80px 120px;
+          grid-template-columns: 30px 1.5fr 80px 1.25fr 80px 1fr;
           height: 32px;
           align-items: center;
           padding: 0px 10px;
-          font-size: 12px;
+          font-size: 14px;
           border-bottom: 1px solid #DADADA;
 
           .txHash {
@@ -131,6 +131,7 @@ export const useStyles = () => {
             gap: 25px;
             .actions {
               display: flex;
+              align-items: center;
               gap: 10px;
 
               img {
@@ -139,6 +140,7 @@ export const useStyles = () => {
               }
             }
           }
+
           :hover {
             background-color: #7D8288;
             border-radius: 5px;
@@ -151,7 +153,7 @@ export const useStyles = () => {
           .usdValue {
             padding-left: 5px;
             color: #1DB9A6;
-            font-size: 10px;
+            font-size: 11px;
           }
         }
       }
@@ -183,6 +185,12 @@ export const useStyles = () => {
             }
             .value {
               font-size: 13px;
+            }
+
+            .usdValue {
+              padding-left: 5px;
+              color: #1DB9A6;
+              font-size: 11px;
             }
           }
 
