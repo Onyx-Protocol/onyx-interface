@@ -5,6 +5,7 @@ enum Path {
   MARKETS = '/markets',
   MARKET_DETAILS = '/market/:oTokenId',
   HISTORY = '/history',
+  STAKE = '/stake',
   GOVERNANCE = '/governance',
   GOVERNANCE_LEADER_BOARD = '/governance/leaderboard',
   GOVERNANCE_PROPOSAL_DETAILS = '/governance/proposal/:id',

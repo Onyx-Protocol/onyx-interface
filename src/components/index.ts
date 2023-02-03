@@ -19,6 +19,7 @@ export * from './LabeledInlineContent';
 export * from './LayeredValues';
 export * from './Layout';
 export * from './LiquidateAccordion';
+export * from './StakeAccordion';
 export * from './LunaUstWarningModal';
 export * from './Modal';
 export * from './Notice';

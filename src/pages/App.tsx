@@ -20,6 +20,7 @@ import LiquidateDetail from 'pages/Liquidate/Detail';
 import Markets from 'pages/Market';
 import MarketDetails from 'pages/MarketDetails';
 import Proposal from 'pages/Proposal';
+import Stake from 'pages/Stake';
 import Vote from 'pages/Vote';
 import VoterDetails from 'pages/VoterDetails';
 import VoterLeaderboard from 'pages/VoterLeaderboard';
@@ -46,6 +47,8 @@ const App = () => (
                       <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} />
 
                       <Route exact path={Path.HISTORY} component={History} />
+
+                      <Route exact path={Path.STAKE} component={Stake} />
 
                       <Route exact path={Path.GOVERNANCE} component={Vote} />
                       <Route
