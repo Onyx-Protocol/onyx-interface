@@ -74,9 +74,7 @@ export const VotingWalletUi: React.FC<VotingWalletUiProps> = ({
             components={{
               Anchor: (
                 <a // eslint-disable-line jsx-a11y/anchor-has-content
-                  href="https://staking.chain.com/stake"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/stake"
                   css={styles.link}
                 />
               ),
