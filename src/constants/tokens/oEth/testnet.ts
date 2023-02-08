@@ -1,22 +1,22 @@
 import { EthChainId, Token } from 'types';
 
-import oApe from 'assets/img/tokens/oApe.svg';
-import oBayc from 'assets/img/tokens/oBayc.svg';
-import oBusd from 'assets/img/tokens/oBusd.svg';
-import oDai from 'assets/img/tokens/oDai.svg';
-import oEth from 'assets/img/tokens/oEth.svg';
-import oGusd from 'assets/img/tokens/oGusd.svg';
-import oLink from 'assets/img/tokens/oLink.svg';
-import oMatic from 'assets/img/tokens/oMatic.svg';
-import oPaxg from 'assets/img/tokens/oPaxg.svg';
-import oShib from 'assets/img/tokens/oShib.svg';
-import oUni from 'assets/img/tokens/oUni.svg';
-import oUsdc from 'assets/img/tokens/oUsdc.svg';
-import oUsdp from 'assets/img/tokens/oUsdp.svg';
-import oUsdt from 'assets/img/tokens/oUsdt.svg';
-import oWbtc from 'assets/img/tokens/oWbtc.svg';
-import oWpunks from 'assets/img/tokens/oWpunks.svg';
-import oXcn from 'assets/img/tokens/oXcn.svg';
+import oApe from 'assets/img/tokens/oApe.png';
+import oBayc from 'assets/img/tokens/oBayc.png';
+import oBusd from 'assets/img/tokens/oBusd.png';
+import oDai from 'assets/img/tokens/oDai.png';
+import oEth from 'assets/img/tokens/oEth.png';
+import oGusd from 'assets/img/tokens/oGusd.png';
+import oLink from 'assets/img/tokens/oLink.png';
+import oMatic from 'assets/img/tokens/oMatic.png';
+import oPaxg from 'assets/img/tokens/oPaxg.png';
+import oShib from 'assets/img/tokens/oShib.png';
+import oUni from 'assets/img/tokens/oUni.png';
+import oUsdc from 'assets/img/tokens/oUsdc.png';
+import oUsdp from 'assets/img/tokens/oUsdp.png';
+import oUsdt from 'assets/img/tokens/oUsdt.png';
+import oWbtc from 'assets/img/tokens/oWbtc.png';
+import oWpunks from 'assets/img/tokens/oWpunks.png';
+import oXcn from 'assets/img/tokens/oXcn.png';
 
 import OETH_TOKEN_ADDRESSES from '../../contracts/addresses/oEthTokens.json';
 
