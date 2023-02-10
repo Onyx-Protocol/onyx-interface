@@ -20,6 +20,7 @@ export { default as chevronLeft } from './chevronLeft';
 export { default as longArrow } from './longArrow';
 export { default as medium } from './medium';
 export { default as discord } from './discord';
+export { default as telegram } from './telegram';
 export { default as twitter } from './twitter';
 export { default as github } from './github';
 export { default as xcn } from './xcn';

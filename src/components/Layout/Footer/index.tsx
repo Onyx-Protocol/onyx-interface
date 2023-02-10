@@ -4,18 +4,13 @@ import config from 'config';
 import React from 'react';
 import { useTranslation } from 'translation';
 // import { EthChainId } from 'types';
-// import { generateEthScanUrl } from 'utilities';
+import { generateEthScanUrl } from 'utilities';
 
 import { useGetBlockNumber } from 'clients/api';
 import { Icon } from 'components/Icon';
-// import tokenAddresses from 'constants/contracts/addresses/tokens.json';
+import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
-import {
-  XCN_DISCORD_URL,
-  XCN_GITHUB_URL,
-  XCN_MEDIUM_URL,
-  XCN_TWITTER_URL,
-} from './constants';
+import { XCN_GITHUB_URL, XCN_MEDIUM_URL, XCN_TELEGRAM_URL, XCN_TWITTER_URL } from './constants';
 import { useStyles } from './styles';
 
 export interface FooterUiProps {
@@ -44,21 +39,25 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
       )}
 
       <div css={styles.links}>
-        {/* <a
+        <a
           css={styles.link}
-          href={generateEthScanUrl(tokenAddresses.xcn[EthChainId.MAINNET])}
+          href={generateEthScanUrl(tokenAddresses.xcn[config.chainId])}
           target="_blank"
           rel="noreferrer"
         >
           <Icon name="xcn" color={styles.theme.palette.text.primary} size="12px" />
-        </a> */}
+        </a>
 
         <a css={styles.link} href={XCN_MEDIUM_URL} target="_blank" rel="noreferrer">
           <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
-        <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
+        {/* <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
           <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" />
+        </a> */}
+
+        <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
+          <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
         <a css={styles.link} href={XCN_TWITTER_URL} target="_blank" rel="noreferrer">
