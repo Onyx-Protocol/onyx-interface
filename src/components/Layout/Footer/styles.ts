@@ -36,6 +36,7 @@ export const useStyles = () => {
     `,
     blockInfoNumber: css`
       color: ${theme.palette.text.primary};
+      font-weight: bold;
     `,
     links: css`
       color: ${theme.palette.text.primary};
@@ -47,7 +48,7 @@ export const useStyles = () => {
       }
     `,
     link: css`
-      background-color: ${theme.palette.secondary.light};
+      // background-color: ${theme.palette.secondary.light};
       transition: background-color 0.3s;
       margin-left: ${theme.spacing(4)};
       display: flex;
@@ -57,9 +58,13 @@ export const useStyles = () => {
       height: ${theme.spacing(6)};
       border-radius: ${theme.spacing(1)};
 
-      :hover {
-        background-color: ${theme.palette.button.main};
+      svg {
+        width: 20px;
+        height: 20px;
       }
+      // :hover {
+      //   background-color: ${theme.palette.button.main};
+      // }
 
       :active {
         background-color: ${theme.palette.button.dark};
