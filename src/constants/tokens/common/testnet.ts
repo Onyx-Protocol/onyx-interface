@@ -7,8 +7,8 @@ import eth from 'assets/img/tokens/eth.svg';
 import gusd from 'assets/img/tokens/gusd.svg';
 import link from 'assets/img/tokens/link.svg';
 import matic from 'assets/img/tokens/matic.svg';
-// import paxg from 'assets/img/tokens/paxg.svg';
-// import shib from 'assets/img/tokens/shib.svg';
+import paxg from 'assets/img/tokens/paxg.svg';
+import shib from 'assets/img/tokens/shib.svg';
 import uni from 'assets/img/tokens/uni.svg';
 import usdc from 'assets/img/tokens/usdc.svg';
 import usdp from 'assets/img/tokens/usdp.svg';
@@ -84,13 +84,13 @@ export const TESTNET_TOKENS = {
     address: TOKEN_ADDRESSES.ape[EthChainId.TESTNET],
     asset: ape,
   } as Token,
-  // shib: {
-  //   id: 'shib',
-  //   symbol: 'SHIB',
-  //   decimals: 18,
-  //   address: TOKEN_ADDRESSES.shib[EthChainId.TESTNET],
-  //   asset: shib,
-  // } as Token,
+  shib: {
+    id: 'shib',
+    symbol: 'SHIB',
+    decimals: 18,
+    address: TOKEN_ADDRESSES.shib[EthChainId.TESTNET],
+    asset: shib,
+  } as Token,
   usdp: {
     id: 'usdp',
     symbol: 'USDP',
@@ -105,13 +105,13 @@ export const TESTNET_TOKENS = {
     address: TOKEN_ADDRESSES.gusd[EthChainId.TESTNET],
     asset: gusd,
   } as Token,
-  // paxg: {
-  //   id: 'paxg',
-  //   symbol: 'PAXG',
-  //   decimals: 18,
-  //   address: TOKEN_ADDRESSES.paxg[EthChainId.TESTNET],
-  //   asset: paxg,
-  // } as Token,
+  paxg: {
+    id: 'paxg',
+    symbol: 'PAXG',
+    decimals: 18,
+    address: TOKEN_ADDRESSES.paxg[EthChainId.TESTNET],
+    asset: paxg,
+  } as Token,
   xcn: {
     id: 'xcn',
     symbol: 'XCN',

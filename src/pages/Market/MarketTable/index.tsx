@@ -97,8 +97,16 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
           key: 'supplyApy',
           render: () => (
             <LayeredValues
-              topValue={formatToReadablePercentage(market.supplyApy.plus(market.supplyXcnApy))}
-              bottomValue={formatToReadablePercentage(market.supplyXcnApy)}
+              topValue={
+                market.supplyXcnApy.isNaN()
+                  ? 'Pending'
+                  : formatToReadablePercentage(market.supplyApy.plus(market.supplyXcnApy))
+              }
+              bottomValue={
+                market.supplyXcnApy.isNaN()
+                  ? 'Pending'
+                  : formatToReadablePercentage(market.supplyXcnApy)
+              }
             />
           ),
           value: market.supplyApy.plus(market.supplyXcnApy).toFixed(),
@@ -128,8 +136,16 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
           key: 'borrowApy',
           render: () => (
             <LayeredValues
-              topValue={formatToReadablePercentage(market.borrowApy.plus(market.borrowXcnApy))}
-              bottomValue={formatToReadablePercentage(market.borrowXcnApy)}
+              topValue={
+                market.borrowXcnApy.isNaN()
+                  ? 'Pending'
+                  : formatToReadablePercentage(market.borrowApy.plus(market.borrowXcnApy))
+              }
+              bottomValue={
+                market.borrowXcnApy.isNaN()
+                  ? 'Pending'
+                  : formatToReadablePercentage(market.borrowXcnApy)
+              }
             />
           ),
           value: market.borrowApy.plus(market.borrowXcnApy).toFixed(),
