@@ -1,7 +1,7 @@
 import { EthChainId } from 'types';
 
 export const API_ENDPOINT_URLS = {
-  [EthChainId.MAINNET]: 'https://testapi.onyx.org/api',
+  [EthChainId.MAINNET]: 'https://api.onyx.org/api',
   [EthChainId.TESTNET]: 'https://testapi.onyx.org/api',
 };
 
@@ -19,7 +19,7 @@ export const RPC_URLS: {
 
 export const SUBGRAPH_LINKS: any = {
   1: [
-    'https://api.thegraph.com/subgraphs/name/seme0801/onyx-goerli-subgraph',
+    'https://api.thegraph.com/subgraphs/name/seme0801/onyx-subgraph',
   ],
   5: [
     'https://api.thegraph.com/subgraphs/name/seme0801/onyx-goerli-subgraph',

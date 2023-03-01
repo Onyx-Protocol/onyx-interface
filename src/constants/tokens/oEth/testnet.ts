@@ -2,14 +2,13 @@ import { EthChainId, Token } from 'types';
 
 import oApe from 'assets/img/tokens/oApe.png';
 import oBayc from 'assets/img/tokens/oBayc.png';
-import oBusd from 'assets/img/tokens/oBusd.png';
 import oDai from 'assets/img/tokens/oDai.png';
 import oEth from 'assets/img/tokens/oEth.png';
 import oGusd from 'assets/img/tokens/oGusd.png';
 import oLink from 'assets/img/tokens/oLink.png';
 import oMatic from 'assets/img/tokens/oMatic.png';
-import oPaxg from 'assets/img/tokens/oPaxg.png';
-import oShib from 'assets/img/tokens/oShib.png';
+// import oPaxg from 'assets/img/tokens/oPaxg.png';
+// import oShib from 'assets/img/tokens/oShib.png';
 import oUni from 'assets/img/tokens/oUni.png';
 import oUsdc from 'assets/img/tokens/oUsdc.png';
 import oUsdp from 'assets/img/tokens/oUsdp.png';
@@ -84,20 +83,13 @@ export const TESTNET_OETH_TOKENS = {
     address: OETH_TOKEN_ADDRESSES.ape[EthChainId.TESTNET],
     asset: oApe,
   } as Token,
-  shib: {
-    id: 'shib',
-    symbol: 'oSHIB',
-    decimals: 8,
-    address: OETH_TOKEN_ADDRESSES.shib[EthChainId.TESTNET],
-    asset: oShib,
-  } as Token,
-  busd: {
-    id: 'busd',
-    symbol: 'oBUSD',
-    decimals: 8,
-    address: OETH_TOKEN_ADDRESSES.busd[EthChainId.TESTNET],
-    asset: oBusd,
-  } as Token,
+  // shib: {
+  //   id: 'shib',
+  //   symbol: 'oSHIB',
+  //   decimals: 8,
+  //   address: OETH_TOKEN_ADDRESSES.shib[EthChainId.TESTNET],
+  //   asset: oShib,
+  // } as Token,
   usdp: {
     id: 'usdp',
     symbol: 'oUSDP',
@@ -112,13 +104,13 @@ export const TESTNET_OETH_TOKENS = {
     address: OETH_TOKEN_ADDRESSES.gusd[EthChainId.TESTNET],
     asset: oGusd,
   } as Token,
-  paxg: {
-    id: 'paxg',
-    symbol: 'oPAXG',
-    decimals: 8,
-    address: OETH_TOKEN_ADDRESSES.paxg[EthChainId.TESTNET],
-    asset: oPaxg,
-  } as Token,
+  // paxg: {
+  //   id: 'paxg',
+  //   symbol: 'oPAXG',
+  //   decimals: 8,
+  //   address: OETH_TOKEN_ADDRESSES.paxg[EthChainId.TESTNET],
+  //   asset: oPaxg,
+  // } as Token,
   xcn: {
     id: 'xcn',
     symbol: 'oXCN',
