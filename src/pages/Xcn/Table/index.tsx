@@ -73,7 +73,7 @@ const XcnTableUi: React.FC<XcnTableProps> = ({ assets }) => {
       key: 'supplyXcnApy',
       render: () => (
         <Typography variant="small1" css={[styles.whiteText, styles.fontWeight400]}>
-          {formatToReadablePercentage(asset.xcnSupplyApy)}
+          {asset.xcnSupplyApy?.isNaN() ? 'Pending' : formatToReadablePercentage(asset.xcnSupplyApy)}
         </Typography>
       ),
       value: asset.xcnSupplyApy?.toFixed() || 0,
@@ -83,7 +83,7 @@ const XcnTableUi: React.FC<XcnTableProps> = ({ assets }) => {
       key: 'borrowXcnApy',
       render: () => (
         <Typography variant="small1" css={[styles.whiteText, styles.fontWeight400]}>
-          {formatToReadablePercentage(asset.xcnBorrowApy)}
+          {asset.xcnBorrowApy?.isNaN() ? 'Pending' : formatToReadablePercentage(asset.xcnBorrowApy)}
         </Typography>
       ),
       value: asset.xcnBorrowApy?.toFixed() || 0,
