@@ -100,7 +100,7 @@ export const MAINNET_OETH_TOKENS = {
   gusd: {
     id: 'gusd',
     symbol: 'oGUSD',
-    decimals: 2,
+    decimals: 8,
     address: OETH_TOKEN_ADDRESSES.gusd[EthChainId.MAINNET],
     asset: oGusd,
   } as Token,
