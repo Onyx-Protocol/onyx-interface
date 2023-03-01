@@ -3,6 +3,7 @@ import { Paper, Typography } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import { Delimiter, PrimaryButton } from 'components';
 import React, { useContext, useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'translation';
 import { convertWeiToTokens } from 'utilities';
 
@@ -72,12 +73,7 @@ export const VotingWalletUi: React.FC<VotingWalletUiProps> = ({
           <Trans
             i18nKey="vote.depositYourTokens"
             components={{
-              Anchor: (
-                <a // eslint-disable-line jsx-a11y/anchor-has-content
-                  href="/stake"
-                  css={styles.link}
-                />
-              ),
+              Anchor: <NavLink to="/stake" css={styles.link} />,
             }}
           />
         </Typography>
