@@ -2,20 +2,19 @@ import { EthChainId, Token } from 'types';
 
 import ape from 'assets/img/tokens/ape.svg';
 import bayc from 'assets/img/tokens/bayc.svg';
-import busd from 'assets/img/tokens/busd.svg';
 import dai from 'assets/img/tokens/dai.svg';
 import eth from 'assets/img/tokens/eth.svg';
-import wpunks from 'assets/img/tokens/wpunks.svg';
 import gusd from 'assets/img/tokens/gusd.svg';
 import link from 'assets/img/tokens/link.svg';
 import matic from 'assets/img/tokens/matic.svg';
-import paxg from 'assets/img/tokens/paxg.svg';
-import shib from 'assets/img/tokens/shib.svg';
+// import paxg from 'assets/img/tokens/paxg.svg';
+// import shib from 'assets/img/tokens/shib.svg';
 import uni from 'assets/img/tokens/uni.svg';
 import usdc from 'assets/img/tokens/usdc.svg';
 import usdp from 'assets/img/tokens/usdp.svg';
 import usdt from 'assets/img/tokens/usdt.svg';
 import wbtc from 'assets/img/tokens/wbtc.svg';
+import wpunks from 'assets/img/tokens/wpunks.svg';
 import xcn from 'assets/img/tokens/xcn.svg';
 
 import TOKEN_ADDRESSES from '../../contracts/addresses/tokens.json';
@@ -85,20 +84,13 @@ export const MAINNET_TOKENS = {
     address: TOKEN_ADDRESSES.ape[EthChainId.MAINNET],
     asset: ape,
   } as Token,
-  shib: {
-    id: 'shib',
-    symbol: 'SHIB',
-    decimals: 18,
-    address: TOKEN_ADDRESSES.shib[EthChainId.MAINNET],
-    asset: shib,
-  } as Token,
-  busd: {
-    id: 'busd',
-    symbol: 'BUSD',
-    decimals: 18,
-    address: TOKEN_ADDRESSES.busd[EthChainId.MAINNET],
-    asset: busd,
-  } as Token,
+  // shib: {
+  //   id: 'shib',
+  //   symbol: 'SHIB',
+  //   decimals: 18,
+  //   address: TOKEN_ADDRESSES.shib[EthChainId.MAINNET],
+  //   asset: shib,
+  // } as Token,
   usdp: {
     id: 'usdp',
     symbol: 'USDP',
@@ -113,13 +105,13 @@ export const MAINNET_TOKENS = {
     address: TOKEN_ADDRESSES.gusd[EthChainId.MAINNET],
     asset: gusd,
   } as Token,
-  paxg: {
-    id: 'paxg',
-    symbol: 'PAXG',
-    decimals: 18,
-    address: TOKEN_ADDRESSES.paxg[EthChainId.MAINNET],
-    asset: paxg,
-  } as Token,
+  // paxg: {
+  //   id: 'paxg',
+  //   symbol: 'PAXG',
+  //   decimals: 18,
+  //   address: TOKEN_ADDRESSES.paxg[EthChainId.MAINNET],
+  //   asset: paxg,
+  // } as Token,
   xcn: {
     id: 'xcn',
     symbol: 'XCN',
