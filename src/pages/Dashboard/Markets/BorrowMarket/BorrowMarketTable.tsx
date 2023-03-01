@@ -51,7 +51,8 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
         },
         {
           key: 'apy',
-          render: () => formatToReadablePercentage(borrowApy),
+          render: () =>
+            asset.xcnBorrowApy.isNaN() ? 'Pending' : formatToReadablePercentage(borrowApy),
           value: borrowApy.toNumber(),
           align: 'right',
         },

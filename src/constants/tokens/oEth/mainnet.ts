@@ -7,8 +7,8 @@ import oEth from 'assets/img/tokens/oEth.png';
 import oGusd from 'assets/img/tokens/oGusd.png';
 import oLink from 'assets/img/tokens/oLink.png';
 import oMatic from 'assets/img/tokens/oMatic.png';
-// import oPaxg from 'assets/img/tokens/oPaxg.png';
-// import oShib from 'assets/img/tokens/oShib.png';
+import oPaxg from 'assets/img/tokens/oPaxg.png';
+import oShib from 'assets/img/tokens/oShib.png';
 import oUni from 'assets/img/tokens/oUni.png';
 import oUsdc from 'assets/img/tokens/oUsdc.png';
 import oUsdp from 'assets/img/tokens/oUsdp.png';
@@ -83,13 +83,13 @@ export const MAINNET_OETH_TOKENS = {
     address: OETH_TOKEN_ADDRESSES.ape[EthChainId.MAINNET],
     asset: oApe,
   } as Token,
-  // shib: {
-  //   id: 'shib',
-  //   symbol: 'oSHIB',
-  //   decimals: 8,
-  //   address: OETH_TOKEN_ADDRESSES.shib[EthChainId.MAINNET],
-  //   asset: oShib,
-  // } as Token,
+  shib: {
+    id: 'shib',
+    symbol: 'oSHIB',
+    decimals: 8,
+    address: OETH_TOKEN_ADDRESSES.shib[EthChainId.MAINNET],
+    asset: oShib,
+  } as Token,
   usdp: {
     id: 'usdp',
     symbol: 'oUSDP',
@@ -104,13 +104,13 @@ export const MAINNET_OETH_TOKENS = {
     address: OETH_TOKEN_ADDRESSES.gusd[EthChainId.MAINNET],
     asset: oGusd,
   } as Token,
-  // paxg: {
-  //   id: 'paxg',
-  //   symbol: 'oPAXG',
-  //   decimals: 8,
-  //   address: OETH_TOKEN_ADDRESSES.paxg[EthChainId.MAINNET],
-  //   asset: oPaxg,
-  // } as Token,
+  paxg: {
+    id: 'paxg',
+    symbol: 'oPAXG',
+    decimals: 8,
+    address: OETH_TOKEN_ADDRESSES.paxg[EthChainId.MAINNET],
+    asset: oPaxg,
+  } as Token,
   xcn: {
     id: 'xcn',
     symbol: 'oXCN',
