@@ -44,7 +44,7 @@
         "title": "To borrow {{symbol}} to the Onyx Protocol, you need to enable it first"
       },
       "highAmountWarning": "You entered a high amount, which puts you at risk of liquidation",
-      "noCollateralizedSuppliedAssetWarning": "You need to supply tokens and enable them as collateral before you can borrow {{tokenSymbol}} from the Xcn protocol",
+      "noCollateralizedSuppliedAssetWarning": "You need to supply tokens and enable them as collateral before you can borrow {{tokenSymbol}} from the Onyx protocol",
       "rightMaxButtonLabel": "{{limitPercentage}}% LIMIT",
       "submitButton": "Borrow",
       "submitButtonDisabled": "Enter a valid amount to borrow",
@@ -208,7 +208,7 @@
   },
   "lunaUstWarningModal": {
     "closeButtonLabel": "Got it",
-    "content": "LUNA and UST have been deprecated, please disable them as collateral to get access to the Xcn protocol again.",
+    "content": "LUNA and UST have been deprecated, please disable them as collateral to get access to the Onyx protocol again.",
     "title": "Please disable LUNA and UST as collateral"
   },
   "market": {

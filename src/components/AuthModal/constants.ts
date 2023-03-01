@@ -15,7 +15,7 @@ import { isRunningInOperaBrowser } from 'clients/web3/walletDetectionUtils';
 
 import { BaseWallet, IntegratedWallet, Wallet } from './types';
 
-export const XCN_TERMS_OF_SERVICE_URL = 'https://www.onyx.io/terms';
+export const XCN_TERMS_OF_SERVICE_URL = 'https://docs.onyx.org/';
 
 export const WALLETS: Wallet[] = [
   {
