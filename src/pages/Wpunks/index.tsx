@@ -5,6 +5,7 @@ import { Button } from 'components';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
 
+import config from 'config';
 import PunkImg from 'assets/img/punk1.png';
 import {
   useBurnWPunks,
@@ -51,7 +52,7 @@ const Wpunks: React.FC = () => {
   const { data: userProxyAddress } = useGetProxies({ accountAddress: account?.address || '' });
 
   const { data: punkOwners = {}, isLoading: ownPunkIdsLoading }: any = useGetOwnedPunkIds({
-    accountAddress: account?.address || '',
+    accountAddress: config.chainId === 5 ? account?.address || '' : userProxyAddress,
   });
 
   const { data: ownedWPunksIds = [], isLoading: ownWPunksIdsLoading }: any = useGetOwnedWPunksIds({
