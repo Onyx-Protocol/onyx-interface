@@ -21,7 +21,7 @@ export const useStyles = () => {
           background-color: ${theme.palette.interactive.primary};
         }
         & + .MuiSwitch-track {
-          background-color: ${theme.palette.background.default};
+          background-color: #314053;
         }
       }
       &.Mui-disabled + .MuiSwitch-track {
@@ -37,7 +37,7 @@ export const useStyles = () => {
     }
     .MuiSwitch-track {
       border-radius: ${thumbSize};
-      background-color: ${theme.palette.background.default};
+      background-color: #314053;
       opacity: 1;
     }
     .Mui-checked + .MuiSwitch-track {

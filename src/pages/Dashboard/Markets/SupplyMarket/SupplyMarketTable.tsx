@@ -56,7 +56,11 @@ export const SupplyMarketTable: React.FC<SupplyMarketTableUiProps> = ({
       {
         key: 'apy',
         render: () =>
-          asset.xcnSupplyApy.isNaN() ? 'Pending' : formatToReadablePercentage(supplyApy),
+          asset.xcnSupplyApy.isNaN() ? (
+            'Pending'
+          ) : (
+            <span style={{ color: '#18DF8B' }}>{formatToReadablePercentage(supplyApy)}</span>
+          ),
         value: supplyApy.toNumber(),
         align: 'right',
       },

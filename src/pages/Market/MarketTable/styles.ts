@@ -31,5 +31,23 @@ export const useStyles = () => {
         }
       }
     `,
+    apyWithXcn: css`
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      margin-bottom: 10px;
+    `,
+    apyWithXcnLabel: css`
+      margin-left: ${theme.spacing(2)};
+    `,
+    tooltip: css`
+      display: flex;
+    `,
+    infoIcon: css`
+      cursor: help;
+    `,
+    toggle: css`
+      margin-left: ${theme.spacing(2)};
+    `,
   };
 };

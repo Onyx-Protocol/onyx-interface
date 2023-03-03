@@ -1,6 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { Typography } from '@mui/material';
-import { LayeredValues, Table, TableProps, TokenIconWithSymbol } from 'components';
+import {
+  Icon,
+  LayeredValues,
+  Table,
+  TableProps,
+  Toggle,
+  ToggleProps,
+  TokenIconWithSymbol,
+  Tooltip,
+} from 'components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'translation';
 import { Market } from 'types';
@@ -25,6 +34,8 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
   const { t } = useTranslation();
   const sharedStyles = useSharedStyles();
   const localStyles = useLocalStyles();
+
+  const [isXcnEnabled, setIsXcnEnabled] = React.useState(true);
 
   const columns = useMemo(
     () => [
@@ -65,146 +76,166 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
   // Format markets to rows
   const rows: TableProps['data'] = useMemo(
     () =>
-      markets.map(market => [
-        {
-          key: 'asset',
-          render: () => (
-            <TokenIconWithSymbol token={unsafelyGetToken(market.id)} css={localStyles.whiteText} />
-          ),
-          value: market.id,
-        },
-        {
-          key: 'totalSupply',
-          render: () => (
-            <LayeredValues
-              topValue={formatCentsToReadableValue({
-                value: market.treasuryTotalSupplyCents,
-                shortenLargeValue: true,
-              })}
-              bottomValue={formatTokensToReadableValue({
-                value: market.treasuryTotalSupplyCents.div(market.tokenPrice.times(100)),
-                token: unsafelyGetToken(market.id),
-                minimizeDecimals: true,
-                shortenLargeValue: true,
-              })}
-              css={localStyles.noWrap}
-            />
-          ),
-          align: 'right',
-          value: market.treasuryTotalSupplyCents.toFixed(),
-        },
-        {
-          key: 'supplyApy',
-          render: () => (
-            <LayeredValues
-              topValue={
-                market.supplyXcnApy.isNaN()
-                  ? 'Pending'
-                  : formatToReadablePercentage(market.supplyApy.plus(market.supplyXcnApy))
-              }
-              bottomValue={
-                market.supplyXcnApy.isNaN()
-                  ? 'Pending'
-                  : formatToReadablePercentage(market.supplyXcnApy)
-              }
-            />
-          ),
-          value: market.supplyApy.plus(market.supplyXcnApy).toFixed(),
-          align: 'right',
-        },
-        {
-          key: 'totalBorrows',
-          render: () => (
-            <LayeredValues
-              topValue={formatCentsToReadableValue({
-                value: market.treasuryTotalBorrowsCents,
-                shortenLargeValue: true,
-              })}
-              bottomValue={formatTokensToReadableValue({
-                value: market.treasuryTotalBorrowsCents.div(market.tokenPrice.times(100)),
-                token: unsafelyGetToken(market.id),
-                minimizeDecimals: true,
-                shortenLargeValue: true,
-              })}
-              css={localStyles.noWrap}
-            />
-          ),
-          value: market.treasuryTotalBorrowsCents.toFixed(),
-          align: 'right',
-        },
-        {
-          key: 'borrowApy',
-          render: () => (
-            <LayeredValues
-              topValue={
-                market.borrowXcnApy.isNaN()
-                  ? 'Pending'
-                  : formatToReadablePercentage(market.borrowXcnApy.minus(market.borrowApy))
-              }
-              bottomValue={
-                market.borrowXcnApy.isNaN()
-                  ? 'Pending'
-                  : formatToReadablePercentage(market.borrowXcnApy)
-              }
-            />
-          ),
-          value: market.borrowApy.plus(market.borrowXcnApy).toFixed(),
-          align: 'right',
-        },
-        {
-          key: 'liquidity',
-          render: () => (
-            <Typography variant="small1" css={localStyles.whiteText}>
-              {formatCentsToReadableValue({
-                value: market.liquidity.multipliedBy(100),
-                shortenLargeValue: true,
-              })}
-            </Typography>
-          ),
-          value: market.liquidity.toFixed(),
-          align: 'right',
-        },
-        {
-          key: 'collateralFactor',
-          render: () => (
-            <Typography variant="small1" css={localStyles.whiteText}>
-              {formatToReadablePercentage(
-                convertPercentageFromSmartContract(market.collateralFactor),
-              )}
-            </Typography>
-          ),
-          value: market.collateralFactor,
-          align: 'right',
-        },
-        {
-          key: 'price',
-          render: () => (
-            <Typography variant="small1" css={localStyles.whiteText}>
-              {formatCentsToReadableValue({ value: market.tokenPrice.multipliedBy(100) })}
-            </Typography>
-          ),
-          align: 'right',
-          value: market.tokenPrice.toFixed(),
-        },
-      ]),
-    [JSON.stringify(markets)],
+      markets.map(market => {
+        const supplyApy = isXcnEnabled
+          ? market.supplyXcnApy.plus(market.supplyApy)
+          : market.supplyApy;
+        const borrowApy = isXcnEnabled
+          ? market.borrowXcnApy.minus(market.borrowApy)
+          : market.borrowApy.times(-1);
+
+        return [
+          {
+            key: 'asset',
+            render: () => (
+              <TokenIconWithSymbol
+                token={unsafelyGetToken(market.id)}
+                css={localStyles.whiteText}
+              />
+            ),
+            value: market.id,
+          },
+          {
+            key: 'totalSupply',
+            render: () => (
+              <LayeredValues
+                topValue={formatCentsToReadableValue({
+                  value: market.treasuryTotalSupplyCents,
+                  shortenLargeValue: true,
+                })}
+                bottomValue={formatTokensToReadableValue({
+                  value: market.treasuryTotalSupplyCents.div(market.tokenPrice.times(100)),
+                  token: unsafelyGetToken(market.id),
+                  minimizeDecimals: true,
+                  shortenLargeValue: true,
+                })}
+                css={localStyles.noWrap}
+              />
+            ),
+            align: 'right',
+            value: market.treasuryTotalSupplyCents.toFixed(),
+          },
+          {
+            key: 'supplyApy',
+            render: () =>
+              market.supplyXcnApy.isNaN() ? (
+                'Pending'
+              ) : (
+                <span style={{ color: '#18DF8B' }}>{formatToReadablePercentage(supplyApy)}</span>
+              ),
+            value: supplyApy.toNumber(),
+            align: 'right',
+          },
+          {
+            key: 'totalBorrows',
+            render: () => (
+              <LayeredValues
+                topValue={formatCentsToReadableValue({
+                  value: market.treasuryTotalBorrowsCents,
+                  shortenLargeValue: true,
+                })}
+                bottomValue={formatTokensToReadableValue({
+                  value: market.treasuryTotalBorrowsCents.div(market.tokenPrice.times(100)),
+                  token: unsafelyGetToken(market.id),
+                  minimizeDecimals: true,
+                  shortenLargeValue: true,
+                })}
+                css={localStyles.noWrap}
+              />
+            ),
+            value: market.treasuryTotalBorrowsCents.toFixed(),
+            align: 'right',
+          },
+          {
+            key: 'borrowApy',
+            render: () =>
+              market.borrowXcnApy.isNaN() ? (
+                'Pending'
+              ) : (
+                <span style={{ color: borrowApy.gt(0) ? '#18DF8B' : '#E93D44' }}>
+                  {formatToReadablePercentage(borrowApy)}
+                </span>
+              ),
+            value: borrowApy.toNumber(),
+            align: 'right',
+          },
+          {
+            key: 'liquidity',
+            render: () => (
+              <Typography variant="small1" css={localStyles.whiteText}>
+                {formatCentsToReadableValue({
+                  value: market.liquidity.multipliedBy(100),
+                  shortenLargeValue: true,
+                })}
+              </Typography>
+            ),
+            value: market.liquidity.toFixed(),
+            align: 'right',
+          },
+          {
+            key: 'collateralFactor',
+            render: () => (
+              <Typography variant="small1" css={localStyles.whiteText}>
+                {formatToReadablePercentage(
+                  convertPercentageFromSmartContract(market.collateralFactor),
+                )}
+              </Typography>
+            ),
+            value: market.collateralFactor,
+            align: 'right',
+          },
+          {
+            key: 'price',
+            render: () => (
+              <Typography variant="small1" css={localStyles.whiteText}>
+                {formatCentsToReadableValue({ value: market.tokenPrice.multipliedBy(100) })}
+              </Typography>
+            ),
+            align: 'right',
+            value: market.tokenPrice.toFixed(),
+          },
+        ];
+      }),
+    [JSON.stringify(markets), isXcnEnabled],
   );
 
+  const handleXcnToggleChange: ToggleProps['onChange'] = (_event, checked) =>
+    setIsXcnEnabled(checked);
+
   return (
-    <Table
-      columns={columns}
-      cardColumns={cardColumns}
-      data={rows}
-      initialOrder={{
-        orderBy: 'asset',
-        orderDirection: 'desc',
-      }}
-      rowKeyIndex={0}
-      getRowHref={getRowHref}
-      tableCss={sharedStyles.table}
-      cardsCss={sharedStyles.cards}
-      css={localStyles.cardContentGrid}
-    />
+    <>
+      <div css={localStyles.apyWithXcn}>
+        <Tooltip css={localStyles.tooltip} title={t('myAccount.apyWithXcnTooltip')}>
+          <Icon css={localStyles.infoIcon} name="info" />
+        </Tooltip>
+
+        <Typography
+          color="text.primary"
+          variant="small1"
+          component="span"
+          css={localStyles.apyWithXcnLabel}
+        >
+          {t('myAccount.apyWithXcn')}
+        </Typography>
+
+        <Toggle css={localStyles.toggle} value={isXcnEnabled} onChange={handleXcnToggleChange} />
+      </div>
+
+      <Table
+        columns={columns}
+        cardColumns={cardColumns}
+        data={rows}
+        initialOrder={{
+          orderBy: 'asset',
+          orderDirection: 'desc',
+        }}
+        rowKeyIndex={0}
+        getRowHref={getRowHref}
+        tableCss={sharedStyles.table}
+        cardsCss={sharedStyles.cards}
+        css={localStyles.cardContentGrid}
+      />
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+
 /** @jsxImportSource @emotion/react */
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -63,12 +64,14 @@ const Card: React.FC<CardProps> = ({
                 css={styles.statValue}
                 style={{
                   color:
-                    title === 'Borrow info'
-                      ? index === 1
-                        ? 'red'
-                        : index === 2
-                        ? 'green'
-                        : 'white'
+                    index === 0
+                      ? 'white'
+                      : title === 'Supply info'
+                      ? '#18DF8B'
+                      : index === 1
+                      ? '#E93D44'
+                      : index === 2
+                      ? '#18DF8B'
                       : 'white',
                 }}
               >

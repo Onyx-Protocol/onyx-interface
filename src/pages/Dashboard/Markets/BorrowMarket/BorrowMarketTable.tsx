@@ -40,7 +40,9 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
   const rows: TableProps['data'] = assets
     .filter(asset => asset.token.decimals > 0)
     .map(asset => {
-      const borrowApy = isXcnEnabled ? asset.xcnBorrowApy.minus(asset.borrowApy) : asset.borrowApy;
+      const borrowApy = isXcnEnabled
+        ? asset.xcnBorrowApy.minus(asset.borrowApy)
+        : asset.borrowApy.times(-1);
 
       return [
         {
@@ -52,7 +54,13 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
         {
           key: 'apy',
           render: () =>
-            asset.xcnBorrowApy.isNaN() ? 'Pending' : formatToReadablePercentage(borrowApy),
+            asset.xcnBorrowApy.isNaN() ? (
+              'Pending'
+            ) : (
+              <span style={{ color: borrowApy.gt(0) ? '#18DF8B' : '#E93D44' }}>
+                {formatToReadablePercentage(borrowApy)}
+              </span>
+            ),
           value: borrowApy.toNumber(),
           align: 'right',
         },
