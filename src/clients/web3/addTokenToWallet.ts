@@ -12,7 +12,7 @@ const addTokenToWallet = async (tokenId: string) => {
       type: 'ERC20',
       options: {
         address: token.address,
-        symbol: token.symbol,
+        symbol: token.symbol === 'XCN' ? 'Onyxcoin' : token.symbol,
         decimals: token.decimals,
         image: `${window.location.origin}${token.asset}`,
       },
