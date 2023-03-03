@@ -40,7 +40,7 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
   const rows: TableProps['data'] = assets
     .filter(asset => asset.token.decimals > 0)
     .map(asset => {
-      const borrowApy = isXcnEnabled ? asset.xcnBorrowApy.plus(asset.borrowApy) : asset.borrowApy;
+      const borrowApy = isXcnEnabled ? asset.xcnBorrowApy.minus(asset.borrowApy) : asset.borrowApy;
 
       return [
         {

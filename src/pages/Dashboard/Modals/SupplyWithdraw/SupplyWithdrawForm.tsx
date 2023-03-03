@@ -166,7 +166,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                             .slice(0, balance)
                         : tokenIds.map(tokenId => [
                             tokenId,
-                            data.tokenIds.find((item: any) => item.tokenId === tokenId)?.tokenURI ||
+                            data.tokenIds.find((item: any) => item.tokenId === Number(tokenId))?.tokenURI ||
                               `/cryptologos/${asset.token.symbol.toLowerCase()}.jpg`,
                           ]),
                     ),

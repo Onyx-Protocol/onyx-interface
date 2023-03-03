@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /** @jsxImportSource @emotion/react */
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -51,13 +52,26 @@ const Card: React.FC<CardProps> = ({
 
       {stats.length > 0 && (
         <div css={styles.row}>
-          {stats.map(stat => (
+          {stats.map((stat, index) => (
             <div css={styles.stat} key={`card-${title}-legend-${stat.label}`}>
               <Typography variant="small2" component="div" css={styles.statLabel}>
                 {stat.label}
               </Typography>
 
-              <Typography variant="h4" css={styles.statValue}>
+              <Typography
+                variant="h4"
+                css={styles.statValue}
+                style={{
+                  color:
+                    title === 'Borrow info'
+                      ? index === 1
+                        ? 'red'
+                        : index === 2
+                        ? 'green'
+                        : 'white'
+                      : 'white',
+                }}
+              >
                 {stat.value}
               </Typography>
             </div>
