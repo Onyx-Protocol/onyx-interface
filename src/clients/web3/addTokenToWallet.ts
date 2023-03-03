@@ -1,5 +1,7 @@
 import { unsafelyGetToken } from 'utilities';
 
+import xcnb from 'assets/img/tokens/xcnb.svg';
+
 import { isRunningInBinanceChainWallet } from './walletDetectionUtils';
 
 const addTokenToWallet = async (tokenId: string) => {
@@ -12,9 +14,9 @@ const addTokenToWallet = async (tokenId: string) => {
       type: 'ERC20',
       options: {
         address: token.address,
-        symbol: token.symbol === 'XCN' ? 'Onyxcoin' : token.symbol,
+        symbol: token.symbol,
         decimals: token.decimals,
-        image: `${window.location.origin}${token.asset}`,
+        image: `${window.location.origin}${token.symbol === 'XCN' ? xcnb : token.asset}`,
       },
     },
   });
