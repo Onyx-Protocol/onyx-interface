@@ -190,7 +190,7 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
             key: 'price',
             render: () => (
               <Typography variant="small1" css={localStyles.whiteText}>
-                {market.underlyingSymbol === 'SHIB'
+                ${market.underlyingSymbol === 'SHIB'
                   ? market.tokenPrice.toFormat(6)
                   : market.underlyingSymbol === 'XCN'
                   ? market.tokenPrice.toFormat(4)
