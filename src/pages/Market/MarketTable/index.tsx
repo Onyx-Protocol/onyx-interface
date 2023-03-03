@@ -139,7 +139,7 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
               topValue={
                 market.borrowXcnApy.isNaN()
                   ? 'Pending'
-                  : formatToReadablePercentage(market.borrowApy.plus(market.borrowXcnApy))
+                  : formatToReadablePercentage(market.borrowXcnApy.minus(market.borrowApy))
               }
               bottomValue={
                 market.borrowXcnApy.isNaN()

@@ -64,20 +64,22 @@ export const VotingWalletUi: React.FC<VotingWalletUiProps> = ({
         )}
       </Paper>
 
-      <Paper css={[styles.votingWalletPaper, styles.voteSection]}>
-        <Typography variant="body2" color="textPrimary" css={styles.toVote}>
-          {t('vote.toVoteYouShould')}
-        </Typography>
+      {Number(readableVoteWeight) === 0 && (
+        <Paper css={[styles.votingWalletPaper, styles.voteSection]}>
+          <Typography variant="body2" color="textPrimary" css={styles.toVote}>
+            {t('vote.toVoteYouShould')}
+          </Typography>
 
-        <Typography variant="small2" color="textPrimary" css={styles.depositTokens}>
-          <Trans
-            i18nKey="vote.depositYourTokens"
-            components={{
-              Anchor: <NavLink to="/stake" css={styles.link} />,
-            }}
-          />
-        </Typography>
-      </Paper>
+          <Typography variant="small2" color="textPrimary" css={styles.depositTokens}>
+            <Trans
+              i18nKey="vote.depositYourTokens"
+              components={{
+                Anchor: <NavLink to="/stake" css={styles.link} />,
+              }}
+            />
+          </Typography>
+        </Paper>
+      )}
     </div>
   );
 };

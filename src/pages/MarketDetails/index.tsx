@@ -14,8 +14,8 @@ import {
   formatCentsToReadableValue,
   formatToReadablePercentage,
   formatTokensToReadableValue,
-  unsafelyGetToken,
   unsafelyGetOToken,
+  unsafelyGetToken,
 } from 'utilities';
 
 import { useGetOTokenApySimulations } from 'clients/api';
@@ -130,7 +130,9 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
       },
       {
         label: t('marketDetails.borrowInfo.stats.apy'),
-        value: formatToReadablePercentage(borrowApyPercentage),
+        value: borrowApyPercentage?.gt(0)
+          ? `-${formatToReadablePercentage(borrowApyPercentage)}`
+          : '0%',
       },
       {
         label: t('marketDetails.borrowInfo.stats.distributionApy'),
