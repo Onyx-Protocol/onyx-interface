@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import Marquee from 'react-fast-marquee';
@@ -23,7 +25,13 @@ const PriceSlider = ({ markets = [] }: any) => {
               <div>
                 <div className="symbol">{cToken.underlyingSymbol}</div>
                 <div className="price">
-                  {`$${cToken.tokenPrice.toFormat(3)}`}
+                  {`$${
+                    cToken.underlyingSymbol === 'SHIB'
+                      ? cToken.tokenPrice.toFormat(6)
+                      : cToken.underlyingSymbol === 'XCN'
+                      ? cToken.tokenPrice.toFormat(4)
+                      : cToken.tokenPrice.toFormat(3)
+                  }`}
                   {cToken.underlyingDecimal === 0
                     ? `(${markets.find((market: any) => market.id === cToken.id)?.cash})`
                     : ''}

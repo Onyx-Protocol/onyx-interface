@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /** @jsxImportSource @emotion/react */
 import BigNumber from 'bignumber.js';
 import {
@@ -171,7 +172,11 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
         value:
           tokenPriceDollars === undefined
             ? PLACEHOLDER_KEY
-            : formatCentsToReadableValue({ value: tokenPriceDollars.multipliedBy(100) }),
+            : token.symbol === 'SHIB'
+            ? tokenPriceDollars.toFormat(6)
+            : token.symbol === 'XCN'
+            ? tokenPriceDollars.toFormat(4)
+            : tokenPriceDollars.toFormat(2),
       },
       {
         label: t('marketDetails.marketInfo.stats.marketLiquidityLabel'),

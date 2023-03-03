@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 /** @jsxImportSource @emotion/react */
 import { Typography } from '@mui/material';
 import {
@@ -188,7 +190,12 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
             key: 'price',
             render: () => (
               <Typography variant="small1" css={localStyles.whiteText}>
-                {formatCentsToReadableValue({ value: market.tokenPrice.multipliedBy(100) })}
+                {market.underlyingSymbol === 'SHIB'
+                  ? market.tokenPrice.toFormat(6)
+                  : market.underlyingSymbol === 'XCN'
+                  ? market.tokenPrice.toFormat(4)
+                  : market.tokenPrice.toFormat(2)}
+                {/* {formatCentsToReadableValue({ value: market.tokenPrice.multipliedBy(100) })} */}
               </Typography>
             ),
             align: 'right',
