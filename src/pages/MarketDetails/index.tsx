@@ -173,10 +173,10 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
           tokenPriceDollars === undefined
             ? PLACEHOLDER_KEY
             : token.symbol === 'SHIB'
-            ? tokenPriceDollars.toFormat(6)
+            ? `$${tokenPriceDollars.toFormat(6)}`
             : token.symbol === 'XCN'
-            ? tokenPriceDollars.toFormat(4)
-            : tokenPriceDollars.toFormat(2),
+            ? `$${tokenPriceDollars.toFormat(4)}`
+            : `$${tokenPriceDollars.toFormat(2)}`,
       },
       {
         label: t('marketDetails.marketInfo.stats.marketLiquidityLabel'),
