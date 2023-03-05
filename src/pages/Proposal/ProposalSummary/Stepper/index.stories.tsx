@@ -47,8 +47,8 @@ Defeated.args = {
   queuedDate: undefined,
 };
 
-export const Succeeded = Template.bind({});
-Succeeded.args = {
+export const Successded = Template.bind({});
+Successded.args = {
   createdDate: proposals[0].createdDate,
   cancelDate: undefined,
   state: 'Active',

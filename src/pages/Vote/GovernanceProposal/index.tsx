@@ -60,7 +60,7 @@ const StatusCard: React.FC<StateCard> = ({ state }) => {
         iconName: 'close',
         label: t('voteProposalUi.statusCard.defeated'),
       },
-      Succeeded: {
+      Successded: {
         iconWrapperCss: styles.iconInfoWrapper,
         iconName: 'exclamation',
         label: t('voteProposalUi.statusCard.readyToQueue'),

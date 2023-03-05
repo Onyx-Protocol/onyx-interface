@@ -101,7 +101,7 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
             />
           ),
         ];
-      case 'Succeeded':
+      case 'Successded':
         return [
           <ActiveChip text={t('voteProposalUi.proposalState.passed')} />,
           endDate && (

@@ -59,7 +59,7 @@ export interface ProposalApiResponse {
     | 'Active'
     | 'Canceled'
     | 'Defeated'
-    | 'Succeeded'
+    | 'Successded'
     | 'Queued'
     | 'Expired'
     | 'Executed';

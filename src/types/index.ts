@@ -68,7 +68,7 @@ export type ProposalState =
   | 'Active'
   | 'Canceled'
   | 'Defeated'
-  | 'Succeeded'
+  | 'Successded'
   | 'Queued'
   | 'Expired'
   | 'Executed';
