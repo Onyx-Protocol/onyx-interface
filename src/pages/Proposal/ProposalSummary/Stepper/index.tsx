@@ -25,7 +25,7 @@ const getActiveStepIndex = (proposalState: ProposalState) => {
     case 'Active':
       return 2;
     case 'Defeated':
-    case 'Succeeded':
+    case 'Successded':
     case 'Canceled':
     case 'Expired':
       return 3;

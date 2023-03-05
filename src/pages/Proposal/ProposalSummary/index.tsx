@@ -129,7 +129,7 @@ export const ProposalSummaryUi: React.FC<
     case 'Canceled':
       transactionHash = cancelTxHash;
       break;
-    case 'Succeeded':
+    case 'Successded':
       updateProposalButton = (
         <PrimaryButton
           onClick={handleQueueProposal}

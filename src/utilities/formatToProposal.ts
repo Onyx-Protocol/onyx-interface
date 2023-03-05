@@ -51,7 +51,7 @@ interface FormatToProposalInput {
     | 'Active'
     | 'Canceled'
     | 'Defeated'
-    | 'Succeeded'
+    | 'Successded'
     | 'Queued'
     | 'Expired'
     | 'Executed';

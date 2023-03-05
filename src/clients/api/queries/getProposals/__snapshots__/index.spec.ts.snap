@@ -177,7 +177,7 @@ Object {
       "queuedTxHash": undefined,
       "startDate": 2022-05-20T19:17:19.000Z,
       "startTxHash": undefined,
-      "state": "Succeeded",
+      "state": "Successded",
       "totalVotesWei": "3.05004e+23",
     },
     Object {
@@ -467,7 +467,7 @@ Object {
       "queuedTxHash": undefined,
       "startDate": 2022-05-20T19:17:19.000Z,
       "startTxHash": undefined,
-      "state": "Succeeded",
+      "state": "Successded",
       "totalVotesWei": "3.05004e+23",
     },
     Object {

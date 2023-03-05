@@ -68,11 +68,11 @@ export const Defeated = () => (
   />
 );
 
-export const Succeeded = () => (
+export const Successded = () => (
   <GovernanceProposal
     proposalId={58}
     proposalTitle="Buy back and burn and Tokenomic contribution finished soon"
-    proposalState="Succeeded"
+    proposalState="Successded"
     endDate={new Date(Date.now())}
   />
 );

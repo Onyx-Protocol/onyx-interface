@@ -15,7 +15,7 @@ type Options = QueryObserverOptions<
   [FunctionKey.GET_PROPOSAL, GetProposalInput]
 >;
 
-const refetchStates = ['Pending', 'Active', 'Succeeded', 'Queued'];
+const refetchStates = ['Pending', 'Active', 'Successded', 'Queued'];
 
 // refetchInterval is set automatically with onSucess so it is excluded from being set manually
 const useGetProposal = (params: GetProposalInput, options?: Omit<Options, 'refetchInterval'>) =>
