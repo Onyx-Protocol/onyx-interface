@@ -13,8 +13,9 @@ const getProposalState = async ({
   governorBravoContract,
   proposalId,
 }: GetProposalStateInput): Promise<GetProposalStateOutput> => {
-  const state = await governorBravoContract.methods.state(proposalId).call();
+  if (Number(proposalId) === 0) return { state: '0' };
 
+  const state = await governorBravoContract.methods.state(proposalId).call();
   return { state };
 };
 

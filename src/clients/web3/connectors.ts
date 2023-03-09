@@ -21,7 +21,8 @@ const binanceChainWalletConnector = new BscConnector({ supportedChainIds: [confi
 
 const coinbaseWalletConnector = new WalletLinkConnector({
   url: config.rpcUrl,
-  appName: 'Xcn',
+  appName: 'Onyx',
+  supportedChainIds: [config.chainId],
 });
 
 const infinityWalletConnector = new InfinityWalletConnector({
