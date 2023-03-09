@@ -22,7 +22,7 @@ const getVoteReceipt = async ({
     .getReceipt(proposalId, accountAddress)
     .call();
 
-  const voteSupport = hasVotes ? indexedVotingSupportNames[parseInt(String(support), 10)] : 'NOT_VOTED';
+  const voteSupport = hasVotes ? indexedVotingSupportNames[Number(support)] : 'NOT_VOTED';
 
   return {
     voteSupport,
