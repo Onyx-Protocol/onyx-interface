@@ -127,7 +127,7 @@ const useGetUserMarketInfo = ({
           borrowBalance = toDecimalAmount(wallet.borrowBalanceCurrent);
         }
 
-        const asset = {
+        const asset: Asset = {
           token,
           supplyApy: new BigNumber(market?.supplyApy || 0),
           borrowApy: new BigNumber(market?.borrowApy || 0),

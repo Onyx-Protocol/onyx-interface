@@ -95,10 +95,10 @@ const XcnTableUi: React.FC<XcnTableProps> = ({ assets }) => {
     <Table
       columns={columns}
       data={rows}
-      initialOrder={{
-        orderBy: 'xcnPerDay',
-        orderDirection: 'desc',
-      }}
+      // initialOrder={{
+      //   orderBy: 'xcnPerDay',
+      //   orderDirection: 'desc',
+      // }}
       rowKeyIndex={0}
       tableCss={styles.table}
       cardsCss={styles.cards}

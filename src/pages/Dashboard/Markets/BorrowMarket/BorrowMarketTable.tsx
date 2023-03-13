@@ -93,10 +93,10 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
       title={t('markets.borrowMarketTableTitle')}
       columns={columns}
       data={rows}
-      initialOrder={{
-        orderBy: 'apy',
-        orderDirection: 'desc',
-      }}
+      // initialOrder={{
+      //   orderBy: 'apy',
+      //   orderDirection: 'desc',
+      // }}
       rowKeyIndex={0}
       rowOnClick={rowOnClick}
       tableCss={sharedStyles.table}

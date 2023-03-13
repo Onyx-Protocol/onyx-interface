@@ -99,10 +99,10 @@ export const SuppliedTable: React.FC<SuppliedTableUiProps> = ({
       title={t('markets.suppliedTableTitle')}
       columns={columns}
       data={rows}
-      initialOrder={{
-        orderBy: 'apy',
-        orderDirection: 'desc',
-      }}
+      // initialOrder={{
+      //   orderBy: 'apy',
+      //   orderDirection: 'desc',
+      // }}
       rowOnClick={rowOnClick}
       rowKeyIndex={0}
       tableCss={sharedStyles.table}

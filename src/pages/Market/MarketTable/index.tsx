@@ -232,10 +232,10 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
         columns={columns}
         cardColumns={cardColumns}
         data={rows}
-        initialOrder={{
-          orderBy: 'asset',
-          orderDirection: 'desc',
-        }}
+        // initialOrder={{
+        //   orderBy: 'asset',
+        //   orderDirection: 'desc',
+        // }}
         rowKeyIndex={0}
         getRowHref={getRowHref}
         tableCss={sharedStyles.table}

@@ -114,10 +114,10 @@ const BorrowingTable: React.FC<BorrowingUiProps> = ({
       title={t('markets.borrowingTableTitle')}
       columns={columns}
       data={rows}
-      initialOrder={{
-        orderBy: 'apy',
-        orderDirection: 'desc',
-      }}
+      // initialOrder={{
+      //   orderBy: 'apy',
+      //   orderDirection: 'desc',
+      // }}
       rowKeyIndex={0}
       rowOnClick={rowOnClick}
       tableCss={sharedStyles.table}

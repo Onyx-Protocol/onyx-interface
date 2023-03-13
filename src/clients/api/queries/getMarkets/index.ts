@@ -50,6 +50,17 @@ const getMarkets = async (): Promise<GetMarketsOutput> => {
       return acc;
     }, []);
   }
+
+  const nftMarkets = markets.filter((item: Market) => item.underlyingDecimal === 0);
+  nftMarkets.sort((a: Market, b: Market) =>
+    b.treasuryTotalSupplyCents.minus(a.treasuryTotalSupplyCents).toNumber(),
+  );
+  const tokenMarkets = markets.filter((item: Market) => item.underlyingDecimal !== 0);
+  tokenMarkets.sort((a: Market, b: Market) =>
+    b.treasuryTotalSupplyCents.minus(a.treasuryTotalSupplyCents).toNumber(),
+  );
+  markets = [...nftMarkets, ...tokenMarkets];
+
   return { markets, dailyXcnWei };
 };
 
