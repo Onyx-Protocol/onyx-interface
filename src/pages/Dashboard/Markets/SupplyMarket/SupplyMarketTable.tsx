@@ -94,10 +94,10 @@ export const SupplyMarketTable: React.FC<SupplyMarketTableUiProps> = ({
       title={t('markets.supplyMarketTableTitle')}
       columns={columns}
       data={rows}
-      initialOrder={{
-        orderBy: 'apy',
-        orderDirection: 'desc',
-      }}
+      // initialOrder={{
+      //   orderBy: 'apy',
+      //   orderDirection: 'desc',
+      // }}
       rowOnClick={rowOnClick}
       rowKeyIndex={0}
       tableCss={sharedStyles.table}
