@@ -171,6 +171,7 @@
     "type": "Type",
     "typeColon": "Type:",
     "voteCast": "Vote Cast",
+    "stake": "Stake",
     "withdraw": "Withdraw"
   },
   "interactive": {
