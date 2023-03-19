@@ -34,6 +34,8 @@ export const Filters: React.FC<FilterProps> = ({
     { label: t('history.repayBorrow'), value: 'Repay' },
     { label: t('history.liquidateBorrow'), value: 'Liquidate Borrow' },
     { label: t('history.transfer'), value: 'Transfer' },
+    { label: t('history.stake'), value: 'Stake' },
+    { label: t('history.withdraw'), value: 'Withdraw' },
   ];
   return (
     <Paper css={styles.root}>
