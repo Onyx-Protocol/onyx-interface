@@ -38,6 +38,13 @@ const useGetTreasuryTotals = (): UseGetTreasuryTotalsOutput => {
   } = useMemo(() => {
     const data = markets.reduce(
       (acc, curr) => {
+        acc.treasuryTotalBalanceCents = acc.treasuryTotalBalanceCents.plus(
+          new BigNumber(curr.totalReserves)
+            .dividedBy(new BigNumber(10).pow(curr.underlyingDecimal))
+            .multipliedBy(curr.tokenPrice)
+            .times(100),
+        );
+
         acc.treasuryTotalSupplyBalanceCents = acc.treasuryTotalSupplyBalanceCents.plus(
           curr.treasuryTotalSupplyCents,
         );

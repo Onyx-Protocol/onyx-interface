@@ -20,7 +20,7 @@ export const HeaderUi: React.FC<HeaderProps> = ({
   totalSupplyCents,
   totalBorrowCents,
   availableLiquidityCents,
-  // totalTreasuryCents,
+  totalTreasuryCents,
 }) => {
   const { t } = useTranslation();
   const styles = useStyles();
@@ -51,14 +51,14 @@ export const HeaderUi: React.FC<HeaderProps> = ({
             {formatCentsToReadableValue({ value: availableLiquidityCents })}
           </Typography>
         </Paper>
-        {/* <Paper css={styles.box}>
+        <Paper css={styles.box}>
           <Typography variant="small1" css={styles.title}>
             {t('market.totalTreasury')}
           </Typography>
           <Typography variant="h3" css={styles.value}>
             {formatCentsToReadableValue({ value: totalTreasuryCents })}
           </Typography>
-        </Paper> */}
+        </Paper>
       </div>
     </Paper>
   );
