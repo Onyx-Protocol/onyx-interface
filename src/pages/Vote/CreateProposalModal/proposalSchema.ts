@@ -72,14 +72,14 @@ const proposalSchema = yup.object({
               const fragment = parseFunctionSignature(this.parent.signature);
               const min = fragment?.inputs.length ?? 0;
               const filteredValue = value?.filter(v => !!v);
-              return !!(filteredValue && filteredValue.length >= min);
+              return fragment?.inputs.length === 0 || !!(filteredValue && filteredValue.length >= min);
             },
-          })
-          .required(ErrorCode.VALUE_REQUIRED),
+          }),
+          // .required(ErrorCode.VALUE_REQUIRED),
       }),
     )
     .required(ErrorCode.VALUE_REQUIRED)
-    .max(10),
+    .max(30),
   title: yup.string().required(ErrorCode.VALUE_REQUIRED),
   description: yup.string().required(ErrorCode.VALUE_REQUIRED),
   // forDescription: yup.string().required(ErrorCode.VALUE_REQUIRED),
