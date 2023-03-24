@@ -12,14 +12,14 @@ const formatSignature = (action: FormValues['actions'][number] | ProposalAction)
     if (Array.isArray(action.callData)) {
       args = fragment.inputs.map((i, idx) => {
         if (i.baseType === 'string' || i.baseType === 'address') {
-          return `"${action.callData ? action.callData[idx] : ''}"`;
+          return `"${action.callData[idx]}"`;
         }
-        return action.callData ? action.callData[idx] : '';
+        return action.callData[idx];
       });
     } else {
       const unformattedArgs = ethers.utils.defaultAbiCoder.decode(
         fragment.inputs.map(input => input.baseType),
-        action.callData || '',
+        action.callData,
       );
       args = fragment.inputs.map((i, idx) => {
         if (i.baseType === 'string' || i.baseType === 'address') {

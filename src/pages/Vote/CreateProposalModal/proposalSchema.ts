@@ -74,8 +74,8 @@ const proposalSchema = yup.object({
               const filteredValue = value?.filter(v => !!v);
               return fragment?.inputs.length === 0 || !!(filteredValue && filteredValue.length >= min);
             },
-          }),
-          // .required(ErrorCode.VALUE_REQUIRED),
+          })
+          .required(ErrorCode.VALUE_REQUIRED),
       }),
     )
     .required(ErrorCode.VALUE_REQUIRED)
