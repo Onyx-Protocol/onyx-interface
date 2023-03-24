@@ -105,7 +105,7 @@ const ActionAccordion: React.FC = () => {
 
             <SecondaryButton
               onClick={() => {
-                push({ target: '', signature: '' });
+                push({ target: '', signature: '', callData: [], value: '' });
                 setExpanded(actions.length || 0);
               }}
               fullWidth
