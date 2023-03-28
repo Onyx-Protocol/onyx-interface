@@ -49,7 +49,9 @@ const BorrowingTable: React.FC<BorrowingUiProps> = ({
 
   // Format assets to rows
   const rows: TableProps['data'] = assets.map(asset => {
-    const borrowApy = isXcnEnabled ? asset.xcnBorrowApy.plus(asset.borrowApy) : asset.borrowApy;
+    const borrowApy = isXcnEnabled
+      ? asset.xcnBorrowApy.minus(asset.borrowApy)
+      : asset.borrowApy.times(-1);
     const percentOfLimit = calculatePercentage({
       numerator: +asset.borrowBalance.multipliedBy(asset.tokenPrice).times(100),
       denominator: +userTotalBorrowLimitCents,
@@ -63,7 +65,14 @@ const BorrowingTable: React.FC<BorrowingUiProps> = ({
       },
       {
         key: 'apy',
-        render: () => <div>{formatToReadablePercentage(borrowApy)}</div>,
+        render: () =>
+          asset.xcnBorrowApy.isNaN() ? (
+            'Pending'
+          ) : (
+            <span style={{ color: borrowApy.gt(0) ? '#18DF8B' : '#E93D44' }}>
+              {formatToReadablePercentage(borrowApy)}
+            </span>
+          ),
         value: borrowApy.toNumber(),
         align: 'right',
       },
