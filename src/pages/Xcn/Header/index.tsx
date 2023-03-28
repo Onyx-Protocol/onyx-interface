@@ -38,8 +38,8 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
   const styles = useStyles();
   const { t } = useTranslation();
 
-  const copy = useCopyToClipboard(t('interactive.copy.xcnAddress'));
-  const copyAddress = () => copy(TOKENS.xcn.address);
+  const copy = useCopyToClipboard(t('interactive.copy.contractAddress'));
+  const copyAddress = () => copy(getContractAddress('comptroller'));
 
   const readableDailyDistribution = useMemo(() => {
     const dailyXcnTokens = convertWeiToTokens({
