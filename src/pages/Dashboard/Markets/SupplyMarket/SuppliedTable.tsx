@@ -47,52 +47,57 @@ export const SuppliedTable: React.FC<SuppliedTableUiProps> = ({
   );
 
   // Format assets to rows
-  const rows: TableProps['data'] = assets.map(asset => [
-    {
-      key: 'asset',
-      render: () => <TokenIconWithSymbol token={asset.token} />,
-      value: asset.token.id,
-      align: 'left',
-    },
-    {
-      key: 'apy',
-      render: () => {
-        const apy = isXcnEnabled ? asset.xcnSupplyApy.plus(asset.supplyApy) : asset.supplyApy;
-        return formatToReadablePercentage(apy);
+  const rows: TableProps['data'] = assets.map(asset => {
+    const supplyApy = isXcnEnabled ? asset.xcnSupplyApy.plus(asset.supplyApy) : asset.supplyApy;
+    return [
+      {
+        key: 'asset',
+        render: () => <TokenIconWithSymbol token={asset.token} />,
+        value: asset.token.id,
+        align: 'left',
       },
-      value: asset.supplyApy.toFixed(),
-      align: 'right',
-    },
-    {
-      key: 'balance',
-      render: () => (
-        <LayeredValues
-          topValue={formatCentsToReadableValue({
-            value: asset.supplyBalance.multipliedBy(asset.tokenPrice).multipliedBy(100),
-            shortenLargeValue: true,
-          })}
-          bottomValue={formatTokensToReadableValue({
-            value: asset.supplyBalance,
-            token: asset.token,
-            shortenLargeValue: true,
-          })}
-        />
-      ),
-      value: asset.supplyBalance.toFixed(),
-      align: 'right',
-    },
-    {
-      key: 'collateral',
-      render: () =>
-        asset.collateralFactor.toNumber() || asset.collateral ? (
-          <Toggle onChange={() => collateralOnChange(asset)} value={asset.collateral} />
-        ) : (
-          PLACEHOLDER_KEY
+      {
+        key: 'apy',
+        render: () =>
+          asset.xcnSupplyApy.isNaN() ? (
+            'Pending'
+          ) : (
+            <span style={{ color: '#18DF8B' }}>{formatToReadablePercentage(supplyApy)}</span>
+          ),
+        value: asset.supplyApy.toFixed(),
+        align: 'right',
+      },
+      {
+        key: 'balance',
+        render: () => (
+          <LayeredValues
+            topValue={formatCentsToReadableValue({
+              value: asset.supplyBalance.multipliedBy(asset.tokenPrice).multipliedBy(100),
+              shortenLargeValue: true,
+            })}
+            bottomValue={formatTokensToReadableValue({
+              value: asset.supplyBalance,
+              token: asset.token,
+              shortenLargeValue: true,
+            })}
+          />
         ),
-      value: asset.collateral,
-      align: 'right',
-    },
-  ]);
+        value: asset.supplyBalance.toFixed(),
+        align: 'right',
+      },
+      {
+        key: 'collateral',
+        render: () =>
+          asset.collateralFactor.toNumber() || asset.collateral ? (
+            <Toggle onChange={() => collateralOnChange(asset)} value={asset.collateral} />
+          ) : (
+            PLACEHOLDER_KEY
+          ),
+        value: asset.collateral,
+        align: 'right',
+      },
+    ];
+  });
 
   return (
     <Table

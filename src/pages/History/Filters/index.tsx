@@ -36,6 +36,7 @@ export const Filters: React.FC<FilterProps> = ({
     { label: t('history.transfer'), value: 'Transfer' },
     { label: t('history.stake'), value: 'Stake' },
     { label: t('history.withdraw'), value: 'Withdraw' },
+    { label: t('history.claim'), value: 'Claim' },
   ];
   return (
     <Paper css={styles.root}>

@@ -20,7 +20,7 @@ export const calculateYearlyEarningsForAsset = ({ asset }: { asset: Asset }) => 
     asset.borrowApy.dividedBy(100),
   );
 
-  return supplyYearlyEarningsCents.plus(borrowYearlyInterestsCents);
+  return supplyYearlyEarningsCents.minus(borrowYearlyInterestsCents);
 };
 
 export const calculateYearlyEarningsForAssets = ({

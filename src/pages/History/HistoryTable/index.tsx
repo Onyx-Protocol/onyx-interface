@@ -60,6 +60,7 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
     Transfer: t('history.transfer'),
     Stake: t('history.stake'),
     Withdraw: t('history.withdraw'),
+    Claim: t('history.claim'),
   };
 
   // Format transactions to rows

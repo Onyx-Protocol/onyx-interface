@@ -172,7 +172,8 @@
     "typeColon": "Type:",
     "voteCast": "Vote Cast",
     "stake": "Stake",
-    "withdraw": "Withdraw"
+    "withdraw": "Withdraw",
+    "claim": "Claim"
   },
   "interactive": {
     "copy": {
