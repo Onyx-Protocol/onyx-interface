@@ -57,7 +57,7 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
     Borrow: t('history.borrow'),
     RepayBorrow: t('history.repayBorrow'),
     LiquidateBorrow: t('history.liquidateBorrow'),
-    Transfer: t('history.transfer'),
+    // Transfer: t('history.transfer'),
     Stake: t('history.stake'),
     Withdraw: t('history.withdraw'),
     Claim: t('history.claim'),
