@@ -179,7 +179,8 @@
     "copy": {
       "walletAddress": "Wallet address",
       "txHash": "Transaction Hash",
-      "xcnAddress": "XCN address"
+      "xcnAddress": "XCN address",
+      "contractAddress": "Contract address"
     },
     "copyToClipboard": "{{name}} copied to clipboard"
   },
