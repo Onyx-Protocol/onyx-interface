@@ -20,6 +20,8 @@ interface HistoryUiProps extends FilterProps {
 export const HistoryUi: React.FC<HistoryUiProps> = ({
   eventType,
   setEventType,
+  asset,
+  setAsset,
   showOnlyMyTxns,
   setShowOnlyMyTxns,
   transactions,
@@ -33,6 +35,8 @@ export const HistoryUi: React.FC<HistoryUiProps> = ({
     <Filters
       eventType={eventType}
       setEventType={setEventType}
+      asset={asset}
+      setAsset={setAsset}
       showOnlyMyTxns={showOnlyMyTxns}
       setShowOnlyMyTxns={setShowOnlyMyTxns}
       walletConnected={walletConnected}
@@ -56,18 +60,22 @@ const History: React.FC = () => {
   const accountAddress = account?.address;
   const [currentPage, setCurrentPage] = useState(0);
   const [eventType, setEventType] = useState<TransactionEvent | typeof ALL_VALUE>(ALL_VALUE);
+  const [asset, setAsset] = useState(ALL_VALUE);
   const [showOnlyMyTxns, setShowOnlyMyTxns] = useState(false);
   const { data: { transactions, total, limit } = { transactions: [] }, isFetching } =
     useGetTransactions({
       page: currentPage,
       address: showOnlyMyTxns ? accountAddress : undefined,
       event: eventType !== ALL_VALUE ? eventType : undefined,
+      asset: asset !== ALL_VALUE ? asset : undefined,
     });
 
   return (
     <HistoryUi
       eventType={eventType}
       setEventType={setEventType}
+      asset={asset}
+      setAsset={setAsset}
       showOnlyMyTxns={showOnlyMyTxns}
       setShowOnlyMyTxns={setShowOnlyMyTxns}
       transactions={transactions}

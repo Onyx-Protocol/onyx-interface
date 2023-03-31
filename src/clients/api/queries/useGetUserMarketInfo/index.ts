@@ -136,7 +136,7 @@ const useGetUserMarketInfo = ({
           collateralFactor: new BigNumber(market?.collateralFactor || 0).div(1e18),
           tokenPrice: new BigNumber(market?.tokenPrice || 0),
           liquidity: new BigNumber(market?.liquidity || 0),
-          borrowCaps: new BigNumber(market?.borrowCaps || 0),
+          borrowCaps: new BigNumber(market?.borrowCap || 0),
           supplyCaps: new BigNumber(market?.supplyCap || 0),
           treasuryTotalBorrowsCents: new BigNumber(market?.totalBorrowsUsd || 0).times(100),
           treasuryTotalSupplyCents: new BigNumber(market?.totalSupplyUsd || 0).times(100),

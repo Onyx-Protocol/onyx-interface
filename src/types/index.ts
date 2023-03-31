@@ -174,7 +174,7 @@ export interface Market {
   id: string;
   address: string;
   borrowApy: BigNumber;
-  borrowCaps: string; // NO-DATA
+  borrowCap: string; // NO-DATA
   borrowRatePerBlock: string;
   borrowXcnApy: BigNumber;
   borrowerCount: number;
@@ -232,7 +232,7 @@ export interface MarketSnapshot {
   updatedAt: string;
 }
 
-export type TransactionEvent = 'Supply' | 'Redeem' | 'Borrow' | 'RepayBorrow' | 'LiquidateBorrow' | 'Stake' | 'Withdraw';
+export type TransactionEvent = 'Supply' | 'Redeem' | 'Borrow' | 'RepayBorrow' | 'LiquidateBorrow' | 'Stake' | 'Withdraw' | 'Claim' | 'Propose' | 'Vote';
 
 export enum TransactionCategory {
   otoken = 'otoken',

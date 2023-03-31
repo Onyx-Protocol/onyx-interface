@@ -8,6 +8,7 @@ import { TransactionResponse } from './types';
 export interface GetTransactionsInput {
   page?: number;
   event?: TransactionEvent;
+  asset?: string;
   address?: string;
   sort?: 'desc' | 'asc';
   order?:
@@ -36,6 +37,7 @@ export interface GetTransactionsOutput {
 const getTransactions = async ({
   page = 0,
   event,
+  asset,
   address,
   order = 'blockNumber',
   sort = 'desc',
@@ -48,6 +50,7 @@ const getTransactions = async ({
       limit: 25,
       action: event === 'Supply' ? 'Supplier' : event?.replace(' ', ''),
       user_address: address,
+      asset,
       order,
       sort,
       version: 'v2',

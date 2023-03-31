@@ -34,7 +34,7 @@ const useGetMarketData = ({ oTokenId }: { oTokenId: Token['id'] }) => {
     const liquidityCents = assetMarket && new BigNumber(assetMarket.liquidity).multipliedBy(100);
     const supplierCount = assetMarket?.supplierCount;
     const borrowerCount = assetMarket?.borrowerCount;
-    const borrowCapTokens = assetMarket && new BigNumber(assetMarket.borrowCaps);
+    const borrowCapTokens = assetMarket && new BigNumber(assetMarket.borrowCap);
     const supplyCapTokens = assetMarket && new BigNumber(assetMarket.supplyCap);
     const mintedTokens = assetMarket && new BigNumber(assetMarket.totalSupply2);
     const reserveFactorMantissa = assetMarket && new BigNumber(assetMarket.reserveFactor);

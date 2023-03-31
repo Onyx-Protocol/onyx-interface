@@ -15,6 +15,8 @@ export const useStyles = () => {
       ${theme.breakpoints.down('xl')} {
         background-color: transparent;
         padding: 0;
+        flex-direction: column;
+        gap: 15px;
       }
     `,
     checkbox: css`
@@ -30,6 +32,11 @@ export const useStyles = () => {
     `,
     typeSelectLabel: css`
       margin-right: ${theme.spacing(3)};
+    `,
+    selectGroup: css`
+      display: flex;
+      align-items: center;
+      gap: 20px;
     `,
   };
 };

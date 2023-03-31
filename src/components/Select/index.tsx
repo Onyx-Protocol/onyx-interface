@@ -15,6 +15,7 @@ import { SELECTED_MENU_ITEM_CLASSNAME, useStyles } from './styles';
 interface Option {
   value: string;
   label: string;
+  image?: string;
 }
 
 export interface SelectProps {
@@ -90,7 +91,7 @@ export const Select: React.FC<SelectProps> = ({
           <Icon name="close" />
         </TextButton>
       </div>
-      {options.map(({ value: v, label }) => (
+      {options.map(({ value: v, label, image }) => (
         <MenuItem
           disableRipple
           css={styles.menuItem}
@@ -98,7 +99,9 @@ export const Select: React.FC<SelectProps> = ({
           classes={{ selected: SELECTED_MENU_ITEM_CLASSNAME }}
           value={v}
         >
-          {label}
+          <div>
+            {image && <img src={image} alt={label} width="20px" />} {label}
+          </div>
         </MenuItem>
       ))}
     </MuiSelect>
