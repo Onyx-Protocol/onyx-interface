@@ -18,6 +18,8 @@ export const Default = () => (
   <Filters
     eventType={ALL_VALUE}
     setEventType={noop}
+    asset=""
+    setAsset={noop}
     showOnlyMyTxns={false}
     setShowOnlyMyTxns={noop}
     walletConnected

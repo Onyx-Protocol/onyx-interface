@@ -203,6 +203,16 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
             }),
       },
       {
+        label: t('marketDetails.marketInfo.stats.borrowCapLabel'),
+        value: borrowCapTokens?.isEqualTo(0)
+          ? t('marketDetails.marketInfo.stats.unlimitedBorrowCap')
+          : formatTokensToReadableValue({
+              value: borrowCapTokens,
+              minimizeDecimals: true,
+              token,
+            }),
+      },
+      {
         label: t('marketDetails.marketInfo.stats.dailySupplyingInterestsLabel'),
         value: formatCentsToReadableValue({
           value: dailySupplyingInterestsCents,

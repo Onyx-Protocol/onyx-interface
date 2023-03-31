@@ -170,10 +170,13 @@
     "transfer": "Transfer",
     "type": "Type",
     "typeColon": "Type:",
-    "voteCast": "Vote Cast",
+    "asset": "Asset",
+    "assetColon": "Asset:",
+    "vote": "Vote",
     "stake": "Stake",
     "withdraw": "Withdraw",
-    "claim": "Claim"
+    "claim": "Claim",
+    "propose": "Propose"
   },
   "interactive": {
     "copy": {

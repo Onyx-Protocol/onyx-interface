@@ -75,20 +75,20 @@ export const ActiveVotingProgress: React.FC<ActiveVotingProgressProps> = ({
               .toNumber() || 0,
         },
       },
-      {
-        id: 'abstain',
-        label: t('vote.abstain'),
-        value: getValueString(abstainedWei),
-        progressBarProps: {
-          successColor: PALETTE[themeMode === 'dark' ? 0 : 1].text.secondary,
-          ariaLabel: t('voteProposalUi.statusCard.ariaLabelAbstain'),
-          value:
-            abstainedWei
-              ?.dividedBy(votedTotalWei || 0)
-              .times(100)
-              .toNumber() || 0,
-        },
-      },
+      // {
+      //   id: 'abstain',
+      //   label: t('vote.abstain'),
+      //   value: getValueString(abstainedWei),
+      //   progressBarProps: {
+      //     successColor: PALETTE[themeMode === 'dark' ? 0 : 1].text.secondary,
+      //     ariaLabel: t('voteProposalUi.statusCard.ariaLabelAbstain'),
+      //     value:
+      //       abstainedWei
+      //         ?.dividedBy(votedTotalWei || 0)
+      //         .times(100)
+      //         .toNumber() || 0,
+      //   },
+      // },
     ],
     [votedForWei, votedAgainstWei, abstainedWei, themeMode],
   );

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 // import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 import BigNumber from 'bignumber.js';
 // import { Toggle, ToggleProps } from 'components';
 import React, { useMemo } from 'react';
@@ -67,6 +68,22 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
 
   return (
     <>
+      <Paper css={styles.notification}>
+        <Icon css={styles.infoIcon} name="info" />
+        <div>
+          Onyx has launched a promotional Gas-Free campaign to celebrate the launch of Onyx
+          Protocol. Users will receive their entire ETH used for gas back every week. For more
+          information{' '}
+          <a
+            href="https://blog.onyx.org/onyx-gas-refund-program-54fbd287d4c0"
+            target="_blank"
+            rel="noreferrer"
+          >
+            see the announcement.
+          </a>
+        </div>
+      </Paper>
+
       <div css={styles.row}>
         <MyAccount
           assets={assets}

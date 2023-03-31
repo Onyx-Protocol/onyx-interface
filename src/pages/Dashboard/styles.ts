@@ -53,5 +53,24 @@ export const useStyles = () => {
       height: ${theme.spacing(6)};
       width: ${theme.spacing(6)};
     `,
+    notification: css`
+      padding: 24px;
+      margin-bottom: 32px;
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      border-radius: 24px;
+      display: flex;
+      align-items: start;
+      gap: 12px;
+
+      a {
+        color: rgb(30, 185, 166);
+      }
+    `,
+    infoIcon: css`
+      margin-top: 3px;
+      color: rgb(58, 120, 255);
+      min-width: 16px !important;
+      min-height: 16px !important;
+    `,
   };
 };

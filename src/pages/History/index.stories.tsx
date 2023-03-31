@@ -21,6 +21,8 @@ export const Default = () => (
   <HistoryUi
     eventType={ALL_VALUE}
     setEventType={noop}
+    asset=""
+    setAsset={noop}
     showOnlyMyTxns={false}
     setShowOnlyMyTxns={noop}
     transactions={transactions}

@@ -10,7 +10,7 @@ import { useGetBlockNumber } from 'clients/api';
 import { Icon } from 'components/Icon';
 import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
-import { XCN_GITHUB_URL, XCN_MEDIUM_URL, XCN_TELEGRAM_URL, XCN_TWITTER_URL } from './constants';
+import { XCN_GITHUB_URL, XCN_MEDIUM_URL, XCN_TELEGRAM_URL, XCN_TWITTER_URL, XCN_DISCORD_URL } from './constants';
 import { useStyles } from './styles';
 
 export interface FooterUiProps {
@@ -52,9 +52,9 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
           <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
-        {/* <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
+        <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
           <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" />
-        </a> */}
+        </a>
 
         <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
           <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
