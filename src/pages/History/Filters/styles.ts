@@ -28,7 +28,7 @@ export const useStyles = () => {
       align-items: center;
     `,
     select: css`
-      width: ${theme.spacing(41)};
+      min-width: 140px;
     `,
     typeSelectLabel: css`
       margin-right: ${theme.spacing(3)};
