@@ -12,6 +12,7 @@ enum Path {
   GOVERNANCE_ADDRESS = '/governance/address/:address',
   LIQUIDATE = '/liquidate',
   LIQUIDATE_DETAIL = '/liquidate/:userId',
+  SWAP = '/swap',
 }
 
 export default Path;

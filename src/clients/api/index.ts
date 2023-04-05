@@ -98,8 +98,11 @@ export { default as burnWPunks } from './mutations/burnWPunks';
 export * from './mutations/burnWPunks';
 export { default as useBurnWPunks } from './mutations/burnWPunks/useBurnWPunks';
 
-// Queries
+export { default as swapTokens } from './mutations/swapTokens';
+export * from './mutations/swapTokens';
+export { default as useSwapTokens } from './mutations/swapTokens/useSwapTokens';
 
+// Queries
 export { default as getAssetsInAccount } from './queries/getAssetsInAccount';
 export * from './queries/getAssetsInAccount';
 export { default as useGetAssetsInAccount } from './queries/getAssetsInAccount/useGetAssetsInAccount';
@@ -261,3 +264,7 @@ export { default as useWithdrawXcn } from './mutations/withdrawXcn/useWithdrawXc
 export { default as claimXcn } from './mutations/claimXcn';
 export * from './mutations/claimXcn';
 export { default as useClaimXcn } from './mutations/claimXcn/useClaimXcn';
+
+export { default as getUniSwapPairs } from './queries/getUniSwapPairs';
+export * from './queries/getUniSwapPairs';
+export { default as useGetUniSwapPairs } from './queries/getUniSwapPairs/useGetUniSwapPairs';

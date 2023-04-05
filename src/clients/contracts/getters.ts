@@ -16,6 +16,7 @@ import oTokenExAbi from 'constants/contracts/abis/oTokenEx.json';
 import oracleAbi from 'constants/contracts/abis/oracle.json';
 import punkAbi from 'constants/contracts/abis/punk.json';
 import punkDataAbi from 'constants/contracts/abis/punkData.json';
+import uniSwapRouterAbi from 'constants/contracts/abis/uniSwapRouter.json';
 import wpunksAbi from 'constants/contracts/abis/wpunks.json';
 import xcnClaimAbi from 'constants/contracts/abis/xcnClaim.json';
 import xcnLensAbi from 'constants/contracts/abis/xcnLens.json';
@@ -31,6 +32,7 @@ import {
   Oracle,
   Punk,
   PunkData,
+  UniSwapRouter,
   Wpunks,
   XcnClaim,
   XcnLens,
@@ -147,3 +149,10 @@ export const getLiquidationProxyContract = (web3: Web3) =>
     getContractAddress('liquidationProxy'),
     web3,
   ) as unknown as XcnLens;
+
+export const getUniSwapRouterContract = (web3: Web3) =>
+  getContract(
+    uniSwapRouterAbi as AbiItem[],
+    getContractAddress('uniSwapRouter'),
+    web3,
+  ) as unknown as UniSwapRouter;

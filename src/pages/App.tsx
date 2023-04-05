@@ -26,6 +26,7 @@ import VoterDetails from 'pages/VoterDetails';
 import VoterLeaderboard from 'pages/VoterLeaderboard';
 import Xcn from 'pages/Xcn';
 import { MuiThemeProvider } from 'theme/MuiThemeProvider';
+import SwapPage from './Swap';
 
 const App = () => (
   <Web3Wrapper>
@@ -66,6 +67,8 @@ const App = () => (
                       <Route exact path={Path.LIQUIDATE} component={Liquidate} />
 
                       <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
+
+                      <Route exact path={Path.SWAP} component={SwapPage} />
 
                       <Redirect to={Path.ROOT} />
                     </Switch>

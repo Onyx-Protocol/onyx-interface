@@ -1,4 +1,4 @@
-const pancakeSwapRouter = {
+const uniSwapRouter = {
   getReserves: {
     results: {
       '0x58C6Fc654b3deE6839b65136f61cB9120d96BCc6': {
@@ -7419,4 +7419,4 @@ const eth20 = {
   },
 };
 
-export default { pancakeSwapRouter, interestRateModel, eth20 };
+export default { uniSwapRouter, interestRateModel, eth20 };

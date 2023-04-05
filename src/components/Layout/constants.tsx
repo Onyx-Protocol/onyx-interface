@@ -28,6 +28,15 @@ export const menuItems: MenuItem[] = [
     icon: 'history',
   },
   {
+    href: Path.SWAP,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.swap')
+    i18nKey: 'layout.menuItems.swap',
+    i18nTitleKey: 'layout.menuItems.swap',
+    icon: 'convert',
+    isNew: true,
+  },
+  {
     href: Path.STAKE,
     // Translation key: do not remove this comment
     // t('layout.menuItems.staking')
