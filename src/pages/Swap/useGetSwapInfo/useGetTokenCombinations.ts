@@ -26,7 +26,6 @@ const BASE_TRADE_TOKENS = config.isOnTestnet
       MAINNET_UNISWAP_TOKENS.usdc,
       MAINNET_UNISWAP_TOKENS.usdt,
       MAINNET_UNISWAP_TOKENS.wbtc,
-      MAINNET_UNISWAP_TOKENS.eth,
       MAINNET_UNISWAP_TOKENS.usdc,
     ];
 
