@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js';
 import React from 'react';
 
 import fakeTokenCombinations from '__mocks__/models/tokenCombinations';
-import { getPancakeSwapPairs } from 'clients/api';
+import { getUniSwapPairs } from 'clients/api';
 import { UNISWAP_TOKENS } from 'constants/tokens';
 import renderComponent from 'testUtils/renderComponent';
 
@@ -101,7 +101,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
           fakePair.token1.address !== UNISWAP_TOKENS.usdt.address,
       );
 
-      (getPancakeSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
         pairs: customFakePairs,
       }));
 
@@ -131,7 +131,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     });
 
     it('returns swap in correct format if a trade is found', async () => {
-      (getPancakeSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
         pairs: fakePairs,
       }));
 
@@ -183,7 +183,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     });
 
     it('returns an error if no trade is found for the input provided', async () => {
-      (getPancakeSwapPairs as jest.Mock).mockImplementationOnce(async () => ({ pairs: fakePairs }));
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({ pairs: fakePairs }));
 
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
@@ -211,7 +211,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     });
 
     it('returns swap in correct format if a trade is found', async () => {
-      (getPancakeSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
         pairs: fakePairs,
       }));
 

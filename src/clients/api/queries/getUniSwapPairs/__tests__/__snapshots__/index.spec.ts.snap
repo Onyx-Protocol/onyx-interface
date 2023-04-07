@@ -3989,7 +3989,7 @@ Array [
 ]
 `;
 
-exports[`api/queries/getPancakeSwapPairs returns pairs in the right format on success 2`] = `
+exports[`api/queries/getUniSwapPairs returns pairs in the right format on success 2`] = `
 Object {
   "pairs": Array [
     Pair {
@@ -3999,7 +3999,7 @@ Object {
         "decimals": 18,
         "isNative": false,
         "isToken": true,
-        "name": "Pancake LPs",
+        "name": "UniSwap LPs",
         "projectLink": undefined,
         "symbol": "Cake-LP",
       },
@@ -4061,7 +4061,7 @@ Object {
         "decimals": 18,
         "isNative": false,
         "isToken": true,
-        "name": "Pancake LPs",
+        "name": "UniSwap LPs",
         "projectLink": undefined,
         "symbol": "Cake-LP",
       },
@@ -4121,7 +4121,7 @@ Object {
         "decimals": 18,
         "isNative": false,
         "isToken": true,
-        "name": "Pancake LPs",
+        "name": "UniSwap LPs",
         "projectLink": undefined,
         "symbol": "Cake-LP",
       },
@@ -4181,7 +4181,7 @@ Object {
 }
 `;
 
-exports[`api/queries/getPancakeSwapPairs skips token combinations for which a pair address could not be generated 1`] = `
+exports[`api/queries/getUniSwapPairs skips token combinations for which a pair address could not be generated 1`] = `
 Object {
   "pairs": Array [
     Pair {
@@ -4191,7 +4191,7 @@ Object {
         "decimals": 18,
         "isNative": false,
         "isToken": true,
-        "name": "Pancake LPs",
+        "name": "UniSwap LPs",
         "projectLink": undefined,
         "symbol": "Cake-LP",
       },
@@ -4251,7 +4251,7 @@ Object {
         "decimals": 18,
         "isNative": false,
         "isToken": true,
-        "name": "Pancake LPs",
+        "name": "UniSwap LPs",
         "projectLink": undefined,
         "symbol": "Cake-LP",
       },
@@ -4314,7 +4314,7 @@ Object {
         "decimals": 18,
         "isNative": false,
         "isToken": true,
-        "name": "Pancake LPs",
+        "name": "UniSwap LPs",
         "projectLink": undefined,
         "symbol": "Cake-LP",
       },

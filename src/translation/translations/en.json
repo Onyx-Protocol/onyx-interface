@@ -409,7 +409,7 @@
     "enablingStep": {
       "enableTokenButton": {
         "text": "Enable {{tokenSymbol}}",
-        "tooltip": "We use PancakeSwap to support our swap feature, which requires spending approval for any token you wish to exchange from"
+        "tooltip": "We use UniSwap to support our swap feature, which requires spending approval for any token you wish to exchange from"
       },
       "step1": "Step 1",
       "step2": "Step 2"

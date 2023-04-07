@@ -769,7 +769,7 @@
         "symbol": "oCAKE",
         "name": "Xcn CAKE",
         "underlyingAddress": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
-        "underlyingName": "PancakeSwap Token",
+        "underlyingName": "UniSwap Token",
         "underlyingSymbol": "Cake",
         "underlyingDecimal": 18,
         "xcnSpeeds": "868055555555556",

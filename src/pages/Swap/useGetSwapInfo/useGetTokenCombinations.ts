@@ -51,7 +51,7 @@ const useGetTokenCombinations = ({
       wrappedToToken.symbol,
     );
 
-    // Convert tokens to PancakeSwap token instances
+    // Convert tokens to UniSwap token instances
     const baseTradeTokens = [
       ...BASE_TRADE_TOKENS.map(
         token => new PSToken(config.chainId, token.address, token.decimals, token.symbol),
