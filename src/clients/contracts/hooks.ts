@@ -19,6 +19,7 @@ import {
   getLiquidationProxyContract,
   getPunkDataContract,
   getXcnClaimContract,
+  getUniSwapRouterContract,
 } from './getters';
 
 export const useTokenContract = (token: Token) => {
@@ -94,4 +95,9 @@ export const usePunkDataContract = () => {
 export const useLiquidationProxyContract = () => {
   const web3 = useWeb3();
   return useMemo(() => getLiquidationProxyContract(web3), [web3]);
+};
+
+export const useUniSwapRouterContract = () => {
+  const web3 = useWeb3();
+  return useMemo(() => getUniSwapRouterContract(web3), [web3]);
 };

@@ -68,7 +68,7 @@ This proposal begins efforts of setting daily XCN emission rate for VAI and vUSD
         "createdTxHash": "0x4735c0974124ae9b5379fdedee9d028773d98618f5c367d6fadc4c62c17d07b3",
         "description": Object {
           "description": "
-In accordance to our v2 roadmap, VIP-16 proposes to initiate our very first community driven buyback and burn of $3.5m in $XCN bought from Swipe Swap and Pancake Swap if approved and executed.
+In accordance to our v2 roadmap, VIP-16 proposes to initiate our very first community driven buyback and burn of $3.5m in $XCN bought from Swipe Swap and UniSwap if approved and executed.
 ",
           "title": " VIP-16 Xcn XCN Burn",
           "version": "v1",
@@ -324,7 +324,7 @@ This proposal begins efforts of setting daily XCN emission rate for VAI and vUSD
         "createdTxHash": "0x4735c0974124ae9b5379fdedee9d028773d98618f5c367d6fadc4c62c17d07b3",
         "description": Object {
           "description": "
-In accordance to our v2 roadmap, VIP-16 proposes to initiate our very first community driven buyback and burn of $3.5m in $XCN bought from Swipe Swap and Pancake Swap if approved and executed.
+In accordance to our v2 roadmap, VIP-16 proposes to initiate our very first community driven buyback and burn of $3.5m in $XCN bought from Swipe Swap and UniSwap if approved and executed.
 ",
           "title": " VIP-16 Xcn XCN Burn",
           "version": "v1",
