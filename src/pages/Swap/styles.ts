@@ -29,6 +29,11 @@ export const useStyles = () => {
     switchButton: css`
       margin: ${theme.spacing(0, 'auto', 4)};
       padding: ${theme.spacing(1)};
+      &:hover {
+        svg {
+          color: white;
+        }
+      }
     `,
     switchButtonIcon: css`
       width: ${theme.spacing(6)};
