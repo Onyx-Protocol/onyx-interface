@@ -958,7 +958,7 @@ Object {
       "balanceWei": "0",
       "token": Object {
         "address": "0xFa60D973F7642B748046464e165A65B7323b0DEE",
-        "asset": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.svg",
+        "asset": "https://app.uniswap.org/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.svg",
         "decimals": 18,
         "id": "cake",
         "symbol": "CAKE",
@@ -968,7 +968,7 @@ Object {
       "balanceWei": "156042672843864059",
       "token": Object {
         "address": "0xaB1a4d4f1D656d2450692D237fdD6C7f9146e814",
-        "asset": "https://pancakeswap.finance/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.svg",
+        "asset": "https://app.uniswap.org/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.svg",
         "decimals": 18,
         "id": "busd",
         "symbol": "BUSD",
@@ -1936,7 +1936,7 @@ Object {
       "balanceWei": "0",
       "token": Object {
         "address": "0xFa60D973F7642B748046464e165A65B7323b0DEE",
-        "asset": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.svg",
+        "asset": "https://app.uniswap.org/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.svg",
         "decimals": 18,
         "id": "cake",
         "symbol": "CAKE",
@@ -1946,7 +1946,7 @@ Object {
       "balanceWei": "156042672843864059",
       "token": Object {
         "address": "0xaB1a4d4f1D656d2450692D237fdD6C7f9146e814",
-        "asset": "https://pancakeswap.finance/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.svg",
+        "asset": "https://app.uniswap.org/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.svg",
         "decimals": 18,
         "id": "busd",
         "symbol": "BUSD",

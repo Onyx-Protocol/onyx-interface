@@ -1,4 +1,4 @@
-import { Percent as PSPercent } from '@pancakeswap/sdk/dist/index.js';
+import { Percent as PSPercent } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 import { Swap } from 'types';
 import { convertTokensToWei } from 'utilities';
@@ -7,7 +7,7 @@ import { SLIPPAGE_TOLERANCE_PERCENTAGE } from 'constants/swap';
 
 import { FormatToSwapInput, FormatToSwapOutput } from './types';
 
-const slippagePercent = new PSPercent(`${SLIPPAGE_TOLERANCE_PERCENTAGE * 10}`, 1000);
+const slippagePercent = new PSPercent(`${SLIPPAGE_TOLERANCE_PERCENTAGE * 10}`, '1000');
 
 // Format trade to swap info
 const formatToSwap = ({ trade, input }: FormatToSwapInput): FormatToSwapOutput => {

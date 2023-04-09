@@ -1,5 +1,5 @@
-import { CurrencyAmount as PSCurrencyAmount, Pair as PSPair } from '@pancakeswap/sdk/dist/index.js';
 import { waitFor } from '@testing-library/react';
+import { Pair as PSPair, TokenAmount as PSTokenAmount } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 import React from 'react';
 
@@ -16,8 +16,8 @@ jest.mock('clients/api');
 const fakePairs: PSPair[] = fakeTokenCombinations.map(
   ([tokenA, tokenB]) =>
     new PSPair(
-      PSCurrencyAmount.fromRawAmount(tokenA, new BigNumber(10).pow(tokenA.decimals).toFixed()),
-      PSCurrencyAmount.fromRawAmount(tokenB, new BigNumber(10).pow(tokenB.decimals).toFixed()),
+      new PSTokenAmount(tokenA, new BigNumber(10).pow(tokenA.decimals).toFixed()),
+      new PSTokenAmount(tokenB, new BigNumber(10).pow(tokenB.decimals).toFixed()),
     ),
 );
 

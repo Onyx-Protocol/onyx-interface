@@ -1,4 +1,4 @@
-import { Pair as PSPair } from '@pancakeswap/sdk/dist/index.js';
+import { Pair as PSPair } from '@uniswap/sdk';
 import { ContractCallContext, ContractCallResults } from 'ethereum-multicall';
 
 import uniSwapPairAbi from 'constants/contracts/abis/uniSwapPair.json';

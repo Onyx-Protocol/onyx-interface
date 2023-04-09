@@ -1,8 +1,8 @@
-import { Token as PSToken } from '@pancakeswap/sdk/dist/index.js';
+import { ChainId, Token as PSToken } from '@uniswap/sdk';
 import config from 'config';
 import flatMap from 'lodash/flatMap';
 import { useMemo } from 'react';
-import { PSTokenCombination, Token } from 'types';
+import { EthChainId, PSTokenCombination, Token } from 'types';
 
 import { MAINNET_UNISWAP_TOKENS, TESTNET_UNISWAP_TOKENS } from 'constants/tokens';
 
@@ -15,11 +15,7 @@ export interface UseGetTokenCombinationsInput {
 
 // List tokens to check trades against
 const BASE_TRADE_TOKENS = config.isOnTestnet
-  ? [
-      TESTNET_UNISWAP_TOKENS.weth,
-      TESTNET_UNISWAP_TOKENS.usdt,
-      TESTNET_UNISWAP_TOKENS.uni,
-    ]
+  ? [TESTNET_UNISWAP_TOKENS.weth, TESTNET_UNISWAP_TOKENS.usdt, TESTNET_UNISWAP_TOKENS.uni]
   : [
       MAINNET_UNISWAP_TOKENS.weth,
       MAINNET_UNISWAP_TOKENS.uni,
@@ -38,14 +34,14 @@ const useGetTokenCombinations = ({
     const wrappedToToken = wrapToken(toToken);
 
     const psFromToken = new PSToken(
-      config.chainId,
+      config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
       wrappedFromToken.address,
       wrappedFromToken.decimals,
       wrappedFromToken.symbol,
     );
 
     const psToToken = new PSToken(
-      config.chainId,
+      config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
       wrappedToToken.address,
       wrappedToToken.decimals,
       wrappedToToken.symbol,
@@ -54,7 +50,13 @@ const useGetTokenCombinations = ({
     // Convert tokens to UniSwap token instances
     const baseTradeTokens = [
       ...BASE_TRADE_TOKENS.map(
-        token => new PSToken(config.chainId, token.address, token.decimals, token.symbol),
+        token =>
+          new PSToken(
+            config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
+            token.address,
+            token.decimals,
+            token.symbol,
+          ),
       ),
       // Add input tokens
       psFromToken,

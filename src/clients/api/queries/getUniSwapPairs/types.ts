@@ -1,4 +1,4 @@
-import { Pair as PSPair, Token as PSToken } from '@pancakeswap/sdk/dist/index.js';
+import { Pair as PSPair, Token as PSToken } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 import { Multicall } from 'ethereum-multicall';
 import { PSTokenCombination } from 'types';
