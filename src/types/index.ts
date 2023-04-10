@@ -1,4 +1,4 @@
-import { Token as PSToken } from '@pancakeswap/sdk/dist/index.js';
+import { Token as PSToken } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 
 export enum EthChainId {

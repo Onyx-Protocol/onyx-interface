@@ -1,4 +1,4 @@
-import { CurrencyAmount as PSCurrencyAmount, Pair as PSPair } from '@pancakeswap/sdk/dist/index.js';
+import { TokenAmount as PSTokenAmount, Pair as PSPair } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 import { ContractCallResults } from 'ethereum-multicall';
 
@@ -30,8 +30,8 @@ const formatToPairs = ({
       : [pairAddress.tokenCombination[1], pairAddress.tokenCombination[0]];
 
     const pair = new PSPair(
-      PSCurrencyAmount.fromRawAmount(token0, new BigNumber(reserveCallResult[0].hex).toFixed()),
-      PSCurrencyAmount.fromRawAmount(token1, new BigNumber(reserveCallResult[1].hex).toFixed()),
+      new PSTokenAmount(token0, new BigNumber(reserveCallResult[0].hex).toFixed()),
+      new PSTokenAmount(token1, new BigNumber(reserveCallResult[1].hex).toFixed()),
     );
 
     // Exclude pair if it already exists

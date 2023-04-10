@@ -1,13 +1,13 @@
 import {
-  Currency as PSCurrency,
-  CurrencyAmount as PSCurrencyAmount,
+  ChainId,
   Token as PSToken,
+  TokenAmount as PSTokenAmount,
   Trade as PSTrade,
-  TradeType as PSTradeType,
-} from '@pancakeswap/sdk/dist/index.js';
+} from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 import config from 'config';
 import { useMemo } from 'react';
+import { EthChainId } from 'types';
 import { convertTokensToWei } from 'utilities';
 
 import { useGetUniSwapPairs } from 'clients/api';
@@ -32,7 +32,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
 
   // Find the best trade based on pairs
   return useMemo(() => {
-    let trade: PSTrade<PSCurrency, PSCurrency, PSTradeType> | undefined;
+    let trade: PSTrade | undefined;
     let error: SwapError | undefined;
 
     const wrappedFromToken = wrapToken(input.fromToken);
@@ -58,9 +58,9 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
         token: wrappedFromToken,
       });
 
-      const currencyAmountIn = PSCurrencyAmount.fromRawAmount(
+      const currencyAmountIn = new PSTokenAmount(
         new PSToken(
-          config.chainId,
+          config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
           wrappedFromToken.address,
           wrappedFromToken.decimals,
           wrappedFromToken.symbol,
@@ -69,7 +69,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
       );
 
       const currencyOut = new PSToken(
-        config.chainId,
+        config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
         wrappedToToken.address,
         wrappedToToken.decimals,
         wrappedToToken.symbol,
@@ -97,7 +97,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
       !!input.toTokenAmountTokens
     ) {
       const currencyIn = new PSToken(
-        config.chainId,
+        config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
         wrappedFromToken.address,
         wrappedFromToken.decimals,
         wrappedFromToken.symbol,
@@ -108,9 +108,9 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
         token: wrappedToToken,
       });
 
-      const currencyAmountOut = PSCurrencyAmount.fromRawAmount(
+      const currencyAmountOut = new PSTokenAmount(
         new PSToken(
-          config.chainId,
+          config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
           wrappedToToken.address,
           wrappedToToken.decimals,
           wrappedToToken.symbol,

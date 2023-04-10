@@ -44,7 +44,7 @@ const readableSlippageTolerancePercentage = formatToReadablePercentage(
 const initialFormValues: FormValues = {
   fromToken: UNISWAP_TOKENS.eth,
   fromTokenAmountTokens: '',
-  toToken: config.isOnTestnet ? TESTNET_UNISWAP_TOKENS.usdt : MAINNET_UNISWAP_TOKENS.xcn,
+  toToken: config.isOnTestnet ? TESTNET_UNISWAP_TOKENS.xcn : MAINNET_UNISWAP_TOKENS.xcn,
   toTokenAmountTokens: '',
   direction: 'exactAmountIn',
 };

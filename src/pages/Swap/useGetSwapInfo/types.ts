@@ -1,8 +1,4 @@
-import {
-  Currency as PSCurrency,
-  Trade as PSTrade,
-  TradeType as PSTradeType,
-} from '@pancakeswap/sdk/dist/index.js';
+import { Trade as PSTrade } from '@uniswap/sdk';
 import { Swap, SwapDirection, Token } from 'types';
 
 export type SwapError = 'INSUFFICIENT_LIQUIDITY' | 'WRAPPING_UNWRAPPING_UNSUPPORTED';
@@ -22,7 +18,7 @@ export interface UseGetSwapInfoOutput {
 
 export interface FormatToSwapInput {
   input: UseGetSwapInfoInput;
-  trade: PSTrade<PSCurrency, PSCurrency, PSTradeType>;
+  trade: PSTrade;
 }
 
 export type FormatToSwapOutput = Swap;

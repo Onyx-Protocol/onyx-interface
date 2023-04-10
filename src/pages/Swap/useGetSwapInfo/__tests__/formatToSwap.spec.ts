@@ -1,6 +1,5 @@
-import { Token as PSToken } from '@pancakeswap/sdk/dist/index.js';
+import { ChainId, Token as PSToken } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
-import { EthChainId } from 'types';
 
 import { UNISWAP_TOKENS } from 'constants/tokens';
 
@@ -10,13 +9,13 @@ import { FormatToSwapInput } from '../types';
 const fakeRoute = {
   path: [
     new PSToken(
-      EthChainId.TESTNET,
+      ChainId.GÖRLI,
       UNISWAP_TOKENS.usdt.address,
       UNISWAP_TOKENS.usdt.decimals,
       UNISWAP_TOKENS.usdt.symbol,
     ),
     new PSToken(
-      EthChainId.TESTNET,
+      ChainId.GÖRLI,
       UNISWAP_TOKENS.uni.address,
       UNISWAP_TOKENS.uni.decimals,
       UNISWAP_TOKENS.uni.symbol,

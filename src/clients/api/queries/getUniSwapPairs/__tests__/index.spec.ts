@@ -1,4 +1,4 @@
-import { Token as PSToken } from '@pancakeswap/sdk/dist/index.js';
+import { Token as PSToken } from '@uniswap/sdk';
 import { Multicall } from 'ethereum-multicall';
 
 import fakeMulticallResponses from '__mocks__/contracts/multicall';

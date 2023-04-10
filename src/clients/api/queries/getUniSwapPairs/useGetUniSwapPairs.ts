@@ -18,10 +18,7 @@ type Options = QueryObserverOptions<
   [FunctionKey.GET_UNISWAP_PAIRS, ...string[]]
 >;
 
-const useGetUniSwapPairs = (
-  input: Omit<GetUniSwapPairsInput, 'multicall'>,
-  options?: Options,
-) => {
+const useGetUniSwapPairs = (input: Omit<GetUniSwapPairsInput, 'multicall'>, options?: Options) => {
   const multicall = useMulticall();
 
   // Generate function key based on token combinations
