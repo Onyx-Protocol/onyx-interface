@@ -7,7 +7,7 @@ export { default as market } from './market';
 export { default as mask } from './mask';
 export { default as shield } from './shield';
 export { default as sort } from './sort';
-export { default as vault } from './vault';
+export { default as farm } from './farm';
 export { default as vote } from './vote';
 export { default as countdown } from './countdown';
 export { default as loading } from './loading';

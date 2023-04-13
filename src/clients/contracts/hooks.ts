@@ -7,19 +7,20 @@ import {
   getComptrollerContract,
   getGovernorBravoDelegateContract,
   getInterestModelContract,
+  getLiquidationProxyContract,
+  getMasterChefContract,
+  getNftContract,
   getOTokenContract,
   getPriceOracleContract,
+  getPunkContract,
+  getPunkDataContract,
   getTokenContract,
   getTokenContractByAddress,
+  getUniSwapRouterContract,
+  getWPunksContract,
+  getXcnClaimContract,
   getXcnLensContract,
   getXcnStakingContract,
-  getWPunksContract,
-  getPunkContract,
-  getNftContract,
-  getLiquidationProxyContract,
-  getPunkDataContract,
-  getXcnClaimContract,
-  getUniSwapRouterContract,
 } from './getters';
 
 export const useTokenContract = (token: Token) => {
@@ -100,4 +101,9 @@ export const useLiquidationProxyContract = () => {
 export const useUniSwapRouterContract = () => {
   const web3 = useWeb3();
   return useMemo(() => getUniSwapRouterContract(web3), [web3]);
+};
+
+export const useMasterChefContract = () => {
+  const web3 = useWeb3();
+  return useMemo(() => getMasterChefContract(web3), [web3]);
 };

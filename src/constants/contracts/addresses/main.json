@@ -46,5 +46,9 @@
   "uniSwapRouter": {
     "1": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
     "5": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+  },
+  "masterChef": {
+    "1": "0x97afa5447632e4d54a3f33eb3bc31fd605acd511",
+    "5": "0x97afa5447632e4d54a3f33eb3bc31fd605acd511"
   }
 }
