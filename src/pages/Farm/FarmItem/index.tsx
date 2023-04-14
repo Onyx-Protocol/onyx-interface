@@ -120,6 +120,13 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     quoteTokenAsset?.tokenPrice,
   ]);
 
+  const farmDailyEmission: string = React.useMemo(() => {
+    if (farm.poolWeight && farm.tokenPerSecond) {
+      return farm.tokenPerSecond.times(86400).times(farm.poolWeight).toFixed(2);
+    }
+    return '0';
+  }, [farm.poolWeight, farm.tokenPerSecond]);
+
   const readableUserPendingRewardTokens = useConvertWeiToReadableTokenString({
     valueWei: farm.userData?.earnings,
     token: rewardToken,
@@ -137,8 +144,17 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   const dataListItems = useMemo(
     () => [
       {
-        title: t('farmItem.stakingApr', { stakeTokenName: stakedToken.symbol }),
+        title: t('farmItem.stakingApr', { stakeTokenName: '' }),
         value: formatToReadablePercentage(farmApy),
+      },
+      {
+        title: t('farmItem.dailyEmission'),
+        value: (
+          <>
+            <TokenIcon css={styles.tokenIcon} token={rewardToken} />
+            {farmDailyEmission}
+          </>
+        ),
       },
       {
         title: t('farmItem.totalStaked'),
@@ -151,7 +167,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
               returnInReadableFormat: true,
               shortenLargeValue: true,
               addSymbol: false,
-            })}
+            })} (${farm.lpTotalInQuoteToken?.times(quoteTokenAsset?.tokenPrice || 0).toFixed(2)})
           </>
         ),
       },

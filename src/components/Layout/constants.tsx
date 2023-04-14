@@ -28,20 +28,21 @@ export const menuItems: MenuItem[] = [
     icon: 'history',
   },
   {
-    href: Path.FARM,
-    // Translation key: do not remove this comment
-    // t('layout.menuItems.farm')
-    i18nKey: 'layout.menuItems.farm',
-    i18nTitleKey: 'layout.menuItems.farm',
-    icon: 'farm',
-  },
-  {
     href: Path.SWAP,
     // Translation key: do not remove this comment
     // t('layout.menuItems.swap')
     i18nKey: 'layout.menuItems.swap',
     i18nTitleKey: 'layout.menuItems.swap',
     icon: 'convert',
+    isNew: true,
+  },
+  {
+    href: Path.FARM,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.farm')
+    i18nKey: 'layout.menuItems.farm',
+    i18nTitleKey: 'layout.menuItems.farm',
+    icon: 'farm',
     isNew: true,
   },
   {
