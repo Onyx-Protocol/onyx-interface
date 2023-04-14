@@ -48,6 +48,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ farm, handleClose }) => {
     <ActionModal
       title={t('withdrawModal.title', { tokenSymbol: withdrawToken.symbol })}
       token={withdrawToken}
+      token1={farm.token}
+      token2={farm.quoteToken}
       handleClose={handleClose}
       availableTokensWei={farm.userData?.stakedBalance || new BigNumber(0)}
       isInitialLoading={false}

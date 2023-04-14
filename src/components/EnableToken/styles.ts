@@ -14,6 +14,11 @@ export const styles = () => {
         margin-bottom: ${theme.spacing(8)};
       }
     `,
+    lpTokenIcon: css`
+      width: ${theme.spacing(10)};
+      height: ${theme.spacing(10)};      
+      margin-bottom: ${theme.spacing(5)};
+    `,
     mainLogo: css`
       height: ${theme.spacing(10)};
       width: ${theme.spacing(10)};

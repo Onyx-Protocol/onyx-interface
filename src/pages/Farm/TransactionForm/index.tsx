@@ -84,6 +84,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
         amount: {
           valueWei: amountWei,
           token,
+          noDisplayTokenIcon: true,
         },
         transactionHash: transactionReceipt.transactionHash,
       }),
@@ -97,6 +98,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
           <FormikTokenTextField
             name="amount"
             token={token}
+            displayTokenIcon={false}
             disabled={isSubmitting}
             rightMaxButton={{
               label: t('vault.transactionForm.rightMaxButtonLabel'),
@@ -109,7 +111,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
 
           <LabeledInlineContent
             data-testid={TEST_IDS.availableTokens}
-            iconSrc={token}
             label={availableTokensLabel}
             css={styles.getRow({ isLast: !readableLockingPeriod })}
           >

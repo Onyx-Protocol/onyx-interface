@@ -51,6 +51,8 @@ const StakeModal: React.FC<StakeModalProps> = ({ farm, handleClose }) => {
     <ActionModal
       title={t('stakeModal.title', { tokenSymbol: stakeToken.symbol })}
       token={stakeToken}
+      token1={farm.token}
+      token2={farm.quoteToken}
       handleClose={handleClose}
       availableTokensWei={farm.userData?.tokenBalance || new BigNumber(0)}
       isInitialLoading={false}

@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+import BigNumber from 'bignumber.js';
 import {
   ContractCallContext,
   ContractCallResults,
@@ -18,12 +19,12 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
   const masterChefAddress = getContractAddress('masterChef');
   const farms: Array<Farm> = [];
   for (let i = 0; i < farmConfig.length; i++) {
-    const tempFarm = farmConfig[i];
+    const tempFarm: Farm = { ...farmConfig[i] };
 
     const lpAddress = getAddress(farmConfig[i].lpAddresses);
     const contractCallContexts: Array<ContractCallContext> = [];
     contractCallContexts.push({
-      reference: farmConfig[i].token.address,
+      reference: 'tokenInfo1',
       contractAddress: farmConfig[i].token.address,
       abi: eth20Abi,
       calls: [
@@ -32,16 +33,11 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
           methodName: 'balanceOf',
           methodParameters: [lpAddress],
         },
-        {
-          reference: 'decimals',
-          methodName: 'decimals',
-          methodParameters: [],
-        },
       ],
     });
 
     contractCallContexts.push({
-      reference: farmConfig[i].quoteToken.address,
+      reference: 'tokenInfo2',
       contractAddress: farmConfig[i].quoteToken.address,
       abi: eth20Abi,
       calls: [
@@ -50,16 +46,11 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
           methodName: 'balanceOf',
           methodParameters: [lpAddress],
         },
-        {
-          reference: 'decimals',
-          methodName: 'decimals',
-          methodParameters: [],
-        },
       ],
     });
 
     contractCallContexts.push({
-      reference: lpAddress,
+      reference: 'lpInfo',
       contractAddress: lpAddress,
       abi: eth20Abi,
       calls: [
@@ -78,7 +69,35 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
 
     const unformattedResults = await multicall.call(contractCallContexts);
     const results: ContractCallReturnContext[] = Object.values(unformattedResults.results);
-    console.log('results = ', results);
+
+    let tokenAmount = new BigNumber(0);
+    let quoteTokenAmount = new BigNumber(0);
+    let lpTokenBalanceMC = new BigNumber(0);
+    let lpTotalSupply = new BigNumber(0);
+    results.forEach(result => {
+      if (result.originalContractCallContext.reference === 'tokenInfo1') {
+        tokenAmount = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+      } else if (result.originalContractCallContext.reference === 'tokenInfo2') {
+        quoteTokenAmount = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+      } else if (result.originalContractCallContext.reference === 'lpInfo') {
+        lpTokenBalanceMC = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+        lpTotalSupply = new BigNumber(result.callsReturnContext[1].returnValues[0].hex);
+      }
+    });
+
+    tempFarm.tokenAmount = tokenAmount;
+    tempFarm.quoteTokenAmount = quoteTokenAmount;
+    tempFarm.lpTokenBalanceMC = lpTokenBalanceMC;
+
+    const lpTokenRatio = lpTotalSupply.isZero()
+      ? 0
+      : new BigNumber(tempFarm.lpTokenBalanceMC).div(lpTotalSupply);
+
+    // Total value in staking in quote token value
+    tempFarm.lpTotalInQuoteToken = tempFarm.quoteTokenAmount
+      .div(new BigNumber(10).pow(tempFarm.quoteToken.decimals))
+      .times(new BigNumber(2))
+      .times(lpTokenRatio);
 
     const masterChefCalls: ContractCallContext['calls'] = [];
 
@@ -108,7 +127,25 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
     };
 
     const masterChefCallResults: ContractCallResults = await multicall.call(masterChefCallContext);
-    console.log('masterChefCallResults = ', masterChefCallResults);
+    const allocPoint = new BigNumber(
+      masterChefCallResults.results.masterChef.callsReturnContext[0].returnValues[1].hex,
+    );
+    const totalAllocPoint = new BigNumber(
+      masterChefCallResults.results.masterChef.callsReturnContext[1].returnValues[0].hex,
+    );
+    const rewardPerSecond = new BigNumber(
+      masterChefCallResults.results.masterChef.callsReturnContext[2].returnValues[0].hex,
+    );
+
+    tempFarm.poolWeight = allocPoint.div(totalAllocPoint);
+    tempFarm.multiplier = `${allocPoint.div(100).toString()}X`;
+    tempFarm.tokenPerSecond = new BigNumber(
+      new BigNumber(rewardPerSecond).isZero() ? 200000000000000000 : rewardPerSecond,
+    ).div(1e18);
+
+    tempFarm.tokenPriceVsQuote = tempFarm.tokenAmount.isZero()
+      ? new BigNumber(0)
+      : tempFarm.quoteTokenAmount.div(tempFarm.tokenAmount);
 
     if (accountAddress) {
       const contractCallForUserContexts: Array<ContractCallContext> = [];
@@ -152,7 +189,27 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
       const userResults: ContractCallReturnContext[] = Object.values(
         unformattedUserResults.results,
       );
-      console.log('userResults = ', userResults);
+
+      let allowance = new BigNumber(0);
+      let tokenBalance = new BigNumber(0);
+      let stakedBalance = new BigNumber(0);
+      let earnings = new BigNumber(0);
+      userResults.forEach(result => {
+        if (result.originalContractCallContext.reference === lpAddress) {
+          allowance = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+          tokenBalance = new BigNumber(result.callsReturnContext[1].returnValues[0].hex);
+        } else if (result.originalContractCallContext.reference === masterChefAddress) {
+          stakedBalance = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+          earnings = new BigNumber(result.callsReturnContext[1].returnValues[0].hex);
+        }
+      });
+
+      tempFarm.userData = {
+        allowance,
+        tokenBalance,
+        stakedBalance,
+        earnings,
+      };
     }
 
     farms.push(tempFarm);

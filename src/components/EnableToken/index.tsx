@@ -14,11 +14,13 @@ import { Delimiter } from '../Delimiter';
 import { LabeledInlineContent, LabeledInlineContentProps } from '../LabeledInlineContent';
 import { Spinner } from '../Spinner';
 import { toast } from '../Toast';
-import { TokenIcon } from '../TokenIcon';
+import { LpTokenIcon, TokenIcon } from '../TokenIcon';
 import useStyles from './styles';
 
 export interface EnableTokenUiProps {
   token: Token;
+  token1?: Token;
+  token2?: Token;
   title: string | React.ReactElement;
   isTokenEnabled: boolean;
   enableToken: () => Promise<TransactionReceipt | undefined>;
@@ -30,6 +32,8 @@ export interface EnableTokenUiProps {
 
 export const EnableTokenUi: React.FC<EnableTokenUiProps> = ({
   token,
+  token1,
+  token2,
   title,
   tokenInfo = [],
   children,
@@ -68,7 +72,11 @@ export const EnableTokenUi: React.FC<EnableTokenUiProps> = ({
         <Spinner />
       ) : (
         <>
-          <TokenIcon token={token} css={styles.mainLogo} />
+          {token1 ? (
+            <LpTokenIcon css={styles.lpTokenIcon} token1={token1} token2={token2} />
+          ) : (
+            <TokenIcon token={token} css={styles.mainLogo} />
+          )}
 
           <Typography component="h3" variant="h3" css={styles.mainText}>
             {title}
@@ -105,9 +113,17 @@ export const EnableTokenUi: React.FC<EnableTokenUiProps> = ({
 export interface EnableTokenProps
   extends Pick<EnableTokenUiProps, 'tokenInfo' | 'disabled' | 'title' | 'token'> {
   spenderAddress: string;
+  token1?: Token;
+  token2?: Token;
 }
 
-export const EnableToken: React.FC<EnableTokenProps> = ({ token, spenderAddress, ...rest }) => {
+export const EnableToken: React.FC<EnableTokenProps> = ({
+  token,
+  token1,
+  token2,
+  spenderAddress,
+  ...rest
+}) => {
   const { account } = useContext(AuthContext);
   const { isTokenApprovalStatusLoading, isTokenApproved, approveToken, isApproveTokenLoading } =
     useTokenApproval({
@@ -120,6 +136,8 @@ export const EnableToken: React.FC<EnableTokenProps> = ({ token, spenderAddress,
     <EnableTokenUi
       {...rest}
       token={token}
+      token1={token1}
+      token2={token2}
       enableToken={approveToken}
       isTokenEnabled={isTokenApproved ?? false}
       isEnableTokenLoading={isApproveTokenLoading}

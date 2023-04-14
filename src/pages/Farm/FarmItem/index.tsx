@@ -4,18 +4,19 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import BigNumber from 'bignumber.js';
-import { Button, TokenIcon } from 'components';
+import { Button, LpTokenIcon, TokenIcon } from 'components';
 import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
-import { Token } from 'types';
+import { Asset, Token } from 'types';
 import { convertWeiToTokens, formatToReadablePercentage } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
 
-import { Farm, getAddress, useClaimFarmReward } from 'clients/api';
+import { Farm, getAddress, useClaimFarmReward, useGetUserMarketInfo } from 'clients/api';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
+import getFarmApy from 'utilities/getFarmApy';
 
 import { StakeModal, WithdrawModal } from '../modals';
 import { useStyles } from './styles';
@@ -48,6 +49,10 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
+
+  const {
+    data: { assets },
+  } = useGetUserMarketInfo({});
 
   const handleTransactionMutation = useHandleTransactionMutation();
 
@@ -83,6 +88,38 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     [farm.lpSymbol],
   );
 
+  const xcnAsset: Asset | undefined = React.useMemo(
+    () => assets.find(asset => asset.token === TOKENS.xcn),
+    [assets],
+  );
+
+  const quoteTokenAsset: Asset | undefined = React.useMemo(() => {
+    if (farm.quoteToken.symbol === 'WETH') return assets.find(asset => asset.token === TOKENS.eth);
+    return assets.find(asset => asset.token === farm.quoteToken);
+  }, [assets]);
+
+  const farmApy: number = React.useMemo(() => {
+    if (
+      farm.lpTotalInQuoteToken &&
+      farm.lpTokenBalanceMC &&
+      farm.poolWeight &&
+      farm.tokenPerSecond &&
+      quoteTokenAsset &&
+      xcnAsset
+    ) {
+      const totalLiquidity = farm.lpTotalInQuoteToken.times(quoteTokenAsset.tokenPrice);
+      return getFarmApy(farm.poolWeight, xcnAsset?.tokenPrice, totalLiquidity, farm.tokenPerSecond);
+    }
+    return 0;
+  }, [
+    farm.lpTotalInQuoteToken,
+    farm.lpTokenBalanceMC,
+    farm.poolWeight,
+    farm.tokenPerSecond,
+    xcnAsset?.tokenPrice,
+    quoteTokenAsset?.tokenPrice,
+  ]);
+
   const readableUserPendingRewardTokens = useConvertWeiToReadableTokenString({
     valueWei: farm.userData?.earnings,
     token: rewardToken,
@@ -101,13 +138,13 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     () => [
       {
         title: t('farmItem.stakingApr', { stakeTokenName: stakedToken.symbol }),
-        value: formatToReadablePercentage(farm.farmApr),
+        value: formatToReadablePercentage(farmApy),
       },
       {
         title: t('farmItem.totalStaked'),
         value: (
           <>
-            <TokenIcon css={styles.tokenIcon} token={stakedToken} />
+            <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
             {convertWeiToTokens({
               valueWei: farm.lpTokenBalanceMC || new BigNumber(0),
               token: stakedToken,
@@ -127,7 +164,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
       <Paper css={styles.container} className={className}>
         <div css={styles.header}>
           <div css={styles.title}>
-            <TokenIcon css={styles.tokenIcon} token={stakedToken} />
+            <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
 
             <Typography variant="h4" css={styles.text} data-testid={TEST_IDS.symbol}>
               {stakedToken.symbol}
@@ -172,7 +209,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
           css={styles.textStakingValue}
           data-testid={TEST_IDS.userStakedTokens}
         >
-          <TokenIcon css={[styles.tokenIconLarge]} token={stakedToken} />
+          <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
 
           {readableUserStakedTokens}
         </Typography>
@@ -252,7 +289,7 @@ const FarmItem: React.FC<FarmItemProps> = ({ farm }) => {
       onWithdraw={onWithdraw}
       activeModal={activeModal}
       closeActiveModal={closeActiveModal}
-      canWithdraw={false}
+      canWithdraw
       farm={farm}
     />
   );

@@ -23,6 +23,10 @@ export const useStyles = () => {
       height: ${theme.shape.iconSize.large}px;
       margin-right: ${theme.spacing(1)};
     `,
+    lpTokenIcon: css`
+      width: ${theme.shape.iconSize.xLarge}px;
+      height: ${theme.shape.iconSize.xLarge}px;
+    `,
     tokenIconLarge: css`
       width: ${theme.shape.iconSize.xLarge}px;
       height: ${theme.shape.iconSize.xLarge}px;
