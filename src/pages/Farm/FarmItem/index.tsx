@@ -167,7 +167,8 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
               returnInReadableFormat: true,
               shortenLargeValue: true,
               addSymbol: false,
-            })} (${farm.lpTotalInQuoteToken?.times(quoteTokenAsset?.tokenPrice || 0).toFixed(2)})
+            })}{' '}
+            (${farm.lpTotalInQuoteToken?.times(quoteTokenAsset?.tokenPrice || 0).toFixed(2)})
           </>
         ),
       },
@@ -179,12 +180,21 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     <>
       <Paper css={styles.container} className={className}>
         <div css={styles.header}>
-          <div css={styles.title}>
-            <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
+          <div css={styles.left}>
+            <div css={styles.title}>
+              <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
 
-            <Typography variant="h4" css={styles.text} data-testid={TEST_IDS.symbol}>
-              {stakedToken.symbol}
-            </Typography>
+              <Typography variant="h4" css={styles.text} data-testid={TEST_IDS.symbol}>
+                {stakedToken.symbol}
+              </Typography>
+            </div>
+            <a
+              href={`https://app.uniswap.org/#/add/v2/${farm.token.address}/${farm.quoteToken.address}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Add Liquidity
+            </a>
           </div>
 
           {farm.userData?.earnings.isGreaterThan(0) && (

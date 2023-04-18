@@ -13,6 +13,25 @@ export const useStyles = () => {
       align-items: center;
       justify-content: space-between;
       margin-bottom: ${theme.spacing(6)};
+
+      ${theme.breakpoints.down('md')} {
+        gap: 20px;
+        flex-direction: column;
+      }
+    `,
+    left: css`
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      a {
+        color: ${theme.palette.interactive.primary}
+      }
+
+      ${theme.breakpoints.down('md')} {
+        width: 100%;
+        justify-content: space-between;
+      }
     `,
     title: css`
       display: flex;
