@@ -27,6 +27,7 @@ import VoterLeaderboard from 'pages/VoterLeaderboard';
 import Xcn from 'pages/Xcn';
 import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 import SwapPage from './Swap';
+import FarmPage from './Farm';
 
 const App = () => (
   <Web3Wrapper>
@@ -69,6 +70,8 @@ const App = () => (
                       <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
 
                       <Route exact path={Path.SWAP} component={SwapPage} />
+
+                      <Route exact path={Path.FARM} component={FarmPage} />
 
                       <Redirect to={Path.ROOT} />
                     </Switch>

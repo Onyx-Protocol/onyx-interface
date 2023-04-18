@@ -232,7 +232,17 @@ export interface MarketSnapshot {
   updatedAt: string;
 }
 
-export type TransactionEvent = 'Supply' | 'Redeem' | 'Borrow' | 'RepayBorrow' | 'LiquidateBorrow' | 'Stake' | 'Withdraw' | 'Claim' | 'Propose' | 'Vote';
+export type TransactionEvent =
+  | 'Supply'
+  | 'Redeem'
+  | 'Borrow'
+  | 'RepayBorrow'
+  | 'LiquidateBorrow'
+  | 'Stake'
+  | 'Withdraw'
+  | 'Claim'
+  | 'Propose'
+  | 'Vote';
 
 export enum TransactionCategory {
   otoken = 'otoken',

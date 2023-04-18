@@ -204,7 +204,7 @@
       "history": "History",
       "markets": "Markets",
       "swap": "Swap",
-      "vaults": "Vaults",
+      "farm": "Farm",
       "xcn": "XCN",
       "xcnPrediction": "XCN Prediction",
       "fpunk": "Punk Wrapper",
@@ -364,7 +364,7 @@
   "stakeModal": {
     "availableTokensLabel": "Available {{tokenSymbol}}",
     "connectWalletMessage": "Please connect your wallet to stake {{tokenSymbol}}",
-    "enableTokenMessage": "To stake {{tokenSymbol}} to this vault, you need to enable it first",
+    "enableTokenMessage": "To stake {{tokenSymbol}} to this pool, you need to enable it first",
     "submitButtonDisabledLabel": "Enter a valid amount to stake",
     "submitButtonLabel": "Stake",
     "successfulTransactionModal": {
@@ -616,7 +616,7 @@
       "rightMaxButtonLabel": "MAX"
     }
   },
-  "vaultItem": {
+  "farmItem": {
     "claimButton": "Claim",
     "dailyEmission": "Daily Emission",
     "reward": "Reward:",
@@ -815,7 +815,7 @@
     "trustWallet": "Trust Wallet",
     "walletConnect": "WalletConnect"
   },
-  "withdrawFromVaiVaultModal": {
+  "withdrawModal": {
     "availableTokensLabel": "Available {{tokenSymbol}}",
     "connectWalletMessage": "Please connect your wallet to withdraw {{tokenSymbol}}",
     "submitButtonDisabledLabel": "Enter a valid amount to withdraw",

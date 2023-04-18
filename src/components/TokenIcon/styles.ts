@@ -10,5 +10,14 @@ export const useStyles = () => {
       width: ${theme.shape.iconSize.large}px;
       height: ${theme.shape.iconSize.large}px;
     `,
+    lptoken: css`
+      display: flex;
+      align-items: center;
+
+      img:last-child {
+        margin-left: -5px;
+        margin-right: 10px;
+      }
+    `,
   };
 };

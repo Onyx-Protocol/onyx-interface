@@ -102,6 +102,18 @@ export { default as swapTokens } from './mutations/swapTokens';
 export * from './mutations/swapTokens';
 export { default as useSwapTokens } from './mutations/swapTokens/useSwapTokens';
 
+export { default as stakeInFarm } from './mutations/stakeInFarm';
+export * from './mutations/stakeInFarm';
+export { default as useStakeInFarm } from './mutations/stakeInFarm/useStakeInFarm';
+
+export { default as withdrawFromFarm } from './mutations/withdrawFromFarm';
+export * from './mutations/withdrawFromFarm';
+export { default as useWithdrawFromFarm } from './mutations/withdrawFromFarm/useWithdrawFromFarm';
+
+export { default as claimFarmReward } from './mutations/claimFarmReward';
+export * from './mutations/claimFarmReward';
+export { default as useClaimFarmReward } from './mutations/claimFarmReward/useClaimFarmReward';
+
 // Queries
 export { default as getAssetsInAccount } from './queries/getAssetsInAccount';
 export * from './queries/getAssetsInAccount';
@@ -268,3 +280,7 @@ export { default as useClaimXcn } from './mutations/claimXcn/useClaimXcn';
 export { default as getUniSwapPairs } from './queries/getUniSwapPairs';
 export * from './queries/getUniSwapPairs';
 export { default as useGetUniSwapPairs } from './queries/getUniSwapPairs/useGetUniSwapPairs';
+
+export { default as getFarms } from './queries/getFarms';
+export * from './queries/getFarms';
+export { default as useGetFarms } from './queries/getFarms/useGetFarms';

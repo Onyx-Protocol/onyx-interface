@@ -9,6 +9,7 @@ import eth20Abi from 'constants/contracts/abis/eth20.json';
 import governorBravoDelegateAbi from 'constants/contracts/abis/governorBravoDelegate.json';
 import interestModelAbi from 'constants/contracts/abis/interestModel.json';
 import liquidationProxyAbi from 'constants/contracts/abis/liquidationProxy.json';
+import masterChefAbi from 'constants/contracts/abis/masterChef.json';
 import maximillionAbi from 'constants/contracts/abis/maximillion.json';
 import oEth20Abi from 'constants/contracts/abis/oEth20.json';
 import oEthTokenAbi from 'constants/contracts/abis/oEthToken.json';
@@ -28,6 +29,7 @@ import {
   Eth20,
   GovernorBravoDelegate,
   InterestModel,
+  MasterChef,
   Maximillion,
   Oracle,
   Punk,
@@ -156,3 +158,10 @@ export const getUniSwapRouterContract = (web3: Web3) =>
     getContractAddress('uniSwapRouter'),
     web3,
   ) as unknown as UniSwapRouter;
+
+export const getMasterChefContract = (web3: Web3) =>
+  getContract(
+    masterChefAbi as AbiItem[],
+    getContractAddress('masterChef'),
+    web3,
+  ) as unknown as MasterChef;

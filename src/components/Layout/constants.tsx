@@ -37,6 +37,15 @@ export const menuItems: MenuItem[] = [
     isNew: true,
   },
   {
+    href: Path.FARM,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.farm')
+    i18nKey: 'layout.menuItems.farm',
+    i18nTitleKey: 'layout.menuItems.farm',
+    icon: 'farm',
+    isNew: true,
+  },
+  {
     href: Path.STAKE,
     // Translation key: do not remove this comment
     // t('layout.menuItems.staking')

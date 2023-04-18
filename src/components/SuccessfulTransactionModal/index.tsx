@@ -18,6 +18,7 @@ export interface SuccessfulTransactionModalProps extends Omit<ModalProps, 'child
   amount?: {
     token: Token;
     valueWei: BigNumber;
+    noDisplayTokenIcon?: boolean;
   };
   className?: string;
 }
@@ -48,7 +49,9 @@ export const SuccessfulTransactionModal: React.FC<SuccessfulTransactionModalProp
           )}
           {amount && (
             <div css={styles.amountContainer}>
-              <TokenIcon token={amount.token} css={styles.amountTokenIcon} />
+              {!amount.noDisplayTokenIcon && (
+                <TokenIcon token={amount.token} css={styles.amountTokenIcon} />
+              )}
 
               <Typography variant="small1" component="span">
                 {convertWeiToTokens({
