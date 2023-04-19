@@ -8,6 +8,8 @@ export interface GetStakingInfosInput {
 }
 
 export type GetStakingInfosOutput = {
+  totalStaked: BigNumber;
+  rewardPerBlock: BigNumber;
   staked: BigNumber;
   earned: BigNumber;
 };
@@ -16,8 +18,13 @@ const getStakingInfos = async ({
   xcnStakingContract,
   accountAddress,
 }: GetStakingInfosInput): Promise<GetStakingInfosOutput> => {
+  const poolInfo = await xcnStakingContract.methods.poolInfo(0).call();
+  const respRewardPerBlock = await xcnStakingContract.methods.rewardPerBlock().call();
+
   if (!accountAddress) {
     return {
+      totalStaked: new BigNumber(poolInfo.totalAmountStake),
+      rewardPerBlock: new BigNumber(respRewardPerBlock),
       staked: new BigNumber(0),
       earned: new BigNumber(0),
     };
@@ -27,6 +34,8 @@ const getStakingInfos = async ({
   const respEarned = await xcnStakingContract.methods.pendingReward(0, accountAddress).call();
 
   return {
+    totalStaked: new BigNumber(poolInfo.totalAmountStake),
+    rewardPerBlock: new BigNumber(respRewardPerBlock),
     staked: new BigNumber(respStaked),
     earned: new BigNumber(respEarned),
   };
