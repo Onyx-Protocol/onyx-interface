@@ -8,16 +8,10 @@ import { Button, LpTokenIcon, TokenIcon } from 'components';
 import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
 import { Asset, Token } from 'types';
-import {
-  convertWeiToTokens,
-  formatCentsToReadableValue,
-  formatToReadablePercentage,
-  formatTokensToReadableValue,
-} from 'utilities';
+import { convertWeiToTokens, formatToReadablePercentage } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
 
 import { Farm, getAddress, useClaimFarmReward, useGetUserMarketInfo } from 'clients/api';
-import UniswapModal from 'components/UniswapModal';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
@@ -128,12 +122,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 
   const farmDailyEmission: string = React.useMemo(() => {
     if (farm.poolWeight && farm.tokenPerSecond) {
-      return formatTokensToReadableValue({
-        value: farm.tokenPerSecond.times(86400).times(farm.poolWeight),
-        token: rewardToken,
-        shortenLargeValue: true,
-        addSymbol: false,
-      });
+      return farm.tokenPerSecond.times(86400).times(farm.poolWeight).toFixed(2);
     }
     return '0';
   }, [farm.poolWeight, farm.tokenPerSecond]);
@@ -179,21 +168,13 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
               shortenLargeValue: true,
               addSymbol: false,
             })}{' '}
-            (
-            {formatCentsToReadableValue({
-              value: farm.lpTotalInQuoteToken?.times(quoteTokenAsset?.tokenPrice || 0).times(100),
-              shortenLargeValue: true,
-            })}
-            )
+            (${farm.lpTotalInQuoteToken?.times(quoteTokenAsset?.tokenPrice || 0).toFixed(2)})
           </>
         ),
       },
     ],
     [farm],
   );
-
-  const [uniswapModalOpen, setUniswapModalOpen] = useState(false);
-  const [uniswapUrl, setUniswapUrl] = useState('');
 
   return (
     <>
@@ -207,17 +188,13 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
                 {stakedToken.symbol}
               </Typography>
             </div>
-            <span
-              css={styles.add_liquidity_btn}
-              onClick={() => {
-                setUniswapUrl(
-                  `https://app.uniswap.org/#/add/v2/${farm.token.address}/${farm.quoteToken.address}`,
-                );
-                setUniswapModalOpen(true);
-              }}
+            <a
+              href={`https://app.uniswap.org/#/add/v2/${farm.token.address}/${farm.quoteToken.address}`}
+              target="_blank"
+              rel="noreferrer"
             >
               Add Liquidity
-            </span>
+            </a>
           </div>
 
           {farm.userData?.earnings.isGreaterThan(0) && (
@@ -302,12 +279,6 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
       {activeModal === 'stake' && <StakeModal farm={farm} handleClose={closeActiveModal} />}
 
       {activeModal === 'withdraw' && <WithdrawModal farm={farm} handleClose={closeActiveModal} />}
-
-      <UniswapModal
-        isOpen={uniswapModalOpen}
-        onClose={() => setUniswapModalOpen(false)}
-        url={uniswapUrl}
-      />
     </>
   );
 };

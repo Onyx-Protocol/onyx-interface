@@ -24,14 +24,14 @@ export const useStyles = () => {
       align-items: center;
       gap: 10px;
 
+      a {
+        color: ${theme.palette.interactive.primary}
+      }
+
       ${theme.breakpoints.down('md')} {
         width: 100%;
         justify-content: space-between;
       }
-    `,
-    add_liquidity_btn: css`
-      color: ${theme.palette.interactive.primary};
-      cursor: pointer;
     `,
     title: css`
       display: flex;
