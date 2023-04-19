@@ -7,9 +7,11 @@ import { ThemeContext } from 'context/ThemeContext';
 export const useModalStyles = ({
   hasTitleComponent,
   noHorizontalPadding,
+  uniswapModal,
 }: {
   hasTitleComponent: boolean;
   noHorizontalPadding?: boolean;
+  uniswapModal?: boolean;
 }) => {
   const theme = useTheme();
   const { mode: themeMode } = React.useContext(ThemeContext);
@@ -40,7 +42,7 @@ export const useModalStyles = ({
       }
       width: calc(100% - ${theme.spacing(8)});
       max-width: ${theme.spacing(136)};
-      border-radius: ${theme.spacing(6)};
+      border-radius: ${uniswapModal ? '10px' : theme.spacing(6)};
       // background-color: ${theme.palette.background.paper};
       overflow: auto;
       max-height: calc(100% - ${theme.spacing(8)});
@@ -108,7 +110,7 @@ export const useModalStyles = ({
       }
     `,
     contentWrapper: css`
-      padding-bottom: ${theme.spacing(10)};
+      padding-bottom: ${uniswapModal ? '0px' : theme.spacing(10)};
       padding-left: ${noHorizontalPadding ? 0 : theme.spacing(10)};
       padding-right: ${noHorizontalPadding ? 0 : theme.spacing(10)};
       ${theme.breakpoints.down('md')} {
