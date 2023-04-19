@@ -22,7 +22,7 @@ import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 
-import { StakeModal, WithdrawModal } from '../modals';
+import { StakeModal, WithdrawModal } from '../modals2';
 import { useStyles } from './styles';
 import TEST_IDS from './testIds';
 
