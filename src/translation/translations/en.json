@@ -857,6 +857,18 @@
     },
     "withdrawTabTitle": "Withdraw"
   },
+  "liquidityModal": {
+    "availableTokensLabel": "Available {{tokenSymbol}}",
+    "connectWalletMessage": "Please connect your wallet to supply",
+    "enableTokenMessage": "To supply {{tokenSymbol}}, you need to enable it first",
+    "submitButtonDisabledLabel": "Enter a valid amount to supply",
+    "submitButtonLabel": "Supply",
+    "successfulTransactionModal": {
+      "description": "You successful added liquidity",
+      "title": "Your supply was successful"
+    },
+    "title": "Add Liquidity"
+  },
   "xcn": {
     "columns": {
       "asset": "Asset",

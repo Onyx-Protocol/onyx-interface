@@ -17,23 +17,23 @@ import {
 import type { TransactionReceipt } from 'web3-core/types';
 
 import { Farm, getAddress, useClaimFarmReward, useGetUserMarketInfo } from 'clients/api';
-import UniswapModal from 'components/UniswapModal';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 import getFarmApy from 'utilities/getFarmApy';
 
-import { StakeModal, WithdrawModal } from '../modals';
+import { StakeModal, WithdrawModal, LiquidityModal } from '../modals';
 import { useStyles } from './styles';
 import TEST_IDS from './testIds';
 
-type ActiveModal = 'stake' | 'withdraw';
+type ActiveModal = 'stake' | 'withdraw' | 'liquidity';
 
 export interface FarmItemUiProps {
   onClaimReward: () => Promise<TransactionReceipt | void>;
   onStake: () => void;
   onWithdraw: () => Promise<TransactionReceipt | void>;
+  onAddLiquidity: () => void;
   closeActiveModal: () => void;
   isClaimRewardLoading: boolean;
   canWithdraw?: boolean;
@@ -46,6 +46,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   onClaimReward,
   onStake,
   onWithdraw,
+  onAddLiquidity,
   closeActiveModal,
   isClaimRewardLoading,
   canWithdraw = true,
@@ -192,9 +193,6 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     [farm],
   );
 
-  const [uniswapModalOpen, setUniswapModalOpen] = useState(false);
-  const [uniswapUrl, setUniswapUrl] = useState('');
-
   return (
     <>
       <Paper css={styles.container} className={className}>
@@ -207,15 +205,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
                 {stakedToken.symbol}
               </Typography>
             </div>
-            <span
-              css={styles.add_liquidity_btn}
-              onClick={() => {
-                setUniswapUrl(
-                  `https://app.uniswap.org/#/add/v2/${farm.token.address}/${farm.quoteToken.address}`,
-                );
-                setUniswapModalOpen(true);
-              }}
-            >
+            <span css={styles.add_liquidity_btn} onClick={onAddLiquidity}>
               Add Liquidity
             </span>
           </div>
@@ -303,11 +293,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 
       {activeModal === 'withdraw' && <WithdrawModal farm={farm} handleClose={closeActiveModal} />}
 
-      <UniswapModal
-        isOpen={uniswapModalOpen}
-        onClose={() => setUniswapModalOpen(false)}
-        url={uniswapUrl}
-      />
+      {activeModal === 'liquidity' && <LiquidityModal farm={farm} handleClose={closeActiveModal} />}
     </>
   );
 };
@@ -328,6 +314,10 @@ const FarmItem: React.FC<FarmItemProps> = ({ farm }) => {
     setActiveModal('withdraw');
   };
 
+  const onAddLiquidity = () => {
+    setActiveModal('liquidity');
+  };
+
   const closeActiveModal = () => setActiveModal(undefined);
 
   const { mutateAsync: claimFarmReward, isLoading: isClaimRewardLoading } = useClaimFarmReward();
@@ -342,6 +332,7 @@ const FarmItem: React.FC<FarmItemProps> = ({ farm }) => {
       isClaimRewardLoading={isClaimRewardLoading}
       onStake={onStake}
       onWithdraw={onWithdraw}
+      onAddLiquidity={onAddLiquidity}
       activeModal={activeModal}
       closeActiveModal={closeActiveModal}
       canWithdraw
