@@ -7,6 +7,7 @@ import oEth from 'assets/img/tokens/oEth.png';
 import oGusd from 'assets/img/tokens/oGusd.png';
 import oLink from 'assets/img/tokens/oLink.png';
 import oMatic from 'assets/img/tokens/oMatic.png';
+import oMayc from 'assets/img/tokens/oMayc.png';
 import oPaxg from 'assets/img/tokens/oPaxg.png';
 import oShib from 'assets/img/tokens/oShib.png';
 import oUni from 'assets/img/tokens/oUni.png';
@@ -124,6 +125,13 @@ export const TESTNET_OETH_TOKENS = {
     decimals: 0,
     address: OETH_TOKEN_ADDRESSES.bayc[EthChainId.TESTNET],
     asset: oBayc,
+  } as Token,
+  mayc: {
+    id: 'mayc',
+    symbol: 'oMAYC',
+    decimals: 0,
+    address: OETH_TOKEN_ADDRESSES.mayc[EthChainId.TESTNET],
+    asset: oMayc,
   } as Token,
   wpunks: {
     id: 'wpunks',

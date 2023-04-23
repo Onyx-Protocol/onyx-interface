@@ -7,6 +7,7 @@ import eth from 'assets/img/tokens/eth.svg';
 import gusd from 'assets/img/tokens/gusd.svg';
 import link from 'assets/img/tokens/link.svg';
 import matic from 'assets/img/tokens/matic.svg';
+import mayc from 'assets/img/tokens/mayc.png';
 import paxg from 'assets/img/tokens/paxg.svg';
 import shib from 'assets/img/tokens/shib.svg';
 import uni from 'assets/img/tokens/uni.svg';
@@ -125,6 +126,13 @@ export const MAINNET_TOKENS = {
     decimals: 0,
     address: TOKEN_ADDRESSES.bayc[EthChainId.MAINNET],
     asset: bayc,
+  } as Token,
+  mayc: {
+    id: 'mayc',
+    symbol: 'MAYC',
+    decimals: 0,
+    address: TOKEN_ADDRESSES.mayc[EthChainId.MAINNET],
+    asset: mayc,
   } as Token,
   wpunks: {
     id: 'wpunks',
