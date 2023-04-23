@@ -8,4 +8,6 @@ export type OTokenContract<T extends string> = T extends 'eth'
   ? OTokenEx
   : T extends 'bayc'
   ? OTokenEx
+  : T extends 'mayc'
+  ? OTokenEx
   : OEth20;
