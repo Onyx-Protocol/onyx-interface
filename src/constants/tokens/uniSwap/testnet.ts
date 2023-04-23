@@ -2,7 +2,7 @@ import { Token } from 'types';
 
 import { TESTNET_TOKENS } from '../common/testnet';
 
-const { bayc, wpunks, ...rest } = TESTNET_TOKENS;
+const { bayc, mayc, wpunks, ...rest } = TESTNET_TOKENS;
 
 export const TESTNET_UNISWAP_TOKENS = {
   ...rest,

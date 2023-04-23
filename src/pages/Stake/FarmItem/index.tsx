@@ -4,10 +4,10 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import BigNumber from 'bignumber.js';
-import { Button, LpTokenIcon, TokenIcon } from 'components';
+import { Button, TokenIcon } from 'components';
 import React, { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
-import { Asset, Token } from 'types';
+import { Asset } from 'types';
 import {
   convertWeiToTokens,
   formatCentsToReadableValue,
@@ -16,15 +16,13 @@ import {
 } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
 
-import { Farm, getAddress, useClaimFarmReward, useGetUserMarketInfo } from 'clients/api';
-import UniswapModal from 'components/UniswapModal';
+import { useClaimXcn, useGetUserMarketInfo } from 'clients/api';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
-import getFarmApy from 'utilities/getFarmApy';
 
-import { StakeModal, WithdrawModal } from '../modals';
+import { StakeModal, WithdrawModal } from '../Modals';
 import { useStyles } from './styles';
 import TEST_IDS from './testIds';
 
@@ -39,7 +37,12 @@ export interface FarmItemUiProps {
   canWithdraw?: boolean;
   activeModal?: ActiveModal;
   className?: string;
-  farm: Farm;
+  xcnBalance: BigNumber;
+  apy: number;
+  totalStaked: BigNumber;
+  rewardPerBlock: BigNumber;
+  staked: BigNumber;
+  earned: BigNumber;
 }
 
 export const FarmItemUi: React.FC<FarmItemUiProps> = ({
@@ -51,7 +54,12 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   canWithdraw = true,
   activeModal,
   className,
-  farm,
+  xcnBalance,
+  apy,
+  totalStaked,
+  rewardPerBlock,
+  staked,
+  earned,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -82,64 +90,27 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
       }),
     });
 
+  const stakedToken = TOKENS.xcn;
   const rewardToken = TOKENS.xcn;
-  const stakedToken: Token = React.useMemo(
-    () => ({
-      id: farm.lpSymbol,
-      symbol: farm.lpSymbol,
-      decimals: 18,
-      address: getAddress(farm.lpAddresses),
-      asset: '',
-    }),
-    [farm.lpSymbol],
-  );
 
   const xcnAsset: Asset | undefined = React.useMemo(
     () => assets.find(asset => asset.token === TOKENS.xcn),
     [assets],
   );
 
-  const quoteTokenAsset: Asset | undefined = React.useMemo(() => {
-    if (farm.quoteToken.symbol === 'WETH') return assets.find(asset => asset.token === TOKENS.eth);
-    return assets.find(asset => asset.token === farm.quoteToken);
-  }, [assets]);
-
-  const farmApy: number = React.useMemo(() => {
-    if (
-      farm.lpTotalInQuoteToken &&
-      farm.lpTokenBalanceMC &&
-      farm.poolWeight &&
-      farm.tokenPerSecond &&
-      quoteTokenAsset &&
-      xcnAsset
-    ) {
-      const totalLiquidity = farm.lpTotalInQuoteToken.times(quoteTokenAsset.tokenPrice);
-      return getFarmApy(farm.poolWeight, xcnAsset?.tokenPrice, totalLiquidity, farm.tokenPerSecond);
-    }
-    return 0;
-  }, [
-    farm.lpTotalInQuoteToken,
-    farm.lpTokenBalanceMC,
-    farm.poolWeight,
-    farm.tokenPerSecond,
-    xcnAsset?.tokenPrice,
-    quoteTokenAsset?.tokenPrice,
-  ]);
-
-  const farmDailyEmission: string = React.useMemo(() => {
-    if (farm.poolWeight && farm.tokenPerSecond) {
-      return formatTokensToReadableValue({
-        value: farm.tokenPerSecond.times(86400).times(farm.poolWeight),
+  const farmDailyEmission: string = React.useMemo(
+    () =>
+      formatTokensToReadableValue({
+        value: rewardPerBlock.div(1e18).times(86400 / 12),
         token: rewardToken,
         shortenLargeValue: true,
         addSymbol: false,
-      });
-    }
-    return '0';
-  }, [farm.poolWeight, farm.tokenPerSecond]);
+      }),
+    [rewardPerBlock],
+  );
 
   const readableUserPendingRewardTokens = useConvertWeiToReadableTokenString({
-    valueWei: farm.userData?.earnings,
+    valueWei: earned,
     token: rewardToken,
     minimizeDecimals: true,
     addSymbol: false,
@@ -147,7 +118,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 
   const readableUserStakedTokens = useConvertWeiToReadableTokenString({
     token: stakedToken,
-    valueWei: farm.userData?.stakedBalance || new BigNumber(0),
+    valueWei: staked || new BigNumber(0),
     minimizeDecimals: true,
     addSymbol: false,
   });
@@ -156,7 +127,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     () => [
       {
         title: t('farmItem.stakingApr', { stakeTokenName: '' }),
-        value: formatToReadablePercentage(farmApy),
+        value: formatToReadablePercentage(apy),
       },
       {
         title: t('farmItem.dailyEmission'),
@@ -171,9 +142,9 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         title: t('farmItem.totalStaked'),
         value: (
           <>
-            <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
+            <TokenIcon css={styles.tokenIcon} token={stakedToken} />
             {convertWeiToTokens({
-              valueWei: farm.lpTokenBalanceMC || new BigNumber(0),
+              valueWei: totalStaked || new BigNumber(0),
               token: stakedToken,
               returnInReadableFormat: true,
               shortenLargeValue: true,
@@ -181,7 +152,10 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
             })}{' '}
             (
             {formatCentsToReadableValue({
-              value: farm.lpTotalInQuoteToken?.times(quoteTokenAsset?.tokenPrice || 0).times(100),
+              value: totalStaked
+                .div(1e18)
+                .times(xcnAsset?.tokenPrice || 0)
+                .times(100),
               shortenLargeValue: true,
             })}
             )
@@ -189,11 +163,8 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         ),
       },
     ],
-    [farm],
+    [totalStaked, apy, xcnAsset],
   );
-
-  const [uniswapModalOpen, setUniswapModalOpen] = useState(false);
-  const [uniswapUrl, setUniswapUrl] = useState('');
 
   return (
     <>
@@ -201,26 +172,15 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         <div css={styles.header}>
           <div css={styles.left}>
             <div css={styles.title}>
-              <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
+              <TokenIcon css={styles.tokenIcon} token={stakedToken} />
 
               <Typography variant="h4" css={styles.text} data-testid={TEST_IDS.symbol}>
                 {stakedToken.symbol}
               </Typography>
             </div>
-            <span
-              css={styles.add_liquidity_btn}
-              onClick={() => {
-                setUniswapUrl(
-                  `https://app.uniswap.org/#/add/v2/${farm.token.address}/${farm.quoteToken.address}`,
-                );
-                setUniswapModalOpen(true);
-              }}
-            >
-              Add Liquidity
-            </span>
           </div>
 
-          {farm.userData?.earnings.isGreaterThan(0) && (
+          {earned.isGreaterThan(0) && (
             <div css={styles.rewardWrapper}>
               <Typography css={[styles.text, styles.textSmallMobile]}>
                 {t('farmItem.reward')}
@@ -258,7 +218,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
           css={styles.textStakingValue}
           data-testid={TEST_IDS.userStakedTokens}
         >
-          <LpTokenIcon css={styles.lpTokenIcon} token1={farm.token} token2={farm.quoteToken} />
+          <TokenIcon css={styles.tokenIcon} token={stakedToken} />
 
           {readableUserStakedTokens}
         </Typography>
@@ -299,24 +259,27 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         </div>
       </Paper>
 
-      {activeModal === 'stake' && <StakeModal farm={farm} handleClose={closeActiveModal} />}
+      {activeModal === 'stake' && (
+        <StakeModal xcnBalance={xcnBalance} handleClose={closeActiveModal} />
+      )}
 
-      {activeModal === 'withdraw' && <WithdrawModal farm={farm} handleClose={closeActiveModal} />}
-
-      <UniswapModal
-        isOpen={uniswapModalOpen}
-        onClose={() => setUniswapModalOpen(false)}
-        url={uniswapUrl}
-      />
+      {activeModal === 'withdraw' && (
+        <WithdrawModal stakedBalance={staked} handleClose={closeActiveModal} />
+      )}
     </>
   );
 };
 
 export interface FarmItemProps {
-  farm: Farm;
+  xcnBalance: BigNumber;
+  apy: number;
+  totalStaked: BigNumber;
+  rewardPerBlock: BigNumber;
+  staked: BigNumber;
+  earned: BigNumber;
 }
 
-const FarmItem: React.FC<FarmItemProps> = ({ farm }) => {
+const FarmItem: React.FC<FarmItemProps> = data => {
   const { account } = useContext(AuthContext);
 
   const [activeModal, setActiveModal] = useState<ActiveModal | undefined>();
@@ -330,22 +293,21 @@ const FarmItem: React.FC<FarmItemProps> = ({ farm }) => {
 
   const closeActiveModal = () => setActiveModal(undefined);
 
-  const { mutateAsync: claimFarmReward, isLoading: isClaimRewardLoading } = useClaimFarmReward();
+  const { mutateAsync: claimXcn, isLoading: isClaimXcnLoading } = useClaimXcn();
   const onClaimReward = async () =>
-    claimFarmReward({
-      fromAccountAddress: account?.address || '',
-      pid: farm.pid,
+    claimXcn({
+      accountAddress: account?.address || '',
     });
   return (
     <FarmItemUi
       onClaimReward={onClaimReward}
-      isClaimRewardLoading={isClaimRewardLoading}
+      isClaimRewardLoading={isClaimXcnLoading}
       onStake={onStake}
       onWithdraw={onWithdraw}
       activeModal={activeModal}
       closeActiveModal={closeActiveModal}
       canWithdraw
-      farm={farm}
+      {...data}
     />
   );
 };

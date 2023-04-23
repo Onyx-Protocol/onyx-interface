@@ -14,6 +14,7 @@ export interface ModalProps extends Omit<MUIModalProps, 'title' | 'open'> {
   handleBackAction?: () => void;
   title?: string | ReactElement | ReactElement[];
   noHorizontalPadding?: boolean;
+  uniswapModal?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -24,9 +25,10 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   title,
   noHorizontalPadding,
+  uniswapModal,
   ...otherModalProps
 }) => {
-  const s = useModalStyles({ hasTitleComponent: Boolean(title), noHorizontalPadding });
+  const s = useModalStyles({ hasTitleComponent: Boolean(title), noHorizontalPadding, uniswapModal });
   return (
     <MUIModal
       open={isOpen}
@@ -42,17 +44,19 @@ export const Modal: React.FC<ModalProps> = ({
     >
       <Fade in={isOpen} css={s.modal}>
         <div css={s.box} className={className}>
-          <div css={s.titleWrapper}>
-            {!!handleBackAction && (
-              <Button css={s.backAction} disableRipple onClick={handleBackAction}>
-                <Icon css={s.backArrow} name="arrowRight" />
+          {!uniswapModal && (
+            <div css={s.titleWrapper}>
+              {!!handleBackAction && (
+                <Button css={s.backAction} disableRipple onClick={handleBackAction}>
+                  <Icon css={s.backArrow} name="arrowRight" />
+                </Button>
+              )}
+              <div css={s.titleComponent}>{title}</div>
+              <Button css={s.closeIcon} disableRipple onClick={handleClose}>
+                <Icon name="close" />
               </Button>
-            )}
-            <div css={s.titleComponent}>{title}</div>
-            <Button css={s.closeIcon} disableRipple onClick={handleClose}>
-              <Icon name="close" />
-            </Button>
-          </div>
+            </div>
+          )}
           <div css={s.contentWrapper}>{children}</div>
         </div>
       </Fade>

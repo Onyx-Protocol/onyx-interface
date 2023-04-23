@@ -70,7 +70,7 @@ export const getOTokenContract = <T extends string>(tokenId: T, web3: Web3): OTo
     ) as unknown as OTokenContract<T>;
   }
 
-  if (['wpunks', 'bayc'].includes(tokenId)) {
+  if (['wpunks', 'bayc', 'mayc'].includes(tokenId)) {
     return getContract(
       oTokenExAbi as AbiItem[],
       oEthTokenAddress,
