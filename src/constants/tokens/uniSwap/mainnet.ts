@@ -2,7 +2,7 @@ import { Token } from 'types';
 
 import { MAINNET_TOKENS } from '../common/mainnet';
 
-const { bayc, wpunks, ...rest } = MAINNET_TOKENS;
+const { bayc, mayc, wpunks, ...rest } = MAINNET_TOKENS;
 // List adapted from Uniswap's repository:
 // https://github.com/Uniswap/default-token-list/blob/main/src/tokens/mainnet.json
 export const MAINNET_UNISWAP_TOKENS = {
