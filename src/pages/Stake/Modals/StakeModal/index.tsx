@@ -50,7 +50,7 @@ const StakeModal: React.FC<StakeModalProps> = ({ xcnBalance, handleClose }) => {
         tokenSymbol: stakeToken.symbol,
       })}
       tokenNeedsToBeEnabled
-      enableTokenMessage={t('stakeModal.enableTokenMessage', { tokenSymbol: stakeToken.symbol })}
+      enableTokenMessage="To stake XCN on Onyx Protocol, you need to enable it first."
       spenderAddress={spenderAddress}
       availableTokensLabel={t('stakeModal.availableTokensLabel', {
         tokenSymbol: stakeToken.symbol,
