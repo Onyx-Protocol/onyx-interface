@@ -119,6 +119,8 @@ const LiquidityTxForm: React.FC<LiquidityTxFormProps> = ({
         amount: {
           valueWei: amountWei1,
           token: farm.token,
+          valueWei2: amountWei2,
+          token2: farm.quoteToken,
         },
         transactionHash: transactionReceipt.transactionHash,
       }),

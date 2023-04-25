@@ -67,7 +67,7 @@ export const SuccessfulTransactionModal: React.FC<SuccessfulTransactionModalProp
 
               {amount?.token2 && amount?.valueWei2 && (
                 <div css={styles.amountContainer}>
-                  &nbsp;&&nbsp;
+                  &&nbsp;&nbsp;&nbsp;
                   {!amount.noDisplayTokenIcon && (
                     <TokenIcon token={amount.token2} css={styles.amountTokenIcon} />
                   )}
