@@ -8,7 +8,7 @@ import FunctionKey from 'constants/functionKey';
 import setCachedTokenAllowanceToMax from '../../queries/getAllowance/setCachedTokenAllowanceToMax';
 
 const useApproveToken = (
-  { token }: { token: Token },
+  { token, farmRefresh }: { token: Token; farmRefresh?: boolean },
   // TODO: use custom error type https://app.clickup.com/t/2rvwhnt
   options?: MutationObserverOptions<
     ApproveTokenOutput,
@@ -30,6 +30,11 @@ const useApproveToken = (
       onSuccess: (...onSuccessParams) => {
         const { spenderAddress, accountAddress } = onSuccessParams[1];
         setCachedTokenAllowanceToMax({ queryClient, token, spenderAddress, accountAddress });
+
+        if (farmRefresh) {
+          // Invalidate cached farm data
+          queryClient.invalidateQueries([FunctionKey.GET_FARMS, accountAddress]);
+        }
 
         if (options?.onSuccess) {
           options.onSuccess(...onSuccessParams);

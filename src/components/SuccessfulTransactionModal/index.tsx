@@ -19,6 +19,8 @@ export interface SuccessfulTransactionModalProps extends Omit<ModalProps, 'child
     token: Token;
     valueWei: BigNumber;
     noDisplayTokenIcon?: boolean;
+    token2?: Token;
+    valueWei2?: BigNumber;
   };
   className?: string;
 }
@@ -48,19 +50,37 @@ export const SuccessfulTransactionModal: React.FC<SuccessfulTransactionModalProp
             </Typography>
           )}
           {amount && (
-            <div css={styles.amountContainer}>
-              {!amount.noDisplayTokenIcon && (
-                <TokenIcon token={amount.token} css={styles.amountTokenIcon} />
-              )}
+            <>
+              <div css={styles.amountContainer}>
+                {!amount.noDisplayTokenIcon && (
+                  <TokenIcon token={amount.token} css={styles.amountTokenIcon} />
+                )}
 
-              <Typography variant="small1" component="span">
-                {convertWeiToTokens({
-                  valueWei: amount.valueWei,
-                  token: amount.token,
-                  returnInReadableFormat: true,
-                })}
-              </Typography>
-            </div>
+                <Typography variant="small1" component="span">
+                  {convertWeiToTokens({
+                    valueWei: amount.valueWei,
+                    token: amount.token,
+                    returnInReadableFormat: true,
+                  })}
+                </Typography>
+              </div>
+
+              {amount?.token2 && amount?.valueWei2 && (
+                <div css={styles.amountContainer}>
+                  &nbsp;&&nbsp;
+                  {!amount.noDisplayTokenIcon && (
+                    <TokenIcon token={amount.token2} css={styles.amountTokenIcon} />
+                  )}
+                  <Typography variant="small1" component="span">
+                    {convertWeiToTokens({
+                      valueWei: amount.valueWei2,
+                      token: amount.token2,
+                      returnInReadableFormat: true,
+                    })}
+                  </Typography>
+                </div>
+              )}
+            </>
           )}
         </div>
 

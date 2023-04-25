@@ -5,7 +5,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'translation';
 import { Token } from 'types';
 
-import { Farm, getAddress, useStakeInFarm } from 'clients/api';
+import { Farm, getAddress, useAddLiquidity } from 'clients/api';
 import { AuthContext } from 'context/AuthContext';
 import LiquidityTxForm from 'pages/Farm/LiquidityTxForm';
 
@@ -28,14 +28,16 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ farm, handleClose }) =>
     [farm.lpSymbol],
   );
 
-  const { mutateAsync: stakeInFarm, isLoading: isStakeLoading } = useStakeInFarm();
+  const { mutateAsync: addLiquidity, isLoading: isAddLiquidityLoading } = useAddLiquidity();
 
-  const handleStake = async (amountWei1: BigNumber, amountWei2: BigNumber) => {
+  const handleAddLiquidity = async (amountWei1: BigNumber, amountWei2: BigNumber) => {
     // Send request to stake
-    const res = await stakeInFarm({
+    const res = await addLiquidity({
       fromAccountAddress: account?.address || '',
-      pid: farm.pid,
-      amountWei: amountWei1,
+      token1: farm.token.address,
+      token2: farm.quoteToken.address,
+      amountWei1,
+      amountWei2,
     });
 
     // Close modal
@@ -64,8 +66,8 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ farm, handleClose }) =>
           availableTokensLabel2={t('liquidityModal.availableTokensLabel', {
             tokenSymbol: farm.quoteToken.symbol,
           })}
-          onSubmit={handleStake}
-          isSubmitting={isStakeLoading}
+          onSubmit={handleAddLiquidity}
+          isSubmitting={isAddLiquidityLoading}
         />
       </ConnectWallet>
     </Modal>
