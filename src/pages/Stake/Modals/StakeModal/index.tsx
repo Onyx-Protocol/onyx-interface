@@ -20,7 +20,7 @@ const StakeModal: React.FC<StakeModalProps> = ({ xcnBalance, handleClose }) => {
 
   const stakeToken = TOKENS.xcn;
 
-  const spenderAddress = getContractAddress('masterChef');
+  const spenderAddress = getContractAddress('xcnStaking');
 
   const { mutateAsync: stakeXcn, isLoading: isStakeXcnLoading } = useStakeXcn();
 
