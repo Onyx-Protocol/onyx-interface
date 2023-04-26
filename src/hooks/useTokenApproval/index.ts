@@ -13,6 +13,7 @@ interface UseTokenApprovalInput {
   token: Token;
   spenderAddress: string;
   accountAddress?: string;
+  farmRefresh?: boolean;
 }
 
 interface UseTokenApprovalOutput {
@@ -28,6 +29,7 @@ const useTokenApproval = ({
   token,
   spenderAddress,
   accountAddress,
+  farmRefresh,
 }: UseTokenApprovalInput): UseTokenApprovalOutput => {
   const { data: getTokenAllowanceData, isLoading: isTokenApprovalStatusLoading } = useGetAllowance(
     {
@@ -69,6 +71,7 @@ const useTokenApproval = ({
 
   const { mutateAsync: approveTokenMutation, isLoading: isApproveTokenLoading } = useApproveToken({
     token,
+    farmRefresh,
   });
 
   const { mutateAsync: approveNftForAllMutation, isLoading: isApproveNftTokenLoading } =

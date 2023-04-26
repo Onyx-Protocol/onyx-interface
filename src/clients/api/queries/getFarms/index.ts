@@ -17,6 +17,7 @@ export * from './types';
 
 const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<GetFarmsOutput> => {
   const masterChefAddress = getContractAddress('masterChef');
+  const uniswapRouterAddress = getContractAddress('uniSwapRouter');
   const farms: Array<Farm> = [];
   for (let i = 0; i < farmConfig.length; i++) {
     const tempFarm: Farm = { ...farmConfig[i] };
@@ -185,6 +186,42 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
         ],
       });
 
+      contractCallForUserContexts.push({
+        reference: tempFarm.token.address,
+        contractAddress: tempFarm.token.address,
+        abi: eth20Abi,
+        calls: [
+          {
+            reference: 'allowance',
+            methodName: 'allowance',
+            methodParameters: [accountAddress, uniswapRouterAddress],
+          },
+          {
+            reference: 'balanceOf',
+            methodName: 'balanceOf',
+            methodParameters: [accountAddress],
+          },
+        ],
+      });
+
+      contractCallForUserContexts.push({
+        reference: tempFarm.quoteToken.address,
+        contractAddress: tempFarm.quoteToken.address,
+        abi: eth20Abi,
+        calls: [
+          {
+            reference: 'allowance',
+            methodName: 'allowance',
+            methodParameters: [accountAddress, uniswapRouterAddress],
+          },
+          {
+            reference: 'balanceOf',
+            methodName: 'balanceOf',
+            methodParameters: [accountAddress],
+          },
+        ],
+      });
+
       const unformattedUserResults = await multicall.call(contractCallForUserContexts);
       const userResults: ContractCallReturnContext[] = Object.values(
         unformattedUserResults.results,
@@ -194,6 +231,10 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
       let tokenBalance = new BigNumber(0);
       let stakedBalance = new BigNumber(0);
       let earnings = new BigNumber(0);
+      let tokenBalance1 = new BigNumber(0);
+      let allowance1 = new BigNumber(0);
+      let tokenBalance2 = new BigNumber(0);
+      let allowance2 = new BigNumber(0);
       userResults.forEach(result => {
         if (result.originalContractCallContext.reference === lpAddress) {
           allowance = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
@@ -201,6 +242,12 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
         } else if (result.originalContractCallContext.reference === masterChefAddress) {
           stakedBalance = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
           earnings = new BigNumber(result.callsReturnContext[1].returnValues[0].hex);
+        } else if (result.originalContractCallContext.reference === tempFarm.token.address) {
+          allowance1 = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+          tokenBalance1 = new BigNumber(result.callsReturnContext[1].returnValues[0].hex);
+        } else if (result.originalContractCallContext.reference === tempFarm.quoteToken.address) {
+          allowance2 = new BigNumber(result.callsReturnContext[0].returnValues[0].hex);
+          tokenBalance2 = new BigNumber(result.callsReturnContext[1].returnValues[0].hex);
         }
       });
 
@@ -209,6 +256,10 @@ const getFarms = async ({ multicall, accountAddress }: GetFarmsInput): Promise<G
         tokenBalance,
         stakedBalance,
         earnings,
+        tokenBalance1,
+        allowance1,
+        tokenBalance2,
+        allowance2,
       };
     }
 

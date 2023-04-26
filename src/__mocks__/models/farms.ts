@@ -27,6 +27,10 @@ export const farms: Farm[] = [
       tokenBalance: new BigNumber(0),
       stakedBalance: new BigNumber(0),
       earnings: new BigNumber(0),
+      tokenBalance1: new BigNumber(0),
+      allowance1: new BigNumber(0),
+      tokenBalance2: new BigNumber(0),
+      allowance2: new BigNumber(0),
     },
   },
 
@@ -52,6 +56,10 @@ export const farms: Farm[] = [
       tokenBalance: new BigNumber(0),
       stakedBalance: new BigNumber(0),
       earnings: new BigNumber(0),
+      tokenBalance1: new BigNumber(0),
+      allowance1: new BigNumber(0),
+      tokenBalance2: new BigNumber(0),
+      allowance2: new BigNumber(0),
     },
   },
 ];
