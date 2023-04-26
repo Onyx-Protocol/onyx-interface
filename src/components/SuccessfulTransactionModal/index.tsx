@@ -43,14 +43,17 @@ export const SuccessfulTransactionModal: React.FC<SuccessfulTransactionModalProp
 
         <h3 css={styles.title}>{title}</h3>
 
-        <div css={styles.messageContainer}>
+        <div
+          css={styles.messageContainer}
+          style={{ flexDirection: amount?.token2 ? 'column' : 'row' }}
+        >
           {!!content && (
             <Typography variant="small1" component="p">
               {content}
             </Typography>
           )}
           {amount && (
-            <>
+            <div style={{ display: 'flex' }}>
               <div css={styles.amountContainer}>
                 {!amount.noDisplayTokenIcon && (
                   <TokenIcon token={amount.token} css={styles.amountTokenIcon} />
@@ -60,6 +63,7 @@ export const SuccessfulTransactionModal: React.FC<SuccessfulTransactionModalProp
                   {convertWeiToTokens({
                     valueWei: amount.valueWei,
                     token: amount.token,
+                    minimizeDecimals: !!amount?.token2,
                     returnInReadableFormat: true,
                   })}
                 </Typography>
@@ -75,12 +79,13 @@ export const SuccessfulTransactionModal: React.FC<SuccessfulTransactionModalProp
                     {convertWeiToTokens({
                       valueWei: amount.valueWei2,
                       token: amount.token2,
+                      minimizeDecimals: true,
                       returnInReadableFormat: true,
                     })}
                   </Typography>
                 </div>
               )}
-            </>
+            </div>
           )}
         </div>
 
