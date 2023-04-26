@@ -11,6 +11,7 @@ export interface AddLiquidityInput {
   token2: string;
   amountWei1: BigNumber;
   amountWei2: BigNumber;
+  ethFlag: string;
 }
 
 export type AddLiquidityOutput = TransactionReceipt;
@@ -22,19 +23,45 @@ const addLiquidity = async ({
   token2,
   amountWei1,
   amountWei2,
+  ethFlag,
 }: AddLiquidityInput): Promise<AddLiquidityOutput> => {
-  const resp = await uniswapRouterContract.methods
-    .addLiquidity(
-      token1,
-      token2,
-      amountWei1.toFixed(),
-      amountWei2.toFixed(),
-      0,
-      0,
-      fromAccountAddress,
-      Math.floor(Date.now() / 1000) + 600,
-    )
-    .send({ from: fromAccountAddress });
+  let resp;
+  if (ethFlag === 'token1') {
+    resp = await uniswapRouterContract.methods
+      .addLiquidityETH(
+        token2,
+        amountWei2.toFixed(),
+        0,
+        0,
+        fromAccountAddress,
+        Math.floor(Date.now() / 1000) + 600,
+      )
+      .send({ from: fromAccountAddress, value: amountWei1.toFixed() });
+  } else if (ethFlag === 'token2') {
+    resp = await uniswapRouterContract.methods
+      .addLiquidityETH(
+        token1,
+        amountWei1.toFixed(),
+        0,
+        0,
+        fromAccountAddress,
+        Math.floor(Date.now() / 1000) + 600,
+      )
+      .send({ from: fromAccountAddress, value: amountWei2.toFixed() });
+  } else {
+    resp = await uniswapRouterContract.methods
+      .addLiquidity(
+        token1,
+        token2,
+        amountWei1.toFixed(),
+        amountWei2.toFixed(),
+        0,
+        0,
+        fromAccountAddress,
+        Math.floor(Date.now() / 1000) + 600,
+      )
+      .send({ from: fromAccountAddress });
+  }
   return checkForVaiVaultTransactionError(resp);
 };
 

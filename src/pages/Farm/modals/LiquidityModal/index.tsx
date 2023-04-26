@@ -30,7 +30,11 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ farm, handleClose }) =>
 
   const { mutateAsync: addLiquidity, isLoading: isAddLiquidityLoading } = useAddLiquidity();
 
-  const handleAddLiquidity = async (amountWei1: BigNumber, amountWei2: BigNumber) => {
+  const handleAddLiquidity = async (
+    amountWei1: BigNumber,
+    amountWei2: BigNumber,
+    ethFlag: string,
+  ) => {
     // Send request to stake
     const res = await addLiquidity({
       fromAccountAddress: account?.address || '',
@@ -38,6 +42,7 @@ const LiquidityModal: React.FC<LiquidityModalProps> = ({ farm, handleClose }) =>
       token2: farm.quoteToken.address,
       amountWei1,
       amountWei2,
+      ethFlag,
     });
 
     // Close modal
