@@ -114,6 +114,10 @@ export { default as claimFarmReward } from './mutations/claimFarmReward';
 export * from './mutations/claimFarmReward';
 export { default as useClaimFarmReward } from './mutations/claimFarmReward/useClaimFarmReward';
 
+export { default as addLiquidity } from './mutations/addLiquidity';
+export * from './mutations/addLiquidity';
+export { default as useAddLiquidity } from './mutations/addLiquidity/useAddLiquidity';
+
 // Queries
 export { default as getAssetsInAccount } from './queries/getAssetsInAccount';
 export * from './queries/getAssetsInAccount';
@@ -284,3 +288,7 @@ export { default as useGetUniSwapPairs } from './queries/getUniSwapPairs/useGetU
 export { default as getFarms } from './queries/getFarms';
 export * from './queries/getFarms';
 export { default as useGetFarms } from './queries/getFarms/useGetFarms';
+
+export { default as getUniswapOutAmount } from './queries/getUniswapOutAmount';
+export * from './queries/getUniswapOutAmount';
+export { default as useGetUniswapOutAmount } from './queries/getUniswapOutAmount/useGetUniswapOutAmount';

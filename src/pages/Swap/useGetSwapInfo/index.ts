@@ -50,11 +50,12 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
     // as many toTokens as possible)
     if (
       getUniSwapPairsData?.pairs &&
+      getUniSwapPairsData?.pairs.length > 0 &&
       input.direction === 'exactAmountIn' &&
       !!input.fromTokenAmountTokens
     ) {
       const fromTokenAmountWei = convertTokensToWei({
-        value: new BigNumber(input.fromTokenAmountTokens),
+        value: new BigNumber(input.fromTokenAmountTokens).dp(wrappedFromToken.decimals),
         token: wrappedFromToken,
       });
 
@@ -65,7 +66,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
           wrappedFromToken.decimals,
           wrappedFromToken.symbol,
         ),
-        fromTokenAmountWei.toFixed(),
+        fromTokenAmountWei.dp(wrappedFromToken.decimals).toFixed(),
       );
 
       const currencyOut = new PSToken(
@@ -93,6 +94,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
     // a fixed amount of toTokens)
     if (
       getUniSwapPairsData?.pairs &&
+      getUniSwapPairsData?.pairs.length > 0 &&
       input.direction === 'exactAmountOut' &&
       !!input.toTokenAmountTokens
     ) {
@@ -104,7 +106,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
       );
 
       const toTokenAmountWei = convertTokensToWei({
-        value: new BigNumber(input.toTokenAmountTokens),
+        value: new BigNumber(input.toTokenAmountTokens).dp(wrappedToToken.decimals),
         token: wrappedToToken,
       });
 
