@@ -6,7 +6,7 @@ export const API_ENDPOINT_URLS = {
 };
 
 export const API_GOV_ENDPOINT_URLS = {
-  [EthChainId.MAINNET]: 'https://govapi.chainprotocolsvr.net',
+  [EthChainId.MAINNET]: 'https://govapi.onyx.org',
   [EthChainId.TESTNET]: 'https://testapi.onyx.org/gov',
 };
 
