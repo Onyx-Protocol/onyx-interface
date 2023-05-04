@@ -233,11 +233,15 @@ export interface MarketSnapshot {
 }
 
 export type TransactionEvent =
+  | 'Approval'
   | 'Supply'
   | 'Redeem'
   | 'Borrow'
   | 'RepayBorrow'
   | 'LiquidateBorrow'
+  | 'Transfer'
+  | 'ReservesAdded'
+  | 'ReservesReduced'
   | 'Stake'
   | 'Withdraw'
   | 'Claim'

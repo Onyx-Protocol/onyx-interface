@@ -40,12 +40,15 @@ export const Filters: React.FC<FilterProps> = ({
   const styles = useStyles();
   const selectOptions = [
     { label: t('history.all'), value: 'All' },
+    { label: t('history.approval'), value: 'Approval' },
     { label: t('history.supply'), value: 'Supply' },
     { label: t('history.redeem'), value: 'Redeem' },
     { label: t('history.borrow'), value: 'Borrow' },
     { label: t('history.repayBorrow'), value: 'Repay' },
-    { label: t('history.liquidateBorrow'), value: 'Liquidate Borrow' },
-    // { label: t('history.transfer'), value: 'Transfer' },
+    { label: t('history.liquidateBorrow'), value: 'LiquidateBorrow' },
+    { label: t('history.transfer'), value: 'Transfer' },
+    { label: t('history.reservesAdded'), value: 'ReservesAdded' },
+    { label: t('history.reservesReduced'), value: 'ReservesReduced' },
     { label: t('history.stake'), value: 'Stake' },
     { label: t('history.withdraw'), value: 'Withdraw' },
     { label: t('history.claim'), value: 'Claim' },
