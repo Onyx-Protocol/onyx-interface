@@ -52,12 +52,15 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
 
   const eventTranslationKeys = {
     All: t('history.all'),
+    Approval: t('history.approval'),
     Supply: t('history.supply'),
     Redeem: t('history.redeem'),
     Borrow: t('history.borrow'),
     RepayBorrow: t('history.repayBorrow'),
     LiquidateBorrow: t('history.liquidateBorrow'),
-    // Transfer: t('history.transfer'),
+    Transfer: t('history.transfer'),
+    ReservesAdded: t('history.reservesAdded'),
+    ReservesReduced: t('history.reservesReduced'),
     Stake: t('history.stake'),
     Withdraw: t('history.withdraw'),
     Claim: t('history.claim'),
