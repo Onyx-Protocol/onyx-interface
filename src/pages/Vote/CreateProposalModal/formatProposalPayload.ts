@@ -37,10 +37,10 @@ const formatProposalPayload = (data: FormValues) => {
   data.actions.forEach(action => {
     payload.targets.push(action.target);
     payload.values.push(action.value ? action.value : '0');
-    payload.signatures.push(action.signature);
+    payload.signatures.push(action.signature.trim());
 
     if (action.callData !== undefined) {
-      payload.callDatas.push(encodeCallData(action.signature, action.callData));
+      payload.callDatas.push(encodeCallData(action.signature.trim(), action.callData));
     }
   });
 
