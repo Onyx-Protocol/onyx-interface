@@ -94,7 +94,7 @@ const LiquidationForm = ({
   const punkDataContract = usePunkDataContract();
 
   useEffect(() => {
-    if (token?.market?.underlyingDecimals === 0 && oTokenContract) {
+    if (token?.market?.underlyingDecimals !== 0 && oTokenContract) {
       oTokenContract.methods
         .balanceOfUnderlying(userId)
         .call()
