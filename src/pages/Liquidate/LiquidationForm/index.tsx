@@ -215,7 +215,7 @@ const LiquidationForm = ({
               ))}
             </div>
           </div>
-          {selectedIds.length !== 0 && current && (
+          {current && (
             <div className="tokenlist">
               {(availables || []).map((repayToken: any) => (
                 <div
@@ -248,7 +248,7 @@ const LiquidationForm = ({
               ))}
             </div>
           )}
-          {selectedIds.length !== 0 && current && (
+          {current && (
             <div>
               Required{' '}
               {
@@ -273,7 +273,6 @@ const LiquidationForm = ({
                 disabled={
                   isLoading ||
                   !token.market ||
-                  !selectedIds.length ||
                   form.amount >
                     new BigNumber(token.oTokenBalance).times(token.market.exchangeRate).toNumber()
                 }
