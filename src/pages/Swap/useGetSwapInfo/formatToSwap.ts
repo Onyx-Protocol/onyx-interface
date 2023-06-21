@@ -14,7 +14,7 @@ const formatToSwap = ({ trade, input }: FormatToSwapInput): FormatToSwapOutput =
   const routePath = trade.route.path.map(token => token.address);
 
   if (input.direction === 'exactAmountIn') {
-    const swap: Swap = {
+    let swap: Swap = {
       fromToken: input.fromToken,
       toToken: input.toToken,
       direction: 'exactAmountIn',
@@ -35,12 +35,11 @@ const formatToSwap = ({ trade, input }: FormatToSwapInput): FormatToSwapOutput =
         input.toToken.decimals,
       ),
     };
-
     return swap;
   }
 
   // "exactAmountOut" case
-  const swap: Swap = {
+  let swap: Swap = {
     fromToken: input.fromToken,
     toToken: input.toToken,
     direction: 'exactAmountOut',
@@ -61,7 +60,6 @@ const formatToSwap = ({ trade, input }: FormatToSwapInput): FormatToSwapOutput =
       input.toToken.decimals,
     ),
   };
-
   return swap;
 };
 

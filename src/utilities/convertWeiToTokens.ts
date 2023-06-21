@@ -22,9 +22,19 @@ export function convertWeiToTokens<T extends boolean | undefined = false>({
   addSymbol = true,
   shortenLargeValue = false,
 }: ConvertWeiToTokensInput<T>): ConvertWeiToTokensOutput<T> {
-  const valueTokens = valueWei
-    .dividedBy(new BigNumber(10).pow(token.decimals))
-    .decimalPlaces(token.decimals);
+  let valueTokens;
+
+  console.log(token.symbol);
+  if(token.symbol === "USDT")
+  {
+    valueTokens = valueWei
+      .multipliedBy(new BigNumber(10).pow( token.decimals))
+      .decimalPlaces( token.decimals);
+  } else {
+    valueTokens = valueWei
+      .dividedBy(new BigNumber(10).pow(token.decimals))
+      .decimalPlaces(token.decimals);
+  }
 
   return (
     returnInReadableFormat
