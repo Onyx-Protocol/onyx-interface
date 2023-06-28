@@ -36,3 +36,4 @@ export { default as formatToProposal } from './formatToProposal';
 export { default as formatToStakeHistory } from './formatToStakeHistory';
 export { default as getAccountsSubGraph } from './getAccountsSubGraph';
 export { default as getAccountSubGraph } from './getAccountSubGraph';
+export * from './RPCErrorMessage';
