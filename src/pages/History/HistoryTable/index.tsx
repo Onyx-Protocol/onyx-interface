@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { Typography } from '@mui/material';
+import BigNumber from 'bignumber.js';
 import { EllipseAddress, Table, TableProps, TokenIcon } from 'components';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'translation';
-import { Transaction } from 'types';
 import {
   convertWeiToTokens,
   generateEthScanUrl,
@@ -13,15 +13,16 @@ import {
 
 import PLACEHOLDER_KEY from 'constants/placeholderKey';
 import { TOKENS } from 'constants/tokens';
+import { HistoryItem } from 'utilities/getHistorySubGraph';
 
 import { useStyles } from './styles';
 
 export interface HistoryTableProps {
-  transactions: Transaction[];
+  historyItems: HistoryItem[];
   isFetching: boolean;
 }
 
-export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFetching }) => {
+export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFetching }) => {
   const { t } = useTranslation();
   const styles = useStyles();
 
@@ -50,36 +51,36 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
     return newColumns;
   }, [columns]);
 
-  const eventTranslationKeys = {
-    All: t('history.all'),
-    Approval: t('history.approval'),
-    Supply: t('history.supply'),
-    Redeem: t('history.redeem'),
-    Borrow: t('history.borrow'),
-    RepayBorrow: t('history.repayBorrow'),
-    LiquidateBorrow: t('history.liquidateBorrow'),
-    Transfer: t('history.transfer'),
-    ReservesAdded: t('history.reservesAdded'),
-    ReservesReduced: t('history.reservesReduced'),
-    Stake: t('history.stake'),
-    Withdraw: t('history.withdraw'),
-    Claim: t('history.claim'),
-    Propose: t('history.propose'),
-    Vote: t('history.vote'),
+  const typeTranslationKeys = {
+    all: t('history.all'),
+    approval: t('history.approval'),
+    supply: t('history.supply'),
+    redeem: t('history.redeem'),
+    borrow: t('history.borrow'),
+    repayBorrow: t('history.repayBorrow'),
+    liquidateBorrow: t('history.liquidateBorrow'),
+    transfer: t('history.transfer'),
+    reservesAdded: t('history.reservesAdded'),
+    reservesReduced: t('history.reservesReduced'),
+    stake: t('history.stake'),
+    withdraw: t('history.withdraw'),
+    claim: t('history.claim'),
+    propose: t('history.propose'),
+    vote: t('history.vote'),
   };
 
   // Format transactions to rows
   const rows: TableProps['data'] = useMemo(
     () =>
-      transactions.map(txn => {
-        const oToken = getOTokenByAddress(txn.oTokenAddress);
+      historyItems.map(historyItem => {
+        const oToken = getOTokenByAddress(historyItem.to);
         const token = (oToken && unsafelyGetToken(oToken.id)) || TOKENS.xcn;
 
         return [
           {
             key: 'id',
-            render: () => <Typography variant="small2">{txn.id}</Typography>,
-            value: txn.id,
+            render: () => <Typography variant="small2">{historyItem.id}</Typography>,
+            value: historyItem.id,
             align: 'left',
           },
           {
@@ -89,21 +90,21 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
                 <div css={[styles.whiteText, styles.table, styles.typeCol]}>
                   <TokenIcon token={token} css={styles.icon} />
                   <Typography variant="small2" color="textPrimary">
-                    {eventTranslationKeys[txn.event]}
+                    {typeTranslationKeys[historyItem.type]}
                   </Typography>
                 </div>
                 <div css={[styles.cards, styles.cardTitle]}>
                   <div css={styles.typeCol}>
                     <TokenIcon token={token} css={styles.icon} />
                     <Typography variant="small2" color="textPrimary">
-                      {txn.event}
+                      {historyItem.type.charAt(0).toUpperCase() + historyItem.type.slice(1)}
                     </Typography>
                   </div>
-                  <Typography variant="small2">{txn.id}</Typography>
+                  <Typography variant="small2">{historyItem.id}</Typography>
                 </div>
               </>
             ),
-            value: txn.event,
+            value: historyItem.type,
             align: 'left',
           },
           {
@@ -111,26 +112,26 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
             render: () => (
               <Typography
                 component="a"
-                href={generateEthScanUrl(txn.txHash, 'tx')}
+                href={generateEthScanUrl(historyItem.transactionHash, 'tx')}
                 target="_blank"
                 rel="noreferrer"
                 variant="small2"
                 css={styles.txnHashText}
               >
-                <EllipseAddress address={txn.txHash} />
+                <EllipseAddress address={historyItem.transactionHash} />
               </Typography>
             ),
-            value: txn.txHash,
+            value: historyItem.transactionHash,
             align: 'left',
           },
           {
             key: 'block',
             render: () => (
               <Typography variant="small2" color="textPrimary">
-                {txn.blockNumber}
+                {historyItem.blockNumber}
               </Typography>
             ),
-            value: txn.blockNumber,
+            value: historyItem.blockNumber,
             align: 'left',
           },
           {
@@ -138,36 +139,36 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
             render: () => (
               <Typography
                 component="a"
-                href={generateEthScanUrl(txn.from, 'address')}
+                href={generateEthScanUrl(historyItem.from, 'address')}
                 target="_blank"
                 rel="noreferrer"
                 variant="small2"
                 css={styles.txnHashText}
               >
-                <EllipseAddress address={txn.from} />
+                <EllipseAddress address={historyItem.from} />
               </Typography>
             ),
-            value: txn.from,
+            value: historyItem.from,
             align: 'left',
           },
           {
             key: 'to',
             render: () =>
-              txn.to ? (
+              historyItem.to ? (
                 <Typography
                   component="a"
-                  href={generateEthScanUrl(txn.to, 'address')}
+                  href={generateEthScanUrl(historyItem.to, 'address')}
                   target="_blank"
                   rel="noreferrer"
                   variant="small2"
                   css={styles.txnHashText}
                 >
-                  <EllipseAddress address={txn.to} />
+                  <EllipseAddress address={historyItem.to} />
                 </Typography>
               ) : (
                 PLACEHOLDER_KEY
               ),
-            value: txn.to,
+            value: historyItem.to,
             align: 'left',
           },
           {
@@ -175,7 +176,7 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
             render: () => (
               <Typography variant="small2" css={styles.whiteText}>
                 {convertWeiToTokens({
-                  valueWei: txn.amountWei,
+                  valueWei: new BigNumber(historyItem.amount),
                   token,
                   returnInReadableFormat: true,
                   minimizeDecimals: true,
@@ -183,22 +184,22 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
                 })}
               </Typography>
             ),
-            value: txn.amountWei.toFixed(),
+            value: Number(historyItem.amount).toFixed(),
             align: 'right',
           },
           {
             key: 'created',
             render: () => (
               <Typography variant="small2" css={styles.whiteText}>
-                {t('history.createdAt', { date: txn.createdAt })}
+                {t('history.createdAt', { date: new Date(+historyItem.blockTimestamp * 1000) })}
               </Typography>
             ),
-            value: txn.createdAt.getTime(),
+            value: new Date(+historyItem.blockTimestamp * 1000).getTime(),
             align: 'right',
           },
         ];
       }),
-    [JSON.stringify(transactions)],
+    [JSON.stringify(historyItems)],
   );
 
   return (
@@ -219,8 +220,8 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ transactions, isFe
   );
 };
 
-const HistoryTable: React.FC<HistoryTableProps> = ({ transactions, isFetching }) => (
-  <HistoryTableUi transactions={transactions} isFetching={isFetching} />
+const HistoryTable: React.FC<HistoryTableProps> = ({ historyItems, isFetching }) => (
+  <HistoryTableUi historyItems={historyItems} isFetching={isFetching} />
 );
 
 export default HistoryTable;

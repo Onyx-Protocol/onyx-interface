@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { Pagination } from 'components';
-import React, { useContext, useState } from 'react';
-import { Transaction, TransactionEvent } from 'types';
+import config from 'config';
+import React, { useContext, useEffect, useState } from 'react';
+import { getHistorySubGraph } from 'utilities';
 
-import { useGetTransactions } from 'clients/api';
 import { AuthContext } from 'context/AuthContext';
+import { Filter, HistoryItem, HistoryItemType } from 'utilities/getHistorySubGraph';
 
 import Filters, { ALL_VALUE, FilterProps } from './Filters';
 import HistoryTable from './HistoryTable';
 
 interface HistoryUiProps extends FilterProps {
-  transactions: Transaction[];
+  historyItems: HistoryItem[];
   isFetching: boolean;
   total: number | undefined;
   limit: number | undefined;
@@ -18,13 +19,13 @@ interface HistoryUiProps extends FilterProps {
 }
 
 export const HistoryUi: React.FC<HistoryUiProps> = ({
-  eventType,
-  setEventType,
+  historyItemType,
+  setHistoryItemType,
   asset,
   setAsset,
   showOnlyMyTxns,
   setShowOnlyMyTxns,
-  transactions,
+  historyItems,
   walletConnected,
   isFetching,
   total,
@@ -33,15 +34,15 @@ export const HistoryUi: React.FC<HistoryUiProps> = ({
 }) => (
   <div style={{ marginBottom: '20px' }}>
     <Filters
-      eventType={eventType}
-      setEventType={setEventType}
+      historyItemType={historyItemType}
+      setHistoryItemType={setHistoryItemType}
       asset={asset}
       setAsset={setAsset}
       showOnlyMyTxns={showOnlyMyTxns}
       setShowOnlyMyTxns={setShowOnlyMyTxns}
       walletConnected={walletConnected}
     />
-    <HistoryTable transactions={transactions} isFetching={isFetching} />
+    <HistoryTable historyItems={historyItems} isFetching={isFetching} />
     {total ? (
       <Pagination
         itemsCount={total}
@@ -58,30 +59,60 @@ export const HistoryUi: React.FC<HistoryUiProps> = ({
 const History: React.FC = () => {
   const { account } = useContext(AuthContext);
   const accountAddress = account?.address;
+  const limit = 25;
   const [currentPage, setCurrentPage] = useState(0);
-  const [eventType, setEventType] = useState<TransactionEvent | typeof ALL_VALUE>(ALL_VALUE);
+  const [historyItemType, setHistoryItemType] = useState<HistoryItemType | typeof ALL_VALUE>(
+    ALL_VALUE,
+  );
   const [asset, setAsset] = useState(ALL_VALUE);
   const [showOnlyMyTxns, setShowOnlyMyTxns] = useState(false);
-  const { data: { transactions, total, limit } = { transactions: [] }, isFetching } =
-    useGetTransactions({
-      page: currentPage,
-      address: showOnlyMyTxns ? accountAddress : undefined,
-      event: eventType !== ALL_VALUE ? eventType : undefined,
-      asset: asset !== ALL_VALUE ? asset : undefined,
-    });
+  const [historyItems, setHistoryItems] = useState<HistoryItem[]>([]);
+  const [isFetching, setIsFetching] = useState(false);
+
+  const fetchHistorySubGraph = async () => {
+    setIsFetching(true);
+    const filter: Filter = {};
+
+    if (asset !== ALL_VALUE) {
+      filter.to = asset;
+    }
+
+    if (historyItemType !== ALL_VALUE) {
+      filter.type = historyItemType;
+    }
+    const historyItemsFetched = await getHistorySubGraph(
+      config.chainId,
+      filter,
+      {
+        direction: 'desc',
+        field: 'blockTimestamp',
+      },
+      {
+        limit,
+        offset: currentPage * limit,
+      },
+    );
+
+    setHistoryItems(historyItemsFetched);
+    setIsFetching(false);
+  };
+
+  useEffect(() => {
+    fetchHistorySubGraph();
+  }, [asset, historyItemType, currentPage]);
 
   return (
     <HistoryUi
-      eventType={eventType}
-      setEventType={setEventType}
+      historyItemType={historyItemType}
+      setHistoryItemType={setHistoryItemType}
       asset={asset}
       setAsset={setAsset}
       showOnlyMyTxns={showOnlyMyTxns}
       setShowOnlyMyTxns={setShowOnlyMyTxns}
-      transactions={transactions}
+      historyItems={historyItems}
       walletConnected={!!accountAddress}
       isFetching={isFetching}
-      total={total}
+      total={historyItems.length}
       limit={limit}
       setCurrentPage={setCurrentPage}
     />

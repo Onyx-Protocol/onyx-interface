@@ -16,8 +16,8 @@ export default {
 
 export const Default = () => (
   <Filters
-    eventType={ALL_VALUE}
-    setEventType={noop}
+    historyItemType={ALL_VALUE}
+    setHistoryItemType={noop}
     asset=""
     setAsset={noop}
     showOnlyMyTxns={false}
