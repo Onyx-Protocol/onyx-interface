@@ -2,10 +2,10 @@
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { Button } from 'components';
+import config from 'config';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
 
-import config from 'config';
 import PunkImg from 'assets/img/punk1.png';
 import {
   useBurnWPunks,
@@ -17,7 +17,7 @@ import {
   useRegisterProxy,
 } from 'clients/api';
 import { usePunkDataContract } from 'clients/contracts/hooks';
-import { AuthContext } from 'context/AuthContext';
+import { AuthContext, AuthContextValue } from 'context/AuthContext';
 import useSuccessfulTransactionModal from 'hooks/useSuccessfulTransactionModal';
 
 import { useStyles } from './styles';
@@ -27,7 +27,7 @@ export const ZERO = '0x0000000000000000000000000000000000000000';
 const Wpunks: React.FC = () => {
   const styles = useStyles();
   const { t } = useTranslation();
-  const { account }: any = useContext(AuthContext);
+  const { account }: AuthContextValue = useContext(AuthContext);
 
   const punkDataContract = usePunkDataContract();
 
@@ -51,11 +51,11 @@ const Wpunks: React.FC = () => {
 
   const { data: userProxyAddress } = useGetProxies({ accountAddress: account?.address || '' });
 
-  const { data: punkOwners = {}, isLoading: ownPunkIdsLoading }: any = useGetOwnedPunkIds({
+  const { data: punkOwners = {}, isLoading: ownPunkIdsLoading } = useGetOwnedPunkIds({
     accountAddress: config.chainId === 5 ? account?.address || '' : userProxyAddress,
   });
 
-  const { data: ownedWPunksIds = [], isLoading: ownWPunksIdsLoading }: any = useGetOwnedWPunksIds({
+  const { data: ownedWPunksIds = [], isLoading: ownWPunksIdsLoading } = useGetOwnedWPunksIds({
     accountAddress: account?.address || '',
   });
   const ownedPunkIds = punkOwners[account?.address || ''] || [];
@@ -95,7 +95,7 @@ const Wpunks: React.FC = () => {
     }
   }, [ownPunkIdsLoading, ownWPunksIdsLoading]);
 
-  const handleDeposit = async (id: any) => {
+  const handleDeposit = async (id: string) => {
     if (!userProxyAddress || userProxyAddress === ZERO || !account?.address) return;
     setSelectedId(id);
     const res = await depositPunk({ userProxyAddress, id });
@@ -109,7 +109,7 @@ const Wpunks: React.FC = () => {
     }
   };
 
-  const handleMint = async (id: any) => {
+  const handleMint = async (id: string) => {
     if (!account?.address) {
       return;
     }
@@ -125,7 +125,7 @@ const Wpunks: React.FC = () => {
     }
   };
 
-  const handleBurn = async (id: any) => {
+  const handleBurn = async (id: string) => {
     if (!account?.address) {
       return;
     }

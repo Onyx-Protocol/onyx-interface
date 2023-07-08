@@ -5,6 +5,7 @@ import { Toggle } from 'components';
 import config from 'config';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
+import { SubgraphAccount, SubgraphToken } from 'types';
 import { getAccountsSubGraph } from 'utilities';
 
 import { useGetMarkets } from 'clients/api';
@@ -22,7 +23,7 @@ const Liquidate: React.FC = () => {
   const { data: { markets } = { markets: [], dailyXcnWei: undefined } } = useGetMarkets({
     placeholderData: { markets: [], dailyXcnWei: undefined },
   });
-  const [users, setUsers] = useState<any>([]);
+  const [users, setUsers] = useState<SubgraphAccount[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(0);
   const [isLiquidityOnly, setIsLiquidityOnly] = useState(false);
@@ -45,7 +46,7 @@ const Liquidate: React.FC = () => {
     setIsFetching(true);
   };
 
-  const getTokenPrice = (token: any) =>
+  const getTokenPrice = (token: SubgraphToken) =>
     (markets || []).find(market => market.address === token.market.id)?.tokenPrice ||
     new BigNumber(0);
 
@@ -59,9 +60,9 @@ const Liquidate: React.FC = () => {
         .map(user => {
           let totalCash = new BigNumber(0);
           let totalBorrow = new BigNumber(0);
-          let minSupply: any; /* for NFT */
-          let maxBorrow: any; /* for non-NFT */
-          user.tokens.forEach((token: any) => {
+          let minSupply: number | undefined; /* for NFT */
+          let maxBorrow: number | undefined; /* for non-NFT */
+          user.tokens.forEach((token: SubgraphToken) => {
             const tokenPrice = getTokenPrice(token);
             if (token.enteredMarket) {
               totalCash = totalCash.plus(
