@@ -28,7 +28,6 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
 
   const columns = useMemo(
     () => [
-      { key: 'id', label: t('history.columns.id'), orderable: true, align: 'left' },
       { key: 'type', label: t('history.columns.type'), orderable: true, align: 'left' },
       { key: 'txnHash', label: t('history.columns.txnHash'), orderable: true, align: 'left' },
       { key: 'block', label: t('history.columns.block'), orderable: true, align: 'left' },
@@ -77,12 +76,6 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
         const token = (oToken && unsafelyGetToken(oToken.id)) || TOKENS.xcn;
 
         return [
-          {
-            key: 'id',
-            render: () => <Typography variant="small2">{historyItem.id}</Typography>,
-            value: historyItem.id,
-            align: 'left',
-          },
           {
             key: 'type',
             render: () => (

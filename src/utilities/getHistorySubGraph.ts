@@ -70,7 +70,12 @@ const getHistorySubGraph = (
               ${
                 filter && Object.keys(filter).length
                   ? `where: { ${Object.keys(filter)
-                      .map(k => `${k}: ${filter[k as keyof typeof filter]}`)
+                      .map(
+                        k =>
+                          `${k}: ${
+                            k === 'type' ? filter.type : `"${filter[k as keyof typeof filter]}"`
+                          }`,
+                      )
                       .join(', ')} }`
                   : ''
               }

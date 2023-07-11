@@ -80,6 +80,11 @@ const History: React.FC = () => {
     if (historyItemType !== ALL_VALUE) {
       filter.type = historyItemType;
     }
+
+    if (showOnlyMyTxns) {
+      filter.from = accountAddress;
+    }
+
     const historyItemsFetched = await getHistorySubGraph(
       config.chainId,
       filter,
@@ -99,7 +104,7 @@ const History: React.FC = () => {
 
   useEffect(() => {
     fetchHistorySubGraph();
-  }, [asset, historyItemType, currentPage]);
+  }, [asset, historyItemType, currentPage, showOnlyMyTxns]);
 
   return (
     <HistoryUi

@@ -66,7 +66,7 @@ export const Filters: React.FC<FilterProps> = ({
 
       return [...assets, newAsset];
     },
-    [{ label: t('history.all'), value: 'All' }],
+    [{ label: t('history.all'), value: 'all' }],
   );
 
   return (
