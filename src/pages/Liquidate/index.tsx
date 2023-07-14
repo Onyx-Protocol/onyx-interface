@@ -5,7 +5,7 @@ import { Toggle } from 'components';
 import config from 'config';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
-import { SubgraphAccount, SubgraphToken } from 'types';
+import { AccountInfo, SubgraphToken } from 'types';
 import { getAccountsSubGraph } from 'utilities';
 
 import { useGetMarkets } from 'clients/api';
@@ -23,7 +23,7 @@ const Liquidate: React.FC = () => {
   const { data: { markets } = { markets: [], dailyXcnWei: undefined } } = useGetMarkets({
     placeholderData: { markets: [], dailyXcnWei: undefined },
   });
-  const [users, setUsers] = useState<SubgraphAccount[]>([]);
+  const [users, setUsers] = useState<AccountInfo[]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(0);
   const [isLiquidityOnly, setIsLiquidityOnly] = useState(false);

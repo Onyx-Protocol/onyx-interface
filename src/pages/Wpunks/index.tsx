@@ -52,7 +52,7 @@ const Wpunks: React.FC = () => {
   const { data: userProxyAddress } = useGetProxies({ accountAddress: account?.address || '' });
 
   const { data: punkOwners = {}, isLoading: ownPunkIdsLoading } = useGetOwnedPunkIds({
-    accountAddress: config.chainId === 5 ? account?.address || '' : userProxyAddress,
+    accountAddress: (config.chainId === 5 ? account?.address : userProxyAddress) || '',
   });
 
   const { data: ownedWPunksIds = [], isLoading: ownWPunksIdsLoading } = useGetOwnedWPunksIds({
@@ -64,7 +64,7 @@ const Wpunks: React.FC = () => {
     ownedPunkIds.length > 0 || ownedProxyPunkIds.length > 0 || ownedWPunksIds.length > 0,
   );
 
-  const [images, setImages] = useState<any>({});
+  const [images, setImages] = useState<Record<string, string>>({});
   const [selectedId, setSelectedId] = useState('');
 
   useEffect(() => {
@@ -166,7 +166,7 @@ const Wpunks: React.FC = () => {
         </Typography>
         {!loaded && <p>Loading ...</p>}
         <div css={styles.punkList}>
-          {(ownedPunkIds || []).map((id: any) => (
+          {(ownedPunkIds || []).map(id => (
             <div css={styles.nftItem} key={id}>
               {images[id] ? (
                 <div css={styles.nftImg} dangerouslySetInnerHTML={{ __html: images[id] }} />
@@ -209,7 +209,7 @@ const Wpunks: React.FC = () => {
           </>
         ) : (
           <div css={styles.punkList}>
-            {(ownedWPunksIds || []).map((id: any) => (
+            {(ownedWPunksIds || []).map(id => (
               <div css={styles.nftItem} key={id}>
                 {images[id] ? (
                   <div css={styles.nftImg} dangerouslySetInnerHTML={{ __html: images[id] }} />
@@ -225,7 +225,7 @@ const Wpunks: React.FC = () => {
                 </Button>
               </div>
             ))}
-            {(ownedProxyPunkIds || []).map((id: any) => (
+            {(ownedProxyPunkIds || []).map(id => (
               <div css={styles.nftItem} key={id}>
                 {images[id] ? (
                   <div css={styles.nftImg} dangerouslySetInnerHTML={{ __html: images[id] }} />

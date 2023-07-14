@@ -42,7 +42,7 @@ const useTokenApproval = ({
     },
   );
 
-  const { data: getNftAllowanceData, isLoading: isNftApprovalStatusLoading }: any =
+  const { data: getNftAllowanceData, isLoading: isNftApprovalStatusLoading } =
     useGetIsApprovedForAll(
       {
         accountAddress: accountAddress || '',

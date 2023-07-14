@@ -380,3 +380,17 @@ export type PSTokenCombination = [PSToken, PSToken];
 export interface UserInfo extends SubgraphAccount {
   totalBorrow: number;
 }
+
+export interface AccountInfo extends SubgraphAccount {
+  borrowPercent: number;
+  minSupply?: number;
+  maxBorrow?: number;
+  totalBorrow: BigNumber;
+}
+
+export interface Nft {
+  index: number;
+  collectionTokenId: string;
+  collectionTokenContract?: string;
+  imageUrl: string;
+}

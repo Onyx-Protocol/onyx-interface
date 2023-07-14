@@ -8,7 +8,17 @@ const liquidateWithSingleRepay = ({
   seizeIndexes,
   isClaimOToken,
   accountAddress,
-}: any): Promise<any> => {
+}: {
+  liquidationProxyContract: any;
+  isNativeToken: boolean;
+  borrower: string;
+  oTokenCollateralAddress: string;
+  oTokenRepayAddress: string;
+  repayAmount: string;
+  seizeIndexes: (string | number)[];
+  isClaimOToken: boolean;
+  accountAddress: string;
+}) => {
   if (isNativeToken) {
     return liquidationProxyContract.methods
       .liquidateWithSingleRepayV2(

@@ -1,4 +1,10 @@
-const getProxies = async ({ WPunksContract, accountAddress }: any): Promise<string> => {
+const getProxies = async ({
+  WPunksContract,
+  accountAddress,
+}: {
+  WPunksContract: any;
+  accountAddress: string;
+}): Promise<string> => {
   const response = await WPunksContract.methods['proxyInfo(address)'](accountAddress).call();
 
   return response;

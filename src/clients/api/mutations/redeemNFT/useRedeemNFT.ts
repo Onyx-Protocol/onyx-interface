@@ -15,7 +15,7 @@ const useRedeemNFT = (
 
   return useMutation(
     FunctionKey.REDEEM_NFT,
-    (params: any) =>
+    (params: { tokenIds: string[] }) =>
       redeemNFT({
         tokenContract: tokenContract as OEth20,
         accountAddress,

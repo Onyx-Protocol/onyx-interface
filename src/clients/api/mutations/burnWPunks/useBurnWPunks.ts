@@ -10,8 +10,8 @@ const useBurnWPunks = ({ accountAddress }: { accountAddress: string }, options?:
 
   return useMutation(
     FunctionKey.BURN_WPUNKS,
-    (params: any) =>
-    burnWPunks({
+    (params: { id: string }) =>
+      burnWPunks({
         WPunksContract,
         accountAddress,
         ...params,

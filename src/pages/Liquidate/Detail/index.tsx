@@ -7,7 +7,7 @@ import { Button } from 'components';
 import config from 'config';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
-import { SubgraphMarket, SubgraphToken, Token, UserInfo } from 'types';
+import { MarketWithBorrowBalance, SubgraphMarket, SubgraphToken, Token, UserInfo } from 'types';
 import {
   getAccountSubGraph,
   getContractAddress,
@@ -40,7 +40,11 @@ const LiquidateDetail = ({
   match: {
     params: { userId },
   },
-}: any) => {
+}: {
+  match: {
+    params: { userId: string };
+  };
+}) => {
   const styles = useStyles();
   const { t } = useTranslation();
 
@@ -55,9 +59,9 @@ const LiquidateDetail = ({
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>({});
   const [borrowPercent, setBorrowPercent] = useState(0);
   const [supplyInfo, setSupplyInfo] = useState<SubgraphToken>();
-  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
-  const [liquidationToken, setLiquidationToken] = useState<SubgraphMarket>();
+  const [liquidationToken, setLiquidationToken] = useState<MarketWithBorrowBalance>();
   const [liquidationTokens, setLiquidationTokens] = useState<Record<string, string[]>>({});
   const { mutateAsync: approveTokenMutation, isLoading: isApproveTokenLoading } = useApproveToken({
     token: getTokenByAddress(
@@ -160,7 +164,10 @@ const LiquidateDetail = ({
     }
   }, [userId, markets]);
 
-  const calcRepayAmount = (amount: any, selectedIdsTemp: any) => {
+  const calcRepayAmount = (
+    amount: number,
+    selectedIdsTemp: number[],
+  ): Promise<{ 0: string; 1: string; 2: string }> => {
     setSelectedIds(selectedIdsTemp);
     const comptrollerContract = getComptrollerContract(web3);
     if (!supplyInfo || !liquidationToken || !comptrollerContract || amount === 0) {
@@ -186,7 +193,7 @@ const LiquidateDetail = ({
       .call();
   };
 
-  const handleLiquidation = (form: any) => {
+  const handleLiquidation = (form: { amount: number; repay: string }) => {
     const accountAddress = account?.address || '';
 
     if (!accountAddress) {
@@ -280,7 +287,7 @@ const LiquidateDetail = ({
                         key={token.id}
                         token={token}
                         markets={markets || []}
-                        selectedToken={supplyInfo || {}}
+                        selectedToken={supplyInfo}
                         onSelectSupplyToken={handleSelectSupplyToken}
                       />
                     ))}

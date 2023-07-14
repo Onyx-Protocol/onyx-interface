@@ -6,6 +6,10 @@ export interface SubgraphMarket {
   underlyingDecimals: number;
 }
 
+export interface MarketWithBorrowBalance extends SubgraphMarket {
+  storedBorrowBalance?: string;
+}
+
 export interface SubgraphToken {
   id: string;
   market: SubgraphMarket;

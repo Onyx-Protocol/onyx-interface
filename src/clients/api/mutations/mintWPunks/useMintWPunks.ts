@@ -10,7 +10,7 @@ const useMintWPunks = ({ accountAddress }: { accountAddress: string }, options?:
 
   return useMutation(
     FunctionKey.MINT_WPUNKS,
-    (params: any) =>
+    (params: { id: number | string }) =>
       mintWPunks({
         WPunksContract,
         accountAddress,

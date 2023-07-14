@@ -4,7 +4,11 @@ const supplyNFT = async ({
   tokenContract,
   accountAddress,
   tokenIds,
-}: any): Promise<any> => {
+}: {
+  tokenContract: any;
+  accountAddress: string;
+  tokenIds: string[];
+}): Promise<any> => {
   const resp = await tokenContract.methods.mints(tokenIds).send({ from: accountAddress });
 
   return checkForTokenTransactionError(resp);

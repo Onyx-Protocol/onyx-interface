@@ -142,7 +142,7 @@ export const getPunkDataContract = (web3: Web3) =>
     web3,
   ) as unknown as PunkData;
 
-export const getNftContract = (token: Token, web3: Web3) =>
+export const getNftContract = (token: Token, web3: Web3): Wpunks =>
   getContract(wpunksAbi as AbiItem[], token.address, web3);
 
 export const getLiquidationProxyContract = (web3: Web3) =>

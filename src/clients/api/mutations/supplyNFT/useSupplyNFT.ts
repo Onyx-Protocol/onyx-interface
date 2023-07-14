@@ -15,7 +15,7 @@ const useSupplyNFT = (
 
   return useMutation(
     FunctionKey.SUPPLY_NFT,
-    (params: any) =>
+    (params: { tokenIds: string[] }) =>
       supplyNFT({
         tokenContract: tokenContract as OEth20,
         accountAddress,
