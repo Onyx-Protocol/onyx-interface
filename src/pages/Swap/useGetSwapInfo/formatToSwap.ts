@@ -51,7 +51,7 @@ const formatToSwap = ({ trade, input }: FormatToSwapInput): FormatToSwapOutput =
     }),
     maximumFromTokenAmountSoldWei: convertTokensToWei({
       value: new BigNumber(trade.maximumAmountIn(slippagePercent).toFixed()),
-      token: input.toToken,
+      token: input.fromToken,
     }),
     toTokenAmountReceivedWei: convertTokensToWei({
       value: new BigNumber(trade.outputAmount.toFixed()),
