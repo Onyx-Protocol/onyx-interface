@@ -12,7 +12,7 @@ import {
 interface UseTokenApprovalInput {
   token: Token;
   spenderAddress: string;
-  accountAddress?: string;
+  accountAddress: string;
   farmRefresh?: boolean;
 }
 

@@ -1,11 +1,15 @@
-import { useMutation } from 'react-query';
+import { UseMutationOptions, useMutation } from 'react-query';
+import type { TransactionReceipt } from 'web3-core/types';
 
 import burnWPunks from 'clients/api/mutations/burnWPunks';
 import queryClient from 'clients/api/queryClient';
 import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
-const useBurnWPunks = ({ accountAddress }: { accountAddress: string }, options?: any) => {
+const useBurnWPunks = (
+  { accountAddress }: { accountAddress: string },
+  options?: UseMutationOptions<TransactionReceipt, unknown, { id: string }>,
+) => {
   const WPunksContract = useWPunksContract();
 
   return useMutation(

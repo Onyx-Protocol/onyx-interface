@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query';
+import { UseMutationOptions, useMutation } from 'react-query';
 import { Token } from 'types';
 
 import { approveNftForAll, queryClient } from 'clients/api';
@@ -18,7 +18,7 @@ const useApproveNftForAll = (
     accountAddress: string;
   },
   // TODO: use custom error type https://app.clickup.com/t/2rvwhnt
-  options?: any,
+  options?: UseMutationOptions,
 ) => {
   const tokenContract = useNftContract(token);
 

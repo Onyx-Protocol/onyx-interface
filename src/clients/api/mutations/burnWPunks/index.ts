@@ -1,11 +1,13 @@
 import { checkForTokenTransactionError } from 'errors';
 
+import { Wpunks } from 'types/contracts';
+
 const burnWPunks = async ({
   WPunksContract,
   id,
   accountAddress,
 }: {
-  WPunksContract: any;
+  WPunksContract: Wpunks;
   id: string;
   accountAddress: string;
 }) => {

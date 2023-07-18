@@ -1,9 +1,11 @@
+import { Wpunks } from 'types/contracts';
+
 const approveNftForAll = ({
   tokenContract,
   accountAddress,
   spenderAddress,
 }: {
-  tokenContract: any;
+  tokenContract: Wpunks;
   accountAddress: string;
   spenderAddress: string;
 }) => tokenContract.methods.setApprovalForAll(spenderAddress, true).send({ from: accountAddress });
