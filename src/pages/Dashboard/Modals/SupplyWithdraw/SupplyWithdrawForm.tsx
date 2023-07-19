@@ -38,6 +38,7 @@ import { AmountForm, AmountFormProps, ErrorCode } from 'containers/AmountForm';
 import { AuthContext } from 'context/AuthContext';
 import useDailyXcnDistributionInterests from 'hooks/useDailyXcnDistributionInterests';
 import useSuccessfulTransactionModal from 'hooks/useSuccessfulTransactionModal';
+import { OTokenEx } from 'types/contracts';
 
 import { useStyles } from '../styles';
 
@@ -83,9 +84,9 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
   const { data: oTokenCashData } = useGetOTokenCash({
     oTokenId: asset.token.id,
   });
-  const oTokenContract: any = useOTokenContract(asset.token.id);
+  const oTokenContract = useOTokenContract(asset.token.id) as unknown as OTokenEx;
 
-  const nftTokenContract: any = useNftContract(asset.token);
+  const nftTokenContract = useNftContract(asset.token);
   const punkDataContract = usePunkDataContract();
 
   const { account: { address: accountAddress = '' } = {} } = useContext(AuthContext);
@@ -288,7 +289,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
       ({ transactionHash } = res);
     } else {
       const res = await redeemNFT({
-        tokenIds: nft.sort((a, b) => b.index - a.index).map(item => item.index),
+        tokenIds: nft.sort((a, b) => b.index - a.index).map(item => item.index.toString()),
       });
       ({ transactionHash } = res);
     }

@@ -1,11 +1,13 @@
 import { checkForTokenTransactionError } from 'errors';
 
+import { OTokenEx } from 'types/contracts';
+
 const redeemNFT = async ({
   tokenContract,
   accountAddress,
   tokenIds,
 }: {
-  tokenContract: any;
+  tokenContract: OTokenEx;
   accountAddress: string;
   tokenIds: string[];
 }) => {

@@ -4,7 +4,7 @@ import redeemNFT from 'clients/api/mutations/redeemNFT';
 import queryClient from 'clients/api/queryClient';
 import { useOTokenContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
-import { OEth20 } from 'types/contracts';
+import { OTokenEx } from 'types/contracts';
 
 const useRedeemNFT = (
   { oTokenId, accountAddress }: { oTokenId: string; accountAddress: string },
@@ -17,7 +17,7 @@ const useRedeemNFT = (
     FunctionKey.REDEEM_NFT,
     (params: { tokenIds: string[] }) =>
       redeemNFT({
-        tokenContract: tokenContract as OEth20,
+        tokenContract: tokenContract as unknown as OTokenEx,
         accountAddress,
         ...params,
       }),

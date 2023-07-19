@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js';
 import { checkForTokenTransactionError } from 'errors';
+import { formatRPCErrorMessage, parseRPCErrorMessage } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
-import { parseRPCErrorMessage, formatRPCErrorMessage } from 'utilities';
 
 import { OTokenContract } from 'clients/contracts/types';
 
@@ -19,9 +19,7 @@ const borrowOToken = async ({
   amountWei,
 }: BorrowOTokenInput): Promise<BorrowOTokenOutput> => {
   try {
-    await oTokenContract.methods
-    .borrow(amountWei.toFixed())
-    .call({ from: fromAccountAddress });
+    await oTokenContract.methods.borrow(amountWei.toFixed()).call({ from: fromAccountAddress });
   } catch (e: any) {
     throw new Error(formatRPCErrorMessage(parseRPCErrorMessage(e.message).originalError.message));
   }

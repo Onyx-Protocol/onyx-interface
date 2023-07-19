@@ -10,7 +10,7 @@ const useDepositPunk = ({ accountAddress }: { accountAddress: string }, options?
 
   return useMutation(
     FunctionKey.DEPOSIT_PUNK,
-    (params: any) =>
+    (params: { userProxyAddress: string; id: string | number }) =>
       depositPunk({
         punkContract,
         accountAddress,

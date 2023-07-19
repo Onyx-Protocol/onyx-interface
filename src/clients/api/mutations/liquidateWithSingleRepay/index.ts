@@ -1,3 +1,5 @@
+import { LiquidationProxy } from 'types/contracts';
+
 const liquidateWithSingleRepay = ({
   liquidationProxyContract,
   isNativeToken,
@@ -9,7 +11,7 @@ const liquidateWithSingleRepay = ({
   isClaimOToken,
   accountAddress,
 }: {
-  liquidationProxyContract: any;
+  liquidationProxyContract: LiquidationProxy;
   isNativeToken: boolean;
   borrower: string;
   oTokenCollateralAddress: string;

@@ -14,6 +14,7 @@ import { useWeb3 } from 'clients/web3';
 import { NULL_ADDRESS } from 'constants/address';
 import { BaseURIs } from 'constants/baseURIs';
 import { AuthContext } from 'context/AuthContext';
+import { OTokenEx } from 'types/contracts';
 
 import { useStyles } from './styles';
 
@@ -102,14 +103,14 @@ const LiquidationForm = ({
   const symbol =
     (markets || []).find(market => market.address === token?.market?.id)?.underlyingSymbol || '';
 
-  const oTokenContract: any = token?.market?.id
-    ? getOTokenContract(symbol.toLowerCase(), web3)
+  const oTokenContract = token?.market?.id
+    ? (getOTokenContract(symbol.toLowerCase(), web3) as unknown as OTokenEx)
     : null;
 
   const punkDataContract = usePunkDataContract();
 
   useEffect(() => {
-    if (token?.market?.underlyingDecimals !== 0 && oTokenContract) {
+    if (token?.market?.underlyingDecimals !== 0 && oTokenContract && userId) {
       oTokenContract.methods
         .balanceOfUnderlying(userId)
         .call()

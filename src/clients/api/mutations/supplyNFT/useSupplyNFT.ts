@@ -4,7 +4,7 @@ import supplyNFT from 'clients/api/mutations/supplyNFT';
 import queryClient from 'clients/api/queryClient';
 import { useOTokenContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
-import { OEth20 } from 'types/contracts';
+import { OTokenEx } from 'types/contracts';
 
 const useSupplyNFT = (
   { oTokenId, accountAddress }: { oTokenId: string; accountAddress: string },
@@ -17,7 +17,7 @@ const useSupplyNFT = (
     FunctionKey.SUPPLY_NFT,
     (params: { tokenIds: string[] }) =>
       supplyNFT({
-        tokenContract: tokenContract as OEth20,
+        tokenContract: tokenContract as unknown as OTokenEx,
         accountAddress,
         ...params,
       }),

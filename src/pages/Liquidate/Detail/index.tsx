@@ -13,6 +13,7 @@ import {
   getContractAddress,
   getTokenByAddress,
   truncateAddress,
+  unsafelyGetOToken,
 } from 'utilities';
 
 import {
@@ -21,12 +22,7 @@ import {
   useLiquidateBorrow,
   useLiquidateWithSingleRepay,
 } from 'clients/api';
-import {
-  getComptrollerContract,
-  getLiquidationProxyContract,
-  getOTokenContract,
-  getTokenContractByAddress,
-} from 'clients/contracts/getters';
+import { getComptrollerContract, getTokenContractByAddress } from 'clients/contracts/getters';
 import { useWeb3 } from 'clients/web3';
 import { EthLink } from 'components/EthLink';
 import { NULL_ADDRESS, UINT_MAX } from 'constants/address';
@@ -204,20 +200,15 @@ const LiquidateDetail = ({
     const symbol =
       (markets || []).find(market => market.address === repayToken?.id)?.underlyingSymbol || '';
 
-    const oTokenContract: any = getOTokenContract(symbol.toLowerCase(), web3);
-
-    const lqProxy: any = getLiquidationProxyContract(web3);
     const repayTokenInfo = userInfo.tokens?.find(
       item => item.market.underlyingAddress === repayToken?.underlyingAddress,
     );
 
-    const isProxy =
-      lqProxy &&
-      new BigNumber(repay).gt(
-        new BigNumber(repayTokenInfo?.storedBorrowBalance ?? '0').times(
-          new BigNumber(10).pow(repayTokenInfo?.market?.underlyingDecimals ?? 18),
-        ),
-      );
+    const isProxy = new BigNumber(repay).gt(
+      new BigNumber(repayTokenInfo?.storedBorrowBalance ?? '0').times(
+        new BigNumber(10).pow(repayTokenInfo?.market?.underlyingDecimals ?? 18),
+      ),
+    );
 
     if (
       liquidationToken &&
@@ -229,14 +220,14 @@ const LiquidateDetail = ({
       // Approve
       approveTokenMutation({
         accountAddress,
-        spenderAddress: isProxy ? lqProxy._address : liquidationToken.id,
+        spenderAddress: isProxy ? getContractAddress('liquidationProxy') : liquidationToken.id,
       });
     } else if (isProxy) {
       liquidateWithSingleRepayV2Mutation({
         isNativeToken: liquidationToken?.underlyingAddress === NULL_ADDRESS,
-        borrower: userInfo?.id,
-        oTokenCollateralAddress: supplyInfo?.market?.id,
-        oTokenRepayAddress: oTokenContract._address,
+        borrower: userInfo?.id ?? '',
+        oTokenCollateralAddress: supplyInfo?.market?.id ?? '',
+        oTokenRepayAddress: unsafelyGetOToken(symbol.toLowerCase()).address,
         repayAmount:
           liquidationToken?.underlyingAddress !== NULL_ADDRESS
             ? new BigNumber(repay).times(1.02).dp(0, 0).toString(10)
@@ -248,8 +239,8 @@ const LiquidateDetail = ({
     } else if (liquidateBorrowMutation) {
       liquidateBorrowMutation({
         isNativeToken: liquidationToken?.underlyingAddress === NULL_ADDRESS,
-        borrower: userInfo?.id,
-        oTokenCollateralAddress: supplyInfo?.market?.id,
+        borrower: userInfo?.id ?? '',
+        oTokenCollateralAddress: supplyInfo?.market?.id ?? '',
         repayAmount: repay,
         accountAddress,
       });

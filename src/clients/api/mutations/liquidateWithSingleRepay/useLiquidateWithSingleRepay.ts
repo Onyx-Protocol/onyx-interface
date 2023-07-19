@@ -12,7 +12,16 @@ const useLiquidateWithSingleRepay = (
 
   return useMutation(
     [FunctionKey.LIQUIDATE_WITH_SINGLE_REPAY_V2, {}],
-    (params: any) =>
+    (params: {
+      isNativeToken: boolean;
+      borrower: string;
+      oTokenCollateralAddress: string;
+      oTokenRepayAddress: string;
+      repayAmount: string;
+      seizeIndexes: (string | number)[];
+      isClaimOToken: boolean;
+      accountAddress: string;
+    }) =>
       liquidateWithSingleRepay({
         liquidationProxyContract,
         ...params,
