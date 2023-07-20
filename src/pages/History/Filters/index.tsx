@@ -44,7 +44,7 @@ export const Filters: React.FC<FilterProps> = ({
     { label: t('history.supply'), value: 'supply' },
     { label: t('history.redeem'), value: 'redeem' },
     { label: t('history.borrow'), value: 'borrow' },
-    { label: t('history.repayBorrow'), value: 'repay' },
+    { label: t('history.repayBorrow'), value: 'repayBorrow' },
     { label: t('history.liquidateBorrow'), value: 'liquidateBorrow' },
     { label: t('history.transfer'), value: 'transfer' },
     { label: t('history.reservesAdded'), value: 'reservesAdded' },
