@@ -13,7 +13,7 @@ import {
 
 import PLACEHOLDER_KEY from 'constants/placeholderKey';
 import { TOKENS } from 'constants/tokens';
-import { HistoryItem } from 'utilities/getHistorySubGraph';
+import { HistoryItem, HistoryItemType } from 'utilities/getHistorySubGraph';
 
 import { useStyles } from './styles';
 
@@ -34,6 +34,7 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
       { key: 'from', label: t('history.columns.from'), orderable: true, align: 'left' },
       { key: 'to', label: t('history.columns.to'), orderable: true, align: 'left' },
       { key: 'amount', label: t('history.columns.amount'), orderable: true, align: 'right' },
+      { key: 'asset', label: t('history.columns.asset'), orderable: true, align: 'left' },
       { key: 'created', label: t('history.columns.created'), orderable: true, align: 'right' },
     ],
     [],
@@ -74,6 +75,11 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
       historyItems.map(historyItem => {
         const oToken = getOTokenByAddress(historyItem.to);
         const token = (oToken && unsafelyGetToken(oToken.id)) || TOKENS.xcn;
+
+        let asset = token.id.toUpperCase();
+        if (historyItem.type === HistoryItemType.TRANSFER) {
+          asset = `o${token.id.toUpperCase()}`;
+        }
 
         return [
           {
@@ -179,6 +185,16 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
             ),
             value: Number(historyItem.amount).toFixed(),
             align: 'right',
+          },
+          {
+            key: 'asset',
+            render: () => (
+              <Typography variant="small2" css={styles.whiteText}>
+                {asset}
+              </Typography>
+            ),
+            value: asset,
+            align: 'left',
           },
           {
             key: 'created',
