@@ -1,6 +1,8 @@
 import BigNumber from 'bignumber.js';
 import { VError } from 'errors';
 
+import { XcnStaking } from 'types/contracts';
+
 import withdrawXcn from '.';
 
 describe('api/mutation/withdrawXcn', () => {
@@ -13,7 +15,7 @@ describe('api/mutation/withdrawXcn', () => {
           },
         }),
       },
-    } as any;
+    } as unknown as XcnStaking;
 
     try {
       await withdrawXcn({
@@ -44,7 +46,7 @@ describe('api/mutation/withdrawXcn', () => {
           }),
         }),
       },
-    } as any;
+    } as unknown as XcnStaking;
 
     try {
       await withdrawXcn({
@@ -75,7 +77,7 @@ describe('api/mutation/withdrawXcn', () => {
       methods: {
         withdrawXcn: withdrawXcnMock,
       },
-    } as unknown as any;
+    } as unknown as XcnStaking;
 
     const response = await withdrawXcn({
       xcnStakingContract: fakeContract,

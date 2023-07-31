@@ -1,5 +1,6 @@
 import config from 'config';
 import { ContractCallContext, ContractCallReturnContext, Multicall } from 'ethereum-multicall';
+import { UserNftTokenIdResponse } from 'types';
 import { getContractAddress } from 'utilities';
 
 import punkAbi from 'constants/contracts/abis/punk.json';
@@ -59,12 +60,15 @@ const getOwnedPunkIds = async ({
     },
   )
     .then(res => res.json())
-    .then(({ data: [data = { tokenIds: [] }] }) => {
-      ownedIds = data.tokenIds.reduce((a: Record<string, string[]>, token: any) => {
-        if (!a[accountAddress]) a[accountAddress] = [];
-        a[accountAddress].push(token.tokenId.toString());
-        return a;
-      }, {});
+    .then(({ data: [data = { tokenIds: [] as UserNftTokenIdResponse[] }] }) => {
+      ownedIds = data.tokenIds.reduce(
+        (a: Record<string, string[]>, token: UserNftTokenIdResponse) => {
+          if (!a[accountAddress]) a[accountAddress] = [];
+          a[accountAddress].push(token.tokenId.toString());
+          return a;
+        },
+        {},
+      );
     });
   return ownedIds;
 };

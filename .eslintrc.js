@@ -11,6 +11,7 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
+    'react/no-danger': 'off',
     // handled by prettier
     '@typescript-eslint/space-before-blocks': 0,
     '@typescript-eslint/indent': 0,

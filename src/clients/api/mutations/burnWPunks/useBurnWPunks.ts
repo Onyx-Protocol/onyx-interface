@@ -6,15 +6,17 @@ import queryClient from 'clients/api/queryClient';
 import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
+type UserBurnWPunksParams = { id: string };
+
 const useBurnWPunks = (
   { accountAddress }: { accountAddress: string },
-  options?: UseMutationOptions<TransactionReceipt, unknown, { id: string }>,
+  options?: UseMutationOptions<TransactionReceipt, unknown, UserBurnWPunksParams>,
 ) => {
   const WPunksContract = useWPunksContract();
 
   return useMutation(
     FunctionKey.BURN_WPUNKS,
-    (params: { id: string }) =>
+    (params: UserBurnWPunksParams) =>
       burnWPunks({
         WPunksContract,
         accountAddress,

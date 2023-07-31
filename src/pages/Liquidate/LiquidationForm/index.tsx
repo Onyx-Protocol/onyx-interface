@@ -4,7 +4,7 @@ import { Button } from 'components';
 import config from 'config';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
-import { Market, MarketWithBorrowBalance, Nft, SubgraphToken } from 'types';
+import { Market, MarketWithBorrowBalance, Nft, SubgraphToken, UserNftTokenIdResponse } from 'types';
 import { getTokenByAddress } from 'utilities';
 
 import NftCheckImg from 'assets/img/nft_check.svg';
@@ -136,14 +136,17 @@ const LiquidationForm = ({
                       },
                     )
                       .then(res => res.json())
-                      .then(({ data: [data = { tokenIds: [] }] }) =>
+                      .then(({ data: [data = { tokenIds: [] as UserNftTokenIdResponse[] }] }) =>
                         resolve(
                           Number(tokenIds[0]) === 0
-                            ? data.tokenIds.map((item: any) => [item.tokenId, item.tokenURI])
+                            ? data.tokenIds.map((item: UserNftTokenIdResponse) => [
+                                item.tokenId,
+                                item.tokenURI,
+                              ])
                             : tokenIds.map(tokenId => [
                                 tokenId,
-                                data.tokenIds.find((item: any) => item.tokenId === tokenId)
-                                  ?.tokenURI || `/cryptologos/${symbol.toLowerCase()}.jpg`,
+                                data.tokenIds.find(item => item.tokenId === tokenId)?.tokenURI ||
+                                  `/cryptologos/${symbol.toLowerCase()}.jpg`,
                               ]),
                         ),
                       )

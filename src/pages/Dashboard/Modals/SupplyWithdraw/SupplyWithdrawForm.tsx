@@ -14,10 +14,11 @@ import {
   toast,
 } from 'components';
 import config from 'config';
+import { sanitize } from 'dompurify';
 import { VError, formatVErrorToReadableString } from 'errors';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
-import { Asset, Nft } from 'types';
+import { Asset, Nft, UserNftTokenIdResponse } from 'types';
 import {
   calculateCollateralValue,
   calculateDailyEarningsCents,
@@ -145,7 +146,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
       promise
         .then(tokenIds => {
           const baseURI: string = BaseURIs[asset.token.symbol];
-          const fetchPromise = baseURI
+          const fetchPromise: Promise<[string, string][]> = baseURI
             ? new Promise(resolve =>
                 fetch(
                   `${config.apiUrl}/user_nfts?address=${
@@ -160,16 +161,17 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                   },
                 )
                   .then(res => res.json())
-                  .then(({ data: [data = { tokenIds: [] }] }) =>
+                  .then(({ data: [data = { tokenIds: [] as UserNftTokenIdResponse[] }] }) =>
                     resolve(
                       Number(tokenIds[0]) === 0
                         ? data.tokenIds
-                            .map((item: any) => [item.tokenId, item.tokenURI])
+                            .map((item: UserNftTokenIdResponse) => [item.tokenId, item.tokenURI])
                             .slice(0, balance)
                         : tokenIds.map(tokenId => [
                             tokenId,
-                            data.tokenIds.find((item: any) => item.tokenId === Number(tokenId))
-                              ?.tokenURI || `/cryptologos/${asset.token.symbol.toLowerCase()}.jpg`,
+                            data.tokenIds.find(
+                              (item: UserNftTokenIdResponse) => item.tokenId === Number(tokenId),
+                            )?.tokenURI || `/cryptologos/${asset.token.symbol.toLowerCase()}.jpg`,
                           ]),
                     ),
                   )
@@ -190,9 +192,9 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 ),
               );
           fetchPromise
-            .then((tokenData: any) => {
+            .then((tokenData: [string, string][]) => {
               setNFTs(
-                tokenData.map(([collectionTokenId, image]: string[], index: number) => ({
+                tokenData.map(([collectionTokenId, image], index) => ({
                   index,
                   collectionTokenId,
                   collectionTokenContract: asset.token.address,
@@ -336,7 +338,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 <div
                   className="nftImg"
                   dangerouslySetInnerHTML={{
-                    __html: _nft.imageUrl,
+                    __html: sanitize(_nft.imageUrl),
                   }}
                 />
               ) : (
@@ -409,7 +411,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 <div
                   className="nftImg"
                   dangerouslySetInnerHTML={{
-                    __html: _nft.imageUrl,
+                    __html: sanitize(_nft.imageUrl),
                   }}
                 />
               ) : (

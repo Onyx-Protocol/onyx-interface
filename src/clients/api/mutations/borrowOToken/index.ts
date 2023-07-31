@@ -20,8 +20,10 @@ const borrowOToken = async ({
 }: BorrowOTokenInput): Promise<BorrowOTokenOutput> => {
   try {
     await oTokenContract.methods.borrow(amountWei.toFixed()).call({ from: fromAccountAddress });
-  } catch (e: any) {
-    throw new Error(formatRPCErrorMessage(parseRPCErrorMessage(e.message).originalError.message));
+  } catch (e) {
+    if (e instanceof Error) {
+      throw new Error(formatRPCErrorMessage(parseRPCErrorMessage(e.message).originalError.message));
+    }
   }
 
   const resp = await oTokenContract.methods

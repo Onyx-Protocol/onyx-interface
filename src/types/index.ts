@@ -394,3 +394,13 @@ export interface Nft {
   collectionTokenContract?: string;
   imageUrl: string;
 }
+
+export type UserNftTokenIdResponse = { tokenId: number; tokenURI: string };
+export type UserNftTokenBalanceResponse = { tokenId: number; tokenURI: string; balance: number };
+
+export type UserNftResponse = {
+  collection: string;
+  name: string;
+  tokenIds: UserNftTokenIdResponse[];
+  balances: UserNftTokenBalanceResponse[];
+}[];
