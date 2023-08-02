@@ -3,13 +3,13 @@ import { Paper, Typography } from '@mui/material';
 import { Checkbox, Select } from 'components';
 import React from 'react';
 import { useTranslation } from 'translation';
-import { TransactionEvent } from 'types';
 
 import { OETH_TOKENS } from 'constants/tokens';
+import { HistoryItemType } from 'utilities/getHistorySubGraph';
 
 import { useStyles } from './styles';
 
-export const ALL_VALUE = 'All';
+export const ALL_VALUE = 'all';
 
 interface AssetRecord {
   label: string;
@@ -18,8 +18,8 @@ interface AssetRecord {
 }
 
 export interface FilterProps {
-  eventType: TransactionEvent | typeof ALL_VALUE;
-  setEventType: (eventType: TransactionEvent | typeof ALL_VALUE) => void;
+  historyItemType: HistoryItemType | typeof ALL_VALUE;
+  setHistoryItemType: (historyItemType: HistoryItemType | typeof ALL_VALUE) => void;
   asset: string;
   setAsset: (asset: string) => void;
   showOnlyMyTxns: boolean;
@@ -28,8 +28,8 @@ export interface FilterProps {
 }
 
 export const Filters: React.FC<FilterProps> = ({
-  eventType,
-  setEventType,
+  historyItemType,
+  setHistoryItemType,
   asset,
   setAsset,
   showOnlyMyTxns,
@@ -39,21 +39,21 @@ export const Filters: React.FC<FilterProps> = ({
   const { t } = useTranslation();
   const styles = useStyles();
   const selectOptions = [
-    { label: t('history.all'), value: 'All' },
-    { label: t('history.approval'), value: 'Approval' },
-    { label: t('history.supply'), value: 'Supply' },
-    { label: t('history.redeem'), value: 'Redeem' },
-    { label: t('history.borrow'), value: 'Borrow' },
-    { label: t('history.repayBorrow'), value: 'Repay' },
-    { label: t('history.liquidateBorrow'), value: 'LiquidateBorrow' },
-    { label: t('history.transfer'), value: 'Transfer' },
-    { label: t('history.reservesAdded'), value: 'ReservesAdded' },
-    { label: t('history.reservesReduced'), value: 'ReservesReduced' },
-    { label: t('history.stake'), value: 'Stake' },
-    { label: t('history.withdraw'), value: 'Withdraw' },
-    { label: t('history.claim'), value: 'Claim' },
-    { label: t('history.propose'), value: 'Propose' },
-    { label: t('history.vote'), value: 'Vote' },
+    { label: t('history.all'), value: 'all' },
+    { label: t('history.approval'), value: 'approval' },
+    { label: t('history.supply'), value: 'supply' },
+    { label: t('history.redeem'), value: 'redeem' },
+    { label: t('history.borrow'), value: 'borrow' },
+    { label: t('history.repayBorrow'), value: 'repayBorrow' },
+    { label: t('history.liquidateBorrow'), value: 'liquidateBorrow' },
+    { label: t('history.transfer'), value: 'transfer' },
+    { label: t('history.reservesAdded'), value: 'reservesAdded' },
+    { label: t('history.reservesReduced'), value: 'reservesReduced' },
+    { label: t('history.stake'), value: 'stake' },
+    { label: t('history.withdraw'), value: 'withdraw' },
+    { label: t('history.claim'), value: 'claim' },
+    { label: t('history.propose'), value: 'propose' },
+    { label: t('history.vote'), value: 'vote' },
   ];
 
   const selectAssetOptions = Object.keys(OETH_TOKENS).reduce<AssetRecord[]>(
@@ -66,7 +66,7 @@ export const Filters: React.FC<FilterProps> = ({
 
       return [...assets, newAsset];
     },
-    [{ label: t('history.all'), value: 'All' }],
+    [{ label: t('history.all'), value: 'all' }],
   );
 
   return (
@@ -103,8 +103,8 @@ export const Filters: React.FC<FilterProps> = ({
           </Typography>
           <Select
             options={selectOptions}
-            value={eventType}
-            onChange={e => setEventType(e.target.value as TransactionEvent | typeof ALL_VALUE)}
+            value={historyItemType}
+            onChange={e => setHistoryItemType(e.target.value as HistoryItemType | typeof ALL_VALUE)}
             ariaLabel={t('history.type')}
             title={t('history.type')}
             css={styles.select}
