@@ -104,7 +104,9 @@ export const Filters: React.FC<FilterProps> = ({
           <Select
             options={selectOptions}
             value={historyItemType}
-            onChange={e => setHistoryItemType(e.target.value as HistoryItemType | typeof ALL_VALUE)}
+            onChange={e => {
+              setHistoryItemType(e.target.value as HistoryItemType | typeof ALL_VALUE);
+            }}
             ariaLabel={t('history.type')}
             title={t('history.type')}
             css={styles.select}
