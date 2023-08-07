@@ -6,7 +6,6 @@ import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector';
-import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@web3-react/walletconnect-connector';
 import { toast } from 'components';
 import React, { useEffect } from 'react';
 
@@ -14,13 +13,13 @@ import renderComponent from 'testUtils/renderComponent';
 import en from 'translation/translations/en.json';
 
 import useAuth from '.';
+import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '../walletconnectV2';
 import setupNetwork from './setUpNetwork';
 
 jest.mock('../../../components/Toast');
 jest.mock('./setUpNetwork');
 jest.mock('@web3-react/injected-connector');
 jest.mock('@binance-chain/bsc-connector');
-jest.mock('@web3-react/walletconnect-connector');
 
 jest.mock('@web3-react/core', () => ({
   __esModule: true,
