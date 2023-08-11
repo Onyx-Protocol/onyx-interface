@@ -4,9 +4,10 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'translation';
 import { getContractAddress } from 'utilities';
 
-import { useStakeXcn } from 'clients/api';
+import { useGetAllowance, useStakeXcn } from 'clients/api';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
+import useTokenApproval from 'hooks/useTokenApproval';
 
 import ActionModal, { ActionModalProps } from '../ActionModal';
 
@@ -23,8 +24,29 @@ const StakeModal: React.FC<StakeModalProps> = ({ xcnBalance, handleClose }) => {
   const spenderAddress = getContractAddress('xcnStaking');
 
   const { mutateAsync: stakeXcn, isLoading: isStakeXcnLoading } = useStakeXcn();
+  const { approveToken, isApproveTokenLoading } = useTokenApproval({
+    token: stakeToken,
+    spenderAddress,
+    accountAddress: account?.address,
+  });
+
+  const { data: getTokenAllowanceData } = useGetAllowance(
+    {
+      accountAddress: account?.address || '',
+      spenderAddress,
+      token: stakeToken,
+    },
+    {
+      enabled: !!account?.address,
+    },
+  );
 
   const handleStake = async (amountWei: BigNumber) => {
+    // Approve if allowance is small
+    if (getTokenAllowanceData && getTokenAllowanceData.allowanceWei.lt(amountWei)) {
+      await approveToken();
+    }
+
     // Send request to stake
     const res = await stakeXcn({
       accountAddress: account?.address || '',
@@ -45,7 +67,7 @@ const StakeModal: React.FC<StakeModalProps> = ({ xcnBalance, handleClose }) => {
       availableTokensWei={xcnBalance || new BigNumber(0)}
       isInitialLoading={false}
       onSubmit={handleStake}
-      isSubmitting={isStakeXcnLoading}
+      isSubmitting={isStakeXcnLoading || isApproveTokenLoading}
       connectWalletMessage={t('stakeModal.connectWalletMessage', {
         tokenSymbol: stakeToken.symbol,
       })}
