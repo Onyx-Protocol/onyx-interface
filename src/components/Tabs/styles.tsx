@@ -43,39 +43,24 @@ export const styles = () => {
         width: 100%;
       `}
     `,
-    getButton: ({
-      active,
-      last,
-      fullWidth,
-    }: {
-      active: boolean;
-      last: boolean;
-      fullWidth: boolean;
-    }) => css`
+    getButton: ({ active, fullWidth }: { active: boolean; fullWidth: boolean }) => css`
       :hover:not(:disabled),
       :active:not(:disabled) {
-        // background-color: ${theme.palette.secondary.light};
-        // border-color: ${theme.palette.secondary.light};
         background-color: transparent;
         border-color: transparent;
-        border-bottom: 1px solid  ${theme.palette.text.primary};
+        border-bottom: 1px solid ${theme.palette.text.primary};
         color: ${theme.palette.text.primary};
       }
 
       background-color: transparent;
       border-color: transparent;
       border-radius: 0px;
-      border-bottom: 1px solid #29A696;
+      border-bottom: 1px solid #29a696;
 
       ${fullWidth &&
       css`
         flex: 1;
       `}
-
-      ${!last &&
-      css`
-        // margin-right: ${theme.spacing(2)};
-      `};
 
       ${!active &&
       css`
@@ -90,7 +75,7 @@ export const styles = () => {
           color: ${theme.palette.text.secondary};
         }
 
-        border-bottom: 1px solid #8F9195;
+        border-bottom: 1px solid #8f9195;
       `};
 
       ${theme.breakpoints.down('sm')} {

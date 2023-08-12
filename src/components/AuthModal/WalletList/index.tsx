@@ -9,8 +9,8 @@ import { Connector } from 'clients/web3';
 import {
   // INTEGRATED_WALLETS,
   UPCOMING_WALLETS,
-  XCN_TERMS_OF_SERVICE_URL,
   WALLETS,
+  XCN_TERMS_OF_SERVICE_URL,
 } from '../constants';
 import { useStyles } from './styles';
 

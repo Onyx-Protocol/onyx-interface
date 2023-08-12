@@ -15,8 +15,8 @@ import {
   convertTokensToWei,
   formatToReadablePercentage,
   formatTokensToReadableValue,
-  unsafelyGetToken,
   unsafelyGetOToken,
+  unsafelyGetToken,
 } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
 

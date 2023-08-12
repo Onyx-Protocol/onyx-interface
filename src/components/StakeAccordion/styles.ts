@@ -12,7 +12,7 @@ export const useStyles = () => {
       display: flex;
       justify-content: space-between;
       margin-bottom: ${theme.spacing(1)};
-      padding: 0px 10px;
+      padding: 0 10px;
 
       .id {
         font-size: 18px;
@@ -28,7 +28,7 @@ export const useStyles = () => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0px 10px;
+      padding: 0 10px;
 
       .txhash {
         font-size: 16px;
@@ -52,7 +52,7 @@ export const useStyles = () => {
     accordionRoot: css`
       width: 100%;
       border-radius: 10px;
-      padding: 0px;
+      padding: 0;
       background-color: #343a41;
       ::before {
         display: none;
@@ -73,7 +73,7 @@ export const useStyles = () => {
       align-items: center;
     `,
     content: css`
-      margin: 0px;
+      margin: 0;
       padding: 10px 20px;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;

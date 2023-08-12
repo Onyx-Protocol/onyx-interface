@@ -17,19 +17,11 @@ export default {
 } as ComponentMeta<typeof ApyUi>;
 
 export const Default = () => (
-  <ApyUi
-    borrowBalanceCents={30243}
-    borrowLimitCents={73730}
-    safeBorrowLimitPercentage={65}
-  />
+  <ApyUi borrowBalanceCents={30243} borrowLimitCents={73730} safeBorrowLimitPercentage={65} />
 );
 
 export const WithZeroValues = () => (
-  <ApyUi
-    borrowBalanceCents={0}
-    borrowLimitCents={0}
-    safeBorrowLimitPercentage={65}
-  />
+  <ApyUi borrowBalanceCents={0} borrowLimitCents={0} safeBorrowLimitPercentage={65} />
 );
 
 export const WithoutUndefinedValues = () => (

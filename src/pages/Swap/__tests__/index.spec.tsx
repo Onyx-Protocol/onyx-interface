@@ -24,9 +24,9 @@ import SwapPage from '..';
 import TEST_IDS from '../testIds';
 import useGetSwapInfo from '../useGetSwapInfo';
 import {
+  FAKE_DEFAULT_BALANCE_TOKENS,
   FAKE_ETH_BALANCE_TOKENS,
   FAKE_USDT_BALANCE_TOKENS,
-  FAKE_DEFAULT_BALANCE_TOKENS,
   fakeExactAmountInSwap,
   fakeExactAmountOutSwap,
   fakeNonNativeSwap,

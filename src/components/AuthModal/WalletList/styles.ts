@@ -28,20 +28,18 @@ export const useStyles = () => {
       }
     `,
     getListItem: ({ isActionable }: { isActionable: boolean }) => css`
-      background-color: transparent;
       box-shadow: none;
       border: 0;
       border-radius: ${theme.shape.borderRadius.small}px;
       padding: ${theme.spacing(2)};
-      color: ${theme.palette.text.primary};
       text-align: center;
       width: 200px;
       height: 135px;
-      background-color: #EEEFF0;
-      color: #343A41;
+      background-color: #eeeff0;
+      color: #343a41;
       svg {
         margin-top: 5px;
-        fill: #343A41;
+        fill: #343a41;
       }
       margin: 0 auto;
 
@@ -60,7 +58,7 @@ export const useStyles = () => {
         cursor: pointer;
 
         :hover {
-          background: linear-gradient(123.08deg, rgba(29, 185, 166, 0.2) -33.26%, #1DB9A6 88.39%);
+          background: linear-gradient(123.08deg, rgba(29, 185, 166, 0.2) -33.26%, #1db9a6 88.39%);
           color: white;
 
           svg {

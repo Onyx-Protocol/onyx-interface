@@ -72,7 +72,9 @@ const proposalSchema = yup.object({
               const fragment = parseFunctionSignature(this.parent.signature);
               const min = fragment?.inputs.length ?? 0;
               const filteredValue = value?.filter(v => !!v);
-              return fragment?.inputs.length === 0 || !!(filteredValue && filteredValue.length >= min);
+              return (
+                fragment?.inputs.length === 0 || !!(filteredValue && filteredValue.length >= min)
+              );
             },
           })
           .required(ErrorCode.VALUE_REQUIRED),

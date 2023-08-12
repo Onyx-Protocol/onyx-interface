@@ -154,7 +154,7 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
               market.borrowXcnApy.isNaN() ? (
                 'Pending'
               ) : (
-                <span style={{ color: borrowApy.gt(0) ? '#18DF8B' : '#E93D44' }}>
+                <span style={{ color: borrowapy.gt(0) ? '#18DF8B' : '#E93D44' }}>
                   {formatToReadablePercentage(borrowApy)}
                 </span>
               ),
@@ -190,7 +190,8 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
             key: 'price',
             render: () => (
               <Typography variant="small1" css={localStyles.whiteText}>
-                ${market.underlyingSymbol === 'SHIB'
+                $
+                {market.underlyingSymbol === 'SHIB'
                   ? market.tokenPrice.toFormat(6)
                   : market.underlyingSymbol === 'XCN'
                   ? market.tokenPrice.toFormat(4)

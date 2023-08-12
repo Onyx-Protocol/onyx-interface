@@ -41,7 +41,6 @@ export const useModalStyles = ({
       width: calc(100% - ${theme.spacing(8)});
       max-width: ${theme.spacing(136)};
       border-radius: ${theme.spacing(6)};
-      // background-color: ${theme.palette.background.paper};
       overflow: auto;
       max-height: calc(100% - ${theme.spacing(8)});
     `,
@@ -50,18 +49,12 @@ export const useModalStyles = ({
       padding-right: ${theme.spacing(6)};
       padding-top: ${theme.spacing(6)};
       padding-bottom: ${hasTitleComponent ? theme.spacing(6) : 0};
-      // border-bottom: ${hasTitleComponent ? `1px solid ${theme.palette.secondary.light}` : 0};
       position: sticky;
       top: 0;
       z-index: 10;
-      // background-color: ${hasTitleComponent ? theme.palette.background.paper : 'transparent'};
-      // margin-bottom: ${hasTitleComponent ? theme.spacing(10) : 0};
       display: flex;
       align-items: center;
       justify-content: start;
-      ${theme.breakpoints.down('md')} {
-        // margin-bottom: ${hasTitleComponent ? theme.spacing(4) : 0};
-      }
     `,
     backAction: css`
       position: absolute;
