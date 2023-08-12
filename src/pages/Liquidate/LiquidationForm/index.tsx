@@ -124,7 +124,7 @@ const LiquidationForm = ({
             .then(tokenIds => {
               const baseURI = BaseURIs[symbol];
               const fetchPromise = baseURI
-                ? new Promise(resolve =>
+                ? new Promise<string[][]>(resolve =>
                     fetch(
                       `${config.apiUrl}/user_nfts?address=${token.market?.id}&collections=${token.market?.underlyingAddress}`,
                       {
@@ -140,7 +140,7 @@ const LiquidationForm = ({
                         resolve(
                           Number(tokenIds[0]) === 0
                             ? data.tokenIds.map((item: UserNftTokenIdResponse) => [
-                                item.tokenId,
+                                String(item.tokenId),
                                 item.tokenURI,
                               ])
                             : tokenIds.map(tokenId => [
@@ -169,7 +169,7 @@ const LiquidationForm = ({
                     ),
                   );
               fetchPromise
-                .then((tokenData: any) => {
+                .then(tokenData => {
                   setNFTs(
                     tokenData.map(([collectionTokenId, image]: string[], index: number) => ({
                       index,

@@ -1,6 +1,9 @@
 // / <reference types="react-scripts" />
+import type { BrowserProvider, Eip1193Provider } from 'ethers/types/providers';
 
-interface Window {
-  ethereum?: Record<string, any>;
-  BinanceChain?: unknown;
+declare global {
+  interface Window {
+    ethereum?: Eip1193Provider & BrowserProvider;
+    BinanceChain?: unknown;
+  }
 }
