@@ -12,11 +12,7 @@ describe('pages/VoterLeaderboard/Table', () => {
 
   it('renders without crashing', async () => {
     renderComponent(
-      <Table
-        voterAccounts={voterAccounts.voterAccounts}
-        offset={voterAccounts.offset}
-        isFetching={false}
-      />,
+      <Table voterAccounts={voterAccounts.voterAccounts} offset={0} isFetching={false} />,
     );
   });
 });

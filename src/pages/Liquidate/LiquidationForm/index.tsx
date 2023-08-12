@@ -145,8 +145,10 @@ const LiquidationForm = ({
                               ])
                             : tokenIds.map(tokenId => [
                                 tokenId,
-                                data.tokenIds.find(item => item.tokenId === tokenId)?.tokenURI ||
-                                  `/cryptologos/${symbol.toLowerCase()}.jpg`,
+                                data.tokenIds.find(
+                                  (item: UserNftTokenIdResponse) =>
+                                    String(item.tokenId) === String(tokenId),
+                                )?.tokenURI || `/cryptologos/${symbol.toLowerCase()}.jpg`,
                               ]),
                         ),
                       )

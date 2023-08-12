@@ -36,6 +36,7 @@ describe('api/mutation/stakeInFarm', () => {
         token2: fakeToken2,
         amountWei1: fakeAmountWei1,
         amountWei2: fakeAmountWei2,
+        ethFlag: '',
       });
 
       throw new Error('stakeInFarm should have thrown an error but did not');
@@ -70,6 +71,7 @@ describe('api/mutation/stakeInFarm', () => {
         token2: fakeToken2,
         amountWei1: fakeAmountWei1,
         amountWei2: fakeAmountWei2,
+        ethFlag: '',
       });
 
       throw new Error('stakeInFarm should have thrown an error but did not');
@@ -103,6 +105,7 @@ describe('api/mutation/stakeInFarm', () => {
       token2: fakeToken2,
       amountWei1: fakeAmountWei1,
       amountWei2: fakeAmountWei2,
+      ethFlag: '',
     });
 
     expect(response).toBe(fakeTransactionReceipt);
