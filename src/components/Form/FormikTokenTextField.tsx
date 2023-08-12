@@ -45,13 +45,14 @@ export const FormikTokenTextField = ({
   useEffect(() => {
     if (outAmount && decimals) {
       if (outAmount.eq(0)) setValue('');
-      else
+      else {
         setValue(
           outAmount
             .div(10 ** decimals)
             .dp(decimals)
             .toString(10),
         );
+      }
     }
   }, [outAmount]);
 

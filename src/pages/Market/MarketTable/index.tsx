@@ -154,7 +154,7 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
               market.borrowXcnApy.isNaN() ? (
                 'Pending'
               ) : (
-                <span style={{ color: borrowapy.gt(0) ? '#18DF8B' : '#E93D44' }}>
+                <span style={{ color: borrowApy.gt(0) ? '#18DF8B' : '#E93D44' }}>
                   {formatToReadablePercentage(borrowApy)}
                 </span>
               ),

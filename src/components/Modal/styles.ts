@@ -21,8 +21,8 @@ export const useModalStyles = ({
         115.84deg,
         rgba(30, 62, 78, 0.51) -25.32%,
         rgba(255, 255, 255, 0.16) 110.71%
-      );`
-        : 'linear-gradient(115.84deg, rgba(30, 62, 78, 0.51) -25.32%, rgba(255, 255, 255, 0.16) 110.71%);'};
+      ) `
+        : 'linear-gradient(115.84deg, rgba(30, 62, 78, 0.51) -25.32%, rgba(255, 255, 255, 0.16) 110.71%)'};
       backdrop-filter: blur(35px);
     `,
     box: css`

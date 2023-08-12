@@ -54,7 +54,7 @@ export const styles = () => {
 
       background-color: transparent;
       border-color: transparent;
-      border-radius: 0px;
+      border-radius: 0;
       border-bottom: 1px solid #29a696;
 
       ${fullWidth &&
