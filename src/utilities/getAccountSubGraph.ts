@@ -9,9 +9,9 @@ const getAccountSubGraph = (
   comptroller?: SubgraphComptroller;
   account?: SubgraphAccount;
 }> => {
-  if (!SUBGRAPH_LINKS[network]) return Promise.resolve({});
+  if (!SUBGRAPH_LINKS[network] && !SUBGRAPH_LINKS[network].legacy) return Promise.resolve({});
   return new Promise(resolve =>
-    fetch(SUBGRAPH_LINKS[network][0], {
+    fetch(SUBGRAPH_LINKS[network].legacy, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
