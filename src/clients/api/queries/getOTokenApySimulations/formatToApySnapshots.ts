@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js';
 import { ContractCallResults } from 'ethereum-multicall';
 
-import { BLOCKS_PER_DAY } from 'constants/ethereum';
 import { COMPOUND_MANTISSA } from 'constants/compoundMantissa';
 import { DAYS_PER_YEAR } from 'constants/daysPerYear';
+import { BLOCKS_PER_DAY } from 'constants/ethereum';
 
 import { OTokenApySnapshot } from './types';
 

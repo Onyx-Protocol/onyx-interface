@@ -16,7 +16,7 @@ export const styles = () => {
     `,
     lpTokenIcon: css`
       width: ${theme.spacing(10)};
-      height: ${theme.spacing(10)};      
+      height: ${theme.spacing(10)};
       margin-bottom: ${theme.spacing(5)};
     `,
     mainLogo: css`

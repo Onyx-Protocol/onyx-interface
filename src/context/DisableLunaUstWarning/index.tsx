@@ -34,9 +34,7 @@ export const DisableLunaUstWarningProvider: React.FC = ({ children }) => {
     () =>
       assets.some(
         asset =>
-          (asset.token.address === '0xluna' ||
-            asset.token.address === '0xust') &&
-          asset.collateral,
+          (asset.token.address === '0xluna' || asset.token.address === '0xust') && asset.collateral,
       ),
     [JSON.stringify(assets)],
   );

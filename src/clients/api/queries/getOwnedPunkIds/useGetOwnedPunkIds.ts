@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import { useMulticall } from 'clients/web3';
 
 import getOwnedPunkIds from 'clients/api/queries/getOwnedPunkIds';
+import { useMulticall } from 'clients/web3';
 import FunctionKey from 'constants/functionKey';
 
-const useGetOwnedPunkIds = (params: any, options?: any) => {
+const useGetOwnedPunkIds = (params: { accountAddress: string }, options?: object) => {
   const multicall = useMulticall();
 
   return useQuery(

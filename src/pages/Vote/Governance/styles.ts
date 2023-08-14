@@ -9,7 +9,7 @@ export const useStyles = () => {
       margin-right: ${theme.spacing(4)};
 
       ${theme.breakpoints.down('lg')} {
-        margin-right: 0px;
+        margin-right: 0;
       }
     `,
     loader: css`

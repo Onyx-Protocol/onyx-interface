@@ -152,7 +152,7 @@ export const useStyles = () => {
       }
 
       .tokenList.mobile::-webkit-scrollbar-track {
-        background-color: #000000;
+        background-color: #000;
       }
 
       .tokenList.mobile::-webkit-scrollbar-thumb {

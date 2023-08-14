@@ -20,11 +20,7 @@ import type { TransactionReceipt } from 'web3-core/types';
 
 import { useSwapTokens } from 'clients/api';
 import { SLIPPAGE_TOLERANCE_PERCENTAGE } from 'constants/swap';
-import {
-  MAINNET_UNISWAP_TOKENS,
-  UNISWAP_TOKENS,
-  TESTNET_UNISWAP_TOKENS,
-} from 'constants/tokens';
+import { MAINNET_UNISWAP_TOKENS, TESTNET_UNISWAP_TOKENS, UNISWAP_TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useGetSwapTokenUserBalances from 'hooks/useGetSwapTokenUserBalances';

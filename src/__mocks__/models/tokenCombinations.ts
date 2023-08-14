@@ -1,4 +1,4 @@
-import { Token as PSToken, ChainId } from '@uniswap/sdk';
+import { ChainId, Token as PSToken } from '@uniswap/sdk';
 import { PSTokenCombination } from 'types';
 
 import { UNISWAP_TOKENS } from 'constants/tokens';

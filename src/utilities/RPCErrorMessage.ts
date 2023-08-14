@@ -5,4 +5,5 @@ export const parseRPCErrorMessage = (msg: string) => {
   return jsonMessageParsed;
 };
 
-export const formatRPCErrorMessage = (msg: string) => `${msg.charAt(0).toUpperCase()}${msg.slice(1)}.`;
+export const formatRPCErrorMessage = (msg: string) =>
+  `${msg.charAt(0).toUpperCase()}${msg.slice(1)}.`;

@@ -1,11 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import BigNumber from 'bignumber.js';
 import React from 'react';
+import { Market, SubgraphToken } from 'types';
 import { formatCentsToReadableValue } from 'utilities';
 
 import { useStyles } from './styles';
 
-const UserTokenTable = ({ token, markets = [], selectedToken, onSelectSupplyToken }: any) => {
+type Props = {
+  token: SubgraphToken;
+  markets: Market[];
+  selectedToken?: SubgraphToken;
+  onSelectSupplyToken: (token: SubgraphToken) => void;
+};
+
+const UserTokenTable = ({ token, markets = [], selectedToken, onSelectSupplyToken }: Props) => {
   const styles = useStyles();
   const supply = new BigNumber(token.oTokenBalance).times(token.market.exchangeRate);
   const borrow = new BigNumber(token.storedBorrowBalance);
@@ -13,9 +21,8 @@ const UserTokenTable = ({ token, markets = [], selectedToken, onSelectSupplyToke
     return null;
   }
 
-  const getTokenPrice = (tokenTemp: any) =>
-    (markets || []).find((market: any) => market.address === tokenTemp.market.id)?.tokenPrice ||
-    new BigNumber(0);
+  const getTokenPrice = (tokenTemp: SubgraphToken) =>
+    markets.find(market => market.address === tokenTemp.market.id)?.tokenPrice || new BigNumber(0);
 
   return (
     <tr
@@ -25,13 +32,12 @@ const UserTokenTable = ({ token, markets = [], selectedToken, onSelectSupplyToke
         selectedToken?.market?.id === token.market.id ? styles.activeToken : '',
       ]}
       onClick={() => {
-          onSelectSupplyToken(token);
+        onSelectSupplyToken(token);
       }}
     >
       <td>
         <span className="usdPrice">
-          {(markets || []).find((market: any) => market.address === token.market.id)
-            ?.underlyingSymbol || ''}
+          {markets.find(market => market.address === token.market.id)?.underlyingSymbol || ''}
         </span>
       </td>
       <td>

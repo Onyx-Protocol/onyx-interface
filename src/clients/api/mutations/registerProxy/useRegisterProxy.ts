@@ -1,11 +1,14 @@
-import { useMutation } from 'react-query';
+import { UseMutationOptions, useMutation } from 'react-query';
 
 import registerProxy from 'clients/api/mutations/registerProxy';
 import queryClient from 'clients/api/queryClient';
 import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
-const useRegisterProxy = ({ accountAddress }: { accountAddress: string }, options?: any) => {
+const useRegisterProxy = (
+  { accountAddress }: { accountAddress: string },
+  options?: UseMutationOptions,
+) => {
   const WPunksContract = useWPunksContract();
 
   return useMutation(

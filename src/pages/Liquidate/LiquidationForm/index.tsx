@@ -4,6 +4,7 @@ import { Button } from 'components';
 import config from 'config';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
+import { Market, MarketWithBorrowBalance, Nft, SubgraphToken, UserNftTokenIdResponse } from 'types';
 import { getTokenByAddress } from 'utilities';
 
 import NftCheckImg from 'assets/img/nft_check.svg';
@@ -13,6 +14,7 @@ import { useWeb3 } from 'clients/web3';
 import { NULL_ADDRESS } from 'constants/address';
 import { BaseURIs } from 'constants/baseURIs';
 import { AuthContext } from 'context/AuthContext';
+import { OTokenEx } from 'types/contracts';
 
 import { useStyles } from './styles';
 
@@ -20,6 +22,21 @@ const defaults = {
   amount: 1,
   repay: '0',
 };
+
+type Props = {
+  isLoading: boolean;
+  current?: MarketWithBorrowBalance;
+  availables: MarketWithBorrowBalance[];
+  onChange: (value: MarketWithBorrowBalance) => void;
+  token: Partial<SubgraphToken>;
+  markets: Market[];
+  allowed: string[];
+  onSubmit: (form: { amount: number; repay: string }) => void;
+  onClose: () => void;
+  onAmount: (amount: number, selectedIds: number[]) => Promise<{ 0: string; 1: string; 2: string }>;
+  userId?: string;
+};
+
 const LiquidationForm = ({
   isLoading,
   token,
@@ -32,7 +49,7 @@ const LiquidationForm = ({
   availables,
   onChange,
   userId,
-}: any) => {
+}: Props) => {
   const styles = useStyles();
   const { t } = useTranslation();
 
@@ -45,9 +62,9 @@ const LiquidationForm = ({
     }
   }, [current, availables, onChange]);
 
-  const [form, setForm] = useState<any>(defaults);
-  const [nfts, setNFTs] = useState<any>([]);
-  const [selectedIds, setSelectedIds] = useState<any>([]);
+  const [form, setForm] = useState<{ amount: number; repay: string }>(defaults);
+  const [nfts, setNFTs] = useState<Nft[]>([]);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const isAllowed =
     Number(
@@ -60,13 +77,13 @@ const LiquidationForm = ({
         : allowed[0],
     ) > 0;
 
-  const fetchAmount = (amount: any) => {
+  const fetchAmount = (amount: number) => {
     setForm({
       amount,
       repay: '-',
     });
     onAmount(amount, selectedIds)
-      .then((repay: any) => {
+      .then(repay => {
         setForm({
           amount,
           repay: repay[2],
@@ -84,21 +101,20 @@ const LiquidationForm = ({
   }, [selectedIds.length]);
 
   const symbol =
-    (markets || []).find((market: any) => market.address === token?.market?.id)?.underlyingSymbol ||
-    '';
+    (markets || []).find(market => market.address === token?.market?.id)?.underlyingSymbol || '';
 
-  const oTokenContract: any = token?.market?.id
-    ? getOTokenContract(symbol.toLowerCase(), web3)
+  const oTokenContract = token?.market?.id
+    ? (getOTokenContract(symbol.toLowerCase(), web3) as unknown as OTokenEx)
     : null;
 
   const punkDataContract = usePunkDataContract();
 
   useEffect(() => {
-    if (token?.market?.underlyingDecimals !== 0 && oTokenContract) {
+    if (token?.market?.underlyingDecimals !== 0 && oTokenContract && userId) {
       oTokenContract.methods
         .balanceOfUnderlying(userId)
         .call()
-        .then((supplyBalance: any) => {
+        .then((supplyBalance: string) => {
           const promise = Promise.all(
             new Array(Number(supplyBalance || '0'))
               .fill(1)
@@ -108,9 +124,9 @@ const LiquidationForm = ({
             .then(tokenIds => {
               const baseURI = BaseURIs[symbol];
               const fetchPromise = baseURI
-                ? new Promise(resolve =>
+                ? new Promise<string[][]>(resolve =>
                     fetch(
-                      `${config.apiUrl}/user_nfts?address=${token.market.id}&collections=${token.market.underlyingAddress}`,
+                      `${config.apiUrl}/user_nfts?address=${token.market?.id}&collections=${token.market?.underlyingAddress}`,
                       {
                         method: 'GET',
                         headers: {
@@ -120,14 +136,19 @@ const LiquidationForm = ({
                       },
                     )
                       .then(res => res.json())
-                      .then(({ data: [data = { tokenIds: [] }] }) =>
+                      .then(({ data: [data = { tokenIds: [] as UserNftTokenIdResponse[] }] }) =>
                         resolve(
                           Number(tokenIds[0]) === 0
-                            ? data.tokenIds.map((item: any) => [item.tokenId, item.tokenURI])
+                            ? data.tokenIds.map((item: UserNftTokenIdResponse) => [
+                                String(item.tokenId),
+                                item.tokenURI,
+                              ])
                             : tokenIds.map(tokenId => [
                                 tokenId,
-                                data.tokenIds.find((item: any) => item.tokenId === tokenId)
-                                  ?.tokenURI || `/cryptologos/${symbol.toLowerCase()}.jpg`,
+                                data.tokenIds.find(
+                                  (item: UserNftTokenIdResponse) =>
+                                    String(item.tokenId) === String(tokenId),
+                                )?.tokenURI || `/cryptologos/${symbol.toLowerCase()}.jpg`,
                               ]),
                         ),
                       )
@@ -148,12 +169,12 @@ const LiquidationForm = ({
                     ),
                   );
               fetchPromise
-                .then((tokenData: any) => {
+                .then(tokenData => {
                   setNFTs(
-                    tokenData.map(([collectionTokenId, image]: any, index: any) => ({
+                    tokenData.map(([collectionTokenId, image]: string[], index: number) => ({
                       index,
                       collectionTokenId,
-                      collectionTokenContract: token.market.underlyingAddress,
+                      collectionTokenContract: token.market?.underlyingAddress,
                       imageUrl: image
                         .replace('ipfs://', 'https://ipfs.io/ipfs/')
                         .replace('data:image/svg+xml;utf8,', ''),
@@ -169,7 +190,7 @@ const LiquidationForm = ({
     }
   }, [token, account]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     onSubmit({ ...form });
   };
@@ -185,14 +206,14 @@ const LiquidationForm = ({
         <>
           <div className="flex-center">
             <div className="nftSelectionWrap">
-              {(nfts || []).map((nft: any = {}) => (
+              {nfts.map(nft => (
                 <div
                   className={`nftItem ${selectedIds.includes(nft.index) ? 'selectedNft' : ''}`}
                   key={nft.index}
                   onClick={() =>
                     setSelectedIds(
                       selectedIds.includes(nft.index)
-                        ? selectedIds.filter((item: any) => item !== nft.index)
+                        ? selectedIds.filter(item => item !== nft.index)
                         : [...selectedIds, nft.index],
                     )
                   }
@@ -217,7 +238,7 @@ const LiquidationForm = ({
           </div>
           {current && (
             <div className="tokenlist">
-              {(availables || []).map((repayToken: any) => (
+              {(availables || []).map(repayToken => (
                 <div
                   className={`flex-center tokenItem ${
                     repayToken.id === current.id ? 'activeToken' : ''
@@ -274,7 +295,9 @@ const LiquidationForm = ({
                   isLoading ||
                   !token.market ||
                   form.amount >
-                    new BigNumber(token.oTokenBalance).times(token.market.exchangeRate).toNumber()
+                    new BigNumber(token.oTokenBalance ?? 0)
+                      .times(token.market.exchangeRate)
+                      .toNumber()
                 }
                 onClick={handleSubmit}
               >

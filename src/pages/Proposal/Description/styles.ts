@@ -14,7 +14,7 @@ export const useStyles = () => {
     `,
     content: css`
       max-width: ${theme.spacing(200)};
-      width: 100%;      
+      width: 100%;
     `,
     markdown: css`
       margin-top: ${theme.spacing(2)};

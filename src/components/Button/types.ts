@@ -1,1 +1,7 @@
-export type Variant = 'primary' | 'secondary' | 'tertiary' | 'text' | 'secondaryConnectWallet' | 'primaryConnectWallet';
+export type Variant =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'text'
+  | 'secondaryConnectWallet'
+  | 'primaryConnectWallet';

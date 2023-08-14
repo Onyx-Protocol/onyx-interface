@@ -4,6 +4,7 @@ import {
   ComptrollerErrorReporterError,
   ComptrollerErrorReporterFailureInfo,
 } from 'constants/contracts/errorReporter';
+import { Comptroller } from 'types/contracts';
 
 import exitMarket from '.';
 
@@ -17,7 +18,7 @@ describe('api/mutation/exitMarket', () => {
           },
         }),
       },
-    } as any;
+    } as unknown as Comptroller;
 
     try {
       await exitMarket({
@@ -48,7 +49,7 @@ describe('api/mutation/exitMarket', () => {
           }),
         }),
       },
-    } as any;
+    } as unknown as Comptroller;
 
     try {
       await exitMarket({
@@ -82,7 +83,7 @@ describe('api/mutation/exitMarket', () => {
       methods: {
         exitMarket: exitMarketMock,
       },
-    } as unknown as any;
+    } as unknown as Comptroller;
 
     const response = await exitMarket({
       comptrollerContract: fakeContract,

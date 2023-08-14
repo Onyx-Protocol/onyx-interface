@@ -3,7 +3,7 @@ import React from 'react';
 
 import { markets } from '__mocks__/models/markets';
 import { oTokenBalanceTreasury } from '__mocks__/models/oTokenBalanceTreasury';
-import { getMarkets, useGetTreasuryTotals, useGetOTokenBalancesAll } from 'clients/api';
+import { getMarkets, useGetOTokenBalancesAll, useGetTreasuryTotals } from 'clients/api';
 import renderComponent from 'testUtils/renderComponent';
 
 import Market from '.';
