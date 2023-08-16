@@ -4,7 +4,7 @@ import getProxies from 'clients/api/queries/getProxies';
 import { useWPunksContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
-const useGetProxies = (params: { accountAddress: string }, options?: object) => {
+const useGetProxies = (params: { accountAddress: string }, options?: Record<string, unknown>) => {
   const WPunksContract = useWPunksContract();
 
   return useQuery(

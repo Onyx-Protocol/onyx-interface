@@ -4,7 +4,10 @@ import getOwnedPunkIds from 'clients/api/queries/getOwnedPunkIds';
 import { useMulticall } from 'clients/web3';
 import FunctionKey from 'constants/functionKey';
 
-const useGetOwnedPunkIds = (params: { accountAddress: string }, options?: object) => {
+const useGetOwnedPunkIds = (
+  params: { accountAddress: string },
+  options?: Record<string, unknown>,
+) => {
   const multicall = useMulticall();
 
   return useQuery(
