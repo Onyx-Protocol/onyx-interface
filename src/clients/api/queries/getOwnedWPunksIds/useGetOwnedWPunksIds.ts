@@ -5,7 +5,10 @@ import { useWPunksContract } from 'clients/contracts/hooks';
 import { useMulticall } from 'clients/web3';
 import FunctionKey from 'constants/functionKey';
 
-const useGetOwnedWPunksIds = (params: { accountAddress: string }, options?: object) => {
+const useGetOwnedWPunksIds = (
+  params: { accountAddress: string },
+  options?: Record<string, unknown>,
+) => {
   const multicall = useMulticall();
   const WPunksContract = useWPunksContract();
 
