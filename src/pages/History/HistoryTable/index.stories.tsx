@@ -1,7 +1,7 @@
 import { ComponentMeta } from '@storybook/react';
 import React from 'react';
 
-import transactions from '__mocks__/models/transactions';
+import historyItems from '__mocks__/models/historyItems';
 
 import { HistoryTableUi } from '.';
 
@@ -15,4 +15,4 @@ export default {
   },
 } as ComponentMeta<typeof HistoryTableUi>;
 
-export const Default = () => <HistoryTableUi transactions={transactions} isFetching={false} />;
+export const Default = () => <HistoryTableUi historyItems={historyItems} isFetching={false} />;
