@@ -118,8 +118,6 @@ const History: React.FC = () => {
     setIsFetching(false);
   };
 
-  useEffect(() => {}, [currentPage]);
-
   useEffect(() => {
     setCurrentPage(0);
     setTotalCount(0);
