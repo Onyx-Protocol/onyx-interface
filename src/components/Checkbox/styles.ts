@@ -13,7 +13,7 @@ export const useStyles = () => {
       }
       :hover {
         svg {
-          color: #1DB9A6;
+          color: #1db9a6;
         }
       }
     `,

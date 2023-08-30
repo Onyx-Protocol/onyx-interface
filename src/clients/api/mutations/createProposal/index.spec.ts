@@ -23,6 +23,7 @@ describe('api/mutation/createProposal', () => {
         signatures: ['signature()'],
         callDatas: ['callData'],
         description: 'Description',
+        values: [],
       });
 
       throw new Error('createProposal should have thrown an error but did not');
@@ -55,6 +56,7 @@ describe('api/mutation/createProposal', () => {
       signatures: fakeSignatures,
       callDatas: ['callData'],
       description: fakeDescription,
+      values: [],
     });
 
     expect(response).toBe(fakeTransactionReceipt);

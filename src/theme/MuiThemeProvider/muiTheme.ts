@@ -1,5 +1,6 @@
 /* https://mui.com/customization/theming/ */
 import { ThemeOptions, createTheme } from '@mui/material/styles';
+import lo from 'lodash';
 
 const fontFamily = ['ProximaNova', 'Arial', 'sans-serif'].join(',');
 
@@ -135,7 +136,7 @@ export const SHAPE = {
     small: SPACING * 2,
     medium: SPACING * 4,
     large: SPACING * 6,
-  } as any, // our custom types seem to clash with the default MUI types
+  }, // our custom types seem to clash with the default MUI types
   iconSize: {
     small: SPACING * 3,
     medium: SPACING * 4,
@@ -154,7 +155,7 @@ export function getTheme(mode: number) {
     spacing: SPACING,
     palette: PALETTE[mode],
     breakpoints: BREAKPOINTS,
-    shape: SHAPE,
+    shape: lo.omit(SHAPE, 'borderRadius'),
     typography: {
       fontFamily: FONTS.primary,
       color: PALETTE[mode].text.primary,

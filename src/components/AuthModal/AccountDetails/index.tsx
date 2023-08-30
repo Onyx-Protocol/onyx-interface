@@ -5,9 +5,9 @@ import { useTranslation } from 'translation';
 
 import { Connector } from 'clients/web3';
 
-import { EthLink } from '../../EthLink';
 import { SecondaryButton } from '../../Button';
 import { EllipseAddress } from '../../EllipseAddress';
+import { EthLink } from '../../EthLink';
 import { Icon } from '../../Icon';
 import { WALLETS } from '../constants';
 import { useStyles } from './styles';

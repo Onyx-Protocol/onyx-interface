@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { Paper, Typography } from '@mui/material';
-import { ActiveChip, EthLink, Chip, Countdown, PrimaryButton, SecondaryButton } from 'components';
+import { ActiveChip, Chip, Countdown, EthLink, PrimaryButton, SecondaryButton } from 'components';
 import isAfter from 'date-fns/isAfter';
 import React, { useContext, useMemo } from 'react';
 import { useTranslation } from 'translation';

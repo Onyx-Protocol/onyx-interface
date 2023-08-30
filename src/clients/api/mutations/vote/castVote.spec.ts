@@ -20,7 +20,7 @@ describe('api/mutation/castVote', () => {
         governorBravoContract: fakeContract,
         fromAccountAddress: address,
         proposalId: 1,
-        voteType: 1,
+        voteType: true,
       });
 
       throw new Error('castVote should have thrown an error but did not');
@@ -46,7 +46,7 @@ describe('api/mutation/castVote', () => {
       governorBravoContract: fakeContract,
       fromAccountAddress: address,
       proposalId: 1,
-      voteType: 1,
+      voteType: true,
     });
 
     expect(response).toBe(fakeTransaction);

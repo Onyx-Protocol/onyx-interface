@@ -1,10 +1,16 @@
 import { checkForTokenTransactionError } from 'errors';
 
+import { OTokenEx } from 'types/contracts';
+
 const redeemNFT = async ({
   tokenContract,
   accountAddress,
   tokenIds,
-}: any): Promise<any> => {
+}: {
+  tokenContract: OTokenEx;
+  accountAddress: string;
+  tokenIds: string[];
+}) => {
   const resp = await tokenContract.methods.redeems(tokenIds).send({ from: accountAddress });
 
   return checkForTokenTransactionError(resp);

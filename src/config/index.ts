@@ -1,8 +1,8 @@
 import sample from 'lodash/sample';
 import { EthChainId } from 'types';
 
-import { ETH_SCAN_URLS } from 'constants/ethereum';
 import { API_ENDPOINT_URLS, API_GOV_ENDPOINT_URLS, RPC_URLS } from 'constants/endpoints';
+import { ETH_SCAN_URLS } from 'constants/ethereum';
 
 export interface Config {
   chainId: EthChainId;

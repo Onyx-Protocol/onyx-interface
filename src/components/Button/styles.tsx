@@ -48,13 +48,13 @@ export const styles = ({
         }
 
         :hover:not(:disabled) {
-          background-color: #1DB9A6;
-          border-color: #1DB9A6;
+          background-color: #1db9a6;
+          border-color: #1db9a6;
         }
 
         :active:not(:disabled) {
-          background-color: #1DB9A6;
-          border-color: #1DB9A6;
+          background-color: #1db9a6;
+          border-color: #1db9a6;
         }
       `;
     }
@@ -139,11 +139,6 @@ export const styles = ({
       :hover:not(:disabled) {
         background-color: ${theme.palette.button.medium};
         border-color: ${theme.palette.button.medium};
-      }
-
-      :active:not(:disabled) {
-        // background-color: ${theme.palette.button.dark};
-        // border-color: ${theme.palette.button.dark};
       }
     `;
   };

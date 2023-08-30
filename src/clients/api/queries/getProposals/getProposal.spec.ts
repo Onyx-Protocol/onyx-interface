@@ -35,7 +35,7 @@ describe('api/queries/getProposal', () => {
   test('returns proposal', async () => {
     (restService as jest.Mock).mockImplementationOnce(async () => ({
       status: 200,
-      data: { data: proposalResponse.result[0] },
+      data: { data: proposalResponse.data[0] },
     }));
 
     const response = await getProposal({

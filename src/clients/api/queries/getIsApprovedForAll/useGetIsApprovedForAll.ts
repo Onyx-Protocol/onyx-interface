@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import { Token } from 'types';
 
 import getIsApprovedForAll from 'clients/api/queries/getIsApprovedForAll';
 import { useNftContract } from 'clients/contracts/hooks';
@@ -13,8 +14,20 @@ export type UseGetIsApprovedForAllQueryKey = [
   },
 ];
 
-const useGetIsApprovedForAll = ({ token, spenderAddress, accountAddress }: any, options?: any) => {
-  if (token.decimals !== 0) return false;
+const useGetIsApprovedForAll = (
+  {
+    token,
+    spenderAddress,
+    accountAddress,
+  }: { token: Token; spenderAddress: string; accountAddress: string },
+  options?: { enabled: boolean },
+) => {
+  if (token.decimals !== 0) {
+    return {
+      data: false,
+      isLoading: false,
+    };
+  }
   const tokenContract = useNftContract(token);
 
   return useQuery(

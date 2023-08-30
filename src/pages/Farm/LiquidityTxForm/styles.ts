@@ -28,7 +28,7 @@ export const useStyles = () => {
       display: flex;
       gap: 10px;
       justify-content: space-between;
-      margin: ${theme.spacing(3)} 0px;
+      margin: ${theme.spacing(3)} 0;
 
       button {
         width: 100%;
