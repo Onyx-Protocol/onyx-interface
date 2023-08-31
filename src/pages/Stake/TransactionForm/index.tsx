@@ -37,7 +37,8 @@ export interface TransactionFormProps {
   lockingPeriodMs?: number;
   spenderAddress?: string;
   tokenNeedsToBeEnabled?: boolean;
-  enableTokenMessage?: string;
+  increaseAllowanceMessage?: string;
+  increaseAllowanceButtonLabel?: string;
 }
 
 const TransactionForm: React.FC<TransactionFormProps> = ({
@@ -53,7 +54,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
   lockingPeriodMs,
   spenderAddress,
   tokenNeedsToBeEnabled,
-  enableTokenMessage,
+  increaseAllowanceMessage,
+  increaseAllowanceButtonLabel,
 }) => {
   const { account } = React.useContext(AuthContext);
   const { t } = useTranslation();
@@ -159,7 +161,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
               <div css={styles.info}>
                 <Icon name="info" />
                 <Typography variant="small2" color="text.primary">
-                  {enableTokenMessage}
+                  {increaseAllowanceMessage}
                 </Typography>
               </div>
             )}
@@ -190,7 +192,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
               fullWidth
               onClick={approveToken}
             >
-              {t('enableToken.enableButtonLabel')}
+              {increaseAllowanceButtonLabel}
             </PrimaryButton>
           ) : (
             <FormikSubmitButton

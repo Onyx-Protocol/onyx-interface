@@ -365,6 +365,7 @@
     "availableTokensLabel": "Available {{tokenSymbol}}",
     "connectWalletMessage": "Please connect your wallet to stake {{tokenSymbol}}",
     "enableTokenMessage": "To stake {{tokenSymbol}} to this pool, you need to enable it first",
+    "increaseAllowanceButtonLabel": "Increase {{tokenSymbol}} spending limit",
     "submitButtonDisabledLabel": "Enter a valid amount to stake",
     "submitButtonLabel": "Stake",
     "successfulTransactionModal": {
