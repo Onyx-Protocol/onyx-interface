@@ -8,6 +8,7 @@ export interface ActionModalProps extends Pick<ModalProps, 'handleClose'>, Trans
   title: ModalProps['title'];
   isInitialLoading: boolean;
   connectWalletMessage: string;
+  enableTokenMessage?: string;
 }
 
 const ActionModal: React.FC<ActionModalProps> = ({
@@ -26,7 +27,6 @@ const ActionModal: React.FC<ActionModalProps> = ({
       token={token}
       spenderAddress={spenderAddress}
       tokenNeedsToBeEnabled={tokenNeedsToBeEnabled}
-      enableTokenMessage={enableTokenMessage}
       {...otherTransactionFormProps}
     />
   );
