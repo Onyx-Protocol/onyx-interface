@@ -1,110 +1,57 @@
 import BigNumber from 'bignumber.js';
-import { Proposal } from 'types';
+import { Proposal, ProposalState } from 'types';
+import Web3 from 'web3';
 
-interface FormatToProposalInput {
-  call_datas?: string | null;
-  callDatas?: string | null;
-  signatures: string;
-  targets: string;
-  values: string;
-  against_votes?: string | null;
-  againstVotes?: string | null;
-  cancel_block?: number | null;
-  cancel_timestamp?: number | null;
-  cancel_tx_hash?: string | null;
-  cancelBlock?: number | null;
-  cancelTimestamp?: number | null;
-  cancelTxHash?: string | null;
-  canceled: number | boolean;
-  created_at?: string | null;
-  createdAt?: string | null;
-  created_block: number | null;
-  created_timestamp: number | null;
-  created_tx_hash?: string | null;
-  description: string;
-  end_block?: number;
-  end_timestamp?: number | null;
-  end_tx_hash?: string | null;
-  endBlock?: number;
-  endTimestamp?: number | null;
-  endTxHash?: string | null;
-  eta: number;
-  executed: number | boolean;
-  executed_block: number | null;
-  executed_timestamp: number | null;
-  executed_tx_hash: string | null;
-  for_votes?: string | null;
-  forVotes?: string | null;
-  id: number;
-  proposer: string;
-  queued_block: number | null;
-  queued_timestamp: number | null;
-  queued_tx_hash: string | null;
-  start_block?: number | null;
-  start_timestamp?: number;
-  start_tx_hash?: string | null;
-  startBlock?: number | null;
-  startTimestamp?: number;
-  startTxHash?: string | null;
-  state:
-    | 'Pending'
-    | 'Active'
-    | 'Canceled'
-    | 'Defeated'
-    | 'Successded'
-    | 'Queued'
-    | 'Expired'
-    | 'Executed';
-  // JSON
-  updated_at?: string | null;
-  updatedAt?: string | null;
-  voter_count?: number | null;
-  voterCount?: number | null;
-}
+import { ProposalApiResponse } from 'clients/api';
 
 const createDateFromSecondsTimestamp = (timestampInSeconds: number): Date => {
   const inMilliseconds = timestampInSeconds * 1000;
   return new Date(inMilliseconds);
 };
 
-const formatToProposal = ({
-  against_votes,
-  againstVotes,
-  cancel_timestamp,
-  created_timestamp,
-  description,
-  end_block,
-  end_timestamp,
-  executed_timestamp,
-  for_votes,
-  forVotes,
-  id,
-  proposer,
-  queued_timestamp,
-  start_timestamp,
-  state,
-  created_tx_hash,
-  cancel_tx_hash,
-  end_tx_hash,
-  executed_tx_hash,
-  queued_tx_hash,
-  start_tx_hash,
-  call_datas,
-  callDatas,
-  signatures,
-  targets,
-  values,
-}: FormatToProposalInput): Proposal => {
-  const endDate = end_timestamp ? createDateFromSecondsTimestamp(end_timestamp) : undefined;
+const formatToProposal = async (
+  {
+    description,
+    againstVotes,
+    forVotes,
+    callDatas,
+    signatures,
+    targets,
+    values,
+    canceledBlockTimestamp,
+    queuedBlockTimestamp,
+    executedBlockTimestamp,
+    createdBlockTimestamp,
+    createdTransactionHash,
+    canceledTransactionHash,
+    queuedTransactionHash,
+    executedTransactionHash,
+    id,
+    proposer,
+    eta,
+    state: baseState,
+    endBlock: endBlockNumber,
+    startBlock: startBlockNumber,
+  }: ProposalApiResponse,
+  quorumVotes: BigNumber,
+  {
+    latestBlockNumber,
+    latestBlockTimestamp,
+  }: { latestBlockNumber: number; latestBlockTimestamp: number },
+  web3NoAccount: Web3,
+): Promise<Proposal> => {
+  const startBlock = await web3NoAccount.eth.getBlock(startBlockNumber);
+  const endBlock = await web3NoAccount.eth.getBlock(endBlockNumber);
 
-  let descriptionObj: Proposal['description'] = {
-    version: 'v2',
-    title: '',
-    description: '',
-    forDescription: '',
-    againstDescription: '',
-    abstainDescription: '',
-  };
+  const startTimestamp = Number(startBlock?.timestamp);
+  const endTimestamp = Number(endBlock?.timestamp);
+  const endDate = endTimestamp ? createDateFromSecondsTimestamp(endTimestamp) : undefined;
+  const startDate = createDateFromSecondsTimestamp(startTimestamp ?? 0);
+
+  const startTransactionHash = startBlock?.hash;
+  const endTransactionHash = startBlock?.hash;
+
+  let descriptionObj: Proposal['description'];
 
   try {
     descriptionObj = JSON.parse(description);
@@ -121,61 +68,68 @@ const formatToProposal = ({
     descriptionObj = { version: 'v1', title: plainTitle, description: descriptionText };
   }
 
-  const abstainedVotesWei = new BigNumber(0);
-  const againstVotesWei = new BigNumber(against_votes || againstVotes || 0);
-  const forVotesWei = new BigNumber(for_votes || forVotes || 0);
+  const againstVotesWei = new BigNumber(againstVotes ?? 0);
+  const forVotesWei = new BigNumber(forVotes ?? 0);
 
-  let CallDatas: string[] = [];
-  if (call_datas) CallDatas = JSON.parse(JSON.parse(call_datas));
-  else if (callDatas) CallDatas = JSON.parse(callDatas);
-
-  let Signatures: string[] = [];
-  if (call_datas) Signatures = JSON.parse(JSON.parse(signatures));
-  else Signatures = JSON.parse(signatures);
-
-  let Targets: string[] = [];
-  if (call_datas) Targets = JSON.parse(JSON.parse(targets));
-  else Targets = JSON.parse(targets);
-
-  let Values: string[] = [];
-  if (call_datas) Values = JSON.parse(JSON.parse(values));
-  else Values = JSON.parse(values);
-
-  const actions = CallDatas.map((item, index) => ({
+  const actions = callDatas.map((item, index) => ({
     callData: item,
-    signature: Signatures[index],
-    target: Targets[index],
-    value: Values[index],
+    signature: signatures[index],
+    target: targets[index],
+    value: String(values[index]),
   }));
 
-  const proposal: Proposal = {
-    abstainedVotesWei,
+  let state: ProposalState = (baseState.charAt(0).toUpperCase() +
+    baseState.slice(1)) as ProposalState;
+
+  if (state === 'Canceled') {
+    state = 'Canceled';
+  } else if (latestBlockNumber <= startBlockNumber) {
+    state = 'Pending';
+  } else if (latestBlockNumber <= endBlockNumber) {
+    state = 'Active';
+  } else if (forVotes <= againstVotes || new BigNumber(forVotes) < quorumVotes) {
+    state = 'Defeated';
+  } else if (eta === 0) {
+    state = 'Successded';
+  } else if (state === 'Executed') {
+    state = 'Executed';
+  } else if (latestBlockTimestamp >= eta + 3600 * 24 * 14) {
+    state = 'Expired';
+  } else {
+    state = 'Queued';
+  }
+
+  return {
     againstVotesWei,
-    cancelDate: cancel_timestamp ? createDateFromSecondsTimestamp(cancel_timestamp) : undefined,
-    createdDate: created_timestamp ? createDateFromSecondsTimestamp(created_timestamp) : undefined,
+    cancelDate: canceledBlockTimestamp
+      ? createDateFromSecondsTimestamp(canceledBlockTimestamp)
+      : undefined,
+    createdDate: createdBlockTimestamp
+      ? createDateFromSecondsTimestamp(createdBlockTimestamp)
+      : undefined,
     description: descriptionObj,
-    endBlock: !end_block ? 0 : end_block,
+    endBlock: !endBlockNumber ? 0 : endBlockNumber,
     endDate,
-    executedDate: executed_timestamp
-      ? createDateFromSecondsTimestamp(executed_timestamp)
+    executedDate: executedBlockTimestamp
+      ? createDateFromSecondsTimestamp(executedBlockTimestamp)
       : undefined,
     forVotesWei,
-    id,
+    id: Number(id),
     proposer,
-    queuedDate: queued_timestamp ? createDateFromSecondsTimestamp(queued_timestamp) : undefined,
-    startDate: createDateFromSecondsTimestamp(!start_timestamp ? 0 : start_timestamp),
+    queuedDate: queuedBlockTimestamp
+      ? createDateFromSecondsTimestamp(queuedBlockTimestamp)
+      : undefined,
+    startDate,
     state,
-    createdTxHash: created_tx_hash ?? undefined,
-    cancelTxHash: cancel_tx_hash ?? undefined,
-    endTxHash: end_tx_hash ?? undefined,
-    executedTxHash: executed_tx_hash ?? undefined,
-    queuedTxHash: queued_tx_hash ?? undefined,
-    startTxHash: start_tx_hash ?? undefined,
-    totalVotesWei: abstainedVotesWei.plus(againstVotesWei).plus(forVotesWei),
+    createdTxHash: createdTransactionHash,
+    cancelTxHash: canceledTransactionHash ?? undefined,
+    endTxHash: endTransactionHash ?? undefined,
+    executedTxHash: executedTransactionHash ?? undefined,
+    queuedTxHash: queuedTransactionHash ?? undefined,
+    startTxHash: startTransactionHash ?? undefined,
+    totalVotesWei: againstVotesWei.plus(forVotesWei),
     actions: actions || [],
   };
-
-  return proposal;
 };
 
 export default formatToProposal;

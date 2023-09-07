@@ -71,29 +71,18 @@ export const GovernanceUi: React.FC<GovernanceUiProps> = ({
       {isLoading && <Spinner css={styles.loader} />}
 
       <div>
-        {proposals.map(
-          ({
-            id,
-            description,
-            state,
-            endDate,
-            forVotesWei,
-            abstainedVotesWei,
-            againstVotesWei,
-          }) => (
-            <GovernanceProposal
-              key={id}
-              css={styles.bottomSpace}
-              proposalId={id}
-              proposalTitle={description.title}
-              proposalState={state}
-              endDate={endDate}
-              forVotesWei={forVotesWei}
-              againstVotesWei={againstVotesWei}
-              abstainedVotesWei={abstainedVotesWei}
-            />
-          ),
-        )}
+        {proposals.map(({ id, description, state, endDate, forVotesWei, againstVotesWei }) => (
+          <GovernanceProposal
+            key={id}
+            css={styles.bottomSpace}
+            proposalId={id}
+            proposalTitle={description.title}
+            proposalState={state}
+            endDate={endDate}
+            forVotesWei={forVotesWei}
+            againstVotesWei={againstVotesWei}
+          />
+        ))}
       </div>
 
       {!!total && total > 0 && (
@@ -124,13 +113,13 @@ const Governance: React.FC = () => {
   const { account } = React.useContext(AuthContext);
   const accountAddress = account?.address || '';
   const [currentPage, setCurrentPage] = useState(0);
+  const [limit] = useState(5);
 
-  const {
-    data: { proposals, total, limit = 5 } = { proposals: [] },
-    isFetching: isGetProposalsFetching,
-  } = useGetProposals({
-    page: currentPage,
-  });
+  const { data: { proposals, total } = { proposals: [] }, isFetching: isGetProposalsFetching } =
+    useGetProposals({
+      page: currentPage,
+      limit,
+    });
 
   const { mutateAsync: createProposal, isLoading: isCreateProposalLoading } = useCreateProposal();
 
@@ -158,9 +147,9 @@ const Governance: React.FC = () => {
   return (
     <GovernanceUi
       proposals={proposals}
-      isLoading={isGetProposalsFetching}
-      total={total}
       limit={limit}
+      total={total}
+      isLoading={isGetProposalsFetching}
       setCurrentPage={setCurrentPage}
       canCreateProposal={!!canCreateProposal}
       createProposal={payload => createProposal({ ...payload, accountAddress })}

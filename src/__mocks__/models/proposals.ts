@@ -1,11 +1,20 @@
+import BigNumber from 'bignumber.js';
 import { formatToProposal } from 'utilities';
 
-import { ProposalsApiResponse } from 'clients/api/queries/getProposals';
+import { ProposalApiResponse } from '../../clients/api';
+import { getWeb3NoAccount } from '../../clients/web3';
 
 import proposalResponse from '../api/proposals.json';
 
-const proposals = proposalResponse.data.map(p =>
-  formatToProposal(p as ProposalsApiResponse['data'][number]),
+const proposals = Promise.all(
+  proposalResponse.data.map(p =>
+    formatToProposal(
+      p as unknown as ProposalApiResponse,
+      new BigNumber(20000),
+      { latestBlockNumber: 1, latestBlockTimestamp: 1 },
+      getWeb3NoAccount(),
+    ),
+  ),
 );
 
 export default proposals;

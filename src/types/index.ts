@@ -103,7 +103,6 @@ export interface DescriptionV1 {
 }
 
 export interface Proposal {
-  abstainedVotesWei: BigNumber;
   againstVotesWei: BigNumber;
   createdDate: Date | undefined;
   description: DescriptionV1 | DescriptionV2;

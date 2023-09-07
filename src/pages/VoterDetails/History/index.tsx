@@ -39,7 +39,6 @@ export const History: React.FC<HistoryProps> = ({
             state,
             endDate,
             forVotesWei,
-            abstainedVotesWei,
             againstVotesWei,
             createdDate,
             queuedDate,
@@ -55,7 +54,6 @@ export const History: React.FC<HistoryProps> = ({
             proposalState={state}
             forVotesWei={forVotesWei}
             againstVotesWei={againstVotesWei}
-            abstainedVotesWei={abstainedVotesWei}
             userVoteStatus={support}
             createdDate={createdDate}
             queuedDate={queuedDate}

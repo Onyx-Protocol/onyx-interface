@@ -1,39 +1,43 @@
-import { VError } from 'errors';
-import { formatToProposal, restService } from 'utilities';
+import BigNumber from 'bignumber.js';
+import config from 'config';
+import { formatToProposal, getProposalsSubGraph } from 'utilities';
 
-import { GetProposalsInput, GetProposalsOutput, ProposalsApiResponse } from './types';
+import { getGovernorBravoDelegateContract } from 'clients/contracts';
+import getWeb3NoAccount from 'clients/web3/getWeb3NoAccount';
+
+import { GetProposalsInput, GetProposalsOutput } from './types';
 
 export * from './types';
 
 const getProposals = async ({
-  page = 1,
+  page = 0,
   limit = 5,
 }: GetProposalsInput): Promise<GetProposalsOutput> => {
-  const response = await restService<ProposalsApiResponse>({
-    endpoint: '/proposal',
-    method: 'GET',
-    params: { page: page + 1, limit },
-    gov: true,
+  const { proposals, count } = await getProposalsSubGraph(config.chainId, undefined, {
+    offset: page * limit,
+    limit,
   });
-  const payload = response.data?.data;
 
-  // @todo Add specific api error handling
-  // if ('result' in response && response.result === 'error') {
-  //   throw new VError({
-  //     type: 'unexpected',
-  //     code: 'somethingWentWrong',
-  //     data: { message: response.message },
-  //   });
-  // }
+  const web3NoAccount = getWeb3NoAccount();
+  const latestBlock = await web3NoAccount.eth.getBlock('latest');
+  const governorBravoDelegateContract = getGovernorBravoDelegateContract(web3NoAccount);
+  const quorumVotes = await governorBravoDelegateContract.methods.quorumVotes().call();
 
-  if (!payload) {
-    throw new VError({ type: 'unexpected', code: 'somethingWentWrong' });
-  }
+  const proposalsFormatted = await Promise.all(
+    proposals.map(p =>
+      formatToProposal(
+        p,
+        new BigNumber(quorumVotes),
+        {
+          latestBlockTimestamp: Number(latestBlock.timestamp),
+          latestBlockNumber: latestBlock.number,
+        },
+        web3NoAccount,
+      ),
+    ),
+  );
 
-  const { limit: payloadLimit, totalItem: total, page: payloadPage } = payload.metadata;
-  const proposals = payload.data.map(p => formatToProposal(p));
-
-  return { proposals, limit: payloadLimit, total, page: payloadPage };
+  return { proposals: proposalsFormatted, total: count };
 };
 
 export default getProposals;
