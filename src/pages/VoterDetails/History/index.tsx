@@ -1,9 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { Typography } from '@mui/material';
 import { Pagination, Spinner } from 'components';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
 import { VoterHistory } from 'types';
+
+import { useWeb3 } from '../../../clients/web3';
+import { createDateFromSecondsTimestamp } from '../../../utilities/formatToProposal';
 
 import VoterProposal from './VoterProposal';
 import { useStyles } from './styles';
@@ -25,24 +28,55 @@ export const History: React.FC<HistoryProps> = ({
   limit,
   isFetching,
 }) => {
+  const web3 = useWeb3();
   const styles = useStyles();
   const { t } = useTranslation();
+  const [voterHistoryModified, setVoterHistoryModified] = useState<
+    Array<
+      VoterHistory & {
+        proposal: VoterHistory['proposal'] & { endDate: Date | undefined };
+      }
+    >
+  >([]);
+
+  useEffect(() => {
+    if (voterHistory) {
+      Promise.all(
+        voterHistory.map(async vh => {
+          let endDate;
+          if (vh.proposal.isEnded) {
+            const block = await web3.eth.getBlock(vh.proposal.endBlock);
+            endDate = createDateFromSecondsTimestamp(+block.timestamp ?? 0);
+          }
+
+          return {
+            ...vh,
+            proposal: {
+              ...vh.proposal,
+              endDate,
+            },
+          };
+        }),
+      ).then(vh => setVoterHistoryModified(vh));
+    }
+  }, [voterHistory]);
+
   return (
     <div className={className}>
       <Typography variant="h4">{t('voterDetail.votingHistory')}</Typography>
       {isFetching && <Spinner />}
-      {voterHistory.map(
+      {voterHistoryModified.map(
         ({
           proposal: {
             id,
             description,
             state,
-            endDate,
             forVotesWei,
             againstVotesWei,
             createdDate,
             queuedDate,
             cancelDate,
+            endDate,
             executedDate,
           },
           support,

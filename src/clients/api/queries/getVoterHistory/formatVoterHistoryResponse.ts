@@ -7,36 +7,34 @@ import { getGovernorBravoDelegateContract } from '../../../contracts';
 import getWeb3NoAccount from '../../../web3/getWeb3NoAccount';
 import { GetVoterHistoryResponse } from './types';
 
-const formatVoterHistoryResponse = async (data: GetVoterHistoryResponse) => {
+const formatVoterHistoryResponse = async (
+  data: GetVoterHistoryResponse,
+  { limit, page }: { limit: number; page: number },
+) => {
   const web3NoAccount = getWeb3NoAccount();
   const latestBlock = await web3NoAccount.eth.getBlock('latest');
   const governorBravoDelegateContract = getGovernorBravoDelegateContract(web3NoAccount);
   const quorumVotes = await governorBravoDelegateContract.methods.quorumVotes().call();
 
   return {
-    limit: data.metadata.limit,
-    page: data.metadata.page,
-    total: data.metadata.totalItem,
+    limit,
+    page,
+    total: data.length < limit ? page * limit + data.length : (page + 1) * limit + 1,
     voterHistory: await Promise.all(
-      data.data.map(async d => ({
-        address: d.voter.address,
-        blockNumber: d.voter.block_number,
-        blockTimestamp: d.voter.block_timestamp,
-        createdAt: new Date(d.voter.created_at),
-        id: d.voter.id,
-        proposal: await formatToProposal(
-          d.proposal,
-          new BigNumber(quorumVotes),
-          {
-            latestBlockTimestamp: Number(latestBlock.timestamp),
-            latestBlockNumber: latestBlock.number,
-          },
-          web3NoAccount,
-        ),
-        reason: d.voter.reason ? d.voter.reason : undefined,
-        support: d.voter.has_voted ? indexedVotingSupportNames[d.voter.support] : 'NOT_VOTED',
-        updatedAt: new Date(d.voter.updated_at),
-        votesWei: new BigNumber(d.voter.votes),
+      data.map(async d => ({
+        address: d.address,
+        blockNumber: +d.blockNumber,
+        blockTimestamp: +d.blockTimestamp,
+        createdAt: new Date(+d.blockTimestamp * 1000),
+        id: d.id,
+        proposal: await formatToProposal(d.proposal, new BigNumber(quorumVotes), {
+          latestBlockTimestamp: Number(latestBlock.timestamp),
+          latestBlockNumber: latestBlock.number,
+        }),
+        reason: undefined,
+        support: indexedVotingSupportNames[Number(d.support)],
+        updatedAt: new Date(+d.blockTimestamp * 1000),
+        votesWei: new BigNumber(d.votes),
       })),
     ),
   };

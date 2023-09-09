@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Typography } from '@mui/material';
 import { Icon, Pagination, Spinner, TextButton, Tooltip } from 'components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
 import { Proposal } from 'types';
 import type { TransactionReceipt } from 'web3-core';
@@ -14,8 +14,10 @@ import {
   useGetProposalState,
   useGetProposals,
 } from 'clients/api';
+import { useWeb3 } from 'clients/web3';
 import CREATE_PROPOSAL_THRESHOLD_WEI from 'constants/createProposalThresholdWei';
 import { AuthContext } from 'context/AuthContext';
+import { createDateFromSecondsTimestamp } from 'utilities/formatToProposal';
 
 import CreateProposalModal from '../CreateProposalModal';
 import GovernanceProposal from '../GovernanceProposal';
@@ -44,9 +46,32 @@ export const GovernanceUi: React.FC<GovernanceUiProps> = ({
   isCreateProposalLoading,
   canCreateProposal,
 }) => {
+  const web3 = useWeb3();
   const [showCreateProposalModal, setShowCreateProposalModal] = useState(false);
   const { t } = useTranslation();
   const styles = useStyles();
+  const [modifiedProposals, setModifiedProposals] = useState<
+    Array<Proposal & { endDate: Date | undefined }>
+  >([]);
+
+  useEffect(() => {
+    if (proposals) {
+      Promise.all(
+        proposals.map(async proposal => {
+          let endDate;
+          if (proposal.isEnded) {
+            const block = await web3.eth.getBlock(proposal.endBlock);
+            endDate = createDateFromSecondsTimestamp(+block.timestamp ?? 0);
+          }
+
+          return {
+            ...proposal,
+            endDate,
+          };
+        }),
+      ).then(p => setModifiedProposals(p));
+    }
+  }, [proposals]);
 
   return (
     <div css={styles.root}>
@@ -71,18 +96,20 @@ export const GovernanceUi: React.FC<GovernanceUiProps> = ({
       {isLoading && <Spinner css={styles.loader} />}
 
       <div>
-        {proposals.map(({ id, description, state, endDate, forVotesWei, againstVotesWei }) => (
-          <GovernanceProposal
-            key={id}
-            css={styles.bottomSpace}
-            proposalId={id}
-            proposalTitle={description.title}
-            proposalState={state}
-            endDate={endDate}
-            forVotesWei={forVotesWei}
-            againstVotesWei={againstVotesWei}
-          />
-        ))}
+        {modifiedProposals.map(
+          ({ id, description, state, endDate, forVotesWei, againstVotesWei }) => (
+            <GovernanceProposal
+              key={id}
+              css={styles.bottomSpace}
+              proposalId={id}
+              proposalTitle={description.title}
+              proposalState={state}
+              endDate={endDate}
+              forVotesWei={forVotesWei}
+              againstVotesWei={againstVotesWei}
+            />
+          ),
+        )}
       </div>
 
       {!!total && total > 0 && (

@@ -15,15 +15,10 @@ const getProposal = async (input: GetProposalInput): Promise<GetProposalOutput> 
   const governorBravoDelegateContract = getGovernorBravoDelegateContract(web3NoAccount);
   const quorumVotes = await governorBravoDelegateContract.methods.quorumVotes().call();
 
-  return formatToProposal(
-    response.proposals[0],
-    new BigNumber(quorumVotes),
-    {
-      latestBlockTimestamp: Number(latestBlock.timestamp),
-      latestBlockNumber: latestBlock.number,
-    },
-    web3NoAccount,
-  );
+  return formatToProposal(response.proposals[0], new BigNumber(quorumVotes), {
+    latestBlockTimestamp: Number(latestBlock.timestamp),
+    latestBlockNumber: latestBlock.number,
+  });
 };
 
 export default getProposal;

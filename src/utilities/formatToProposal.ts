@@ -1,10 +1,9 @@
 import BigNumber from 'bignumber.js';
 import { Proposal, ProposalState } from 'types';
-import Web3 from 'web3';
 
 import { ProposalApiResponse } from 'clients/api';
 
-const createDateFromSecondsTimestamp = (timestampInSeconds: number): Date => {
+export const createDateFromSecondsTimestamp = (timestampInSeconds: number): Date => {
   const inMilliseconds = timestampInSeconds * 1000;
   return new Date(inMilliseconds);
 };
@@ -38,18 +37,20 @@ const formatToProposal = async (
     latestBlockNumber,
     latestBlockTimestamp,
   }: { latestBlockNumber: number; latestBlockTimestamp: number },
-  web3NoAccount: Web3,
 ): Promise<Proposal> => {
-  const startBlock = await web3NoAccount.eth.getBlock(startBlockNumber);
-  const endBlock = await web3NoAccount.eth.getBlock(endBlockNumber);
+  // const endDate = endTimestamp ? createDateFromSecondsTimestamp(endTimestamp) : undefined;
+  // const startDate = createDateFromSecondsTimestamp(startTimestamp ?? 0);
 
-  const startTimestamp = Number(startBlock?.timestamp);
-  const endTimestamp = Number(endBlock?.timestamp);
-  const endDate = endTimestamp ? createDateFromSecondsTimestamp(endTimestamp) : undefined;
-  const startDate = createDateFromSecondsTimestamp(startTimestamp ?? 0);
+  let isStarted = false;
+  let isEnded = false;
 
-  const startTransactionHash = startBlock?.hash;
-  const endTransactionHash = startBlock?.hash;
+  if (new BigNumber(startBlockNumber).lte(new BigNumber(latestBlockNumber))) {
+    isStarted = true;
+  }
+
+  if (new BigNumber(endBlockNumber).lte(new BigNumber(latestBlockNumber))) {
+    isEnded = true;
+  }
 
   let descriptionObj: Proposal['description'];
 
@@ -83,17 +84,20 @@ const formatToProposal = async (
 
   if (state === 'Canceled') {
     state = 'Canceled';
-  } else if (latestBlockNumber <= startBlockNumber) {
+  } else if (new BigNumber(latestBlockNumber).lte(new BigNumber(startBlockNumber))) {
     state = 'Pending';
-  } else if (latestBlockNumber <= endBlockNumber) {
+  } else if (new BigNumber(latestBlockNumber).lte(new BigNumber(endBlockNumber))) {
     state = 'Active';
-  } else if (forVotes <= againstVotes || new BigNumber(forVotes) < quorumVotes) {
+  } else if (
+    new BigNumber(forVotes).lte(new BigNumber(againstVotes)) ||
+    new BigNumber(forVotes).lt(quorumVotes)
+  ) {
     state = 'Defeated';
-  } else if (eta === 0) {
+  } else if (+eta === 0) {
     state = 'Successded';
   } else if (state === 'Executed') {
     state = 'Executed';
-  } else if (latestBlockTimestamp >= eta + 3600 * 24 * 14) {
+  } else if (latestBlockTimestamp >= +eta + 3600 * 24 * 14) {
     state = 'Expired';
   } else {
     state = 'Queued';
@@ -102,33 +106,32 @@ const formatToProposal = async (
   return {
     againstVotesWei,
     cancelDate: canceledBlockTimestamp
-      ? createDateFromSecondsTimestamp(canceledBlockTimestamp)
+      ? createDateFromSecondsTimestamp(+canceledBlockTimestamp)
       : undefined,
     createdDate: createdBlockTimestamp
-      ? createDateFromSecondsTimestamp(createdBlockTimestamp)
+      ? createDateFromSecondsTimestamp(+createdBlockTimestamp)
       : undefined,
     description: descriptionObj,
-    endBlock: !endBlockNumber ? 0 : endBlockNumber,
-    endDate,
+    endBlock: !endBlockNumber ? 0 : +endBlockNumber,
+    isStarted,
+    isEnded,
     executedDate: executedBlockTimestamp
-      ? createDateFromSecondsTimestamp(executedBlockTimestamp)
+      ? createDateFromSecondsTimestamp(+executedBlockTimestamp)
       : undefined,
     forVotesWei,
     id: Number(id),
     proposer,
     queuedDate: queuedBlockTimestamp
-      ? createDateFromSecondsTimestamp(queuedBlockTimestamp)
+      ? createDateFromSecondsTimestamp(+queuedBlockTimestamp)
       : undefined,
-    startDate,
     state,
     createdTxHash: createdTransactionHash,
     cancelTxHash: canceledTransactionHash ?? undefined,
-    endTxHash: endTransactionHash ?? undefined,
     executedTxHash: executedTransactionHash ?? undefined,
     queuedTxHash: queuedTransactionHash ?? undefined,
-    startTxHash: startTransactionHash ?? undefined,
     totalVotesWei: againstVotesWei.plus(forVotesWei),
     actions: actions || [],
+    startBlock: +startBlockNumber,
   };
 };
 

@@ -25,15 +25,10 @@ const getProposals = async ({
 
   const proposalsFormatted = await Promise.all(
     proposals.map(p =>
-      formatToProposal(
-        p,
-        new BigNumber(quorumVotes),
-        {
-          latestBlockTimestamp: Number(latestBlock.timestamp),
-          latestBlockNumber: latestBlock.number,
-        },
-        web3NoAccount,
-      ),
+      formatToProposal(p, new BigNumber(quorumVotes), {
+        latestBlockTimestamp: Number(latestBlock.timestamp),
+        latestBlockNumber: latestBlock.number,
+      }),
     ),
   );
 

@@ -1,157 +1,198 @@
-{
-  "data": [
-    {
-      "voter": {
-        "id": "40b3dcb3-f337-4713-ae4c-cae927351550",
-        "address": "0xe864c9439eb042e969c59dd13d38cfdb28e16d73",
-        "has_voted": 1,
-        "support": 1,
-        "votes": "232456299820100000000000000",
-        "proposal_id": 6,
-        "block_number": 14636926,
-        "block_timestamp": 1650660975,
-        "created_at": "2022-07-11T01:00:47.233Z",
-        "updated_at": "2022-07-11T01:01:00.000Z"
-      },
-      "proposal": {
-        "id": "1",
-        "proposer": "0x1b7081943449db22e4d68c5bac45cfc85b44d3a7",
-        "targets": [
-          "0x08edf0f2af8672029eb445742b3b4072c6158df3"
-        ],
-        "values": [
-          0
-        ],
-        "signatures": [
-          "setDelay(uint256)"
-        ],
-        "callDatas": [
-          "0x000000000000000000000000000000000000000000000000000000000000012c"
-        ],
-        "startBlock": 14636411,
-        "endBlock": 14636441,
-        "description": "\"# CIP 4 Pre Governance Activation\n Chain Improvement Proposal 4 (CIP-4) enables the Chain Governance module to update the Timelock smart contract for final mainnet testing purposes.\"",
-        "state": "pending",
-        "eta": 0,
-        "forVotes": 109981950000000000000000000,
-        "againstVotes": 0,
-        "createdBlockNumber": 14636410,
-        "createdBlockTimestamp": 1650654027,
-        "createdTransactionHash": "0xb5c2ae6315b1904385063e2e2f90139a47eadb1622b3dcd4549abb054ea6c435",
-        "queuedBlockNumber": null,
-        "queuedBlockTimestamp": null,
-        "queuedTransactionHash": null,
-        "executedBlockNumber": null,
-        "executedBlockTimestamp": null,
-        "executedTransactionHash": null,
-        "canceledBlockNumber": null,
-        "canceledBlockTimestamp": null,
-        "canceledTransactionHash": null
-      }
+[
+  {
+    "id": "0x006ac40ad30b592d6f21945e5e297f50720ad9cfa100642244647d4ea6ba20ceab000000",
+    "proposal": {
+      "id": "19",
+      "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
+      "targets": [
+        "0x28ca9caae31602d0312ebf6466c9dd57fca5da93"
+      ],
+      "values": [
+        "0"
+      ],
+      "signatures": [
+        "grantDAO(address,uint256)"
+      ],
+      "callDatas": [
+        "0x0000000000000000000000004410cbf371a86355ce0690fd08a92373dcd8e57f00000000000000000000000000000000000000000168a6975c3504b634000000"
+      ],
+      "startBlock": "17757272",
+      "endBlock": "17770072",
+      "description": "{\"version\":\"v2\",\"title\":\"OIP-19: Budget allocation for current operations\",\"description\":\"The Onyx DAO proposes to allocate a budget for current operations in Aug–Oct 2023:\\n\\n- Development and Infrastructure support\\n- Marketing and Management\\n\\nTotal is 436,000,000 XCN.\\n\\nDetails and discussion are in the community forum: https://community.onyx.org/t/budget-allocation-for-current-operations-august-october-2023/768 \"}",
+      "state": "executed",
+      "eta": "1690479767",
+      "forVotes": "235266819114955989350637682",
+      "againstVotes": "0",
+      "createdBlockNumber": "17757271",
+      "createdBlockTimestamp": "1690132931",
+      "createdTransactionHash": "0x241eade249b1dc53693ad371d36c824313d97bb754d888899d146d25358a3fb8",
+      "queuedBlockNumber": "17771671",
+      "queuedBlockTimestamp": "1690306967",
+      "queuedTransactionHash": "0xf5a2b0d62e48e725697ebfcde5613744f0bd22b3506b1bea1819037982524e6c",
+      "executedBlockNumber": "17785989",
+      "executedBlockTimestamp": "1690480055",
+      "executedTransactionHash": "0x1dcc4466b73db4481ee1969e15799a1608beddde06bceb596e27f1d527b614de",
+      "canceledBlockNumber": null,
+      "canceledBlockTimestamp": null,
+      "canceledTransactionHash": null
     },
-    {
-      "voter": {
-        "id": "7c29e70e-a985-4381-b193-c9394aed86dd",
-        "address": "0xe864c9439eb042e969c59dd13d38cfdb28e16d73",
-        "has_voted": 1,
-        "support": 1,
-        "votes": "232456299820100000000000000",
-        "proposal_id": 5,
-        "block_number": 14636725,
-        "block_timestamp": 1650658028,
-        "created_at": "2022-07-11T01:00:47.227Z",
-        "updated_at": "2022-07-11T01:01:00.000Z"
-      },
-      "proposal": {
-        "id": "5",
-        "proposer": "0x1b7081943449db22e4d68c5bac45cfc85b44d3a7",
-        "targets": [
-          "0x08edf0f2af8672029eb445742b3b4072c6158df3"
-        ],
-        "values": [
-          0
-        ],
-        "signatures": [
-          "setDelay(uint256)"
-        ],
-        "callDatas": [
-          "0x000000000000000000000000000000000000000000000000000000000000012c"
-        ],
-        "startBlock": 14636411,
-        "endBlock": 14636441,
-        "description": "\"# CIP 4 Pre Governance Activation\n Chain Improvement Proposal 4 (CIP-4) enables the Chain Governance module to update the Timelock smart contract for final mainnet testing purposes.\"",
-        "state": "pending",
-        "eta": 0,
-        "forVotes": 109981950000000000000000000,
-        "againstVotes": 0,
-        "createdBlockNumber": 14636410,
-        "createdBlockTimestamp": 1650654027,
-        "createdTransactionHash": "0xb5c2ae6315b1904385063e2e2f90139a47eadb1622b3dcd4549abb054ea6c435",
-        "queuedBlockNumber": null,
-        "queuedBlockTimestamp": null,
-        "queuedTransactionHash": null,
-        "executedBlockNumber": null,
-        "executedBlockTimestamp": null,
-        "executedTransactionHash": null,
-        "canceledBlockNumber": null,
-        "canceledBlockTimestamp": null,
-        "canceledTransactionHash": null
-      }
+    "address": "0x9d5be40cf72707d07513a3915afa8a3ad84f31e9",
+    "support": true,
+    "votes": "0",
+    "blockNumber": "17762676",
+    "blockTimestamp": "1690198247",
+    "transactionHash": "0x006ac40ad30b592d6f21945e5e297f50720ad9cfa100642244647d4ea6ba20ce"
+  },
+  {
+    "id": "0x00db9beebc743dbcdcd34c1ac647bd4bb8f2c2ee3506d6f338921f1cba0c91d38c000000",
+    "proposal": {
+      "id": "8",
+      "proposer": "0xa8738f54c6c31ea559565a468056df233e6f4c12",
+      "targets": [
+        "0x7d61ed92a6778f5abf5c94085739f1edabec2800",
+        "0x1961ad247b47f4f2242e55a0e5578c6cf01f8d12",
+        "0x714bd93ab6ab2f0bcfd2aeaf46a46719991d0d79",
+        "0x1933f1183c421d44d531ed40a5d2445f6a91646d",
+        "0xbced4e924f28f43a24ceedec69ee21ed4d04d2dd",
+        "0x8f35113cfaba700ed7a907d92b114b44421e412a",
+        "0x830dacd5d0a62afa92c9bc6878461e9cd317b085",
+        "0xfee4428b7f403499c50a6da947916b71d33142dc",
+        "0x7497e945f23192d1dc3095409837f67927170f2d",
+        "0xc0534bb221c0963b213f417585e3ca581993793a",
+        "0xf52459e8bc708d55400c167e0d77ed49641226d3",
+        "0x307269cf921213bd2e16b22dcd4401aec21d00bf",
+        "0x11b258a1c5ec962f43ab523be9b8fa317cb2eb69",
+        "0x4476175752a4947de953e26b40fc8c1e145fea82",
+        "0x0c19d213e9f2a5cbaa4ec6e8eac55a22276b0641",
+        "0x3f2dd7adbcd464d5b0a766f7eb367bd20a249691",
+        "0x7ab16ed27ab8b22cb625db55c0e58521969cb091"
+      ],
+      "values": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "signatures": [
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()",
+        "_acceptAdmin()"
+      ],
+      "callDatas": [
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x",
+        "0x"
+      ],
+      "startBlock": "16897287",
+      "endBlock": "16910087",
+      "description": "{\"version\":\"v2\",\"title\":\"OIP-9: Launch OLP Governance\",\"description\":\"Abstract: After 3 weeks of testing and live network activity, the Onyx Liquidity Protocol (OLP) will now be fully shifted to the Onyx Governance and Onyx DAO . This proposal is deployed in two parts which will migrate the ownership of the OLP smart contracts to the time lock which is controlled by the Onyx Governance Onyxcoin $XCN stakers who secure and govern the network. Alongside this proposal, the OLP is now fully available via IPFS, a decentralized hosting making Onyx and OLP fully decentralized from the smart contract level to hosting.\\nXCN holders are asked to vote in favor for this proposal to transfer OLP to Onyx DAO and Governance.\"}",
+      "state": "executed",
+      "eta": "1680021467",
+      "forVotes": "2873025810619257470619105486",
+      "againstVotes": "0",
+      "createdBlockNumber": "16897286",
+      "createdBlockTimestamp": "1679659991",
+      "createdTransactionHash": "0xdfebb830682e5a776850d057eb908636558c0d49d8a6c1020010a76cf76db5cd",
+      "queuedBlockNumber": "16912835",
+      "queuedBlockTimestamp": "1679848667",
+      "queuedTransactionHash": "0x7d1960521610acfe101e477ca7a39ae8b2296f97097373347c8f196f050657a8",
+      "executedBlockNumber": "16927354",
+      "executedBlockTimestamp": "1680025043",
+      "executedTransactionHash": "0xddbe09d6597b72d88f93f9f31ec630c01a1c384cae9ab454a562f113ba834e0c",
+      "canceledBlockNumber": null,
+      "canceledBlockTimestamp": null,
+      "canceledTransactionHash": null
     },
-    {
-      "voter": {
-        "id": "1f55caa5-6dde-4eed-862c-3fedf31be63f",
-        "address": "0xe864c9439eb042e969c59dd13d38cfdb28e16d73",
-        "has_voted": 1,
-        "support": 1,
-        "votes": "232456299820100000000000000",
-        "proposal_id": 2,
-        "block_number": 14636476,
-        "block_timestamp": 1650654753,
-        "created_at": "2022-07-11T01:00:47.222Z",
-        "updated_at": "2022-07-11T01:01:00.000Z"
-      },
-      "proposal": {
-        "id": "2",
-        "proposer": "0x1b7081943449db22e4d68c5bac45cfc85b44d3a7",
-        "targets": [
-          "0x08edf0f2af8672029eb445742b3b4072c6158df3"
-        ],
-        "values": [
-          0
-        ],
-        "signatures": [
-          "setDelay(uint256)"
-        ],
-        "callDatas": [
-          "0x000000000000000000000000000000000000000000000000000000000000012c"
-        ],
-        "startBlock": 14636411,
-        "endBlock": 14636441,
-        "description": "\"# CIP 4 Pre Governance Activation\n Chain Improvement Proposal 4 (CIP-4) enables the Chain Governance module to update the Timelock smart contract for final mainnet testing purposes.\"",
-        "state": "pending",
-        "eta": 0,
-        "forVotes": 109981950000000000000000000,
-        "againstVotes": 0,
-        "createdBlockNumber": 14636410,
-        "createdBlockTimestamp": 1650654027,
-        "createdTransactionHash": "0xb5c2ae6315b1904385063e2e2f90139a47eadb1622b3dcd4549abb054ea6c435",
-        "queuedBlockNumber": null,
-        "queuedBlockTimestamp": null,
-        "queuedTransactionHash": null,
-        "executedBlockNumber": null,
-        "executedBlockTimestamp": null,
-        "executedTransactionHash": null,
-        "canceledBlockNumber": null,
-        "canceledBlockTimestamp": null,
-        "canceledTransactionHash": null
-      }
-    }
-  ],
-  "metadata": {
-    "page": 1,
-    "limit": 5,
-    "totalItem": 3,
-    "totalPage": 1
+    "address": "0xbabbf5261afbdb1f1353b574f5cae76ae916d315",
+    "support": true,
+    "votes": "0",
+    "blockNumber": "16899221",
+    "blockTimestamp": "1679683451",
+    "transactionHash": "0x00db9beebc743dbcdcd34c1ac647bd4bb8f2c2ee3506d6f338921f1cba0c91d3"
+  },
+  {
+    "id": "0x040e1a4716ce3f28c60835d4f6cdd8c3b6ca3e9d42e08b0d58792519aefe063942000000",
+    "proposal": {
+      "id": "7",
+      "proposer": "0x09a74d465c49fd07d6eaf2028c7cff31c93d3a74",
+      "targets": [
+        "0x23445c63feef8d85956dc0f19ade87606d0e19a9"
+      ],
+      "values": [
+        "0"
+      ],
+      "signatures": [
+        "setRewardPerblock(uint256)"
+      ],
+      "callDatas": [
+        "0x00000000000000000000000000000000000000000000002a5a058fc295ed0000"
+      ],
+      "startBlock": "16743146",
+      "endBlock": "16755946",
+      "description": "{\"version\":\"v2\",\"title\":\"OIP-8: Increase Staking Rewards\",\"description\":\"## Increase Staking Rewards\\n\\nOnyx DAO proposes to the community to increase the staking vault rewards which would make the APR approximately 33% as opposed to todays approximately 6.7% staking rate.\\n\\nBy making this change the staking rewards still remain under the constitution threshold and creates incentive rewards for those who are securing and voting on the Onyx Protocol and Onyx DAO.\\n\\nDiscussion: https://community.onyx.org/t/oip-8-increase-staking-rewards/35\"}",
+      "state": "executed",
+      "eta": "1678206695",
+      "forVotes": "302286978509899863154493852",
+      "againstVotes": "0",
+      "createdBlockNumber": "16743145",
+      "createdBlockTimestamp": "1677787787",
+      "createdTransactionHash": "0x40e386129ea53babe8084dc68449cb711cdb7661c2b8344ca1d15ff0d48c6f20",
+      "queuedBlockNumber": "16763398",
+      "queuedBlockTimestamp": "1678033895",
+      "queuedTransactionHash": "0xb804ff32c580407f7d45a443de08029a6bf05670c480d324d2bca5c6e4761a7a",
+      "executedBlockNumber": "16778850",
+      "executedBlockTimestamp": "1678221575",
+      "executedTransactionHash": "0x857d533ae969d5e26fea14447bf8d5f0c81bbef97daaee4078148e626dfea6f8",
+      "canceledBlockNumber": null,
+      "canceledBlockTimestamp": null,
+      "canceledTransactionHash": null
+    },
+    "address": "0x7cb436777bcff797f465a96f6b34383e10a43483",
+    "support": true,
+    "votes": "2049494560000000000000000",
+    "blockNumber": "16743192",
+    "blockTimestamp": "1677788351",
+    "transactionHash": "0x040e1a4716ce3f28c60835d4f6cdd8c3b6ca3e9d42e08b0d58792519aefe0639"
   }
-}
+]
