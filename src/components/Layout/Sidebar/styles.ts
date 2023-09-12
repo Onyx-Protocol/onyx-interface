@@ -58,11 +58,11 @@ export const useStyles = () => {
 
       ${theme.breakpoints.down('lg')} {
         :hover {
-          background-color: #31353D;
+          background-color: #31353d;
         }
 
         :hover > a {
-          background-color: #31353D;
+          background-color: #31353d;
         }
       }
 
@@ -88,27 +88,13 @@ export const useStyles = () => {
       }
 
       .active-menu-item {
-        // background-color: ${theme.palette.secondary.light};
-
-        // .left-border {
-        //   border: 2px solid ${theme.palette.interactive.primary};
-        //   border-radius: 0 ${theme.shape.borderRadius.small}px ${theme.shape.borderRadius.small}px 0;
-        //   position: absolute;
-        //   left: 0;
-        //   top: 0;
-        //   bottom: 0;
-
-        //   ${theme.breakpoints.down('lg')} {
-        //     display: none;
-        //   }
-        // }
         span {
-          color: #1DB9A6;
+          color: #1db9a6;
         }
 
         svg,
         p {
-          color: #1DB9A6;
+          color: #1db9a6;
         }
       }
     `,
@@ -157,13 +143,13 @@ export const useStyles = () => {
       height: 33px;
       ${theme.breakpoints.down('lg')} {
         display: none;
-      }      
+      }
       ${theme.breakpoints.down('sm')} {
         display: none;
       }
     `,
     logoClosed: css`
-      display: none;      
+      display: none;
       ${theme.breakpoints.down('lg')} {
         display: block;
         height: 36px;

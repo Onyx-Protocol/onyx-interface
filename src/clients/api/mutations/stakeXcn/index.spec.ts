@@ -1,6 +1,8 @@
 import BigNumber from 'bignumber.js';
 import { VError } from 'errors';
 
+import { XcnStaking } from 'types/contracts';
+
 import stakeXcn from '.';
 
 describe('api/mutation/stakeXcn', () => {
@@ -13,7 +15,7 @@ describe('api/mutation/stakeXcn', () => {
           },
         }),
       },
-    } as any;
+    } as unknown as XcnStaking;
 
     try {
       await stakeXcn({
@@ -44,7 +46,7 @@ describe('api/mutation/stakeXcn', () => {
           }),
         }),
       },
-    } as any;
+    } as unknown as XcnStaking;
 
     try {
       await stakeXcn({
@@ -75,7 +77,7 @@ describe('api/mutation/stakeXcn', () => {
       methods: {
         stakeXcn: stakeXcnMock,
       },
-    } as unknown as any;
+    } as unknown as XcnStaking;
 
     const response = await stakeXcn({
       xcnStakingContract: fakeContract,

@@ -68,12 +68,22 @@ const History: React.FC = () => {
   const [showOnlyMyTxns, setShowOnlyMyTxns] = useState(false);
   const [historyItems, setHistoryItems] = useState<HistoryItem[]>([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
 
   const fetchHistorySubGraph = async () => {
     setIsFetching(true);
     const filter: Filter = {};
 
-    if (asset !== ALL_VALUE) {
+    if (
+      asset !== ALL_VALUE &&
+      ![
+        HistoryItemType.WITHDRAW,
+        HistoryItemType.STAKE,
+        HistoryItemType.CLAIM,
+        HistoryItemType.PROPOSE,
+        HistoryItemType.VOTE,
+      ].includes(historyItemType as HistoryItemType)
+    ) {
       filter.to = asset;
     }
 
@@ -93,14 +103,25 @@ const History: React.FC = () => {
         field: 'blockTimestamp',
       },
       {
-        limit,
+        limit: limit + 1,
         offset: currentPage * limit,
       },
     );
 
+    setTotalCount(() => {
+      if (historyItemsFetched.length) {
+        return currentPage * limit + historyItemsFetched.length;
+      }
+      return 0;
+    });
     setHistoryItems(historyItemsFetched);
     setIsFetching(false);
   };
+
+  useEffect(() => {
+    setCurrentPage(0);
+    setTotalCount(0);
+  }, [asset, historyItemType]);
 
   useEffect(() => {
     fetchHistorySubGraph();
@@ -117,7 +138,7 @@ const History: React.FC = () => {
       historyItems={historyItems}
       walletConnected={!!accountAddress}
       isFetching={isFetching}
-      total={historyItems.length}
+      total={totalCount}
       limit={limit}
       setCurrentPage={setCurrentPage}
     />

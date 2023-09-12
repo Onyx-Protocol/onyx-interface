@@ -16,8 +16,8 @@ export const useStyles = ({ variant }: { variant: 'large' | 'small' }) => {
       height: ${theme.spacing(size)};
       width: ${theme.spacing(size)};
 
-      svg path{        
-        stroke: #1DB9A6 !important;
+      svg path {
+        stroke: #1db9a6 !important;
       }
     `,
   };

@@ -1,10 +1,14 @@
 import { useQuery } from 'react-query';
-import { useMulticall } from 'clients/web3';
-import { useWPunksContract } from 'clients/contracts/hooks';
+
 import getOwnedWPunksIds from 'clients/api/queries/getOwnedWPunksIds';
+import { useWPunksContract } from 'clients/contracts/hooks';
+import { useMulticall } from 'clients/web3';
 import FunctionKey from 'constants/functionKey';
 
-const useGetOwnedWPunksIds = (params: any, options?: any) => {
+const useGetOwnedWPunksIds = (
+  params: { accountAddress: string },
+  options?: Record<string, unknown>,
+) => {
   const multicall = useMulticall();
   const WPunksContract = useWPunksContract();
 

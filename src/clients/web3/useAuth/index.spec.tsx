@@ -14,6 +14,7 @@ import en from 'translation/translations/en.json';
 
 import useAuth from '.';
 import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '../walletconnectV2';
+import { Connector } from '../types';
 import setupNetwork from './setUpNetwork';
 
 jest.mock('../../../components/Toast');
@@ -41,7 +42,7 @@ describe('web3/useAuth/login', () => {
 
       useEffect(() => {
         const callLogin = async () => {
-          await login('unknownConnector' as any);
+          await login('unknownConnector' as Connector);
           expect(toast.error).toBeCalledWith({ message: en.wallets.errors.unsupportedWallet });
         };
         callLogin();
@@ -59,7 +60,7 @@ describe('web3/useAuth/login', () => {
 
     const { result } = renderHook(() => useAuth());
     await act(async () => {
-      await result.current.login('MetaMask' as any);
+      await result.current.login(Connector.MetaMask);
     });
 
     await waitFor(() => expect(activate).toBeCalled());
@@ -73,7 +74,7 @@ describe('web3/useAuth/login', () => {
 
     const { result } = renderHook(() => useAuth());
     await act(async () => {
-      await result.current.login('MetaMask' as any);
+      await result.current.login(Connector.MetaMask);
     });
 
     await waitFor(() => expect(activate).toBeCalled());
@@ -90,7 +91,7 @@ describe('web3/useAuth/login', () => {
 
     const { result } = renderHook(() => useAuth());
     await act(async () => {
-      await result.current.login('MetaMask' as any);
+      await result.current.login(Connector.MetaMask);
     });
 
     await waitFor(() => expect(activate).toBeCalled());
@@ -105,7 +106,7 @@ describe('web3/useAuth/login', () => {
 
     const { result } = renderHook(() => useAuth());
     await act(async () => {
-      await result.current.login('MetaMask' as any);
+      await result.current.login(Connector.MetaMask);
     });
 
     await waitFor(() => expect(activate).toBeCalled());
@@ -120,7 +121,7 @@ describe('web3/useAuth/login', () => {
 
     const { result } = renderHook(() => useAuth());
     await act(async () => {
-      await result.current.login('MetaMask' as any);
+      await result.current.login(Connector.MetaMask);
     });
 
     await waitFor(() => expect(activate).toBeCalled());
@@ -136,7 +137,7 @@ describe('web3/useAuth/login', () => {
 
     const { result } = renderHook(() => useAuth());
     await act(async () => {
-      await result.current.login('MetaMask' as any);
+      await result.current.login(Connector.MetaMask);
     });
 
     await waitFor(() => expect(activate).toBeCalled());

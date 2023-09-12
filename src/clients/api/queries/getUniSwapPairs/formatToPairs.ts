@@ -1,4 +1,4 @@
-import { TokenAmount as PSTokenAmount, Pair as PSPair } from '@uniswap/sdk';
+import { Pair as PSPair, TokenAmount as PSTokenAmount } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 import { ContractCallResults } from 'ethereum-multicall';
 

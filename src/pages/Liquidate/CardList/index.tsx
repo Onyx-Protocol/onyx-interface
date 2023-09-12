@@ -4,6 +4,7 @@ import { LiquidateAccordion } from 'components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { AccountInfo, Market, SubgraphToken } from 'types';
 import { formatCentsToReadableValue, generateEthScanUrl, truncateAddress } from 'utilities';
 
 import copyImg from 'assets/img/copy.svg';
@@ -12,10 +13,17 @@ import useCopyToClipboard from 'hooks/useCopyToClipboard';
 
 import { useStyles } from './styles';
 
-const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) => {
+type Props = {
+  markets: Market[];
+  users: AccountInfo[];
+  isFetching: boolean;
+  loadFinished: boolean;
+};
+
+const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props) => {
   const styles = useStyles();
-  const getTokenPrice = (token: any) =>
-    (markets || []).find((market: any) => market.address === token.market.id)?.tokenPrice ||
+  const getTokenPrice = (token: SubgraphToken) =>
+    (markets || []).find(market => market.address === token.market.id)?.tokenPrice ||
     new BigNumber(0);
 
   const { t } = useTranslation();
@@ -29,8 +37,8 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
       <div css={styles.userList}>
         {users.length === 0 && loadFinished && <div className="noUsers">No Users</div>}
         {users
-          .sort((a: any, b: any) => b.borrowPercent - a.borrowPercent)
-          .map((user: any, idx: number) => {
+          .sort((a, b) => b.borrowPercent - a.borrowPercent)
+          .map((user, idx: number) => {
             let barBg = 'rgba(30, 185, 166, 1)';
 
             if (user.borrowPercent >= 100) {
@@ -71,14 +79,14 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
                   <div className="tokenList">
                     {user.tokens
                       .filter(
-                        (token: any) =>
+                        token =>
                           !new BigNumber(token.oTokenBalance).isZero() ||
                           !new BigNumber(token.storedBorrowBalance).isZero(),
                       )
-                      .map((token: any) => (
+                      .map(token => (
                         <div className="tokenItem" key={token.id}>
                           <div className="tokenName">
-                            {(markets || []).find((price: any) => price.address === token.market.id)
+                            {(markets || []).find(price => price.address === token.market.id)
                               ?.underlyingSymbol || ''}
                           </div>
                           <div className="supplyAmount">
@@ -134,16 +142,15 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: any) =
                     <div className="tokenList mobile">
                       {user.tokens
                         .filter(
-                          (token: any) =>
+                          token =>
                             !new BigNumber(token.oTokenBalance).isZero() ||
                             !new BigNumber(token.storedBorrowBalance).isZero(),
                         )
-                        .map((token: any) => (
+                        .map(token => (
                           <div className="tokenItem" key={token.id}>
                             <div className="tokenName">
-                              {(markets || []).find(
-                                (price: any) => price.address === token.market.id,
-                              )?.underlyingSymbol || ''}
+                              {(markets || []).find(price => price.address === token.market.id)
+                                ?.underlyingSymbol || ''}
                             </div>
                             <div className="supplyAmount">
                               Supply:{' '}

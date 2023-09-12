@@ -29,6 +29,7 @@ import {
   Eth20,
   GovernorBravoDelegate,
   InterestModel,
+  LiquidationProxy,
   MasterChef,
   Maximillion,
   Oracle,
@@ -142,7 +143,7 @@ export const getPunkDataContract = (web3: Web3) =>
     web3,
   ) as unknown as PunkData;
 
-export const getNftContract = (token: Token, web3: Web3) =>
+export const getNftContract = (token: Token, web3: Web3): Wpunks =>
   getContract(wpunksAbi as AbiItem[], token.address, web3);
 
 export const getLiquidationProxyContract = (web3: Web3) =>
@@ -150,7 +151,7 @@ export const getLiquidationProxyContract = (web3: Web3) =>
     liquidationProxyAbi as AbiItem[],
     getContractAddress('liquidationProxy'),
     web3,
-  ) as unknown as XcnLens;
+  ) as unknown as LiquidationProxy;
 
 export const getUniSwapRouterContract = (web3: Web3) =>
   getContract(

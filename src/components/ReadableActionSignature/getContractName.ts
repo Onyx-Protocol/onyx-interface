@@ -2,8 +2,8 @@ import config from 'config';
 import web3 from 'web3';
 
 import contractAddresses from 'constants/contracts/addresses/main.json';
-import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 import oEthTokensAddresses from 'constants/contracts/addresses/oEthTokens.json';
+import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
 const checkAndFormatContractName = (
   target: string,

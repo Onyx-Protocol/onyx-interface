@@ -70,7 +70,6 @@ export const useMyAccountStyles = () => {
     `,
     item: css`
       list-style: none;
-      // border-right: 1px solid ${theme.palette.secondary.light};
 
       ${theme.breakpoints.down('sm')} {
         border-right: none;

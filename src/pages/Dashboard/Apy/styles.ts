@@ -72,7 +72,6 @@ export const useApyStyles = () => {
       list-style: none;
       padding-left: ${theme.spacing(8)};
       padding-right: ${theme.spacing(8)};
-      // border-right: 1px solid ${theme.palette.secondary.light};
 
       ${theme.breakpoints.down('sm')} {
         border-right: none;

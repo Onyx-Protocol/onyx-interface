@@ -1,10 +1,17 @@
 import config from 'config';
-import { ContractCallContext, ContractCallReturnContext } from 'ethereum-multicall';
+import { ContractCallContext, ContractCallReturnContext, Multicall } from 'ethereum-multicall';
+import { UserNftTokenIdResponse } from 'types';
 import { getContractAddress } from 'utilities';
 
 import punkAbi from 'constants/contracts/abis/punk.json';
 
-const getOwnedPunkIds = async ({ accountAddress, multicall }: any): Promise<any> => {
+const getOwnedPunkIds = async ({
+  accountAddress,
+  multicall,
+}: {
+  accountAddress: string;
+  multicall: Multicall;
+}): Promise<Record<string, string[]>> => {
   if (!accountAddress) return {};
 
   if (config.chainId === 5) {
@@ -25,14 +32,16 @@ const getOwnedPunkIds = async ({ accountAddress, multicall }: any): Promise<any>
     });
     const unformattedResults = await multicall.call(contractCallContexts);
     const results: ContractCallReturnContext[] = Object.values(unformattedResults.results);
-    const ownedIds = results.reduce((a: any, result, index) => {
+    const ownedIds = results.reduce((a: Record<string, string[]>, result, index) => {
       const returnContext = result.callsReturnContext[0];
       if (!returnContext.success) {
         return a;
       }
       const address = returnContext.returnValues[0];
       if (!a[address]) a[address] = [];
-      if (address !== '0x0000000000000000000000000000000000000000') a[address].push(index + 1);
+      if (address !== '0x0000000000000000000000000000000000000000') {
+        a[address].push((index + 1).toString());
+      }
       return a;
     }, {});
     return ownedIds;
@@ -51,12 +60,15 @@ const getOwnedPunkIds = async ({ accountAddress, multicall }: any): Promise<any>
     },
   )
     .then(res => res.json())
-    .then(({ data: [data = { tokenIds: [] }] }) => {
-      ownedIds = data.tokenIds.reduce((a: any, token: any) => {
-        if (!a[accountAddress]) a[accountAddress] = [];
-        a[accountAddress].push(token.tokenId);
-        return a;
-      }, {});
+    .then(({ data: [data = { tokenIds: [] as UserNftTokenIdResponse[] }] }) => {
+      ownedIds = data.tokenIds.reduce(
+        (a: Record<string, string[]>, token: UserNftTokenIdResponse) => {
+          if (!a[accountAddress]) a[accountAddress] = [];
+          a[accountAddress].push(token.tokenId.toString());
+          return a;
+        },
+        {},
+      );
     });
   return ownedIds;
 };

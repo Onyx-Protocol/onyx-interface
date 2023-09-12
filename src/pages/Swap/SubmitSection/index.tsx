@@ -24,6 +24,7 @@ export interface SubmitSectionUiProps extends Omit<SubmitSectionProps, 'fromToke
   isFromTokenApprovalStatusLoading: boolean;
   enableFromToken: () => Promise<TransactionReceipt | undefined>;
   isEnableFromTokenLoading: boolean;
+  disabled: boolean;
 }
 
 const SubmitSectionUi: React.FC<SubmitSectionUiProps> = ({
@@ -38,6 +39,7 @@ const SubmitSectionUi: React.FC<SubmitSectionUiProps> = ({
   swapError,
   swap,
   formErrors,
+  disabled = false,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -153,7 +155,8 @@ const SubmitSectionUi: React.FC<SubmitSectionUiProps> = ({
           !isFormValid ||
           isEnableFromTokenLoading ||
           isFromTokenApprovalStatusLoading ||
-          !isFromTokenEnabled
+          !isFromTokenEnabled ||
+          disabled
         }
         onClick={onSubmit}
         loading={isSubmitting}
@@ -185,7 +188,7 @@ const SubmitSection: React.FC<SubmitSectionProps> = ({ fromToken, formErrors, ..
   } = useTokenApproval({
     token: fromToken,
     spenderAddress: uniSwapRouterContractAddress,
-    accountAddress: account?.address,
+    accountAddress: account ? account.address : '',
   });
 
   return (
@@ -196,6 +199,7 @@ const SubmitSection: React.FC<SubmitSectionProps> = ({ fromToken, formErrors, ..
       isEnableFromTokenLoading={isEnableFromTokenLoading}
       fromToken={fromToken}
       formErrors={formErrors}
+      disabled={!account}
       {...otherProps}
     />
   );

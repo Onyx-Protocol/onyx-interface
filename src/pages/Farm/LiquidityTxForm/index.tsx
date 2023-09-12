@@ -9,6 +9,7 @@ import type { TransactionReceipt } from 'web3-core/types';
 
 import { Farm } from 'clients/api';
 import { useWeb3 } from 'clients/web3';
+import { toast } from 'components/Toast';
 import { TOKENS } from 'constants/tokens';
 import { AmountForm2 } from 'containers/AmountForm2';
 import { AuthContext } from 'context/AuthContext';
@@ -16,8 +17,6 @@ import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTok
 import useGetOutAmount from 'hooks/useGetOutAmount';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 import useTokenApproval from 'hooks/useTokenApproval';
-
-import { toast } from '../../../components/Toast';
 
 import { useStyles } from './styles';
 import TEST_IDS from './testIds';
@@ -67,7 +66,7 @@ const LiquidityTxForm: React.FC<LiquidityTxFormProps> = ({
     useTokenApproval({
       token: farm.token,
       spenderAddress: getContractAddress('uniSwapRouter'),
-      accountAddress: account?.address,
+      accountAddress: account ? account.address : '',
       farmRefresh: true,
     });
 
@@ -75,7 +74,7 @@ const LiquidityTxForm: React.FC<LiquidityTxFormProps> = ({
     useTokenApproval({
       token: farm.quoteToken,
       spenderAddress: getContractAddress('uniSwapRouter'),
-      accountAddress: account?.address,
+      accountAddress: account ? account?.address : '',
       farmRefresh: true,
     });
 
@@ -265,7 +264,7 @@ const LiquidityTxForm: React.FC<LiquidityTxFormProps> = ({
                 (lastInput === 'token2' &&
                   farm.userData?.allowance1.lt(outAmount1 || new BigNumber(0)))) && (
                 <Button
-                  disabled={isApproveTokenLoading1}
+                  disabled={isApproveTokenLoading1 || !account}
                   loading={isApproveTokenLoading1}
                   onClick={() => handleApproveToken('token1')}
                 >
@@ -277,7 +276,7 @@ const LiquidityTxForm: React.FC<LiquidityTxFormProps> = ({
                 (lastInput === 'token1' &&
                   farm.userData?.allowance2.lt(outAmount2 || new BigNumber(0)))) && (
                 <Button
-                  disabled={isApproveTokenLoading2}
+                  disabled={isApproveTokenLoading2 || !account}
                   loading={isApproveTokenLoading2}
                   onClick={() => handleApproveToken('token2')}
                 >

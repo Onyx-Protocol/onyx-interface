@@ -1,15 +1,25 @@
 /** @jsxImportSource @emotion/react */
+import { Typography } from '@mui/material';
 import BigNumber from 'bignumber.js';
-import { FormikSubmitButton, FormikTokenTextField, LabeledInlineContent } from 'components';
+import {
+  FormikSubmitButton,
+  FormikTokenTextField,
+  Icon,
+  LabeledInlineContent,
+  PrimaryButton,
+} from 'components';
 import React from 'react';
 import { useTranslation } from 'translation';
 import { Token } from 'types';
 import { convertTokensToWei, convertWeiToTokens } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
 
+import { useGetAllowance } from 'clients/api';
 import { AmountForm } from 'containers/AmountForm';
+import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
+import useTokenApproval from 'hooks/useTokenApproval';
 
 import { useStyles } from './styles';
 import TEST_IDS from './testIds';
@@ -25,6 +35,10 @@ export interface TransactionFormProps {
   availableTokensWei: BigNumber;
   availableTokensLabel: string;
   lockingPeriodMs?: number;
+  spenderAddress?: string;
+  tokenNeedsToBeEnabled?: boolean;
+  increaseAllowanceMessage?: string;
+  increaseAllowanceButtonLabel?: string;
 }
 
 const TransactionForm: React.FC<TransactionFormProps> = ({
@@ -38,11 +52,36 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
   onSubmit,
   isSubmitting,
   lockingPeriodMs,
+  spenderAddress,
+  tokenNeedsToBeEnabled,
+  increaseAllowanceMessage,
+  increaseAllowanceButtonLabel,
 }) => {
+  const { account } = React.useContext(AuthContext);
   const { t } = useTranslation();
   const styles = useStyles();
 
   const handleTransactionMutation = useHandleTransactionMutation();
+
+  const [amount, setAmount] = React.useState('');
+  const [requireEnable, setRequireEnable] = React.useState(false);
+
+  const { data: getTokenAllowanceData } = useGetAllowance(
+    {
+      accountAddress: account ? account.address : '',
+      spenderAddress: spenderAddress ?? '',
+      token,
+    },
+    {
+      enabled: !!account?.address && !!spenderAddress && !token.isNative && tokenNeedsToBeEnabled,
+    },
+  );
+
+  const { approveToken, isApproveTokenLoading } = useTokenApproval({
+    token,
+    spenderAddress: spenderAddress ?? '',
+    accountAddress: account ? account.address : '',
+  });
 
   const stringifiedAvailableTokens = React.useMemo(
     () =>
@@ -70,6 +109,17 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
     return t('vault.transactionForm.lockingPeriod.duration', { date: unlockingDate });
   }, [lockingPeriodMs?.toFixed()]);
 
+  React.useEffect(() => {
+    if (spenderAddress && amount !== '' && getTokenAllowanceData) {
+      const amountWei = convertTokensToWei({
+        value: new BigNumber(amount),
+        token,
+      });
+
+      setRequireEnable(getTokenAllowanceData.allowanceWei.lt(amountWei));
+    }
+  }, [spenderAddress, amount, getTokenAllowanceData]);
+
   const handleSubmit = async (amountTokens: string) => {
     const amountWei = convertTokensToWei({
       value: new BigNumber(amountTokens),
@@ -94,18 +144,28 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
     <AmountForm onSubmit={handleSubmit} maxAmount={stringifiedAvailableTokens}>
       {({ dirty, isValid }) => (
         <>
-          <FormikTokenTextField
-            name="amount"
-            token={token}
-            disabled={isSubmitting}
-            rightMaxButton={{
-              label: t('vault.transactionForm.rightMaxButtonLabel'),
-              valueOnClick: stringifiedAvailableTokens,
-            }}
-            max={stringifiedAvailableTokens}
-            data-testid={TEST_IDS.tokenTextField}
-            css={styles.tokenTextField}
-          />
+          <div css={styles.tokenTextField}>
+            <FormikTokenTextField
+              name="amount"
+              token={token}
+              disabled={isSubmitting}
+              rightMaxButton={{
+                label: t('vault.transactionForm.rightMaxButtonLabel'),
+                valueOnClick: stringifiedAvailableTokens,
+              }}
+              handleChange={setAmount}
+              max={stringifiedAvailableTokens}
+              data-testid={TEST_IDS.tokenTextField}
+            />
+            {requireEnable && (
+              <div css={styles.info}>
+                <Icon name="info" />
+                <Typography variant="small2" color="text.primary">
+                  {increaseAllowanceMessage}
+                </Typography>
+              </div>
+            )}
+          </div>
 
           <LabeledInlineContent
             data-testid={TEST_IDS.availableTokens}
@@ -125,13 +185,24 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
             </LabeledInlineContent>
           )}
 
-          <FormikSubmitButton
-            loading={isSubmitting}
-            disabled={!isValid || !dirty || isSubmitting}
-            fullWidth
-            enabledLabel={submitButtonLabel}
-            disabledLabel={submitButtonDisabledLabel}
-          />
+          {requireEnable ? (
+            <PrimaryButton
+              disabled={isApproveTokenLoading}
+              loading={isApproveTokenLoading}
+              fullWidth
+              onClick={approveToken}
+            >
+              {increaseAllowanceButtonLabel}
+            </PrimaryButton>
+          ) : (
+            <FormikSubmitButton
+              loading={isSubmitting}
+              disabled={!isValid || !dirty || isSubmitting}
+              fullWidth
+              enabledLabel={submitButtonLabel}
+              disabledLabel={submitButtonDisabledLabel}
+            />
+          )}
         </>
       )}
     </AmountForm>

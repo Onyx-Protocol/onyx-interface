@@ -48,7 +48,15 @@ export const useStyles = () => {
       width: 100%;
       height: 72px;
       top: 0;
-      background: linear-gradient(90deg, #575C63 0%, #50565F 2%, rgba(80, 86, 95, 0) 5%, rgba(80, 86, 95, 0) 95%, #50565F 98%, #575C63 100%);
+      background: linear-gradient(
+        90deg,
+        #575c63 0%,
+        #50565f 2%,
+        rgba(80, 86, 95, 0) 5%,
+        rgba(80, 86, 95, 0) 95%,
+        #50565f 98%,
+        #575c63 100%
+      );
       z-index: 2;
     `,
   };

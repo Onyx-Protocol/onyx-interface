@@ -25,7 +25,7 @@ export const useStyles = () => {
       gap: 10px;
 
       a {
-        color: ${theme.palette.interactive.primary}
+        color: ${theme.palette.interactive.primary};
       }
 
       ${theme.breakpoints.down('md')} {
