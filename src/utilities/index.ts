@@ -37,4 +37,5 @@ export { default as formatToStakeHistory } from './formatToStakeHistory';
 export { default as getAccountsSubGraph } from './getAccountsSubGraph';
 export { default as getAccountSubGraph } from './getAccountSubGraph';
 export { default as getHistorySubGraph } from './getHistorySubGraph';
+export { default as getProposalsSubGraph } from './getProposalsSubGraph';
 export * from './RPCErrorMessage';
