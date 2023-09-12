@@ -12,7 +12,7 @@ import {
 interface UseTokenApprovalInput {
   token: Token;
   spenderAddress: string;
-  accountAddress?: string;
+  accountAddress: string;
   farmRefresh?: boolean;
 }
 
@@ -42,7 +42,7 @@ const useTokenApproval = ({
     },
   );
 
-  const { data: getNftAllowanceData, isLoading: isNftApprovalStatusLoading }: any =
+  const { data: getNftAllowanceData, isLoading: isNftApprovalStatusLoading } =
     useGetIsApprovedForAll(
       {
         accountAddress: accountAddress || '',

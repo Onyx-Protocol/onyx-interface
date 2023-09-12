@@ -13,7 +13,6 @@ import { DisableLunaUstWarningProvider } from 'context/DisableLunaUstWarning';
 import { SuccessfulTransactionModalProvider } from 'context/SuccessfulTransactionModalContext';
 import { ThemeProvider } from 'context/ThemeContext';
 import Dashboard from 'pages/Dashboard';
-import Wpunks from 'pages/Wpunks';
 import History from 'pages/History';
 import Liquidate from 'pages/Liquidate';
 import LiquidateDetail from 'pages/Liquidate/Detail';
@@ -24,10 +23,12 @@ import Stake from 'pages/Stake';
 import Vote from 'pages/Vote';
 import VoterDetails from 'pages/VoterDetails';
 import VoterLeaderboard from 'pages/VoterLeaderboard';
+import Wpunks from 'pages/Wpunks';
 import Xcn from 'pages/Xcn';
 import { MuiThemeProvider } from 'theme/MuiThemeProvider';
-import SwapPage from './Swap';
+
 import FarmPage from './Farm';
+import SwapPage from './Swap';
 
 const App = () => (
   <Web3Wrapper>

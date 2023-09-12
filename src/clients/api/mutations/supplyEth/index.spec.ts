@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { VError } from 'errors';
+import Web3 from 'web3';
 
 import {
   TokenErrorReporterError,
@@ -20,7 +21,7 @@ describe('api/mutation/supplyEth', () => {
           throw new Error('Fake error message');
         },
       },
-    } as any;
+    } as unknown as Web3;
 
     const fakeContract = {
       methods: {
@@ -60,7 +61,7 @@ describe('api/mutation/supplyEth', () => {
           },
         }),
       },
-    } as any;
+    } as unknown as Web3;
 
     const fakeContract = {
       methods: {
@@ -103,7 +104,7 @@ describe('api/mutation/supplyEth', () => {
 
     const fakeWeb3 = {
       eth: ethMock,
-    } as any;
+    } as unknown as Web3;
 
     const fakeContract = {
       methods: {

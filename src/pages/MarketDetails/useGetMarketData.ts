@@ -4,13 +4,13 @@ import { Token } from 'types';
 import {
   convertPercentageFromSmartContract,
   convertWeiToTokens,
-  unsafelyGetToken,
   unsafelyGetOToken,
+  unsafelyGetToken,
 } from 'utilities';
 
 import { useGetMarkets, useGetOTokenCash } from 'clients/api';
-import { BLOCKS_PER_DAY } from 'constants/ethereum';
 import { COMPOUND_MANTISSA } from 'constants/compoundMantissa';
+import { BLOCKS_PER_DAY } from 'constants/ethereum';
 import { TOKENS } from 'constants/tokens';
 
 const useGetMarketData = ({ oTokenId }: { oTokenId: Token['id'] }) => {
@@ -42,9 +42,7 @@ const useGetMarketData = ({ oTokenId }: { oTokenId: Token['id'] }) => {
     const dailyDistributionXcn =
       assetMarket &&
       convertWeiToTokens({
-        valueWei: new BigNumber(assetMarket.supplierDailyXcn).plus(
-          assetMarket.borrowerDailyXcn,
-        ),
+        valueWei: new BigNumber(assetMarket.supplierDailyXcn).plus(assetMarket.borrowerDailyXcn),
         token: TOKENS.xcn,
       });
 

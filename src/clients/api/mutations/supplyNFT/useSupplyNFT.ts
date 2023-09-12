@@ -1,23 +1,26 @@
-import { useMutation } from 'react-query';
+import { UseMutationOptions, useMutation } from 'react-query';
+import type { TransactionReceipt } from 'web3-core/types';
 
 import supplyNFT from 'clients/api/mutations/supplyNFT';
 import queryClient from 'clients/api/queryClient';
 import { useOTokenContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
-import { OEth20 } from 'types/contracts';
+import { OTokenEx } from 'types/contracts';
+
+type UseSupplyNFTParams = { tokenIds: string[] };
 
 const useSupplyNFT = (
   { oTokenId, accountAddress }: { oTokenId: string; accountAddress: string },
   // TODO: use custom error type https://app.clickup.com/t/2rvwhnt
-  options?: any,
+  options?: UseMutationOptions<TransactionReceipt, unknown, UseSupplyNFTParams>,
 ) => {
   const tokenContract = useOTokenContract(oTokenId);
 
   return useMutation(
     FunctionKey.SUPPLY_NFT,
-    (params: any) =>
+    (params: UseSupplyNFTParams) =>
       supplyNFT({
-        tokenContract: tokenContract as OEth20,
+        tokenContract: tokenContract as unknown as OTokenEx,
         accountAddress,
         ...params,
       }),

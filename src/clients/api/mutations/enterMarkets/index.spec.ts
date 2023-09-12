@@ -4,6 +4,7 @@ import {
   ComptrollerErrorReporterError,
   ComptrollerErrorReporterFailureInfo,
 } from 'constants/contracts/errorReporter';
+import { Comptroller } from 'types/contracts';
 
 import enterMarkets from '.';
 
@@ -17,7 +18,7 @@ describe('api/mutation/enterMarkets', () => {
           },
         }),
       },
-    } as any;
+    } as unknown as Comptroller;
 
     try {
       await enterMarkets({
@@ -48,7 +49,7 @@ describe('api/mutation/enterMarkets', () => {
           }),
         }),
       },
-    } as any;
+    } as unknown as Comptroller;
 
     try {
       await enterMarkets({
@@ -82,7 +83,7 @@ describe('api/mutation/enterMarkets', () => {
       methods: {
         enterMarkets: enterMarketsMock,
       },
-    } as unknown as any;
+    } as unknown as Comptroller;
 
     const response = await enterMarkets({
       comptrollerContract: fakeContract,

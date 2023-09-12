@@ -1,9 +1,17 @@
+import { EthChainId, SubgraphAccount, SubgraphComptroller } from 'types';
+
 import { SUBGRAPH_LINKS } from 'constants/endpoints';
 
-const getAccountSubGraph = (network: any, address: any): Promise<any> => {
-  if (!SUBGRAPH_LINKS[network]) return Promise.resolve({});
+const getAccountSubGraph = (
+  network: EthChainId,
+  address: string,
+): Promise<{
+  comptroller?: SubgraphComptroller;
+  account?: SubgraphAccount;
+}> => {
+  if (!SUBGRAPH_LINKS[network] && !SUBGRAPH_LINKS[network].legacy) return Promise.resolve({});
   return new Promise(resolve =>
-    fetch(SUBGRAPH_LINKS[network][0], {
+    fetch(SUBGRAPH_LINKS[network].legacy, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

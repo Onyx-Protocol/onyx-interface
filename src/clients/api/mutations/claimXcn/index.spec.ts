@@ -1,5 +1,7 @@
 import { VError } from 'errors';
 
+import { XcnClaim } from 'types/contracts';
+
 import claimXcn from '.';
 
 describe('api/mutation/claimXcn', () => {
@@ -12,11 +14,11 @@ describe('api/mutation/claimXcn', () => {
           },
         }),
       },
-    } as any;
+    } as unknown as XcnClaim;
 
     try {
       await claimXcn({
-        xcnClaimContract: fakeContract,
+        xcnClaimContract: fakeContract as XcnClaim,
         accountAddress: '0x32asdf',
       });
 
@@ -42,7 +44,7 @@ describe('api/mutation/claimXcn', () => {
           }),
         }),
       },
-    } as any;
+    } as unknown as XcnClaim;
 
     try {
       await claimXcn({
@@ -71,7 +73,7 @@ describe('api/mutation/claimXcn', () => {
       methods: {
         claimXcn: claimXcnMock,
       },
-    } as unknown as any;
+    } as unknown as XcnClaim;
 
     const response = await claimXcn({
       xcnClaimContract: fakeContract,

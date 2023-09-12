@@ -56,7 +56,6 @@ export const Tabs = ({
               onClick={() => handleChange(index)}
               css={styles.getButton({
                 active: index === activeTabIndex,
-                last: index === tabsContent.length - 1,
                 fullWidth: !componentTitle,
               })}
             >

@@ -1,16 +1,22 @@
-import { useMutation } from 'react-query';
+import { UseMutationOptions, useMutation } from 'react-query';
+import type { TransactionReceipt } from 'web3-core';
 
 import depositPunk from 'clients/api/mutations/depositPunk';
 import queryClient from 'clients/api/queryClient';
 import { usePunkContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
-const useDepositPunk = ({ accountAddress }: { accountAddress: string }, options?: any) => {
+type UseDepositPunkParams = { id: string | number; userProxyAddress: string };
+
+const useDepositPunk = (
+  { accountAddress }: { accountAddress: string },
+  options?: UseMutationOptions<TransactionReceipt, unknown, UseDepositPunkParams>,
+) => {
   const punkContract = usePunkContract();
 
   return useMutation(
     FunctionKey.DEPOSIT_PUNK,
-    (params: any) =>
+    (params: UseDepositPunkParams) =>
       depositPunk({
         punkContract,
         accountAddress,

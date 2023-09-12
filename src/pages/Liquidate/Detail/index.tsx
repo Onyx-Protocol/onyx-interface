@@ -7,12 +7,13 @@ import { Button } from 'components';
 import config from 'config';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
-import { Token } from 'types';
+import { MarketWithBorrowBalance, SubgraphMarket, SubgraphToken, Token, UserInfo } from 'types';
 import {
   getAccountSubGraph,
   getContractAddress,
   getTokenByAddress,
   truncateAddress,
+  unsafelyGetOToken,
 } from 'utilities';
 
 import {
@@ -21,16 +22,11 @@ import {
   useLiquidateBorrow,
   useLiquidateWithSingleRepay,
 } from 'clients/api';
-import {
-  getComptrollerContract,
-  getLiquidationProxyContract,
-  getOTokenContract,
-  getTokenContractByAddress,
-} from 'clients/contracts/getters';
+import { getComptrollerContract, getTokenContractByAddress } from 'clients/contracts/getters';
 import { useWeb3 } from 'clients/web3';
 import { EthLink } from 'components/EthLink';
 import { NULL_ADDRESS, UINT_MAX } from 'constants/address';
-import { AuthContext } from 'context/AuthContext';
+import { AuthContext, AuthContextValue } from 'context/AuthContext';
 
 import LiquidationForm from '../LiquidationForm';
 import UserTokenTable from '../UserTokenTable';
@@ -40,11 +36,15 @@ const LiquidateDetail = ({
   match: {
     params: { userId },
   },
-}: any) => {
+}: {
+  match: {
+    params: { userId: string };
+  };
+}) => {
   const styles = useStyles();
   const { t } = useTranslation();
 
-  const { account }: any = useContext(AuthContext);
+  const { account }: AuthContextValue = useContext(AuthContext);
   const web3 = useWeb3();
 
   const { data: { markets } = { markets: [], dailyXcnWei: undefined } } = useGetMarkets({
@@ -52,13 +52,13 @@ const LiquidateDetail = ({
   });
 
   const [isOpen, setIsOpen] = useState(false);
-  const [userInfo, setUserInfo] = useState<any>({});
+  const [userInfo, setUserInfo] = useState<Partial<UserInfo>>({});
   const [borrowPercent, setBorrowPercent] = useState(0);
-  const [supplyInfo, setSupplyInfo] = useState<any>(null);
-  const [selectedIds, setSelectedIds] = useState([]);
+  const [supplyInfo, setSupplyInfo] = useState<SubgraphToken>();
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
-  const [liquidationToken, setLiquidationToken] = useState<any>(null);
-  const [liquidationTokens, setLiquidationTokens] = useState<any>({});
+  const [liquidationToken, setLiquidationToken] = useState<MarketWithBorrowBalance>();
+  const [liquidationTokens, setLiquidationTokens] = useState<Record<string, string[]>>({});
   const { mutateAsync: approveTokenMutation, isLoading: isApproveTokenLoading } = useApproveToken({
     token: getTokenByAddress(
       !liquidationToken || liquidationToken.underlyingAddress === NULL_ADDRESS
@@ -71,7 +71,7 @@ const LiquidateDetail = ({
     isLoading: isLiquidateWithSingleRepayLoading,
   } = useLiquidateWithSingleRepay();
 
-  const { mutateAsync: liquidateBorrowMutation, isLoading: isLiquidateBorrowLoading }: any =
+  const { mutateAsync: liquidateBorrowMutation, isLoading: isLiquidateBorrowLoading } =
     useLiquidateBorrow({
       oTokenId:
         getTokenByAddress(
@@ -82,19 +82,19 @@ const LiquidateDetail = ({
     });
 
   const liquidationMarkets = (userInfo?.tokens || [])
-    .filter((token: any) => token.market.underlyingDecimals > 0)
-    .map((item: any) => item.market);
+    .filter(token => token.market.underlyingDecimals > 0)
+    .map(item => item.market);
 
   const proxy = getContractAddress('liquidationProxy');
 
-  const getTokenPrice = (token: any) =>
+  const getTokenPrice = (token: SubgraphToken) =>
     (markets || []).find(market => market.address === token.market.id)?.tokenPrice ||
     new BigNumber(0);
 
-  const getLiquidationTokenAllowances = async (_markets: any) => {
+  const getLiquidationTokenAllowances = async (_markets: SubgraphMarket[]) => {
     const accountAddress = account?.address || '';
-    const allowances: any = await Promise.all(
-      _markets.map((market: any) =>
+    const allowances = await Promise.all(
+      _markets.map(market =>
         market.underlyingAddress === NULL_ADDRESS
           ? Promise.resolve([UINT_MAX, UINT_MAX])
           : Promise.all([
@@ -109,7 +109,10 @@ const LiquidateDetail = ({
     );
 
     return allowances.reduce(
-      (a: any, c: any, index: number) => ({ ...a, [_markets[index].underlyingAddress]: c }),
+      (a: Record<string, string[]>, c: string[], index: number) => ({
+        ...a,
+        [_markets[index].underlyingAddress]: c,
+      }),
       {},
     );
   };
@@ -119,7 +122,7 @@ const LiquidateDetail = ({
     let totalCash = new BigNumber(0);
     let totalBorrow = new BigNumber(0);
     const tokens = result?.account?.tokens || [];
-    tokens.map((token: any) => {
+    tokens.map(token => {
       if (token.enteredMarket) {
         totalCash = totalCash.plus(
           new BigNumber(token.oTokenBalance)
@@ -157,7 +160,10 @@ const LiquidateDetail = ({
     }
   }, [userId, markets]);
 
-  const calcRepayAmount = (amount: any, selectedIdsTemp: any) => {
+  const calcRepayAmount = (
+    amount: number,
+    selectedIdsTemp: number[],
+  ): Promise<{ 0: string; 1: string; 2: string }> => {
     setSelectedIds(selectedIdsTemp);
     const comptrollerContract = getComptrollerContract(web3);
     if (!supplyInfo || !liquidationToken || !comptrollerContract || amount === 0) {
@@ -183,7 +189,7 @@ const LiquidateDetail = ({
       .call();
   };
 
-  const handleLiquidation = (form: any) => {
+  const handleLiquidation = (form: { amount: number; repay: string }) => {
     const accountAddress = account?.address || '';
 
     if (!accountAddress) {
@@ -192,43 +198,38 @@ const LiquidateDetail = ({
     const { repay } = form;
     const repayToken = liquidationToken;
     const symbol =
-      (markets || []).find((market: any) => market.address === repayToken?.id)?.underlyingSymbol ||
-      '';
+      (markets || []).find(market => market.address === repayToken?.id)?.underlyingSymbol || '';
 
-    const oTokenContract: any = getOTokenContract(symbol.toLowerCase(), web3);
-
-    const lqProxy: any = getLiquidationProxyContract(web3);
-    const repayTokenInfo = userInfo.tokens.find(
-      (item: any) => item.market.underlyingAddress === repayToken.underlyingAddress,
+    const repayTokenInfo = userInfo.tokens?.find(
+      item => item.market.underlyingAddress === repayToken?.underlyingAddress,
     );
 
-    const isProxy =
-      lqProxy &&
-      new BigNumber(repay).gt(
-        new BigNumber(repayTokenInfo?.storedBorrowBalance).times(
-          new BigNumber(10).pow(repayTokenInfo?.market?.underlyingDecimals),
-        ),
-      );
+    const isProxy = new BigNumber(repay).gt(
+      new BigNumber(repayTokenInfo?.storedBorrowBalance ?? '0').times(
+        new BigNumber(10).pow(repayTokenInfo?.market?.underlyingDecimals ?? 18),
+      ),
+    );
 
     if (
+      liquidationToken &&
       !new BigNumber(liquidationTokens[liquidationToken.underlyingAddress][isProxy ? 1 : 0]).gt(
         0,
       ) &&
-      liquidationToken.underlyingAddress !== NULL_ADDRESS
+      liquidationToken?.underlyingAddress !== NULL_ADDRESS
     ) {
       // Approve
       approveTokenMutation({
         accountAddress,
-        spenderAddress: isProxy ? lqProxy._address : liquidationToken.id,
+        spenderAddress: isProxy ? getContractAddress('liquidationProxy') : liquidationToken.id,
       });
     } else if (isProxy) {
       liquidateWithSingleRepayV2Mutation({
-        isNativeToken: liquidationToken.underlyingAddress === NULL_ADDRESS,
-        borrower: userInfo?.id,
-        oTokenCollateralAddress: supplyInfo?.market?.id,
-        oTokenRepayAddress: oTokenContract._address,
+        isNativeToken: liquidationToken?.underlyingAddress === NULL_ADDRESS,
+        borrower: userInfo?.id ?? '',
+        oTokenCollateralAddress: supplyInfo?.market?.id ?? '',
+        oTokenRepayAddress: unsafelyGetOToken(symbol.toLowerCase()).address,
         repayAmount:
-          liquidationToken.underlyingAddress !== NULL_ADDRESS
+          liquidationToken?.underlyingAddress !== NULL_ADDRESS
             ? new BigNumber(repay).times(1.02).dp(0, 0).toString(10)
             : repay,
         seizeIndexes: selectedIds.sort((a, b) => b - a),
@@ -237,16 +238,16 @@ const LiquidateDetail = ({
       });
     } else if (liquidateBorrowMutation) {
       liquidateBorrowMutation({
-        isNativeToken: liquidationToken.underlyingAddress === NULL_ADDRESS,
-        borrower: userInfo?.id,
-        oTokenCollateralAddress: supplyInfo?.market?.id,
+        isNativeToken: liquidationToken?.underlyingAddress === NULL_ADDRESS,
+        borrower: userInfo?.id ?? '',
+        oTokenCollateralAddress: supplyInfo?.market?.id ?? '',
         repayAmount: repay,
         accountAddress,
       });
     }
   };
 
-  const handleSelectSupplyToken = (token: any) => {
+  const handleSelectSupplyToken = (token: SubgraphToken) => {
     setSupplyInfo(token);
   };
 
@@ -272,12 +273,12 @@ const LiquidateDetail = ({
                     </tr>
                   </thead>
                   <tbody>
-                    {(userInfo?.tokens || []).map((token: any) => (
+                    {(userInfo?.tokens || []).map(token => (
                       <UserTokenTable
                         key={token.id}
                         token={token}
                         markets={markets || []}
-                        selectedToken={supplyInfo || {}}
+                        selectedToken={supplyInfo}
                         onSelectSupplyToken={handleSelectSupplyToken}
                       />
                     ))}
@@ -299,25 +300,25 @@ const LiquidateDetail = ({
                 }
                 current={liquidationToken}
                 availables={liquidationMarkets
-                  .filter((item: any) => {
-                    const tokenInfo =
-                      (userInfo?.tokens || []).find((token: any) => token.market.id === item.id) ||
-                      {};
-                    if (!new BigNumber(tokenInfo.storedBorrowBalance || 0).isZero()) {
+                  .filter(item => {
+                    const tokenInfo = (userInfo?.tokens || []).find(
+                      token => token.market.id === item.id,
+                    );
+                    if (!new BigNumber(tokenInfo?.storedBorrowBalance || 0).isZero()) {
                       return true;
                     }
                     return false;
                   })
-                  .map((item: any) => ({
+                  .map(item => ({
                     ...item,
                     storedBorrowBalance: (userInfo?.tokens || []).find(
-                      (token: any) => item.id === token.market.id,
+                      token => item.id === token.market.id,
                     )?.storedBorrowBalance,
                   }))}
                 onChange={setLiquidationToken}
                 token={supplyInfo || {}}
                 markets={markets}
-                allowed={liquidationTokens[liquidationToken?.underlyingAddress] || [0, 0]}
+                allowed={liquidationTokens[liquidationToken?.underlyingAddress ?? ''] || [0, 0]}
                 onSubmit={handleLiquidation}
                 onClose={() => setIsOpen(false)}
                 onAmount={calcRepayAmount}

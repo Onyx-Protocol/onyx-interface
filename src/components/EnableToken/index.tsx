@@ -129,7 +129,7 @@ export const EnableToken: React.FC<EnableTokenProps> = ({
     useTokenApproval({
       token,
       spenderAddress,
-      accountAddress: account?.address,
+      accountAddress: account ? account.address : '',
     });
 
   return (

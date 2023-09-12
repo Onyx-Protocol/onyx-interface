@@ -13,7 +13,7 @@ export const useStyles = () => {
       margin-bottom: 20px;
 
       .padding {
-        margin: 20px 0px;
+        margin: 20px 0;
       }
 
       ${theme.breakpoints.down('xl')} {
@@ -26,7 +26,7 @@ export const useStyles = () => {
       flex-direction: row;
       justify-content: end;
       margin-bottom: ${gap};
-      padding: 0px 40px;
+      padding: 0 40px;
     `,
     column: css`
       width: calc(50% - ${gap} / 2);

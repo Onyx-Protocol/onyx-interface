@@ -1,18 +1,34 @@
-import { useMutation } from 'react-query';
+import { UseMutationOptions, useMutation } from 'react-query';
+import type { TransactionReceipt } from 'web3-core';
 
 import { liquidateWithSingleRepay } from 'clients/api';
 import { useLiquidationProxyContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
+type UseLiquidateWithSingleRepayParams = {
+  isNativeToken: boolean;
+  borrower: string;
+  oTokenCollateralAddress: string;
+  oTokenRepayAddress: string;
+  repayAmount: string;
+  seizeIndexes: (string | number)[];
+  isClaimOToken: boolean;
+  accountAddress: string;
+};
+
 const useLiquidateWithSingleRepay = (
   // TODO: use custom error type https://app.clickup.com/t/2rvwhnt
-  options?: any,
+  options?: UseMutationOptions<
+    TransactionReceipt | null,
+    unknown,
+    UseLiquidateWithSingleRepayParams
+  >,
 ) => {
   const liquidationProxyContract = useLiquidationProxyContract();
 
   return useMutation(
     [FunctionKey.LIQUIDATE_WITH_SINGLE_REPAY_V2, {}],
-    (params: any) =>
+    (params: UseLiquidateWithSingleRepayParams) =>
       liquidateWithSingleRepay({
         liquidationProxyContract,
         ...params,

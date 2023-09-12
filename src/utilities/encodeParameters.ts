@@ -9,7 +9,7 @@ import { ethers } from 'ethers';
 const encodeParameters = (types: string[], values: (string | number | string[])[]) => {
   const abi = new ethers.utils.AbiCoder();
   // values type on abi.encode is any
-  return abi.encode(types, values as any);
+  return abi.encode(types, values);
 };
 
 export default encodeParameters;

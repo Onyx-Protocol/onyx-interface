@@ -14,10 +14,11 @@ import {
   toast,
 } from 'components';
 import config from 'config';
+import { sanitize } from 'dompurify';
 import { VError, formatVErrorToReadableString } from 'errors';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
-import { Asset } from 'types';
+import { Asset, Nft, UserNftTokenIdResponse } from 'types';
 import {
   calculateCollateralValue,
   calculateDailyEarningsCents,
@@ -38,6 +39,7 @@ import { AmountForm, AmountFormProps, ErrorCode } from 'containers/AmountForm';
 import { AuthContext } from 'context/AuthContext';
 import useDailyXcnDistributionInterests from 'hooks/useDailyXcnDistributionInterests';
 import useSuccessfulTransactionModal from 'hooks/useSuccessfulTransactionModal';
+import { OTokenEx } from 'types/contracts';
 
 import { useStyles } from '../styles';
 
@@ -83,14 +85,14 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
   const { data: oTokenCashData } = useGetOTokenCash({
     oTokenId: asset.token.id,
   });
-  const oTokenContract: any = useOTokenContract(asset.token.id);
+  const oTokenContract = useOTokenContract(asset.token.id) as unknown as OTokenEx;
 
-  const nftTokenContract: any = useNftContract(asset.token);
+  const nftTokenContract = useNftContract(asset.token);
   const punkDataContract = usePunkDataContract();
 
   const { account: { address: accountAddress = '' } = {} } = useContext(AuthContext);
-  const [nfts, setNFTs] = useState<any>([]);
-  const [nft, setNFT] = useState<any>([]);
+  const [nfts, setNFTs] = useState<Required<Nft>[]>([]);
+  const [nft, setNFT] = useState<Required<Nft>[]>([]);
 
   const { mutateAsync: supplyNFT, isLoading: isSupplyNFTLoading } = useSupplyNFT({
     oTokenId: asset?.token.id,
@@ -107,7 +109,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
   const amount = new BigNumber(amountValue || 0);
   const validAmount = amount && !amount.isZero() && !amount.isNaN();
 
-  const selection = nft.map((item: any) => item.collectionTokenId);
+  const selection = nft.map(item => item.collectionTokenId);
   const selectAvailable = nfts.length;
 
   const toFixed = (number: number, decimals: number, string = false) => {
@@ -116,7 +118,8 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
   };
 
   const current = asset.supplyBalance.toNumber();
-  const cash: any = (oTokenCashData || {}).cashWei ? (oTokenCashData || {}).cashWei?.toNumber() : 1;
+  const { cashWei } = oTokenCashData || {};
+  const cash: number = cashWei ? cashWei.toNumber() : 1;
 
   const available = asset && toFixed(Math.min(current, cash), asset.token.decimals);
 
@@ -143,7 +146,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
       promise
         .then(tokenIds => {
           const baseURI: string = BaseURIs[asset.token.symbol];
-          const fetchPromise = baseURI
+          const fetchPromise: Promise<[string, string][]> = baseURI
             ? new Promise(resolve =>
                 fetch(
                   `${config.apiUrl}/user_nfts?address=${
@@ -158,16 +161,17 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                   },
                 )
                   .then(res => res.json())
-                  .then(({ data: [data = { tokenIds: [] }] }) =>
+                  .then(({ data: [data = { tokenIds: [] as UserNftTokenIdResponse[] }] }) =>
                     resolve(
                       Number(tokenIds[0]) === 0
                         ? data.tokenIds
-                            .map((item: any) => [item.tokenId, item.tokenURI])
+                            .map((item: UserNftTokenIdResponse) => [item.tokenId, item.tokenURI])
                             .slice(0, balance)
                         : tokenIds.map(tokenId => [
                             tokenId,
-                            data.tokenIds.find((item: any) => item.tokenId === Number(tokenId))?.tokenURI ||
-                              `/cryptologos/${asset.token.symbol.toLowerCase()}.jpg`,
+                            data.tokenIds.find(
+                              (item: UserNftTokenIdResponse) => item.tokenId === Number(tokenId),
+                            )?.tokenURI || `/cryptologos/${asset.token.symbol.toLowerCase()}.jpg`,
                           ]),
                     ),
                   )
@@ -188,9 +192,9 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 ),
               );
           fetchPromise
-            .then((tokenData: any) => {
+            .then((tokenData: [string, string][]) => {
               setNFTs(
-                tokenData.map(([collectionTokenId, image]: any, index: any) => ({
+                tokenData.map(([collectionTokenId, image], index) => ({
                   index,
                   collectionTokenId,
                   collectionTokenContract: asset.token.address,
@@ -273,8 +277,8 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
   // following the crash of the LUNA token
   const isSupplyingLuna = type === 'supply' && asset.token.id === 'luna';
 
-  const handleEnterNFT = (nftIds: any = []) => {
-    setNFT(nfts.filter((item: any) => nftIds.includes(item.collectionTokenId)));
+  const handleEnterNFT = (nftIds: string[] = []) => {
+    setNFT(nfts.filter(item => nftIds.includes(item.collectionTokenId)));
   };
 
   const handleSupplyWithdraw = async () => {
@@ -282,14 +286,12 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
 
     if (type === 'supply') {
       const res = await supplyNFT({
-        tokenIds: nft
-          .sort((a: any, b: any) => b.index - a.index)
-          .map((item: any) => item.collectionTokenId),
+        tokenIds: nft.sort((a, b) => b.index - a.index).map(item => item.collectionTokenId),
       });
       ({ transactionHash } = res);
     } else {
       const res = await redeemNFT({
-        tokenIds: nft.sort((a: any, b: any) => b.index - a.index).map((item: any) => item.index),
+        tokenIds: nft.sort((a, b) => b.index - a.index).map(item => item.index.toString()),
       });
       ({ transactionHash } = res);
     }
@@ -315,7 +317,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
     <>
       <div css={styles.nftContent}>
         <div css={styles.nftSelectionWrap}>
-          {(nfts || []).map((_nft: any) => (
+          {(nfts || []).map(_nft => (
             <div
               className={`nftItem ${
                 selection.includes(_nft.collectionTokenId) ? 'selectedNft' : ''
@@ -324,7 +326,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
               onClick={() =>
                 handleEnterNFT(
                   selection.includes(_nft.collectionTokenId)
-                    ? selection.filter((item: any) => item !== _nft.collectionTokenId)
+                    ? selection.filter(item => item !== _nft.collectionTokenId)
                     : [...selection, _nft.collectionTokenId],
                 )
               }
@@ -336,7 +338,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 <div
                   className="nftImg"
                   dangerouslySetInnerHTML={{
-                    __html: _nft.imageUrl,
+                    __html: sanitize(_nft.imageUrl),
                   }}
                 />
               ) : (
@@ -354,7 +356,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
         </span>
         <div
           className="totalSelectedNft"
-          onClick={() => handleEnterNFT(nfts.map((item: any) => item.collectionTokenId))}
+          onClick={() => handleEnterNFT(nfts.map(item => item.collectionTokenId))}
         >
           Select all
         </div>
@@ -388,7 +390,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
     <>
       <div css={styles.nftContent}>
         <div css={styles.nftSelectionWrap}>
-          {(nfts || []).map((_nft: any) => (
+          {(nfts || []).map(_nft => (
             <div
               className={`nftItem ${
                 selection.includes(_nft.collectionTokenId) ? 'selectedNft' : ''
@@ -397,7 +399,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
               onClick={() =>
                 handleEnterNFT(
                   selection.includes(_nft.collectionTokenId)
-                    ? selection.filter((item: any) => item !== _nft.collectionTokenId)
+                    ? selection.filter(item => item !== _nft.collectionTokenId)
                     : [...selection, _nft.collectionTokenId],
                 )
               }
@@ -409,7 +411,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
                 <div
                   className="nftImg"
                   dangerouslySetInnerHTML={{
-                    __html: _nft.imageUrl,
+                    __html: sanitize(_nft.imageUrl),
                   }}
                 />
               ) : (
@@ -427,7 +429,7 @@ export const SupplyWithdrawContent: React.FC<SupplyWithdrawFormUiProps> = ({
         </span>
         <div
           className="totalSelectedNft"
-          onClick={() => handleEnterNFT(nfts.map((item: any) => item.collectionTokenId))}
+          onClick={() => handleEnterNFT(nfts.map(item => item.collectionTokenId))}
         >
           Select all
         </div>

@@ -1,6 +1,10 @@
 import { Token as PSToken } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
 
+import { SubgraphAccount } from './subgraph';
+
+export * from './subgraph';
+
 export enum EthChainId {
   'MAINNET' = 1,
   'TESTNET' = 5,
@@ -372,3 +376,31 @@ export interface ExactAmountOutSwap extends SwapBase {
 export type Swap = ExactAmountInSwap | ExactAmountOutSwap;
 
 export type PSTokenCombination = [PSToken, PSToken];
+
+export interface UserInfo extends SubgraphAccount {
+  totalBorrow: number;
+}
+
+export interface AccountInfo extends SubgraphAccount {
+  borrowPercent: number;
+  minSupply?: number;
+  maxBorrow?: number;
+  totalBorrow: BigNumber;
+}
+
+export interface Nft {
+  index: number;
+  collectionTokenId: string;
+  collectionTokenContract?: string;
+  imageUrl: string;
+}
+
+export type UserNftTokenIdResponse = { tokenId: number; tokenURI: string };
+export type UserNftTokenBalanceResponse = { tokenId: number; tokenURI: string; balance: number };
+
+export type UserNftResponse = {
+  collection: string;
+  name: string;
+  tokenIds: UserNftTokenIdResponse[];
+  balances: UserNftTokenBalanceResponse[];
+}[];

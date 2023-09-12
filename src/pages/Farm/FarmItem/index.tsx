@@ -23,7 +23,7 @@ import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTok
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 import getFarmApy from 'utilities/getFarmApy';
 
-import { StakeModal, WithdrawModal, LiquidityModal } from '../modals';
+import { LiquidityModal, StakeModal, WithdrawModal } from '../modals';
 import { useStyles } from './styles';
 import TEST_IDS from './testIds';
 

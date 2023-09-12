@@ -48,7 +48,6 @@ export const useStyles = () => {
       }
     `,
     link: css`
-      // background-color: ${theme.palette.secondary.light};
       transition: background-color 0.3s;
       margin-left: ${theme.spacing(4)};
       display: flex;
@@ -62,9 +61,6 @@ export const useStyles = () => {
         width: 20px;
         height: 20px;
       }
-      // :hover {
-      //   background-color: ${theme.palette.button.main};
-      // }
 
       :active {
         background-color: ${theme.palette.button.dark};
