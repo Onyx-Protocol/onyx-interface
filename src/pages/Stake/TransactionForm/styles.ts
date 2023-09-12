@@ -19,5 +19,13 @@ export const useStyles = () => {
         margin-bottom: ${theme.spacing(8)};
       }
     `,
+    info: css`
+      margin-top: ${theme.spacing(1)};
+
+      display: flex;
+      align-items: center;
+
+      gap: ${theme.spacing(2)};
+    `,
   };
 };
