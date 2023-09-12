@@ -28,11 +28,13 @@ const UserTokenTable = ({ token, markets = [], selectedToken, onSelectSupplyToke
     <tr
       css={[
         styles.token,
-        token.market.underlyingDecimals === 0 ? styles.noAllowed : '',
+        token.market.underlyingDecimals > 0 ? styles.noAllowed : '',
         selectedToken?.market?.id === token.market.id ? styles.activeToken : '',
       ]}
       onClick={() => {
-        onSelectSupplyToken(token);
+        if (token.market.underlyingDecimals === 0) {
+          onSelectSupplyToken(token);
+        }
       }}
     >
       <td>

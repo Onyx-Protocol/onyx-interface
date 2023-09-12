@@ -110,7 +110,7 @@ const LiquidationForm = ({
   const punkDataContract = usePunkDataContract();
 
   useEffect(() => {
-    if (token?.market?.underlyingDecimals !== 0 && oTokenContract && userId) {
+    if (token?.market?.underlyingDecimals === 0 && oTokenContract && userId) {
       oTokenContract.methods
         .balanceOfUnderlying(userId)
         .call()
@@ -236,7 +236,7 @@ const LiquidationForm = ({
               ))}
             </div>
           </div>
-          {current && (
+          {selectedIds.length !== 0 && current && (
             <div className="tokenlist">
               {(availables || []).map(repayToken => (
                 <div
@@ -269,7 +269,7 @@ const LiquidationForm = ({
               ))}
             </div>
           )}
-          {current && (
+          {selectedIds.length !== 0 && current && (
             <div>
               Required{' '}
               {
@@ -294,6 +294,7 @@ const LiquidationForm = ({
                 disabled={
                   isLoading ||
                   !token.market ||
+                  !selectedIds.length ||
                   form.amount >
                     new BigNumber(token.oTokenBalance ?? 0)
                       .times(token.market.exchangeRate)

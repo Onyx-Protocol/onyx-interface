@@ -127,7 +127,7 @@ const Stepper: React.FC<StepperProps> = ({
         ),
       },
     ],
-    [createdDate, startDate, cancelDate, queuedDate, executedDate, state],
+    [createdDate, startDate, cancelDate, queuedDate, executedDate, state, endDate],
   );
   const activeStepIndex = getActiveStepIndex(state);
   return (

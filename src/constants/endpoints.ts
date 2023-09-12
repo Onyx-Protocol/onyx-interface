@@ -17,7 +17,7 @@ export const RPC_URLS: {
   [EthChainId.TESTNET]: ['https://goerli.infura.io/v3/2a396817d3e349d289318db583cc123c'],
 };
 
-export const SUBGRAPH_LINKS: { [key: number]: Record<string, string> } = {
+export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
   1: {
     legacy: 'https://api.thegraph.com/subgraphs/name/seme0801/onyx-subgraph',
     latest: process.env.REACT_APP_THEGRAPH_ENDPOINT ?? '',

@@ -1,10 +1,11 @@
 import { ComponentMeta } from '@storybook/react';
 import BigNumber from 'bignumber.js';
 import noop from 'noop-ts';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import voterDetails from '__mocks__/models/voterDetails';
 import voterHistory from '__mocks__/models/voterHistory';
+import formatVoterHistoryResponse from 'clients/api/queries/getVoterHistory/formatVoterHistoryResponse';
 import { NULL_ADDRESS } from 'constants/address';
 import { withRouter } from 'stories/decorators';
 
@@ -16,17 +17,29 @@ export default {
   decorators: [withRouter],
 } as ComponentMeta<typeof VoterDetailsUi>;
 
-export const Default = () => (
-  <VoterDetailsUi
-    balanceWei={new BigNumber(912512333)}
-    delegateCount={12}
-    votesWei={new BigNumber(912512333)}
-    voterTransactions={voterDetails.voterTransactions}
-    address={NULL_ADDRESS}
-    voterHistory={voterHistory.voterHistory}
-    setCurrentHistoryPage={noop}
-    total={60}
-    limit={6}
-    isHistoryFetching={false}
-  />
-);
+export const Default = () => {
+  const [voterHistoryFetched, setVoterHistoryFetched] = useState<
+    Awaited<ReturnType<typeof formatVoterHistoryResponse>> | undefined
+  >();
+
+  useEffect(() => {
+    voterHistory.then(vh => {
+      setVoterHistoryFetched(vh);
+    });
+  }, []);
+
+  return (
+    <VoterDetailsUi
+      balanceWei={new BigNumber(912512333)}
+      delegateCount={12}
+      votesWei={new BigNumber(912512333)}
+      voterTransactions={voterDetails.voterTransactions}
+      address={NULL_ADDRESS}
+      voterHistory={voterHistoryFetched?.voterHistory}
+      setCurrentHistoryPage={noop}
+      total={60}
+      limit={6}
+      isHistoryFetching={false}
+    />
+  );
+};
