@@ -72,6 +72,8 @@ export const ProposalSummaryUi: React.FC<
     executedTxHash,
     endTxHash,
     endDate,
+    endBlock,
+    startBlock,
   } = proposal;
 
   const handleCancelProposal = async () => {
@@ -168,9 +170,14 @@ export const ProposalSummaryUi: React.FC<
   }
 
   const countdownData = useMemo(() => {
-    if (state === 'Active' && endDate) {
+    if (state === 'Active' && endBlock && startBlock && startDate) {
+      const blockInterval = endBlock - startBlock * 12; // in seconds
+
+      const activeUntilDate = new Date(startDate);
+      activeUntilDate.setSeconds(startDate.getSeconds() + blockInterval);
+
       return {
-        date: endDate,
+        date: activeUntilDate,
         // DO NOT REMOVE COMMENT: needed by i18next to extract translation key
         // t('voteProposalUi.activeUntilDate')
         i18nKey: 'voteProposalUi.activeUntilDate',
@@ -185,7 +192,7 @@ export const ProposalSummaryUi: React.FC<
         i18nKey: 'voteProposalUi.timeUntilExecutable',
       };
     }
-  }, [state, endDate?.getTime(), proposalEta?.getTime()]);
+  }, [state, proposalEta?.getTime(), endBlock, startBlock, startDate]);
 
   return (
     <Paper css={styles.root} className={className}>

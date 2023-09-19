@@ -94,6 +94,7 @@ const formatToProposal = ({
   signatures,
   targets,
   values,
+  start_block,
 }: FormatToProposalInput): Proposal => {
   const endDate = end_timestamp ? createDateFromSecondsTimestamp(end_timestamp) : undefined;
 
@@ -155,6 +156,7 @@ const formatToProposal = ({
     createdDate: created_timestamp ? createDateFromSecondsTimestamp(created_timestamp) : undefined,
     description: descriptionObj,
     endBlock: !end_block ? 0 : end_block,
+    startBlock: start_block ?? 0,
     endDate,
     executedDate: executed_timestamp
       ? createDateFromSecondsTimestamp(executed_timestamp)
