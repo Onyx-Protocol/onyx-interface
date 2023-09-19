@@ -32,7 +32,6 @@ const getValueString = (valueWei?: BigNumber) => {
 export const ActiveVotingProgress: React.FC<ActiveVotingProgressProps> = ({
   votedForWei,
   votedAgainstWei,
-  abstainedWei,
   votedTotalWei,
 }) => {
   const styles = useStyles();
@@ -90,7 +89,7 @@ export const ActiveVotingProgress: React.FC<ActiveVotingProgressProps> = ({
       //   },
       // },
     ],
-    [votedForWei, votedAgainstWei, abstainedWei, themeMode],
+    [votedForWei, votedAgainstWei, themeMode],
   );
 
   return (
