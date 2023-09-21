@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
+import BigNumber from 'bignumber.js';
 import { FormikSubmitButton, FormikTextField, Modal, TextField } from 'components';
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'translation';
+import { Proposal } from 'types';
+import { convertWeiToTokens } from 'utilities';
 import type { TransactionReceipt } from 'web3-core';
 
 import { TOKENS } from 'constants/tokens';
@@ -15,8 +18,10 @@ interface VoteModalProps {
   voteModalType: 0 | 1 | 2;
   handleClose: () => void;
   vote: (voteReason: string) => Promise<TransactionReceipt>;
-  readableVoteWeight: string;
+  voteWeight: BigNumber;
+  stakeAmount: BigNumber;
   isVoteLoading: boolean;
+  proposal: Proposal;
 }
 
 // TODO: add tests
@@ -24,7 +29,8 @@ interface VoteModalProps {
 const VoteModal: React.FC<VoteModalProps> = ({
   handleClose,
   vote,
-  readableVoteWeight,
+  voteWeight,
+  stakeAmount,
   voteModalType = 0,
   isVoteLoading,
 }) => {
@@ -65,6 +71,17 @@ const VoteModal: React.FC<VoteModalProps> = ({
     });
   };
 
+  const readableVoteWeight = useMemo(
+    () =>
+      convertWeiToTokens({
+        valueWei: voteWeight,
+        token: TOKENS.xcn,
+        returnInReadableFormat: true,
+        addSymbol: false,
+      }),
+    [voteWeight.toFixed()],
+  );
+
   return (
     <Modal
       isOpen={voteModalType !== undefined}
@@ -83,6 +100,11 @@ const VoteModal: React.FC<VoteModalProps> = ({
               disabled
               value={readableVoteWeight}
               css={styles.votingPower}
+              description={
+                !voteWeight.isEqualTo(stakeAmount)
+                  ? t('vote.votingPowerIsLessThanStakedBecause')
+                  : ''
+              }
             />
             <FormikTextField
               label={t('vote.comment')}

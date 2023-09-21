@@ -107,6 +107,7 @@ export interface Proposal {
   createdDate: Date | undefined;
   description: DescriptionV1 | DescriptionV2;
   endBlock: number;
+  startBlock: number;
   executedDate: Date | undefined;
   forVotesWei: BigNumber;
   id: number;
@@ -121,7 +122,6 @@ export interface Proposal {
   totalVotesWei: BigNumber;
   actions: ProposalAction[];
   blockNumber?: number;
-  startBlock: number;
   isStarted: boolean;
   isEnded: boolean;
 }

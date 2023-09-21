@@ -10,11 +10,11 @@ import type { TransactionReceipt } from 'web3-core';
 import {
   useCancelProposal,
   useExecuteProposal,
-  useGetCurrentVotes,
   useGetProposalEta,
   useGetProposalThreshold,
   useQueueProposal,
 } from 'clients/api';
+import useGetPriorVotes from 'clients/api/queries/getPriorVotes/useGetPriorVotes';
 import { useWeb3 } from 'clients/web3';
 import { AuthContext } from 'context/AuthContext';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
@@ -294,14 +294,14 @@ const ProposalSummary: React.FC<ProposalSummaryUiProps> = ({ className, proposal
     proposalId: proposal.id,
   });
 
-  const { data: currentVotesData } = useGetCurrentVotes(
-    { accountAddress },
-    { enabled: !!accountAddress },
+  const { data: currentVotesData } = useGetPriorVotes(
+    { accountAddress, blockNumber: proposal.startBlock },
+    { enabled: !!accountAddress && !!proposal.startBlock },
   );
 
   const canCancelProposal =
     proposalThresholdData?.thresholdWei &&
-    currentVotesData?.votesWei.isGreaterThanOrEqualTo(proposalThresholdData?.thresholdWei);
+    currentVotesData?.priorVotes.isGreaterThanOrEqualTo(proposalThresholdData?.thresholdWei);
 
   return (
     <ProposalSummaryUi

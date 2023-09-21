@@ -98,14 +98,15 @@ export class WalletConnectV2Connector extends AbstractConnector {
       };
 
       // Workaround to bubble up the error when user reject the connection
-      this.walletConnectProvider!.on('disconnect', () => {
+      this?.walletConnectProvider?.on('disconnect', () => {
         // Check provider has not been enabled to prevent this event callback from being called in the future
         if (!account) {
           userReject();
         }
       });
 
-      this.walletConnectProvider!.enable()
+      this?.walletConnectProvider
+        ?.enable()
         .then((accounts: string[]) => resolve(accounts[0]))
         .catch((error: Error): void => {
           // TODO ideally this would be a better check
@@ -127,7 +128,7 @@ export class WalletConnectV2Connector extends AbstractConnector {
     return { provider: this.walletConnectProvider, account };
   }
 
-  public async getProvider(): Promise<any> {
+  public async getProvider() {
     return this.walletConnectProvider;
   }
 
