@@ -1,35 +1,20 @@
 import { VotersDetails } from 'types';
 
 export interface GetVotersInput {
-  id: string | number;
-  // 0 - "for" votes, 1 – "against" votes, 2 – "abstain" votes
-  // filter?: 0 | 1 | 2;
+  id: string;
   support?: boolean;
   limit?: number;
-  // offset?: number;
 }
 
 export interface VoterResult {
   id: string;
+  proposal: string;
   address: string;
-  has_voted: number;
-  support: number;
+  support: boolean;
   votes: string;
-  proposal_id: number;
-  block_number: number;
-  block_timestamp: number;
-  created_at: string;
-  updated_at: string;
-  reason?: string | null;
-}
-
-export interface GetVotersApiResponse {
-  data: VoterResult[];
-  metadata: {
-    sumVotes: string;
-    limit: number;
-    totalItem: number;
-  };
+  blockNumber: string;
+  blockTimestamp: string;
+  transactionHash: string;
 }
 
 export type GetVotersOutput = VotersDetails;

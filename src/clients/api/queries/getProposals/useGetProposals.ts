@@ -20,7 +20,7 @@ const useGetProposals = (params: GetProposalsInput = {}, options?: Options) =>
   // create a more seamless paginating experience
   useQuery([FunctionKey.GET_PROPOSALS, params], () => getProposals(params), {
     keepPreviousData: true,
-    placeholderData: { limit: 0, total: 0, page: 0, proposals: [] },
+    placeholderData: { proposals: [], total: 0 },
     refetchInterval: params.page === 1 ? BLOCK_TIME_MS * 5 : undefined,
     ...options,
   });

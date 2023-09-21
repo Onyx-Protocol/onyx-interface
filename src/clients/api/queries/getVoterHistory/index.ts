@@ -1,9 +1,9 @@
-import { VError } from 'errors';
+import config from 'config';
 import { VoterHistory } from 'types';
-import { restService } from 'utilities';
+
+import getVoterHistorySubGraph from 'utilities/getVoterHistorySubGraph';
 
 import formatVoterHistoryResponse from './formatVoterHistoryResponse';
-import { GetVoterHistoryResponse } from './types';
 
 export interface GetVoterHistoryInput {
   page?: number;
@@ -18,35 +18,15 @@ export interface GetVoterHistoryOutput {
 }
 
 const getVoterHistory = async ({
-  page = 1,
+  page = 0,
   address,
 }: GetVoterHistoryInput): Promise<GetVoterHistoryOutput> => {
-  const response = await restService<GetVoterHistoryResponse>({
-    endpoint: `/voter/history/${address}`,
-    method: 'GET',
-    params: {
-      limit: 5,
-      page: page + 1,
-    },
-    gov: true,
+  const proposalVotes = await getVoterHistorySubGraph(config.chainId, address, {
+    limit: 5,
+    offset: page * 5,
   });
 
-  const payload = response.data?.data;
-
-  // @todo Add specific api error handling
-  // if ('result' in response && response.result === 'error') {
-  //   throw new VError({
-  //     type: 'unexpected',
-  //     code: 'somethingWentWrong',
-  //     data: { message: response.message },
-  //   });
-  // }
-
-  if (!payload) {
-    throw new VError({ type: 'unexpected', code: 'somethingWentWrongRetrievingVoterHistory' });
-  }
-
-  return formatVoterHistoryResponse(payload);
+  return formatVoterHistoryResponse(proposalVotes, { page, limit: 5 });
 };
 
 export default getVoterHistory;

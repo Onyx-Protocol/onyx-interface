@@ -3,16 +3,16 @@ import { VotersDetails } from 'types';
 
 import indexedVotingSupportNames from 'constants/indexedVotingSupportNames';
 
-import { GetVotersApiResponse } from './types';
+import { VoterResult } from './types';
 
-const formatToVoter = (payload: GetVotersApiResponse): VotersDetails => ({
-  result: payload.data.map(({ address, reason, votes, support, has_voted }) => ({
+const formatToVoter = (payload: VoterResult[]): VotersDetails => ({
+  result: payload.map(({ address, votes, support }) => ({
     address,
     voteWeightWei: new BigNumber(votes),
-    reason: reason ?? undefined,
-    support: has_voted ? indexedVotingSupportNames[support] : 'NOT_VOTED',
+    reason: undefined,
+    support: indexedVotingSupportNames[Number(support)],
   })),
-  sumVotes: new BigNumber(payload.metadata.sumVotes),
+  sumVotes: payload.reduce((a, b) => a.plus(new BigNumber(b.votes)), new BigNumber(0)),
 });
 
 export default formatToVoter;
