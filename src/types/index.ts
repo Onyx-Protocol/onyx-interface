@@ -122,7 +122,6 @@ export interface Proposal {
   totalVotesWei: BigNumber;
   actions: ProposalAction[];
   blockNumber?: number;
-  startBlock: number;
   isStarted: boolean;
   isEnded: boolean;
 }
