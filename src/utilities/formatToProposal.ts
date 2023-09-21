@@ -82,6 +82,7 @@ const formatToProposal = ({
   proposer,
   queued_timestamp,
   start_timestamp,
+  start_block,
   state,
   created_tx_hash,
   cancel_tx_hash,
@@ -173,6 +174,7 @@ const formatToProposal = ({
     startTxHash: start_tx_hash ?? undefined,
     totalVotesWei: abstainedVotesWei.plus(againstVotesWei).plus(forVotesWei),
     actions: actions || [],
+    startBlock: start_block ?? 0,
   };
 
   return proposal;

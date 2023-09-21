@@ -1,4 +1,5 @@
 import { ComponentMeta } from '@storybook/react';
+import BigNumber from 'bignumber.js';
 import noop from 'noop-ts';
 import React from 'react';
 
@@ -21,7 +22,8 @@ export const Default = () => (
     againstVoters={voters}
     abstainVoters={voters}
     votingEnabled
-    readableVoteWeight="123390000"
+    voteWeight={new BigNumber(5)}
+    stakeAmount={new BigNumber(6)}
     vote={noop}
     isVoteLoading={false}
   />

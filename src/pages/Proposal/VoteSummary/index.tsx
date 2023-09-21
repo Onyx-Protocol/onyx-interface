@@ -66,7 +66,6 @@ const VoteSummary = ({
             ariaLabel={t('vote.summaryProgressBar', { voteType: label })}
           />
         </div>
-
         <Button css={styles.button} onClick={openVoteModal} disabled={!votingEnabled}>
           {label}
         </Button>
@@ -95,15 +94,17 @@ const VoteSummary = ({
               )}
             </div>
 
-            <Typography color="text.primary">
-              {convertWeiToTokens({
-                valueWei: voteWeightWei,
-                token: TOKENS.xcn,
-                shortenLargeValue: true,
-                addSymbol: false,
-                returnInReadableFormat: true,
-              })}
-            </Typography>
+            <Tooltip title={voteWeightWei.isZero() ? t('vote.votingPowerIsZeroBecause') : ''}>
+              <Typography color="text.primary">
+                {convertWeiToTokens({
+                  valueWei: voteWeightWei,
+                  token: TOKENS.xcn,
+                  shortenLargeValue: true,
+                  addSymbol: false,
+                  returnInReadableFormat: true,
+                })}
+              </Typography>
+            </Tooltip>
           </li>
         ))}
       </ul>

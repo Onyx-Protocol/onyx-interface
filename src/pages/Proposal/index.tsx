@@ -5,11 +5,10 @@ import React, { useContext, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'translation';
 import { Proposal as ProposalType, VotersDetails } from 'types';
-import { convertWeiToTokens } from 'utilities';
 import type { TransactionReceipt } from 'web3-core';
 
 import { useGetCurrentVotes, useGetProposal, useGetVoteReceipt, useGetVoters } from 'clients/api';
-import { TOKENS } from 'constants/tokens';
+import useGetPriorVotes from 'clients/api/queries/getPriorVotes/useGetPriorVotes';
 import { AuthContext } from 'context/AuthContext';
 import useVote, { UseVoteParams } from 'hooks/useVote';
 
@@ -27,7 +26,8 @@ interface ProposalUiProps {
   abstainVoters: VotersDetails;
   vote: (params: UseVoteParams) => Promise<TransactionReceipt>;
   votingEnabled: boolean;
-  readableVoteWeight: string;
+  voteWeight: BigNumber;
+  stakeAmount: BigNumber;
   isVoteLoading: boolean;
 }
 
@@ -38,7 +38,8 @@ export const ProposalUi: React.FC<ProposalUiProps> = ({
   abstainVoters,
   vote,
   votingEnabled,
-  readableVoteWeight,
+  voteWeight,
+  stakeAmount,
   isVoteLoading,
 }) => {
   const styles = useStyles();
@@ -112,8 +113,10 @@ export const ProposalUi: React.FC<ProposalUiProps> = ({
           voteModalType={voteModalType}
           handleClose={() => setVoteModalType(undefined)}
           vote={async () => vote({ proposalId: proposal.id, voteType: Boolean(voteModalType) })}
-          readableVoteWeight={readableVoteWeight}
+          voteWeight={voteWeight}
+          stakeAmount={stakeAmount}
           isVoteLoading={isVoteLoading}
+          proposal={proposal}
         />
       )}
     </div>
@@ -132,15 +135,16 @@ const Proposal = () => {
     },
   } = useGetCurrentVotes({ accountAddress: accountAddress || '' }, { enabled: !!accountAddress });
 
-  const readableVoteWeight = useMemo(
-    () =>
-      convertWeiToTokens({
-        valueWei: votingWeightData.votesWei,
-        token: TOKENS.xcn,
-        returnInReadableFormat: true,
-        addSymbol: false,
-      }),
-    [votingWeightData?.votesWei.toFixed()],
+  const {
+    data: currentVotesData = {
+      priorVotes: new BigNumber(0),
+    },
+  } = useGetPriorVotes(
+    {
+      accountAddress: accountAddress ?? '',
+      blockNumber: proposal?.startBlock ?? 0,
+    },
+    { enabled: !!accountAddress && !!proposal?.startBlock },
   );
 
   const defaultValue = {
@@ -180,7 +184,8 @@ const Proposal = () => {
       abstainVoters={abstainVoters}
       vote={vote}
       votingEnabled={votingEnabled}
-      readableVoteWeight={readableVoteWeight}
+      voteWeight={currentVotesData.priorVotes}
+      stakeAmount={votingWeightData.votesWei}
       isVoteLoading={isLoading}
     />
   );

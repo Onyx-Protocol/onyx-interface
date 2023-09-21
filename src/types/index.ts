@@ -108,6 +108,7 @@ export interface Proposal {
   createdDate: Date | undefined;
   description: DescriptionV1 | DescriptionV2;
   endBlock: number;
+  startBlock: number;
   executedDate: Date | undefined;
   forVotesWei: BigNumber;
   id: number;
