@@ -21,7 +21,7 @@ const refetchStates = ['Pending', 'Active', 'Successded', 'Queued'];
 const useGetProposal = (params: GetProposalInput, options?: Omit<Options, 'refetchInterval'>) =>
   useQuery([FunctionKey.GET_PROPOSAL, params], () => getProposal(params), {
     onSuccess: (data: Proposal) => {
-      const refetchInterval = refetchStates.includes(data.state) ? BLOCK_TIME_MS : 0;
+      const refetchInterval = refetchStates.includes(data.state) ? 5 * 60 * 1000 : 0;
       queryClient.setQueryDefaults([FunctionKey.GET_PROPOSAL, params], {
         refetchInterval,
       });
