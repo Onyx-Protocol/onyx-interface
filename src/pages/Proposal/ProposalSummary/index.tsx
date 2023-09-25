@@ -15,6 +15,7 @@ import {
   useGetProposalThreshold,
   useQueueProposal,
 } from 'clients/api';
+import { BLOCK_TIME_MS } from 'constants/ethereum';
 import { AuthContext } from 'context/AuthContext';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 
@@ -171,10 +172,12 @@ export const ProposalSummaryUi: React.FC<
 
   const countdownData = useMemo(() => {
     if (state === 'Active' && endBlock && startBlock && startDate) {
-      const blockInterval = endBlock - startBlock * 12; // in seconds
+      const blockInterval = (endBlock - startBlock) * (BLOCK_TIME_MS / 1000); // in seconds
 
       const activeUntilDate = new Date(startDate);
       activeUntilDate.setSeconds(startDate.getSeconds() + blockInterval);
+
+      console.log(startDate, activeUntilDate, blockInterval);
 
       return {
         date: activeUntilDate,

@@ -709,7 +709,7 @@
     "youSuccessfullyVotedForTheProposal": "You successfully voted for the proposal"
   },
   "voteProposalUi": {
-    "activeUntilDate": "Active until: <Date>{{ date, dd MMM HH:mm }}</Date>",
+    "activeUntilDate": "Active until",
     "cancel": "Cancel",
     "countdownFormat": {
       "daysIncluded": "{{days}}d {{hours}}h : {{minutes}}m : {{seconds}}s",
