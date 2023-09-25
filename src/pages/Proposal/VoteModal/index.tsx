@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import BigNumber from 'bignumber.js';
-import { FormikSubmitButton, FormikTextField, Modal, TextField } from 'components';
+import { FormikSubmitButton, Modal, TextField } from 'components';
 import { Form, Formik } from 'formik';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'translation';
@@ -17,7 +17,7 @@ import TEST_IDS from './testIds';
 interface VoteModalProps {
   voteModalType: 0 | 1 | 2;
   handleClose: () => void;
-  vote: (voteReason: string) => Promise<TransactionReceipt>;
+  vote: () => Promise<TransactionReceipt>;
   voteWeight: BigNumber;
   stakeAmount: BigNumber;
   isVoteLoading: boolean;
@@ -56,10 +56,10 @@ const VoteModal: React.FC<VoteModalProps> = ({
     // no default
   }
 
-  const handleOnSubmit = async ({ reason }: { reason: string }) => {
+  const handleOnSubmit = async () => {
     await handleTransactionMutation({
       mutate: async () => {
-        const result = await vote(reason);
+        const result = await vote();
         handleClose();
         return result;
       },
@@ -105,14 +105,6 @@ const VoteModal: React.FC<VoteModalProps> = ({
                   ? t('vote.votingPowerIsLessThanStakedBecause')
                   : ''
               }
-            />
-            <FormikTextField
-              label={t('vote.comment')}
-              name="reason"
-              id="reason"
-              placeholder={t('vote.addComment')}
-              maxLength={256}
-              css={styles.comment}
             />
             <FormikSubmitButton
               enabledLabel={title}
