@@ -2,7 +2,7 @@
 import { Paper, Typography } from '@mui/material';
 import { ActiveChip, Chip, Countdown, EthLink, PrimaryButton, SecondaryButton } from 'components';
 import isAfter from 'date-fns/isAfter';
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
 import { Proposal } from 'types';
 import type { TransactionReceipt } from 'web3-core';
@@ -10,13 +10,16 @@ import type { TransactionReceipt } from 'web3-core';
 import {
   useCancelProposal,
   useExecuteProposal,
-  useGetCurrentVotes,
   useGetProposalEta,
   useGetProposalThreshold,
   useQueueProposal,
 } from 'clients/api';
+import useGetPriorVotes from 'clients/api/queries/getPriorVotes/useGetPriorVotes';
+import { useWeb3 } from 'clients/web3';
+import { BLOCK_TIME_MS } from 'constants/ethereum';
 import { AuthContext } from 'context/AuthContext';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
+import { createDateFromSecondsTimestamp } from 'utilities/formatToProposal';
 
 import Stepper from './Stepper';
 import { useStyles } from './styles';
@@ -52,9 +55,12 @@ export const ProposalSummaryUi: React.FC<
   canCancelProposal,
   proposalEta,
 }) => {
+  const web3 = useWeb3();
   const styles = useStyles();
   const { t, Trans } = useTranslation();
   const handleTransactionMutation = useHandleTransactionMutation();
+  const [startDate, setStartDate] = useState<Date | undefined>();
+  const [endDate, setEndDate] = useState<Date | undefined>();
 
   const {
     state,
@@ -62,17 +68,31 @@ export const ProposalSummaryUi: React.FC<
     description: { title },
     createdDate,
     createdTxHash,
-    startDate,
-    startTxHash,
     cancelDate,
     cancelTxHash,
     queuedDate,
     queuedTxHash,
     executedDate,
     executedTxHash,
-    endTxHash,
-    endDate,
+    isStarted,
+    isEnded,
+    startBlock,
+    endBlock,
   } = proposal;
+
+  useEffect(() => {
+    if (isStarted) {
+      web3.eth.getBlock(startBlock).then(block => {
+        setStartDate(createDateFromSecondsTimestamp(+block.timestamp ?? 0));
+      });
+    }
+
+    if (isEnded) {
+      web3.eth.getBlock(endBlock).then(block => {
+        setEndDate(createDateFromSecondsTimestamp(+block.timestamp ?? 0));
+      });
+    }
+  }, [proposal]);
 
   const handleCancelProposal = async () => {
     await handleTransactionMutation({
@@ -108,7 +128,7 @@ export const ProposalSummaryUi: React.FC<
   };
 
   let updateProposalButton;
-  let transactionHash = startTxHash;
+  let transactionHash;
   const isExecuteEtaInFuture = !!proposalEta && isAfter(proposalEta, new Date());
 
   switch (state) {
@@ -140,7 +160,6 @@ export const ProposalSummaryUi: React.FC<
           {t('voteProposalUi.queue')}
         </PrimaryButton>
       );
-      transactionHash = endTxHash;
       break;
     case 'Queued':
       if (!isExecuteEtaInFuture) {
@@ -159,7 +178,6 @@ export const ProposalSummaryUi: React.FC<
       transactionHash = queuedTxHash;
       break;
     case 'Defeated':
-      transactionHash = endTxHash;
       break;
     case 'Executed':
       transactionHash = executedTxHash;
@@ -168,9 +186,14 @@ export const ProposalSummaryUi: React.FC<
   }
 
   const countdownData = useMemo(() => {
-    if (state === 'Active' && endDate) {
+    if (state === 'Active' && endBlock && startBlock && startDate) {
+      const blockInterval = (endBlock - startBlock) * (BLOCK_TIME_MS / 1000); // in seconds
+
+      const activeUntilDate = new Date(startDate);
+      activeUntilDate.setSeconds(startDate.getSeconds() + blockInterval);
+
       return {
-        date: endDate,
+        date: activeUntilDate,
         // DO NOT REMOVE COMMENT: needed by i18next to extract translation key
         // t('voteProposalUi.activeUntilDate')
         i18nKey: 'voteProposalUi.activeUntilDate',
@@ -185,7 +208,7 @@ export const ProposalSummaryUi: React.FC<
         i18nKey: 'voteProposalUi.timeUntilExecutable',
       };
     }
-  }, [state, endDate?.getTime(), proposalEta?.getTime()]);
+  }, [state, proposalEta?.getTime(), endBlock, startBlock, startDate]);
 
   return (
     <Paper css={styles.root} className={className}>
@@ -272,14 +295,14 @@ const ProposalSummary: React.FC<ProposalSummaryUiProps> = ({ className, proposal
     proposalId: proposal.id,
   });
 
-  const { data: currentVotesData } = useGetCurrentVotes(
-    { accountAddress },
-    { enabled: !!accountAddress },
+  const { data: currentVotesData } = useGetPriorVotes(
+    { accountAddress, blockNumber: proposal.startBlock },
+    { enabled: !!accountAddress && !!proposal.startBlock },
   );
 
   const canCancelProposal =
     proposalThresholdData?.thresholdWei &&
-    currentVotesData?.votesWei.isGreaterThanOrEqualTo(proposalThresholdData?.thresholdWei);
+    currentVotesData?.priorVotes.isGreaterThanOrEqualTo(proposalThresholdData?.thresholdWei);
 
   return (
     <ProposalSummaryUi

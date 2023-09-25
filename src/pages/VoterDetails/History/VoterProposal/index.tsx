@@ -41,7 +41,6 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
   userVoteStatus,
   forVotesWei,
   againstVotesWei,
-  abstainedVotesWei,
   createdDate,
   cancelDate,
   queuedDate,
@@ -63,11 +62,7 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
     }
   }, [userVoteStatus]);
 
-  const votedTotalWei = BigNumber.sum.apply(null, [
-    forVotesWei || 0,
-    againstVotesWei || 0,
-    abstainedVotesWei || 0,
-  ]);
+  const votedTotalWei = BigNumber.sum.apply(null, [forVotesWei || 0, againstVotesWei || 0]);
 
   const [stateChip, stateTimestamp] = useMemo(() => {
     switch (proposalState) {
@@ -184,7 +179,6 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
         <ActiveVotingProgress
           votedForWei={forVotesWei}
           votedAgainstWei={againstVotesWei}
-          abstainedWei={abstainedVotesWei}
           votedTotalWei={votedTotalWei}
         />
       }
