@@ -127,6 +127,14 @@ const History: React.FC = () => {
     fetchHistorySubGraph();
   }, [asset, historyItemType, currentPage, showOnlyMyTxns]);
 
+  useEffect(() => {
+    setInterval(() => {
+      if (!isFetching) {
+        fetchHistorySubGraph();
+      }
+    }, 5 * 60 * 1000); // auto refresh 5 minutes
+  }, []);
+
   return (
     <HistoryUi
       historyItemType={historyItemType}
