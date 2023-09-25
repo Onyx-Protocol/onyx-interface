@@ -173,8 +173,7 @@ const Proposal = () => {
   const votingEnabled =
     !!accountAddress &&
     proposal?.state === 'Active' &&
-    userVoteReceipt?.voteSupport === 'NOT_VOTED' &&
-    votingWeightData.votesWei.isGreaterThan(0);
+    userVoteReceipt?.voteSupport === 'NOT_VOTED';
 
   return (
     <ProposalUi
