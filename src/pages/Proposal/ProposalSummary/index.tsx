@@ -16,6 +16,7 @@ import {
 } from 'clients/api';
 import useGetPriorVotes from 'clients/api/queries/getPriorVotes/useGetPriorVotes';
 import { useWeb3 } from 'clients/web3';
+import { BLOCK_TIME_MS } from 'constants/ethereum';
 import { AuthContext } from 'context/AuthContext';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 import { createDateFromSecondsTimestamp } from 'utilities/formatToProposal';
@@ -186,7 +187,7 @@ export const ProposalSummaryUi: React.FC<
 
   const countdownData = useMemo(() => {
     if (state === 'Active' && endBlock && startBlock && startDate) {
-      const blockInterval = endBlock - startBlock * 12; // in seconds
+      const blockInterval = (endBlock - startBlock) * (BLOCK_TIME_MS / 1000); // in seconds
 
       const activeUntilDate = new Date(startDate);
       activeUntilDate.setSeconds(startDate.getSeconds() + blockInterval);
