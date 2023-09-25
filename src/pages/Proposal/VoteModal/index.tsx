@@ -14,7 +14,7 @@ import TEST_IDS from './testIds';
 interface VoteModalProps {
   voteModalType: 0 | 1 | 2;
   handleClose: () => void;
-  vote: (voteReason: string) => Promise<TransactionReceipt>;
+  vote: () => Promise<TransactionReceipt>;
   readableVoteWeight: string;
   isVoteLoading: boolean;
 }
@@ -50,10 +50,10 @@ const VoteModal: React.FC<VoteModalProps> = ({
     // no default
   }
 
-  const handleOnSubmit = async ({ reason }: { reason: string }) => {
+  const handleOnSubmit = async () => {
     await handleTransactionMutation({
       mutate: async () => {
-        const result = await vote(reason);
+        const result = await vote();
         handleClose();
         return result;
       },
@@ -83,14 +83,6 @@ const VoteModal: React.FC<VoteModalProps> = ({
               disabled
               value={readableVoteWeight}
               css={styles.votingPower}
-            />
-            <FormikTextField
-              label={t('vote.comment')}
-              name="reason"
-              id="reason"
-              placeholder={t('vote.addComment')}
-              maxLength={256}
-              css={styles.comment}
             />
             <FormikSubmitButton
               enabledLabel={title}
