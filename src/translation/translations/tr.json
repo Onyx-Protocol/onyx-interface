@@ -1,0 +1,922 @@
+{
+  "accountHealth": {
+    "accessibilityLabel": "Hesabınızın mevcut durumunun temsili",
+    "borrowLimitTooltip": "Mevcut borç bakiyesi:<LineBreak/>{{borrowBalance}} ({{borrowLimitUsedPercentage}} of your borrow limit)",
+    "borrowLimitUsed": "Kullanılan borç limiti:",
+    "currentBorrowBalance": "Current:",
+    "limit": "Limit:",
+    "max": "Max:",
+    "safeBorrowLimitTooltip": "Güvenli ödünç limiti:<LineBreak/>{{safeBorrowLimit}} ({{safeBorrowLimitPercentage}} borçlanma limitinizin %'si)"
+  },
+  "apyChart": {
+    "tooltipItemLabels": {
+      "borrowApy": "Ödünç APY",
+      "supplyApy": "Tedarik APY",
+      "totalBorrow": "Toplam borç",
+      "totalSupply": "Toplam arz"
+    }
+  },
+  "authModal": {
+    "accountDetails": {
+      "logOutButtonLabel": "Oturumu kapat"
+    },
+    "title": {
+      "connectWallet": "Bir cüzdan bağlayın",
+      "yourWallet": "Cüzdanınız"
+    },
+    "walletList": {
+      "comingSoon": "Çok yakında...",
+      "termsOfServiceLink": "Bir cüzdan bağlayarak, Onyx'in <Anchor>Hizmet Şartlarını</Anchor> kabul etmiş olursunuz."
+    }
+  },
+  "borrowRepayModal": {
+    "borrow": {
+      "borrowableAmount": "Ödünç alınabilir tutar: <White>{{amount}}</White>",
+      "borrowAPy": "APY ödünç al",
+      "borrowBalance": "Borç bakiyesi",
+      "borrowLimitUsed": "kullanılan Ödünç limiti",
+      "connectWalletMessage": "Lütfen ödünç almak için cüzdanınızı bağlayın",
+      "dailyEarnings": "Günlük kazançlar",
+      "distributionApy": "Dağıtılan APY",
+      "enableToken": {
+        "borrowInfo": "Borç APY",
+        "distributionInfo": "Dağıtım APY",
+        "title": "Onyx Protokolüne {{symbol}} ödünç almak için önce onu etkinleştirmeniz gerekir"
+      },
+      "highAmountWarning": "Yüksek bir miktar girdiniz, bu da sizi tasfiye riski altına sokuyor",
+      "noCollateralizedSuppliedAssetWarning": "Onyx protokolünden {{tokenSymbol}} ödünç alabilmeniz için token tedarik etmeniz ve bunları teminat olarak etkinleştirmeniz gerekir",
+      "rightMaxButtonLabel": "{{limitPercentage}}% LIMIT",
+      "submitButton": "Ödünç Al",
+      "submitButtonDisabled": "Ödünç almak için geçerli bir miktar girin",
+      "successfulTransactionModal": {
+        "message": "Başarıyla ödünç aldınız",
+        "title": "Ödünç alma işleminiz başarılı oldu"
+      }
+    },
+    "borrowTabTitle": "Ödünç Al",
+    "repay": {
+      "connectWalletMessage": "Lütfen cüzdanınızı bağlayın",
+      "currentlyBorrowing": "Şu anda borçlanıyor",
+      "enableToken": {
+        "borrowInfo": "Borç APY",
+        "distributionInfo": "Dağıtılan APY",
+        "title": "{{symbol}}'ü Onyx Protokolüne geri ödemek için önce etkinleştirmeniz gerekir"
+      },
+      "fullRepaymentWarning": "İşlem değeri, yeni biriken faizleri karşılamak için mevcut borç tutarından biraz daha yüksek olabilir",
+      "rightMaxButtonLabel": "MAX",
+      "submitButton": "Geri Öde",
+      "submitButtonDisabled": "Geri ödemek için geçerli bir tutar girin",
+      "successfulTransactionModal": {
+        "message": "Başarıyla geri ödediniz",
+        "title": "Geri ödemeniz başarılı oldu"
+      },
+      "walletBalance": "Cüzdan bakiyesi: <White>{{balance}}</White>"
+    },
+    "repayTabTitle": "Geri Ödeme"
+  },
+  "ethLink": {
+    "content": "View on {{scanurl}}"
+  },
+  "claimXcnRewardButton": {
+    "successfulTransactionModal": {
+      "message": "Başarıyla talepte bulundunuz",
+      "title": "Talebiniz başarılı oldu"
+    },
+    "title": "Claim <Icon/> {{amount}}"
+  },
+  "connectButton": {
+    "title": "Cüzdanı bağlayın"
+  },
+  "connectWallet": {
+    "connectButton": "Cüzdanı bağlayın"
+  },
+  "convertVrt": {
+    "balance": "Bakiye: <White>{{amount}}</White>",
+    "connectWalletToConvertVrtToXcn": "VRT'yi XCN'ye dönüştürmek için lütfen cüzdanınızı bağlayın",
+    "connectWalletToWithdrawXcn": "XCN çekmek için lütfen cüzdanınızı bağlayın",
+    "convert": "Dönüştür",
+    "convertVrt": "VRT'yi Dönüştür",
+    "convertVrtToXcn": "VRT'yi XCN'ye dönüştür",
+    "enableVrt": "VRT'yi Onyx Protokolü ile XCN'ye dönüştürmek için etkinleştirmeniz gerekir",
+    "internalErrorXcnToVrtConversionRatioUndefined": "xcnToVrtConversionRatio undefined",
+    "max": "MAX",
+    "remainingTime": "<Icon/> Kalan süre:\u00a0<White>{{date, distanceToNow}}</White>",
+    "successfulConvertTransactionModal": {
+      "title": "Dönüştürme başarıyla gönderildi"
+    },
+    "vrtEqualsXcn": "1 VRT = {{xcnToVrtConversionRatio}} XCN",
+    "withdraw": "Çekim",
+    "withdrawableAmount": "Çekilebilir tutar",
+    "withdrawXcn": "XCN'yi Geri Çek",
+    "xcnAVailable": "Mevcut XCN Kullanılabilir",
+    "youWillReceive": "Alacaksınız"
+  },
+  "dashboard": {
+    "markets": {
+      "tabBorrow": "Ödünç Al",
+      "tabSupply": "Tedarik",
+      "title": "Piyasalar"
+    }
+  },
+  "enableToken": {
+    "enableButtonLabel": "Etkinleştir"
+  },
+  "errors": {
+    "somethingWentWrong": "Bir şeyler yanlış gitti",
+    "somethingWentWrongRetrievingTransactions": "İşlemler alınırken bir şeyler yanlış gitti",
+    "somethingWentWrongRetrievingVoterAccounts": "Seçmen hesapları alınırken bir şeyler yanlış gitti",
+    "somethingWentWrongRetrievingVoterDetails": "Seçmen bilgileri alınırken bir şeyler yanlış gitti",
+    "somethingWentWrongRetrievingVoterHistory": "Seçmen geçmişi alınırken bir şeyler yanlış gitti ",
+    "undefinedAccountErrorMessage": "Hesap tanımsız",
+    "walletNotConnected": "Cüzdan bağlı değil"
+  },
+  "footer": {
+    "latestNumber": "Son Blok:\u00a0"
+  },
+  "header": {
+    "proposalDetailsTitle": "Genel Bakış",
+    "voteLeaderboardTitle": "Oylama",
+    "liquidateDetailsTitle": "Tasfiye Detayı"
+  },
+  "history": {
+    "all": "Hepsi",
+    "approval": "Onay",
+    "borrow": "Ödünç",
+    "columns": {
+      "amount": "Tutar",
+      "asset": "Varlık",
+      "block": "Blok",
+      "created": "Oluşturuldu",
+      "from": "Kimden",
+      "id": "ID",
+      "to": "Kime",
+      "txnHash": "Txn Hash",
+      "type": "Tip"
+    },
+    "createdAt": "{{ date, distanceToNow }} ago",
+    "deposit": "Depozito",
+    "liquidateBorrow": "Borcu Tasfiye Et",
+    "supply": "Tedarik",
+    "mintVAI": "Mint VAI",
+    "myTransactions": "İşlemlerim",
+    "proposalCanceled": "Teklif İptal Edildi",
+    "proposalCreated": "Teklif Oluşturuldu",
+    "proposalExecuted": "Teklif Yürütüldü",
+    "proposalQueued": "Teklif Kuyruğa Alındı",
+    "redeem": "Redeem",
+    "repayBorrow": "Geri Öde",
+    "repayVAI": "VAI'yi Geri Öde",
+    "reservesAdded": "Rezervler Eklendi",
+    "reservesReduced": "Rezervler Azaltıldı",
+    "transfer": "Transfer",
+    "type": "Tip",
+    "typeColon": "Type:",
+    "asset": "Varlık",
+    "assetColon": "Varlık:",
+    "vote": "Oy", 
+    "stake": "hisse",
+    "withdraw": "Çekim",
+    "claim": "Talep",
+    "propose": "Teklif"
+  },
+  "interactive": {
+    "copy": {
+      "walletAddress": "Cüzdan adresi",
+      "txHash": "Transaction Hash",
+      "xcnAddress": "XCN adresi",
+      "contractAddress": "Sözleşme adresi"
+    },
+    "copyToClipboard": "{{name}} panoya kopyalandı"
+  },
+  "interestRateChart": {
+    "currentUtilizationRateLabelValue": "Current ({{percentage}})",
+    "tooltipItemLabels": {
+      "borrowApy": "Ödünç APY",
+      "supplyApy": "Tedarik APY",
+      "utilizationRate": "Kullanım oranı"
+    }
+  },
+  "layout": {
+    "menuItems": {
+      "convertVrt": "VRT'yi Dönüştür",
+      "convertVrtTitle": "VRT'yi XCN'ye Dönüştür",
+      "dashboard": "Panel",
+      "governance": "Yönetişim",
+      "history": "Tarih",
+      "markets": "Piyasalar",
+      "swap": "Takas",
+      "farm": "farm",
+      "xcn": "XCN",
+      "xcnPrediction": "XCN Tahmini",
+      "fpunk": "Punk Wrapper",
+      "liquidate": "Tasfiye",
+      "stake": "Stake"
+    }
+  },
+  "lunaUstWarningModal": {
+    "closeButtonLabel": "Anladım",
+    "content": "LUNA ve UST kullanımdan kaldırılmıştır, lütfen Onyx protokolüne tekrar erişmek için bunları teminat olarak devre dışı bırakın.",
+    "title": "Lütfen LUNA ve UST'yi teminat olarak devre dışı bırakın"
+  },
+  "market": {
+    "availableLiquidity": "Kullanılabilir Likidite",
+    "columns": {
+      "asset": "Varlık",
+      "borrowApy": "Ödünç APY",
+      "collateralFactor": "Teminat F.",
+      "liquidity": "Likidite",
+      "price": "Fiyat",
+      "supplyApy": "Tedarik APY",
+      "totalBorrow": "Toplam Borç",
+      "totalSupply": "Toplam Arz"
+    },
+    "totalBorrow": "Toplam Borç",
+    "totalSupply": "Toplam Arz",
+    "totalTreasury": "Toplam Hazine"
+  },
+  "marketDetails": {
+    "borrowInfo": {
+      "stats": {
+        "apy": "APY",
+        "distributionApy": "Dağıtım APY",
+        "totalBorrow": "Toplam borç"
+      },
+      "title": "Ödünç bilgi"
+    },
+    "interestRateModel": {
+      "title": "Faiz Oranı Modeli"
+    },
+    "legends": {
+      "borrowApy": "Ödünç APY",
+      "supplyApy": "Tedarik APY",
+      "utilizationRate": "Kullanım oranı"
+    },
+    "marketInfo": {
+      "stats": {
+        "borrowCapLabel": "Borçlanma sınırı",
+        "supplyCapLabel": "Tedarik üst sınırı",
+        "borrowerCountLabel": "# of borrowers",
+        "collateralFactorLabel": "Teminat faktörü",
+        "dailyBorrowingInterestsLabel": "Günlük borçlanma faizleri",
+        "dailyDistributionXcn": "Günlük XCN dağıtımı",
+        "dailySupplyingInterestsLabel": "Günlük tedarik faizleri",
+        "exchangeRateLabel": "Döviz kuru",
+        "exchangeRateValue": "1 {{tokenSymbol}}={{rate}} {{oTokenSymbol}}",
+        "marketLiquidityLabel": "Piyasa likiditesi",
+        "mintedTokensLabel": "{{oTokenSymbol}} minted",
+        "priceLabel": "Fiyat",
+        "reserveFactorLabel": "Rezerv faktörü",
+        "reserveTokensLabel": "Rezervler",
+        "supplierCountLabel": "# of suppliers",
+        "unlimitedBorrowCap": "Uncapped",
+        "unlimitedSupplyCap": "Uncapped"
+      },
+      "title": "Pazar bilgisi"
+    },
+    "supplyInfo": {
+      "stats": {
+        "apy": "APY",
+        "distributionApy": "Dağıtım APY",
+        "totalSupply": "Toplam arz"
+      },
+      "title": "Tedarik bilgisi"
+    }
+  },
+  "markets": {
+    "borrowingTableTitle": "Borçlanma",
+    "borrowMarketTableTitle": "Borrow",
+    "collateralConfirmModal": {
+      "confirmText": "İşlemi onaylayın",
+      "disable": "{{asset}} teminat olarak devre dışı bırak",
+      "enable": "{{asset}} teminat olarak etkinleştir"
+    },
+    "columns": {
+      "apy": "APY",
+      "asset": "Varlık",
+      "balance": "Bakiye",
+      "collateral": "Teminat",
+      "liquidity": "Likidite",
+      "percentOfLimit": "Limitin %'si",
+      "wallet": "Cüzdan"
+    },
+    "errors": {
+      "accountError": "Hesap Gerekli - Lütfen cüzdanınızı bağlayın.",
+      "collateralDisableError": "Teminat Devre Dışı Bırakma Hatası - {{assetName}}'nı bir teminat olarak devre dışı bırakırken bir sorun oluştu. Lütfen tekrar deneyin.",
+      "collateralEnableError": "Teminat Etkinleştirme Hatası - {{assetName}}'nı bir teminat olarak etkinleştirirken bir sorun oluştu. Lütfen tekrar deneyin.",
+      "collateralRequired": "Teminat Gerekli - Lütfen ödünç alınan tüm varlıkları geri ödeyin veya diğer varlıkları teminat olarak belirleyin."
+    },
+    "suppliedTableTitle": "Tedarik Edildi",
+    "supplyMarketTableTitle": "Tedarik"
+  },
+  "mintRepayVai": {
+    "mintVai": {
+      "btnMintVai": "Mint VAI",
+      "connectWallet": "Lütfen cüzdanınızı mint VAI'ye bağlayın",
+      "enableToken": "VAI'yi Onyx Protokolü ile mint yapmak için önce etkinleştirmeniz gerekir",
+      "mintFeeLabel": "mint ücreti",
+      "rightMaxButtonLabel": "GÜVENLİ MAKS",
+      "successfulTransactionModal": {
+        "message": "Başarıyla talep ettiniz",
+        "title": "Min t işlemi başarılı"
+      },
+      "vaiLimitLabel": "Mevcut VAI limiti"
+    },
+    "repayVai": {
+      "btnRepayVai": "VAI'yi Geri Öde",
+      "connectWallet": "Lütfen VAI'ye geri ödeme yapmak için cüzdanınızı bağlayın",
+      "enableToken": "VAI'yi Onyx Protokolüne geri ödemek için önce etkinleştirmeniz gerekir",
+      "repayVaiBalance": "VAI bakiyesini geri öde",
+      "rightMaxButtonLabel": "MAX",
+      "successfulTransactionModal": {
+        "message": "Başarıyla geri ödediniz",
+        "title": "Geri ödemeniz başarılı oldu"
+      }
+    },
+    "tabMint": "Mint VAI",
+    "tabRepay": "VAI Geri ödeme",
+    "title": "Darphane / Geri Ödeme VAI"
+  },
+  "myAccount": {
+    "apyWithXcn": "XCN ile APY",
+    "apyWithXcnTooltip": "XCN dağıtım APR'sinin hesaplamalara dahil edilip edilmeyeceğini seçin",
+    "borrowBalance": "Borç bakiyesi",
+    "dailyEarnings": "Günlük kazançlar",
+    "includingMintedVai": "Darp edilmiş VAI dahil",
+    "netApy": "Net APY",
+    "netApyTooltip": "Yıllık faiz olarak alınan toplam tedarik bakiyenizin yüzdesi",
+    "safeLimit": "Güvenli limitiniz:",
+    "safeLimitTooltip": "{{safeBorrowLimitPercentage}} borç alma limitinizin %'si. Bu eşiğin üzerinde borçlanmayı güvenli bulmuyoruz.",
+    "supplyBalance": "Arz dengesi",
+    "title": "Hesabım"
+  },
+  "pagination": {
+    "itemOf": "{{itemsCount}} dışında {{currentPageLastIndex}} öğesi",
+    "itemsOf": "Items {{firstItemNumber}} - {{currentPageLastIndex}} out of {{itemsCount}}"
+  },
+  "selectTokenTextField": {
+    "searchInput": {
+      "placeholder": "Arama varlığı"
+    },
+    "walletBalance": "Cüzdan bakiyesi: <White>{{balance}}</White>"
+  },
+  "sidebar": {
+    "newBadge": "YENİ"
+  },
+  "stakeModal": {
+    "availableTokensLabel": "Mevcut {{tokenSymbol}}",
+    "connectWalletMessage": "Lütfen cüzdanınızı {{tokenSymbol}} hissesine bağlayın",
+    "enableTokenMessage": "Bu havuza {{tokenSymbol}} koymak için önce onu etkinleştirmeniz gerekir",
+    "increaseAllowanceButtonLabel": "{{tokenSymbol}} harcama limitini artır",
+    "submitButtonDisabledLabel": "Pay için geçerli bir tutar girin",
+    "submitButtonLabel": "Stake",
+    "successfulTransactionModal": {
+      "description": "Başarılı oldunuz",
+      "title": "Payınız başarılı oldu"
+    },
+    "title": "Stake {{tokenSymbol}}"
+  },
+  "supplyWithdraw": {
+    "borrowLimit": "Ödünç limiti",
+    "connectWalletToSupply": "Lütfen cüzdanınızı tedariğe bağlayın",
+    "connectWalletToWithdraw": "Lütfen para çekmek için cüzdanınızı bağlayın",
+    "dailyEarnings": "Günlük Kazançlar",
+    "distributionApy": "Dağıtım APY",
+    "enableToSupply": "Onyx Protokolüne {{symbol}} sağlamak için önce onu etkinleştirmeniz gerekir",
+    "enableToWithdraw": "{{symbol}}'u Onyx Protokolüne çekmek için önce etkinleştirmeniz gerekir",
+    "enterValidAmountSupply": "Tedarik etmek için geçerli bir miktar girin",
+    "enterValidAmountWithdraw": "Çekmek için geçerli bir miktar girin",
+    "max": "Max",
+    "successfulSupplyTransactionModal": {
+      "message": "Başarıyla tedarik ettiniz",
+      "title": "Tedarikiniz başarılı oldu"
+    },
+    "successfulWithdrawTransactionModal": {
+      "message": "Başarıyla geri çekildiniz",
+      "title": "Para çekme işleminiz başarılı oldu"
+    },
+    "supply": "Tedarik",
+    "supplyApy": "Tedarik APY",
+    "supplyBalance": "Arz Dengesi ({{ tokenSymbol }})",
+    "walletBalance": "Cüzdan bakiyesi: <White>{{amount}}</White>",
+    "withdraw": "Geri çekil",
+    "withdrawableAmount": "Çekilebilir tutar: <White>{{amount}}</White>"
+  },
+  "swap": {
+    "errors": {
+      "incorrectSwapInput": "Takas için yanlış girdi sağlandı"
+    }
+  },
+  "swapPage": {
+    "connectWalletToSwap": "Tokenları takas etmek için lütfen cüzdanınızı bağlayın",
+    "enablingStep": {
+      "enableTokenButton": {
+        "text": "Enable {{tokenSymbol}}",
+        "tooltip": "Takas etmek istediğiniz herhangi bir token için harcama onayı gerektiren takas özelliğimizi desteklemek için UniSwap kullanıyoruz"
+      },
+      "step1": "Adım 1",
+      "step2": "Adım 2"
+    },
+    "exchangeRate": {
+      "label": "Döviz kuru",
+      "value": "1 {{fromTokenSymbol}} ≈ {{rate}} {{toTokenSymbol}}"
+    },
+    "fromTokenAmountField": {
+      "label": "Kimden",
+      "max": "Max"
+    },
+    "maximumSold": {
+      "label": "Maksimum satış"
+    },
+    "minimumReceived": {
+      "label": "Alınan minimum"
+    },
+    "slippageTolerance": {
+      "label": "Slippage toleransı"
+    },
+    "submitButton": {
+      "disabledLabels": {
+        "insufficientLiquidity": "Bu takas için yetersiz likidite",
+        "insufficientUserBalance": "Yetersiz {{tokenSymbol}} bakiyesi",
+        "invalidFromTokenAmount": "Takas etmek için geçerli bir tutar girin",
+        "unwrappingUnsupported": "Unwrapping desteklenmiyor",
+        "wrappingUnsupported": "Sarma desteklenmiyor"
+      },
+      "enabledLabel": "Swap {{fromTokenAmount}} for {{toTokenAmount}}",
+      "processing": "İşleme"
+    },
+    "successfulConvertTransactionModal": {
+      "message": "Tokenlerinizi başarıyla dönüştürdünüz",
+      "title": "Takas işleminiz başarılı oldu"
+    },
+    "toTokenAmountField": {
+      "label": "Kime"
+    }
+  },
+  "transactionErrors": {
+    "acceptAdminPendingAdminCheck": "Yönetici Bekleyen Yönetici Kontrolünü Kabul Et",
+    "acceptPendingImplementationAddressCheck": "Bekleyen Uygulama Adres Kontrolünü Kabul Et",
+    "accrueInterestAccumulatedInterestCalculationFailed": "Faiz Tahakkuku Birikmiş Faiz Hesaplaması Başarısız",
+    "accrueInterestBorrowRateCalculationFailed": "Tahakkuk Faizi Borç Oranı Hesaplaması Başarısız",
+    "accrueInterestNewBorrowIndexCalculationFailed": "Tahakkuk Faizi Yeni Borç Endeksi Hesaplaması Başarısız",
+    "accrueInterestNewTotalBorrowsCalculationFailed": "Faiz Tahakkuku Yeni Toplam Borç Hesaplaması Başarısız",
+    "accrueInterestNewTotalReservesCalculationFailed": "Faiz Tahakkuku Yeni Toplam Rezerv Hesaplaması Başarısız",
+    "accrueInterestSimpleInterestFactorCalculationFailed": "Faiz Tahakkuku Basit Faiz Faktörü Hesaplaması Başarısız",
+    "addReservesAccrueInterestFailed": "Rezerv Ekle Faiz Tahakkuku Başarısız",
+    "addReservesFreshCheck": "Rezerv Ekle Yeni Kontrol",
+    "addReservesTransferInNotPossible": "Yedek Aktarımı Eklemek Mümkün Değil",
+    "badInput": "Kötü Giriş",
+    "borrowAccrueInterestFailed": "Borçlanma Faiz Tahakkuku Başarısız",
+    "borrowAccumulatedBalanceCalculationFailed": "Borç Birikmiş Bakiye Hesaplaması Başarısız",
+    "borrowCashNotAvailable": "Borç Nakit Mevcut Değil",
+    "borrowComptrollerRejection": "Borçlu Sayman Reddi",
+    "borrowFreshnessCheck": "Ödünç Tazelik Kontrolü",
+    "borrowMarketNotListed": "Ödünç Piyasası Listede Değil",
+    "borrowNewAccountBorrowBalanceCalculationFailed": "Borrow Yeni Hesap Borç Bakiyesi Hesaplaması Başarısız",
+    "borrowNewTotalBalanceCalculationFailed": "Borrow Yeni Toplam Bakiye Hesaplaması Başarısız",
+    "comptrollerCalculationError": "Sayman Hesaplama Hatası",
+    "comptrollerMismatch": "Muhasebeci Uyuşmazlığı",
+    "comptrollerRejection": "Denetçi Reddi",
+    "exitMarketBalanceOwed": "Çıkış Piyasa Bakiyesi Borçlu",
+    "exitMarketRejection": "Çıkış Piyasası Reddi",
+    "insufficientBalanceForVai": "Vai İçin Yetersiz Bakiye",
+    "insufficientLiquidity": "Yetersiz Likidite",
+    "insufficientShortfall": "Yetersiz Eksiklik",
+    "interestRateModelError": "Faiz Oranı Model Hatası",
+    "invalidAccountPair": "Geçersiz Hesap Çifti",
+    "invalidCloseAmountRequested": "Geçersiz Kapanış Tutarı Talep Edildi",
+    "invalidCloseFactor": "Geçersiz Kapanış Faktörü",
+    "invalidCollateralFactor": "Geçersiz Teminat Faktörü",
+    "invalidLiquidationIncentive": "Geçersiz Tasfiye Teşviki",
+    "liquidateAccrueBorrowInterestFailed": "Borç Tahakkuklarının Tasfiye EdilmesiFaiz Başarısız",
+    "liquidateAccrueCollateralInterestFailed": "Tasfiye Tahakkuk Teminat Faizi Başarısız",
+    "liquidateCloseAmountIsUintMax": "Tasfiye Kapatma Tutarı UINT Maksimum",
+    "liquidateCloseAmountIsZero": "Tasfiye Kapatma Tutarı Sıfır",
+    "liquidateCollateralFreshnessCheck": "Teminat Tazelik Kontrolünü Tasfiye Et",
+    "liquidateComptrollerCalculateAmountSeizeFailed": "Tasfiye Kontrolörü Tutarı Hesaplanamadı",
+    "liquidateComptrollerRejection": "Komptrolör Reddini Tasfiye Et",
+    "liquidateFreshnessCheck": "Tazelik Kontrolünü Tasfiye Et",
+    "liquidateSeizeBalanceDecrementFailed": "Tasfiye Ele Geçirilen Bakiye Azaltımı Başarısız",
+    "liquidateSeizeBalanceIncrementFailed": "Tasfiye Ele Geçirilen Bakiye Artışı Başarısız",
+    "liquidateSeizeBorrowFreshFailed": "Tasfiye Ele Geçirme Borç Yeni Başarısız",
+    "liquidateSeizeComptrollerRejection": "Liquidate Seize Comptroller Rejection",
+    "liquidateSeizeIsBorrower": "Tasfiye Alıcı Borçludur",
+    "liquidateSeizeLiquidatorIsBorrower": "Tasfiye Al Tasfiyeci Borçludur",
+    "liquidateSeizeTooMuch": "Liquidate Seize Too Much",
+    "marketAlreadyListed": "Zaten Listelenmiş",
+    "marketNotEntered": "Piyasaya Girilmedi",
+    "marketNotFresh": "Market Yenilenmiş Değil",
+    "marketNotListed": "Piyasa Listelenmemiş",
+    "mathError": "Matematik Hatası",
+    "mintAccrueInterestFailed": "Mint Faiz Tahakkuku Başarısız",
+    "mintComptrollerRejection": "Darphane Muhasebecisi Reddi",
+    "mintExchangeRateReadFailed": "Mint Döviz Kuru Okuması Başarısız",
+    "mintFeeCalculationFailed": "Mint Ücreti Hesaplaması Başarısız",
+    "mintFreshnessCheck": "Mint  Kontrolü",
+    "mintNewAccountBalanceCalculationFailed": "Mint Yeni Hesap Bakiyesi Hesaplaması Başarısız",
+    "mintNewTotalSupplyCalculationFailed": "Mint Yeni Toplam Tedarik Hesaplaması Başarısız",
+    "mintTransferInFailed": "Mint Aktarımı Başarısız",
+    "mintTransferNotPossible": "Mint Aktarımı Mümkün Değil",
+    "noError": "Hata Yok",
+    "nonzeroBorrowBalance": "Sıfır Olmayan Borç Bakiyesi",
+    "priceError": "Fiyat Hatası",
+    "redeemAccrueInterestFailed": "Faiz Tahakkuku Başarısız",
+    "redeemComptrollerRejection": "Comptroller Reddini Kullan",
+    "redeemExchangeAmountCalculatioFailed": "Takas Tutarı Hesaplama Başarısız",
+    "redeemExchangeRateReadFailed": "Döviz Kuru Okuma Başarısız",
+    "redeemExchangeTokensCalculationFailed": "Borsa Tokenlarını Kullanma Hesaplaması Başarısız",
+    "redeemFeeCalculationFailed": "Kullanım Ücreti Hesaplaması Başarısız",
+    "redeemFreshnessCheck": "FreshnessCheck Kullanımı",
+    "redeemNewAccountBalanceCalculationFailed": "Yeni Hesap Bakiyesi Hesaplaması Başarısız",
+    "redeemNewTotalSupplyCalculationFailed": "Yeni Toplam Tedarik Hesaplaması Başarısız",
+    "redeemTransferOutNotPossible": "Transferi Geri Alma Mümkün Değil",
+    "reduceReservesAccrueInterestFailed": "Rezervleri azaltın faiz başarısız oldu",
+    "reduceReservesAdminCheck": "Rezervleri Azalt Yönetici Kontrolü",
+    "reduceReservesCashNotAvailable": "Rezervleri Azaltın Nakit Mevcut Değil",
+    "reduceReservesFreshCheck": "Rezervleri Azaltın Taze Kontrol",
+    "reduceReservesValidation": "Rezerv Doğrulamasını Azaltın",
+    "rejection": "Reddetme",
+    "repayBehalfAccrueInterestFailed": "Kendi Adına Geri Ödeme Faiz Tahakkuku Başarısız",
+    "repayBorrowAccrueInterestFailed": "Borç Geri Ödeme Faiz Tahakkuku Başarısız",
+    "repayBorrowAccumulatedBalanceCalculationFailed": "Borç Geri Ödemesi Birikmiş Bakiye Hesaplaması Başarısız",
+    "repayBorrowComptrollerRejection": "Borç Kontrolörünün Geri Ödeme Reddi",
+    "repayBorrowFreshnessCheck": "Geri Ödeme Ödünç Alma  Kontrolü",
+    "repayBorrowNewAccountBorrowBalanceCalculationFailed": "Borç Geri Ödemesi Yeni Hesap Borç Bakiyesi Hesaplaması Başarısız",
+    "repayBorrowTransferInNotPossible": "Borç Transferini Geri Ödemek Mümkün Değil",
+    "repayBorrowTransferNotPossible": "Borç Transferini Geri Ödemek Mümkün Değil",
+    "repayVaiComptrollerRejection": "VAI Muhasebecisi Reddini Geri Öde",
+    "repayVaiFreshnessCheck": "VAI Kontrolünü Geri Öde",
+    "setCloseFactorOwnerCheck": "Kapatma Faktörü Sahibi Denetimini Ayarla",
+    "setCloseFactorValidation": "Kapatma Faktörü Doğrulamasını Ayarla",
+    "setCollateralFactorNoExists": "Teminat Faktörünü Ayarla Mevcut Değil",
+    "setCollateralFactorOwnerCheck": "Teminat Faktörü Sahibi Kontrolünü Ayarla",
+    "setCollateralFactorValidation": "Teminat Faktörü Doğrulamasını Ayarla",
+    "setCollateralFactorWithoutPrice": "Teminat Faktörünü Fiyatsız Ayarla",
+    "setComptrollerOwnerCheck": "Comptroller Sahibi Çekini Ayarla",
+    "setImplementationOwnerCheck": "Uygulama Sahibi Denetimini Ayarla",
+    "setInterestRateModelAccrueInterestFailed": "Faiz Oranı Modelini Ayarla Faiz Tahakkuku Başarısız",
+    "setInterestRateModelFreshCheck": "Faiz Oranı Modeli Yeni Kontrolünü Ayarla",
+    "setInterestRateModelOwnerCheck": "Faiz Oranı Modeli Sahibi Kontrolünü Ayarla",
+    "setLiquidationIncentiveOwnerCheck": "Tasfiye Teşviki Sahip Kontrolü Ayarla",
+    "setLiquidationIncentiveValidation": "Tasfiye Teşvik Doğrulamasını Ayarla",
+    "setMaxAssetsOwnerCheck": "Maksimum Varlık Sahibi Kontrolünü Ayarla",
+    "setMintedVaiRejection": "Minted VAI Reddini Ayarla",
+    "setOracleMarketNotListed": "Oracle Market Listede Değil olarak ayarla",
+    "setPauseGuardianOwnerCheck": "Sahibi Denetimini Duraklat'ı Ayarla",
+    "setPendingAdminOwnerCheck": "Bekleyen Yönetici Sahibi Kontrolünü Ayarla",
+    "setPendingImplementationOwnerCheck": "Bekleyen Uygulama Sahibi Denetimini Ayarla",
+    "setPriceOracleOwnerCheck": "Fiyatı Ayarla Oracle Sahiplik Kontrolü",
+    "setReserveFactorAccrueInterestFailed": "Rezerv Faktörünü Ayarla Faiz Tahakkuku Başarısız",
+    "setReserveFactorAdminCheck": "Rezerv Faktörü Yönetici Kontrolünü Ayarla",
+    "setReserveFactorBoundsCheck": "Rezerv Faktörü Sınırlarını Ayarlama Denetimi",
+    "setReserveFactorFreshCheck": "Rezerv Faktörü Kontrolünü Ayarla",
+    "setTreasuryOwnerCheck": "Hazine Sahibi Çekini Ayarla",
+    "setVaiControllerOwnerCheck": "VAI Denetleyici Sahibi Kontrolünü Ayarla",
+    "setVaiMintRateCheck": "VAI Darphane Oranı Kontrolünü Ayarla",
+    "sftMintNewAccountBalanceCalculationFailed": "SFT Mint Yeni Hesap Bakiyesi Hesaplaması Başarısız",
+    "snapshotError": "Anlık Görüntü Hatası",
+    "supportMarketExists": "Destek Pazarı Var",
+    "supportMarketOwnerCheck": "Destek Pazar Sahibi Kontrolü",
+    "tokenGetUnderlyingPriceError": "Token Fiyat Alma Hatası",
+    "tokenInsufficentCash": "Token Yetersiz Nakit",
+    "tokenInsufficientAllowance": "Token Yetersiz Ödenek",
+    "tokenInsufficientBalance": "Token Yetersiz Bakiye",
+    "tokenPriceError": "Token Fiyat Hatası",
+    "tokenTransferInFailed": "Token Aktarımı Başarısız",
+    "tokenTransferOutFailed": "Token Aktarımı Başarısız Oldu",
+    "tooManyAssets": "Çok Fazla Varlık",
+    "tooMuchRepay": "Çok Fazla Geri Ödeme",
+    "transferComptrollerRejection": "Transfer Komptrolör Reddi",
+    "transferNotAllowed": "Transfer İzin Verilmedi",
+    "transferNotEnough": "Transfer Yeterli Değil",
+    "transferTooMuch": "Çok Fazla Aktarım",
+    "unauthorized": "Yetkisiz",
+    "vaiBurnRejection": "VAI Yanık Reddi",
+    "vaiLiquidateAccrueBorrowInterestFailed": "VAI Tasfiye Tahakkukları Borç Faizi Başarısız Oldu",
+    "vaiLiquidateAccrueCollateralInterestFailed": "VAI Tasfiye Tahakkukları Teminat Faizi Başarısız",
+    "vaiLiquidateCloseAmountIsUintMax": "VAI Tasfiye Kapatma Tutarı UINT Maksimum",
+    "vaiLiquidateCloseAmountIsZero": "VAI Tasfiye Kapatma Tutarı Sıfır",
+    "vaiLiquidateCollateralFreshnessCheck": "VAI Tasfiye Teminat Kontrolü",
+    "vaiLiquidateComptrollerCalculateAmountSeizeFailed": "VAI Tasfiye Denetçisi Tutar Hesaplama Başarısız",
+    "vaiLiquidateComptrollerRejection": "VAI Tasfiye Muhasebecisi Reddi",
+    "vaiLiquidateFreshnessCheck": "VAI Tasfiye Kontrolü",
+    "vaiLiquidateLiquidatorIsBorrower": "VAI Tasfiye Tasfiye Borçludur",
+    "vaiLiquidateRepayBorrowFreshFailed": "VAI Tasfiye Geri Ödeme Borç Yeni Başarısız",
+    "vaiLiquidateSeizeBalanceDecrementFailed": "VAI Tasfiye  edilen Bakiye Azaltımı Başarısız",
+    "vaiLiquidateSeizeBalanceIncrementFailed": "VAI Tasfiye Bakiye Artışı Başarısız",
+    "vaiLiquidateSeizeComptrollerRejection": "VAI Tasfiye Denetleyicisinin Reddi",
+    "vaiLiquidateSeizeLiquidatorIsBorrower": "VAI Liquidate Seize Liquidator Is Borrower",
+    "vaiLiquidateSeizeTooMuch": "VAI Tasfiye Etme Çok Fazla",
+    "vaiMintExchangeCalculationFailed": "VAI Darphane Değişim Hesaplaması Başarısız",
+    "vaiMintRejection": "VAI Mint Reddedildi"
+  },
+  "vault": {
+    "transactionForm": {
+      "lockingPeriod": {
+        "duration": "{{date, distanceToNow}}",
+        "label": "Kilitleme süresi"
+      },
+      "rightMaxButtonLabel": "MAX"
+    }
+  },
+  "farmItem": {
+    "claimButton": "Talep Et",
+    "dailyEmission": "Günlük Emisyon",
+    "reward": "Ödül:",
+    "stakeButton": "Stake",
+    "stakingApr": "{{stakeTokenName}} Staking APR",
+    "successfulClaimRewardTransactionModal": {
+      "description": "Ödülünüzü başarıyla talep ettiniz",
+      "title": "Talebiniz başarılı oldu"
+    },
+    "successfulWithdrawVrtTransactionModal": {
+      "description": "VRT tokenlerinizi başarıyla geri çektiniz",
+      "title": "Para çekme işleminiz başarılı oldu"
+    },
+    "totalStaked": "Toplam Stake",
+    "withdrawButton": "Para Çek",
+    "youAreStaking": "Stake ediyorsunuz"
+  },
+  "vote": {
+    "abstain": "Çekimser",
+    "addComment": "Yorum ekle",
+    "against": "Karşı",
+    "comment": "Yorum",
+    "createProposalForm": {
+      "abstainOption": "Çekimser seçeneği",
+      "action": "Eylem",
+      "actions": "Eylemler",
+      "addDescription": "Açıklama ekle",
+      "addOneMoreAction": "+ Bir eylem daha ekle",
+      "address": "Adres",
+      "value": "Değer",
+      "againstOption": "Karşı seçenek",
+      "confirm": "Onayla",
+      "create": "Oluştur",
+      "description": "Açıklama",
+      "forOption": "Seçenek için",
+      "name": "İsim",
+      "nextStep": "Sonraki adım",
+      "proposalName": "Teklif adı",
+      "signature": "İmza",
+      "submitError": "Teklifinizi oluştururken bir hata oluştu",
+      "votingOptions": "Oylama seçenekleri"
+    },
+    "createProposalPlus": "+ Teklif oluştur",
+    "delegate": "Delege",
+    "delegateAddress": "Delege adresi",
+    "delegateLeaderboard": "Delege lider tablosu",
+    "delegateVotes": "Delege oyları",
+    "delegateVoting": "Delege oylaması",
+    "delegateYourVoting": "2. <Anchor>Oy verme yetkinizi kendinize veya bir başkasına devredin</Anchor>",
+    "depositXcn": "XCN yatır",
+    "depositYourTokens": "<Anchor> XCN'inizi</Anchor> Staking Havuzuna yatırın",
+    "enterContactAddress": "İletişim adresini girin",
+    "for": "İçin",
+    "pages": {
+      "actions": "2 Eylemin 2'si",
+      "confirmation": "Onay",
+      "proposalInformation": "2 Teklif bilgisinden 1'i",
+      "votingOptions": "3 Oylama seçeneğinden 2'si"
+    },
+    "pasteYourAddress": "Adresinizi yapıştırın",
+    "pleaseAllowTimeForConfirmation": "İşleminizin onaylanması için lütfen birkaç dakika bekleyin",
+    "pleasePayAttention": "Lütfen dikkat edin",
+    "proposals": "Teklifler",
+    "redelegate": "Redelegate",
+    "redelegateVoting": "Redelegate voting",
+    "requiredVotingPower": "Bir teklif oluşturmak için 100.000.000 oy gücüne sahip olmanız gerekir",
+    "successfulDelegationModal": {
+      "message": "Başarıyla temsilci atadınız",
+      "title": "Delegasyonunuz başarılı oldu"
+    },
+    "summaryProgressBar": "Oy Özeti İlerleme Çubuğu - {{voteType}}",
+    "theProposalWasCancelled": "Teklif iptal edildi",
+    "theProposalWasExecuted": "Teklif yürütüldü",
+    "theProposalWasQueued": "Teklif sıraya alındı",
+    "totalLocked": "Toplam kilitli",
+    "toVoteYouShould": "Oy vermek için:",
+    "voteAbstain": "Çekimser oy verin",
+    "voteAgainst": "Karşı oy ver",
+    "voteFor": "Vote for",
+    "votingPower": "Oylama gücü",
+    "votingWallet": "Oylama cüzdanı",
+    "votingWeight": "Oylama ağırlığı",
+    "youCanDelegateVotes": "Oyları kendinize veya bir başkasına devredebilirsiniz. Delege olmak istediğiniz adresi biliyorsanız, aşağıya girin. Eğer bilmiyorsanız, desteklemek istediğiniz siyasi partiyi bulmak için Delege Lider Tablosunu görüntüleyebilirsiniz",
+    "youDelegatedTo": "Kilitli tokenlarınızı {{delegate}}'e delege ettiniz",
+    "yourProposalwasCreatedSuccessfully": "Teklifiniz başarıyla oluşturuldu",
+    "youSuccessfullyVotedAbstained": "Teklifle ilgili oylamada başarılı bir şekilde çekimser kaldınız",
+    "youSuccessfullyVotedAgainstTheProposal": "Teklife karşı başarılı bir şekilde oy kullandınız",
+    "youSuccessfullyVotedForTheProposal": "Teklif için başarıyla oy kullandınız"
+  },
+  "voteProposalUi": {
+    "activeUntilDate": "Şu tarihe kadar aktif: <Date>{{ date, dd MMM HH:mm }}</Date>",
+    "cancel": "İptal",
+    "countdownFormat": {
+      "daysIncluded": "{{days}}d {{hours}}h : {{minutes}}m : {{seconds}}s",
+      "hoursIncluded": "{{hours}}h : {{minutes}}m : {{seconds}}s",
+      "minutesIncluded": "{{minutes}}m : {{seconds}}s",
+      "secondsIncluded": "{{seconds}}s"
+    },
+    "description": "Açıklama",
+    "execute": "Yürüt",
+    "operation": "Operation",
+    "proposalHistory": "Proposal History",
+    "proposalState": {
+      "active": "Active",
+      "activeTimestamp": "Active: <Span>{{date, dd MMM yyyy HH:mm}}</Span>",
+      "canceled": "Canceled",
+      "canceledTimestamp": "Canceled: <Span>{{date, dd MMM yyyy HH:mm}}</Span>",
+      "defeated": "Defeated",
+      "defeatedTimestamp": "Defeated: <Span>{{date, dd MMM yyyy HH:mm}}</Span>",
+      "executed": "Executed",
+      "executedTimestamp": "Executed: <Span>{{date, dd MMM yyyy HH:mm}}</Span>",
+      "passed": "Passed",
+      "queued": "Queued",
+      "queuedTimestamp": "Queued: <Span>{{date, dd MMM yyyy HH:mm}}</Span>",
+      "succeededTimestamp": "Succeeded: <Span>{{date, dd MMM yyyy HH:mm}}</Span>"
+    },
+    "queue": "Queue",
+    "statusCard": {
+      "active": "Active",
+      "ariaLabelAbstain": "votes abstain",
+      "ariaLabelAgainst": "votes against",
+      "ariaLabelFor": "votes for",
+      "canceled": "Canceled",
+      "cancelled": "Cancelled",
+      "created": "Created",
+      "dateOnly": "{{date, dd MMM yyyy}}",
+      "defeated": "Defeated",
+      "execute": "Execute",
+      "executed": "Executed",
+      "expired": "Expired",
+      "pending": "Pending",
+      "queue": "Queue",
+      "queued": "Queued",
+      "readyToQueue": "Kuyruğa hazır",
+      "succeed": "Başarılı",
+      "timeOnly": "{{date, h:mm a}}"
+    },
+    "timeUntilExecutable": "Yürütülebilir olana kadar geçen süre",
+    "voteStatus": {
+      "abstained": "Çekimser",
+      "notVoted": "Oylanmadı",
+      "votedAgainst": "Karşı oy kullandı",
+      "votedFor": "Voted for"
+    },
+    "votingOptions": "Oylama seçenekleri"
+  },
+  "voterDetail": {
+    "actions": "Eylemler",
+    "amount": "Tutar",
+    "delegated": "Delegated",
+    "delegatingTo": "Delegating to",
+    "holding": "Holding",
+    "readableSent": "{{date, distanceToNow}} ago",
+    "receivedXcn": "Alınan XCN",
+    "sent": "Gönderildi",
+    "sentXcn": "Gönderilen XCN",
+    "transactions": "İşlemler",
+    "undelegated": "Delege edilmemiş",
+    "xcnBalance": "Xcn bakiyesi",
+    "viewAll": "Tümünü görüntüle",
+    "votedAbstain": "Çekimser oy kullandı",
+    "votedAgainst": "Karşı oy kullandı",
+    "votedFor": "Voted for",
+    "votes": "Oylar",
+    "votingHistory": "Oylama geçmişi"
+  },
+  "voterLeaderboard": {
+    "addressesByVotingWeight": "Oy Ağırlığına Göre Adresler",
+    "columns": {
+      "proposalsVoted": "Oylanan Teklifler",
+      "rank": "Rütbe",
+      "votes": "XCN Hissesi",
+      "voteWeight": "Oy Ağırlığı"
+    }
+  },
+  "voteSummary": {
+    "addresses_zero": "{{count}} adres",
+    "addresses_one": "{{count}} adres",
+    "addresses_other": "{{count}} adresler",
+    "votes": "Oylar"
+  },
+  "wallets": {
+    "binanceChainWallet": "Binance Zincir Cüzdanı",
+    "bitKeep": "BitKeep",
+    "braveWallet": "Brave cüzdan",
+    "coinbaseWallet": "Coinbase Cüzdan",
+    "errors": {
+      "authorizeAccess": "Hesabınıza erişim yetkisi vermeniz gerekiyor",
+      "noProvider": "Harici bir cüzdan bağlıyorsanız, MetaMask gibi bir sağlayıcınız veya Brave gibi uyumlu bir cüzdanınız olduğundan emin olun",
+      "unsupportedWallet": "Bağlanılamıyor. Seçiminizin istediğiniz cüzdanla eşleştiğinden emin olun."
+    },
+    "infinityWallet": "Infinity Wallet",
+    "ledger": "Ledger",
+    "metamask": "MetaMask",
+    "opera": "Opera Wallet",
+    "trustWallet": "Trust Wallet",
+    "walletConnect": "WalletConnect"
+  },
+  "withdrawModal": {
+    "availableTokensLabel": "Mevcut {{tokenSymbol}}",
+    "connectWalletMessage": "Lütfen {{tokenSymbol}} çekmek için cüzdanınızı bağlayın",
+    "submitButtonDisabledLabel": "Çekmek için geçerli bir tutar girin",
+    "submitButtonLabel": "Geri Çek",
+    "successfulTransactionModal": {
+      "description": "Başarılı bir şekilde geri çekildiniz",
+      "title": "Para çekme işleminiz başarılı oldu"
+    },
+    "title": "Geri Çek {{tokenSymbol}}"
+  },
+  "withdrawFromVestingVaultModalModal": {
+    "requestWithdrawalTab": {
+      "availableTokensLabel": "Talep edilebilir {{tokenSymbol}}",
+      "displayWithdrawalRequestListButton": "Para çekme talebi listesi",
+      "enableToken": {
+        "connectWalletMessage": "Lütfen para çekmek için cüzdanınızı bağlayın"
+      },
+      "submitButtonDisabledLabel": "Talep etmek için geçerli bir tutar girin",
+      "submitButtonLabel": "Geri çekme talebi",
+      "successfulTransactionDescription": "Başarılı bir şekilde para çekme talebinde bulundunuz",
+      "successfulTransactionTitle": "Para çekme talebiniz başarılı oldu"
+    },
+    "requestWithdrawalTabTitle": "Para çekme talebi",
+    "title": "Geri Çek {{tokenSymbol}}",
+    "withdrawalRequestList": {
+      "emptyState": "Aktif para çekme talebiniz yok",
+      "enableToken": {
+        "connectWalletMessage": "Para çekme taleplerinizi görmek için lütfen cüzdanınızı bağlayın"
+      },
+      "itemContent": "{{date, dd.MM.yy h:mm a}} tarihine kadar kilitli"
+    },
+    "withdrawalRequestListTitle": "Para çekme talep listesi",
+    "withdrawTab": {
+      "availableTokens": "Available {{tokenSymbol}}",
+      "enableToken": {
+        "connectWalletMessage": "Lütfen para çekmek için cüzdanınızı bağlayın"
+      },
+      "submitButton": "Para Çek"
+    },
+    "withdrawTabTitle": "Para Çekme"
+  },
+  "liquidityModal": {
+    "availableTokensLabel": "Mevcut {{tokenSymbol}}",
+    "connectWalletMessage": "Lütfen tedarik için cüzdanınızı bağlayın",
+    "enableTokenMessage": "{{tokenSymbol}} sağlamak için önce etkinleştirmeniz gerekir",
+    "submitButtonDisabledLabel": "Tedarik etmek için geçerli bir miktar girin",
+    "submitButtonLabel": "Tedarik",
+    "successfulTransactionModal": {
+      "description": "Başarılı bir şekilde likidite eklediniz",
+      "title": "Tedarikiniz başarılı oldu"
+    },
+    "title": "Likidite Ekle"
+  },
+  "xcn": {
+    "columns": {
+      "asset": "Varlık",
+      "borrowXcnApy": "XCN APY ödünç al",
+      "supplyXcnApy": "Tedarik XCN APY",
+      "xcnPerDay": "Gün Başına XCN"
+    },
+    "dailyDistribution": "Günlük Dağıtım:",
+    "progressBar": "Xcn Dağıtım ilerlemesi",
+    "remaining": "Kalan:"
+  },
+  "wpunks": {
+    "title": "KriptoPunk'larınız",
+    "wPunksTitle": "Sarılmış PUNKS'larınız",
+    "emptyPunk": "Hiç Punk'ınız yok",
+    "description": "Punks'ınız için kendi Proxy'nizi kaydetmeniz gerekir.",
+    "registerProxyBtn": "Proxy Kaydet",
+    "emptyWPUNKSOrLockedPunk": "Hiç WPUNKS'ınız veya kilitli Punks'ınız yok",
+    "registerProxyCreatedSuccessfully": "Başarıyla kayıt oldunuz",
+    "pleaseAllowTimeForConfirmation": "İşleminizin onaylanması için lütfen birkaç dakika bekleyin",
+    "depositPunkSuccessfully": "Punk'ı başarıyla yatırdınız",
+    "mintWPUNKSSuccessfully": "WPUNKS'ı başarıyla bastınız",
+    "burnWPUNKSSuccessfully": "WPUNKS'ı başarıyla geri çektiniz",
+    "turnPunkIntoERC721": "CryptoPunk'larınızı ERC721'e dönüştürün"
+  },
+  "liquidate": {
+    "users": "Kullanıcılar",
+    "userAddress": "Kullanıcı Adresi",
+    "tokenList": "Token listesi"
+  },
+  "stakeWithdraw": {
+    "enterValidAmountStake": "Tedarik etmek için geçerli bir miktar girin",
+    "enterValidAmountWithdraw": "Çekmek için geçerli bir miktar girin",
+    "max": "Max",
+    "successfulStakeTransactionModal": {
+      "message": "Başarıyla stake ettiniz",
+      "title": "Tedarikiniz başarılı oldu"
+    },
+    "successfulWithdrawTransactionModal": {
+      "message": "Başarıyla geri çekildiniz",
+      "title": "Para çekme işleminiz başarılı oldu"
+    },
+    "stake": "Pay",
+    "stakeBalance": "Stake Balance ({{ tokenSymbol }})",
+    "walletBalance": "Cüzdan bakiyesi: <White>{{amount}}</White>",
+    "withdraw": "Geri çekil",
+    "withdrawableAmount": "Çekilebilir tutar: <White>{{amount}}</White>"
+  }
+}
