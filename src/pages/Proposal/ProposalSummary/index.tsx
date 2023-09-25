@@ -177,8 +177,6 @@ export const ProposalSummaryUi: React.FC<
       const activeUntilDate = new Date(startDate);
       activeUntilDate.setSeconds(startDate.getSeconds() + blockInterval);
 
-      console.log(startDate, activeUntilDate, blockInterval);
-
       return {
         date: activeUntilDate,
         // DO NOT REMOVE COMMENT: needed by i18next to extract translation key
