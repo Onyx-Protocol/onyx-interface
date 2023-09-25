@@ -5,6 +5,10 @@ const getVoterHistorySubGraph = (
   network: number,
   address: string,
   { limit = 5, offset = 0 },
+  order = {
+    direction: 'desc',
+    field: 'proposal__createdBlockTimestamp',
+  },
 ): Promise<GetVoterHistoryResponse> => {
   if (!SUBGRAPH_LINKS[network] && !SUBGRAPH_LINKS[network].latest) {
     return Promise.resolve([]);
@@ -22,6 +26,8 @@ const getVoterHistorySubGraph = (
               first: ${limit},
               skip: ${offset},
               where: { address: "${address}" }
+              orderBy: ${order.field},
+              orderDirection: ${order.direction}
             ) {
               id
               proposal {
