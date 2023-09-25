@@ -696,7 +696,7 @@
     "totalLocked": "Total locked",
     "toVoteYouShould": "To vote you should:",
     "votingPowerIsLessThanStakedBecause": "Note: Voting power differs from the staked XCN amount because the protocol counts XCN staked before the proposal only",
-    "toGetVotingPower": "Note: To get voting power, stake the XCN tokens before the proposal starts",
+    "toGetVotingPower": "To get voting power, stake the XCN tokens before the proposal starts",
     "votingPowerIsZeroBecause": "Voting power is 0 because the protocol counts XCN staked before the proposal only",
     "voteAbstain": "Vote abstain",
     "voteAgainst": "Vote against",
