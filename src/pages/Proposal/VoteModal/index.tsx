@@ -82,6 +82,14 @@ const VoteModal: React.FC<VoteModalProps> = ({
     [voteWeight.toFixed()],
   );
 
+  let votesDescription = '';
+
+  if (stakeAmount.isZero()) {
+    votesDescription = t('vote.toGetVotingPower');
+  } else if (!voteWeight.isEqualTo(stakeAmount)) {
+    votesDescription = t('vote.votingPowerIsLessThanStakedBecause');
+  }
+
   return (
     <Modal
       isOpen={voteModalType !== undefined}
@@ -100,17 +108,14 @@ const VoteModal: React.FC<VoteModalProps> = ({
               disabled
               value={readableVoteWeight}
               css={styles.votingPower}
-              description={
-                !voteWeight.isEqualTo(stakeAmount)
-                  ? t('vote.votingPowerIsLessThanStakedBecause')
-                  : ''
-              }
+              description={votesDescription}
             />
             <FormikSubmitButton
               enabledLabel={title}
               fullWidth
               loading={isVoteLoading}
               data-testid={TEST_IDS.submitButton}
+              disabled={stakeAmount.isZero()}
             />
           </Form>
         )}
