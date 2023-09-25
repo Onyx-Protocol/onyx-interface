@@ -95,15 +95,19 @@ const VoteSummary = ({
             </div>
 
             <Tooltip title={voteWeightWei.isZero() ? t('vote.votingPowerIsZeroBecause') : ''}>
-              <Typography color="text.primary">
-                {convertWeiToTokens({
-                  valueWei: voteWeightWei,
-                  token: TOKENS.xcn,
-                  shortenLargeValue: true,
-                  addSymbol: false,
-                  returnInReadableFormat: true,
-                })}
-              </Typography>
+              <div css={styles.zeroVote}>
+                <Typography color="text.primary">
+                  {convertWeiToTokens({
+                    valueWei: voteWeightWei,
+                    token: TOKENS.xcn,
+                    shortenLargeValue: true,
+                    addSymbol: false,
+                    returnInReadableFormat: true,
+                  })}
+                </Typography>
+
+                {voteWeightWei.isZero() && <Icon css={styles.infoIcon} name="info" />}
+              </div>
             </Tooltip>
           </li>
         ))}
