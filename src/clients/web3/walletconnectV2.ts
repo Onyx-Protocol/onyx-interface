@@ -133,12 +133,12 @@ export class WalletConnectV2Connector extends AbstractConnector {
   }
 
   public async getChainId(): Promise<number | string> {
-    return Promise.resolve(this.walletConnectProvider!.chainId);
+    return Promise.resolve(this.walletConnectProvider?.chainId ?? 1);
   }
 
   public async getAccount(): Promise<null | string> {
-    return Promise.resolve(this.walletConnectProvider!.accounts).then(
-      (accounts: string[]): string => accounts[0],
+    return Promise.resolve(this.walletConnectProvider?.accounts ?? [null]).then(
+      (accounts: Array<null | string>): null | string => accounts[0],
     );
   }
 

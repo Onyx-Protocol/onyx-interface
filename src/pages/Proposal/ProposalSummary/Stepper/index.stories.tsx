@@ -1,7 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import React from 'react';
 
-import proposals from '__mocks__/models/proposals';
 import { withCenterStory } from 'stories/decorators';
 
 import Stepper, { StepperProps } from '.';

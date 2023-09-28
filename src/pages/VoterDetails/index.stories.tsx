@@ -3,7 +3,6 @@ import BigNumber from 'bignumber.js';
 import noop from 'noop-ts';
 import React, { useEffect, useState } from 'react';
 
-import voterDetails from '__mocks__/models/voterDetails';
 import voterHistory from '__mocks__/models/voterHistory';
 import formatVoterHistoryResponse from 'clients/api/queries/getVoterHistory/formatVoterHistoryResponse';
 import { NULL_ADDRESS } from 'constants/address';
@@ -33,7 +32,6 @@ export const Default = () => {
       balanceWei={new BigNumber(912512333)}
       delegateCount={12}
       votesWei={new BigNumber(912512333)}
-      voterTransactions={voterDetails.voterTransactions}
       address={NULL_ADDRESS}
       voterHistory={voterHistoryFetched?.voterHistory}
       setCurrentHistoryPage={noop}
