@@ -51,7 +51,7 @@ export const Holding: React.FC<HoldingProps> = ({
         {readableXcnBalance}
       </Typography>
       <Delimiter css={styles.delimiter} />
-      <Typography variant="small2">{t('voterDetail.votes')}</Typography>
+      <Typography variant="small2">{t('voterDetail.votingPower')}</Typography>
       <div css={styles.voteSection}>
         <Typography variant="h4" css={styles.value}>
           {readableVotes}
