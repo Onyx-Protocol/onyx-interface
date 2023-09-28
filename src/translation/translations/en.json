@@ -776,12 +776,12 @@
     "sentXcn": "Sent XCN",
     "transactions": "Transactions",
     "undelegated": "Undelegated",
-    "xcnBalance": "Xcn balance",
+    "xcnBalance": "XCN balance",
     "viewAll": "View all",
     "votedAbstain": "Voted abstain",
     "votedAgainst": "Voted against",
     "votedFor": "Voted for",
-    "votes": "Votes",
+    "votingPower": "Voting power (XCN staked)",
     "votingHistory": "Voting history"
   },
   "voterLeaderboard": {

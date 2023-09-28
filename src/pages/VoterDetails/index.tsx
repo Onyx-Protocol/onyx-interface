@@ -2,9 +2,15 @@
 import BigNumber from 'bignumber.js';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { VoteDetailTransaction, VoterHistory } from 'types';
+import { VoterHistory } from 'types';
 
-import { useGetVoterDetails, useGetVoterHistory } from 'clients/api';
+import {
+  useGetCurrentVotes,
+  useGetProposalVotes,
+  useGetTokenBalances,
+  useGetVoterHistory,
+} from 'clients/api';
+import { MAINNET_TOKENS } from 'constants/tokens';
 
 import History from './History';
 import Holding from './Holding';
@@ -15,9 +21,7 @@ interface VoterDetailsUiProps {
   balanceWei: BigNumber | undefined;
   delegateCount: number | undefined;
   votesWei: BigNumber | undefined;
-  // delegating: boolean;
   address: string;
-  voterTransactions: VoteDetailTransaction[] | undefined;
   voterHistory: VoterHistory[] | undefined;
   setCurrentHistoryPage: (page: number) => void;
   total: number;
@@ -29,9 +33,6 @@ export const VoterDetailsUi: React.FC<VoterDetailsUiProps> = ({
   balanceWei,
   delegateCount,
   votesWei,
-  // delegating,
-  // address,
-  // voterTransactions,
   voterHistory,
   setCurrentHistoryPage,
   total,
@@ -69,23 +70,23 @@ export const VoterDetailsUi: React.FC<VoterDetailsUiProps> = ({
 const VoterDetails = () => {
   const [currentHistoryPage, setCurrentHistoryPage] = useState(0);
   const { address } = useParams<{ address: string }>();
-  const { data: voterDetails } = useGetVoterDetails({ address });
   const {
     data: { voterHistory, total, limit } = { voterHistory: [], total: 0, limit: 16 },
     isFetching,
   } = useGetVoterHistory({ address, page: currentHistoryPage });
+  const { data } = useGetTokenBalances({
+    accountAddress: address,
+    tokens: [MAINNET_TOKENS.xcn],
+  });
+  const { data: currentVotesData } = useGetCurrentVotes({ accountAddress: address || '' });
+  const { data: votesData } = useGetProposalVotes({ address });
 
   return (
     <VoterDetailsUi
-      // balanceWei={voterDetails?.balanceWei}
-      // delegateCount={voterDetails?.delegateCount}
-      // delegating={!!voterDetails?.delegating}
-      // voterTransactions={voterDetails?.voterTransactions}
-      balanceWei={new BigNumber(0)}
-      delegateCount={0}
-      voterTransactions={[]}
+      balanceWei={data?.tokenBalances[0].balanceWei ?? new BigNumber(0)}
+      delegateCount={votesData?.total}
       voterHistory={voterHistory}
-      votesWei={voterDetails?.votesWei}
+      votesWei={currentVotesData?.votesWei ?? new BigNumber(0)}
       address={address}
       setCurrentHistoryPage={setCurrentHistoryPage}
       total={total}

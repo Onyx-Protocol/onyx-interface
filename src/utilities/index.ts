@@ -38,4 +38,5 @@ export { default as getAccountsSubGraph } from './getAccountsSubGraph';
 export { default as getAccountSubGraph } from './getAccountSubGraph';
 export { default as getHistorySubGraph } from './getHistorySubGraph';
 export { default as getProposalsSubGraph } from './getProposalsSubGraph';
+export { default as getProposalVotesSubGraph } from './getProposalVotesSubGraph';
 export * from './RPCErrorMessage';
