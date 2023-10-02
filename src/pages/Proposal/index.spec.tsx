@@ -30,12 +30,6 @@ import TEST_IDS from './testIds';
 jest.mock('clients/api');
 jest.mock('hooks/useVote');
 
-const incorrectAction = proposals[0];
-const activeProposal = proposals[1];
-const cancelledProposal = proposals[3];
-const succeededProposal = proposals[4];
-const queuedProposal = proposals[5];
-
 const checkAllButtons = async (
   getByTestId: (id: Matcher, options?: MatcherOptions | undefined) => HTMLElement,
   check: (element: HTMLElement) => void,
@@ -56,10 +50,9 @@ const checkAllButtons = async (
 };
 
 describe('pages/Proposal', () => {
-  beforeEach(() => {
-    jest
-      .useFakeTimers('modern')
-      .setSystemTime(activeProposal?.endDate?.setMinutes(activeProposal.endDate?.getMinutes() - 5));
+  beforeEach(async () => {
+    const activeProposal = (await proposals)[1];
+    jest.useFakeTimers('modern').setSystemTime(new Date());
 
     (getVoteReceipt as jest.Mock).mockImplementation(() => ({
       voteSupport: 'NOT_VOTED',
@@ -85,7 +78,7 @@ describe('pages/Proposal', () => {
   });
 
   it('renders without crashing on', async () => {
-    (getProposal as jest.Mock).mockImplementation(() => incorrectAction);
+    (getProposal as jest.Mock).mockImplementation(async () => (await proposals)[0]);
     renderComponent(<Proposal />);
   });
 
@@ -95,7 +88,7 @@ describe('pages/Proposal', () => {
   });
 
   it('vote buttons are disabled when proposal is not active', async () => {
-    (getProposal as jest.Mock).mockImplementationOnce(() => cancelledProposal);
+    (getProposal as jest.Mock).mockImplementationOnce(async () => (await proposals)[3]);
     const { getByTestId } = renderComponent(<Proposal />, {
       authContextValue: {
         account: {
@@ -321,7 +314,7 @@ describe('pages/Proposal', () => {
   });
 
   it('user can queue succeeded proposal', async () => {
-    (getProposal as jest.Mock).mockImplementationOnce(() => succeededProposal);
+    (getProposal as jest.Mock).mockImplementationOnce(async () => (await proposals)[4]);
     const { getByTestId } = renderComponent(<Proposal />, {
       authContextValue: {
         account: {
@@ -341,7 +334,7 @@ describe('pages/Proposal', () => {
   });
 
   it('user can execute queued proposal', async () => {
-    (getProposal as jest.Mock).mockImplementationOnce(() => queuedProposal);
+    (getProposal as jest.Mock).mockImplementationOnce(async () => (await proposals)[5]);
     const { getByTestId } = renderComponent(<Proposal />, {
       authContextValue: {
         account: {

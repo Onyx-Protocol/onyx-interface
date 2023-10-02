@@ -118,7 +118,6 @@ const GovernanceProposalUi: React.FC<GovernanceProposalProps> = ({
   userVoteStatus,
   forVotesWei,
   againstVotesWei,
-  abstainedVotesWei,
   isUserConnected,
 }) => {
   const styles = useStyles();
@@ -137,11 +136,7 @@ const GovernanceProposalUi: React.FC<GovernanceProposalProps> = ({
     }
   }, [userVoteStatus]);
 
-  const votedTotalWei = BigNumber.sum.apply(null, [
-    forVotesWei || 0,
-    againstVotesWei || 0,
-    abstainedVotesWei || 0,
-  ]);
+  const votedTotalWei = BigNumber.sum.apply(null, [forVotesWei || 0, againstVotesWei || 0]);
 
   return (
     <ProposalCard
@@ -162,7 +157,6 @@ const GovernanceProposalUi: React.FC<GovernanceProposalProps> = ({
           <ActiveVotingProgress
             votedForWei={forVotesWei}
             votedAgainstWei={againstVotesWei}
-            abstainedWei={abstainedVotesWei}
             votedTotalWei={votedTotalWei}
           />
         ) : (

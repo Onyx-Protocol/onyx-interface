@@ -5,10 +5,6 @@ import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector';
-import {
-  UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
-  WalletConnectConnector,
-} from '@web3-react/walletconnect-connector';
 import config from 'config';
 import { VError, formatVErrorToReadableString } from 'errors';
 import { useCallback, useState } from 'react';
@@ -18,6 +14,10 @@ import { LS_KEY_CONNECTED_CONNECTOR } from 'constants/localStorageKeys';
 
 import { connectorsByName } from '../connectors';
 import { Connector } from '../types';
+import {
+  UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
+  WalletConnectV2Connector,
+} from '../walletconnectV2';
 import setupNetwork from './setUpNetwork';
 
 const isRunningInInfinityWalletApp = () => window.ethereum && window.ethereum?.isInfinityWallet;
@@ -74,7 +74,7 @@ const useAuth = () => {
         if (
           (error instanceof UserRejectedRequestErrorInjected ||
             error instanceof UserRejectedRequestErrorWalletConnect) &&
-          connector instanceof WalletConnectConnector
+          connector instanceof WalletConnectV2Connector
         ) {
           connector.walletConnectProvider = undefined;
         }

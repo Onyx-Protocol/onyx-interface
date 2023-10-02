@@ -695,6 +695,9 @@
     "theProposalWasQueued": "The proposal was queued",
     "totalLocked": "Total locked",
     "toVoteYouShould": "To vote you should:",
+    "votingPowerIsLessThanStakedBecause": "Note: Voting power differs from the staked XCN amount because the protocol counts XCN staked before the proposal only",
+    "toGetVotingPower": "To get voting power, stake the XCN tokens before the proposal starts",
+    "votingPowerIsZeroBecause": "Voting power is 0 because the protocol counts XCN staked before the proposal only",
     "voteAbstain": "Vote abstain",
     "voteAgainst": "Vote against",
     "voteFor": "Vote for",
@@ -709,7 +712,7 @@
     "youSuccessfullyVotedForTheProposal": "You successfully voted for the proposal"
   },
   "voteProposalUi": {
-    "activeUntilDate": "Active until: <Date>{{ date, dd MMM HH:mm }}</Date>",
+    "activeUntilDate": "Active until",
     "cancel": "Cancel",
     "countdownFormat": {
       "daysIncluded": "{{days}}d {{hours}}h : {{minutes}}m : {{seconds}}s",
@@ -777,12 +780,12 @@
     "sentXcn": "Sent XCN",
     "transactions": "Transactions",
     "undelegated": "Undelegated",
-    "xcnBalance": "Xcn balance",
+    "xcnBalance": "XCN balance",
     "viewAll": "View all",
     "votedAbstain": "Voted abstain",
     "votedAgainst": "Voted against",
     "votedFor": "Voted for",
-    "votes": "Votes",
+    "votingPower": "Voting power (XCN staked)",
     "votingHistory": "Voting history"
   },
   "voterLeaderboard": {

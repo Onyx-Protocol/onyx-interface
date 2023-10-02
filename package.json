@@ -36,9 +36,13 @@
     "@uiw/react-markdown-preview": "^4.0.17",
     "@uiw/react-md-editor": "^3.14.3",
     "@uniswap/sdk": "^3.0.3",
+    "@walletconnect/ethereum-provider": "^2.9.2",
+    "@walletconnect/modal": "^2.6.1",
+    "@walletconnect/types": "^2.9.2",
+    "@web3-react/abstract-connector": "^6.0.7",
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
-    "@web3-react/walletconnect-connector": "^6.2.13",
+    "@web3-react/types": "^6.0.7",
     "@web3-react/walletlink-connector": "^6.2.13",
     "bignumber.js": "^9.0.0",
     "copy-to-clipboard": "^3.3.1",
@@ -132,9 +136,9 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ]
   },
   "resolutions": {

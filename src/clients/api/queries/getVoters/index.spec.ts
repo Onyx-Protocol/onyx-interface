@@ -18,7 +18,7 @@ describe('api/queries/getVoters', () => {
     }));
 
     try {
-      await getVoters({ id: 0 });
+      await getVoters({ id: '0' });
 
       throw new Error('getVoters should have thrown an error but did not');
     } catch (error) {
@@ -39,7 +39,7 @@ describe('api/queries/getVoters', () => {
     }));
 
     const response = await getVoters({
-      id: 1,
+      id: '1',
     });
 
     expect(restService).toBeCalledWith({

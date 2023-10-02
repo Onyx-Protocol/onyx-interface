@@ -1,7 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import React from 'react';
 
-import proposals from '__mocks__/models/proposals';
 import { withCenterStory } from 'stories/decorators';
 
 import Stepper, { StepperProps } from '.';
@@ -16,7 +15,7 @@ const Template: Story<StepperProps> = (args: StepperProps) => <Stepper {...args}
 
 export const Pending = Template.bind({});
 Pending.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Pending',
   startDate: undefined,
@@ -27,7 +26,7 @@ Pending.args = {
 
 export const Active = Template.bind({});
 Active.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
@@ -38,7 +37,7 @@ Active.args = {
 
 export const Defeated = Template.bind({});
 Defeated.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
@@ -49,7 +48,7 @@ Defeated.args = {
 
 export const Successded = Template.bind({});
 Successded.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
@@ -60,7 +59,7 @@ Successded.args = {
 
 export const Canceled = Template.bind({});
 Canceled.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
@@ -71,7 +70,7 @@ Canceled.args = {
 
 export const Expired = Template.bind({});
 Expired.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
@@ -82,7 +81,7 @@ Expired.args = {
 
 export const Queued = Template.bind({});
 Queued.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
@@ -93,7 +92,7 @@ Queued.args = {
 
 export const Executed = Template.bind({});
 Executed.args = {
-  createdDate: proposals[0].createdDate,
+  createdDate: new Date(),
   cancelDate: undefined,
   state: 'Active',
   startDate: undefined,
