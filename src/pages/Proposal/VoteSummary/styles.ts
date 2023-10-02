@@ -106,5 +106,15 @@ export const useStyles = () => {
     reasonIcon: css`
       flex-shrink: 0;
     `,
+    infoIcon: css`
+      cursor: help;
+      margin-left: 5px;
+    `,
+    zeroVote: css`
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    `,
   };
 };

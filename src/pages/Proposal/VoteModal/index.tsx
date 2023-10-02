@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { FormikSubmitButton, FormikTextField, Modal, TextField } from 'components';
+import BigNumber from 'bignumber.js';
+import { FormikSubmitButton, Modal, TextField } from 'components';
 import { Form, Formik } from 'formik';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'translation';
+import { Proposal } from 'types';
+import { convertWeiToTokens } from 'utilities';
 import type { TransactionReceipt } from 'web3-core';
 
 import { TOKENS } from 'constants/tokens';
@@ -14,9 +17,11 @@ import TEST_IDS from './testIds';
 interface VoteModalProps {
   voteModalType: 0 | 1 | 2;
   handleClose: () => void;
-  vote: (voteReason: string) => Promise<TransactionReceipt>;
-  readableVoteWeight: string;
+  vote: () => Promise<TransactionReceipt>;
+  voteWeight: BigNumber;
+  stakeAmount: BigNumber;
   isVoteLoading: boolean;
+  proposal: Proposal;
 }
 
 // TODO: add tests
@@ -24,7 +29,8 @@ interface VoteModalProps {
 const VoteModal: React.FC<VoteModalProps> = ({
   handleClose,
   vote,
-  readableVoteWeight,
+  voteWeight,
+  stakeAmount,
   voteModalType = 0,
   isVoteLoading,
 }) => {
@@ -50,10 +56,10 @@ const VoteModal: React.FC<VoteModalProps> = ({
     // no default
   }
 
-  const handleOnSubmit = async ({ reason }: { reason: string }) => {
+  const handleOnSubmit = async () => {
     await handleTransactionMutation({
       mutate: async () => {
-        const result = await vote(reason);
+        const result = await vote();
         handleClose();
         return result;
       },
@@ -64,6 +70,25 @@ const VoteModal: React.FC<VoteModalProps> = ({
       }),
     });
   };
+
+  const readableVoteWeight = useMemo(
+    () =>
+      convertWeiToTokens({
+        valueWei: voteWeight,
+        token: TOKENS.xcn,
+        returnInReadableFormat: true,
+        addSymbol: false,
+      }),
+    [voteWeight.toFixed()],
+  );
+
+  let votesDescription = '';
+
+  if (stakeAmount.isZero()) {
+    votesDescription = t('vote.toGetVotingPower');
+  } else if (!voteWeight.isEqualTo(stakeAmount)) {
+    votesDescription = t('vote.votingPowerIsLessThanStakedBecause');
+  }
 
   return (
     <Modal
@@ -83,20 +108,14 @@ const VoteModal: React.FC<VoteModalProps> = ({
               disabled
               value={readableVoteWeight}
               css={styles.votingPower}
-            />
-            <FormikTextField
-              label={t('vote.comment')}
-              name="reason"
-              id="reason"
-              placeholder={t('vote.addComment')}
-              maxLength={256}
-              css={styles.comment}
+              description={votesDescription}
             />
             <FormikSubmitButton
               enabledLabel={title}
               fullWidth
               loading={isVoteLoading}
               data-testid={TEST_IDS.submitButton}
+              disabled={stakeAmount.isZero()}
             />
           </Form>
         )}

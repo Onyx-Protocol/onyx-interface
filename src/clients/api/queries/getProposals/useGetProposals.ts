@@ -4,7 +4,6 @@ import getProposals, {
   GetProposalsInput,
   GetProposalsOutput,
 } from 'clients/api/queries/getProposals';
-import { BLOCK_TIME_MS } from 'constants/ethereum';
 import FunctionKey from 'constants/functionKey';
 
 type Options = QueryObserverOptions<
@@ -20,8 +19,8 @@ const useGetProposals = (params: GetProposalsInput = {}, options?: Options) =>
   // create a more seamless paginating experience
   useQuery([FunctionKey.GET_PROPOSALS, params], () => getProposals(params), {
     keepPreviousData: true,
-    placeholderData: { limit: 0, total: 0, page: 0, proposals: [] },
-    refetchInterval: params.page === 1 ? BLOCK_TIME_MS * 5 : undefined,
+    placeholderData: { proposals: [], total: 0 },
+    refetchInterval: undefined,
     ...options,
   });
 

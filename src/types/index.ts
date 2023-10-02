@@ -103,29 +103,27 @@ export interface DescriptionV1 {
 }
 
 export interface Proposal {
-  abstainedVotesWei: BigNumber;
   againstVotesWei: BigNumber;
   createdDate: Date | undefined;
   description: DescriptionV1 | DescriptionV2;
   endBlock: number;
+  startBlock: number;
   executedDate: Date | undefined;
   forVotesWei: BigNumber;
   id: number;
   proposer: string;
   queuedDate: Date | undefined;
-  startDate: Date | undefined;
   state: ProposalState;
   cancelDate: Date | undefined;
   createdTxHash: string | undefined;
   cancelTxHash: string | undefined;
-  endTxHash: string | undefined;
   executedTxHash: string | undefined;
   queuedTxHash: string | undefined;
-  startTxHash: string | undefined;
   totalVotesWei: BigNumber;
   actions: ProposalAction[];
   blockNumber?: number;
-  endDate?: Date;
+  isStarted: boolean;
+  isEnded: boolean;
 }
 
 export interface StakeHistory {
