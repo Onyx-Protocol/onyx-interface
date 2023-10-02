@@ -173,7 +173,7 @@
     "typeColon": "Tür:",
     "asset": "Varlık",
     "assetColon": "Varlık:",
-    "vote": "Oy", 
+    "vote": "Oy",
     "stake": "hisse",
     "withdraw": "Çekim",
     "claim": "Talep",
@@ -695,6 +695,9 @@
     "theProposalWasQueued": "Teklif sıraya alındı",
     "totalLocked": "Toplam kilitli",
     "toVoteYouShould": "Oy vermek için:",
+    "votingPowerIsLessThanStakedBecause": "Not: Oylama gücü, yatırılan XCN miktarından farklıdır çünkü protokol sadece tekliften önce yatırılan XCN'yi sayar",
+    "toGetVotingPower": "Oylama gücü elde etmek için, teklif başlamadan önce XCN tokenlerini stake edin",
+    "votingPowerIsZeroBecause": "Oylama gücü 0'dır çünkü protokol sadece tekliften önce stake edilen XCN'yi sayar",
     "voteAbstain": "Çekimser oy verin",
     "voteAgainst": "Karşı oy ver",
     "voteFor": "Şunun için oy ver:",
@@ -709,7 +712,7 @@
     "youSuccessfullyVotedForTheProposal": "Teklif için başarıyla oy kullandınız"
   },
   "voteProposalUi": {
-    "activeUntilDate": "Şu tarihe kadar aktif: <Date>{{ date, dd MMM HH:mm }}</Date>",
+    "activeUntilDate": "Şu tarihe kadar aktif",
     "cancel": "İptal",
     "countdownFormat": {
       "daysIncluded": "{{days}}d {{hours}}h : {{minutes}}m : {{seconds}}s",
@@ -777,12 +780,12 @@
     "sentXcn": "Gönderilen XCN",
     "transactions": "İşlemler",
     "undelegated": "Delege edilmemiş",
-    "xcnBalance": "Xcn bakiyesi",
+    "xcnBalance": "XCN bakiyesi",
     "viewAll": "Tümünü görüntüle",
     "votedAbstain": "Çekimser oy kullandı",
     "votedAgainst": "Karşı oy kullandı",
     "votedFor": "Voted for",
-    "votes": "Oylar",
+    "votingPower": "Oylama gücü (XCN staked)",
     "votingHistory": "Oylama geçmişi"
   },
   "voterLeaderboard": {
@@ -879,7 +882,7 @@
       "xcnPerDay": "Gün Başına XCN"
     },
     "dailyDistribution": "Günlük Dağıtım:",
-    "progressBar": "Xcn Dağıtım ilerlemesi",
+    "progressBar": "XCN Dağıtım ilerlemesi",
     "remaining": "Kalan:"
   },
   "wpunks": {
