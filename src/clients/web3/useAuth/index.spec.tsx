@@ -13,8 +13,8 @@ import renderComponent from 'testUtils/renderComponent';
 import en from 'translation/translations/en.json';
 
 import useAuth from '.';
-import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '../walletconnectV2';
 import { Connector } from '../types';
+import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '../walletconnectV2';
 import setupNetwork from './setUpNetwork';
 
 jest.mock('../../../components/Toast');

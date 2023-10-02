@@ -4,15 +4,9 @@
     "proposal": {
       "id": "19",
       "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
-      "targets": [
-        "0x28ca9caae31602d0312ebf6466c9dd57fca5da93"
-      ],
-      "values": [
-        "0"
-      ],
-      "signatures": [
-        "grantDAO(address,uint256)"
-      ],
+      "targets": ["0x28ca9caae31602d0312ebf6466c9dd57fca5da93"],
+      "values": ["0"],
+      "signatures": ["grantDAO(address,uint256)"],
       "callDatas": [
         "0x0000000000000000000000004410cbf371a86355ce0690fd08a92373dcd8e57f00000000000000000000000000000000000000000168a6975c3504b634000000"
       ],
@@ -156,18 +150,10 @@
     "proposal": {
       "id": "7",
       "proposer": "0x09a74d465c49fd07d6eaf2028c7cff31c93d3a74",
-      "targets": [
-        "0x23445c63feef8d85956dc0f19ade87606d0e19a9"
-      ],
-      "values": [
-        "0"
-      ],
-      "signatures": [
-        "setRewardPerblock(uint256)"
-      ],
-      "callDatas": [
-        "0x00000000000000000000000000000000000000000000002a5a058fc295ed0000"
-      ],
+      "targets": ["0x23445c63feef8d85956dc0f19ade87606d0e19a9"],
+      "values": ["0"],
+      "signatures": ["setRewardPerblock(uint256)"],
+      "callDatas": ["0x00000000000000000000000000000000000000000000002a5a058fc295ed0000"],
       "startBlock": "16743146",
       "endBlock": "16755946",
       "description": "{\"version\":\"v2\",\"title\":\"OIP-8: Increase Staking Rewards\",\"description\":\"## Increase Staking Rewards\\n\\nOnyx DAO proposes to the community to increase the staking vault rewards which would make the APR approximately 33% as opposed to todays approximately 6.7% staking rate.\\n\\nBy making this change the staking rewards still remain under the constitution threshold and creates incentive rewards for those who are securing and voting on the Onyx Protocol and Onyx DAO.\\n\\nDiscussion: https://community.onyx.org/t/oip-8-increase-staking-rewards/35\"}",
