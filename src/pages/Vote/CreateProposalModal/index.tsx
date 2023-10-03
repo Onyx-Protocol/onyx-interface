@@ -38,7 +38,7 @@ export const CreateProposal: React.FC<CreateProposalProps> = ({
   isCreateProposalLoading,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { openSuccessfulTransactionModal } = useSuccessfulTransactionModal();
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -106,7 +106,7 @@ export const CreateProposal: React.FC<CreateProposalProps> = ({
         Component: () => <ProposalPreview />,
       },
     ],
-    [],
+    [i18n.language],
   );
 
   const buttonText =

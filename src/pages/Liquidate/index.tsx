@@ -129,7 +129,7 @@ const Liquidate: React.FC = () => {
       <Typography variant="h4">{t('liquidate.users')}</Typography>
       <PriceSlider markets={markets} />
       <div css={styles.liquidityToggleContainer}>
-        <div css={styles.toggleText}>At risk only</div>
+        <div css={styles.toggleText}>{t('liquidate.atRiskOnly')}</div>
         <Toggle
           onChange={() => {
             setIsLiquidityOnly(!isLiquidityOnly);

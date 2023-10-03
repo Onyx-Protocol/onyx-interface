@@ -35,7 +35,9 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props)
   return (
     <div css={styles.cardList}>
       <div css={styles.userList}>
-        {users.length === 0 && loadFinished && <div className="noUsers">No Users</div>}
+        {users.length === 0 && loadFinished && (
+          <div className="noUsers">{t('liquidate.noUsers')}</div>
+        )}
         {users
           .sort((a, b) => b.borrowPercent - a.borrowPercent)
           .map((user, idx: number) => {
@@ -90,7 +92,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props)
                               ?.underlyingSymbol || ''}
                           </div>
                           <div className="supplyAmount">
-                            Supply:{' '}
+                            {t('liquidate.supply')}:{' '}
                             {token.market.underlyingDecimals === 0 &&
                               new BigNumber(token.oTokenBalance)
                                 .times(token.market.exchangeRate)
@@ -108,7 +110,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props)
                           </div>
                           {token.market.underlyingDecimals !== 0 ? (
                             <div className="borrowAmount">
-                              Borrow:
+                              {t('liquidate.borrow')}:
                               {formatCentsToReadableValue({
                                 value: new BigNumber(token.storedBorrowBalance)
                                   .multipliedBy(getTokenPrice(token))
@@ -125,7 +127,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props)
                   <div css={styles.btnWrapper}>
                     <Link to={`/liquidate/${user.id}`}>
                       <div className="button">
-                        {user.borrowPercent >= 100 ? 'Liquidate' : 'View'}
+                        {user.borrowPercent >= 100 ? t('liquidate.liquidate') : t('liquidate.view')}
                       </div>
                     </Link>
                   </div>
@@ -153,7 +155,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props)
                                 ?.underlyingSymbol || ''}
                             </div>
                             <div className="supplyAmount">
-                              Supply:{' '}
+                              {t('liquidate.supply')}:{' '}
                               {token.market.underlyingDecimals === 0 &&
                                 new BigNumber(token.oTokenBalance)
                                   .times(token.market.exchangeRate)
@@ -171,7 +173,7 @@ const CardList = ({ markets = [], users = [], isFetching, loadFinished }: Props)
                             </div>
                             {token.market.underlyingDecimals !== 0 ? (
                               <div className="borrowAmount">
-                                Borrow:
+                                {t('liquidate.borrow')}:
                                 {formatCentsToReadableValue({
                                   value: new BigNumber(token.storedBorrowBalance)
                                     .multipliedBy(getTokenPrice(token))

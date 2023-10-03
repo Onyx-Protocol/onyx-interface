@@ -23,7 +23,7 @@ export const SupplyMarketTable: React.FC<SupplyMarketTableUiProps> = ({
   collateralOnChange,
   rowOnClick,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
   const sharedStyles = useSharedStyles();
 
@@ -39,7 +39,7 @@ export const SupplyMarketTable: React.FC<SupplyMarketTableUiProps> = ({
         align: 'right',
       },
     ],
-    [],
+    [i18n.language],
   );
 
   // Format assets to rows

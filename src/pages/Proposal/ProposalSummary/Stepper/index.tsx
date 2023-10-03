@@ -47,7 +47,7 @@ const Stepper: React.FC<StepperProps> = ({
   state,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const steps = useMemo(
     () => [
@@ -127,7 +127,7 @@ const Stepper: React.FC<StepperProps> = ({
         ),
       },
     ],
-    [createdDate, startDate, cancelDate, queuedDate, executedDate, state, endDate],
+    [createdDate, startDate, cancelDate, queuedDate, executedDate, state, endDate, i18n.language],
   );
   const activeStepIndex = getActiveStepIndex(state);
   return (

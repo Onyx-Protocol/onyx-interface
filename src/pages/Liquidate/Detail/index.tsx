@@ -267,9 +267,9 @@ const LiquidateDetail = ({
                 <table cellPadding={0} cellSpacing={0}>
                   <thead>
                     <tr>
-                      <th>Market</th>
-                      <th>Supply</th>
-                      <th>Borrow</th>
+                      <th>{t('liquidate.market')}</th>
+                      <th>{t('liquidate.supply')}</th>
+                      <th>{t('liquidate.borrow')}</th>
                     </tr>
                   </thead>
                   <tbody>
