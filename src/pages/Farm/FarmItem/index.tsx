@@ -55,7 +55,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   farm,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const {
     data: { assets },
@@ -190,7 +190,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         ),
       },
     ],
-    [farm],
+    [farm, i18n.language],
   );
 
   return (
@@ -206,7 +206,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
               </Typography>
             </div>
             <span css={styles.add_liquidity_btn} onClick={onAddLiquidity}>
-              Add Liquidity
+              {t('farmItem.addLiquidity')}
             </span>
           </div>
 

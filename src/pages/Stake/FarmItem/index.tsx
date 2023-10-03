@@ -62,7 +62,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   earned,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const {
     data: { assets },
@@ -163,7 +163,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         ),
       },
     ],
-    [totalStaked, apy, xcnAsset],
+    [totalStaked, apy, xcnAsset, i18n.language],
   );
 
   return (

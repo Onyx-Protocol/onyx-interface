@@ -27,7 +27,7 @@ export const SuppliedTable: React.FC<SuppliedTableUiProps> = ({
   collateralOnChange,
   rowOnClick,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
   const sharedStyles = useSharedStyles();
 
@@ -43,7 +43,7 @@ export const SuppliedTable: React.FC<SuppliedTableUiProps> = ({
         align: 'right',
       },
     ],
-    [],
+    [i18n.language],
   );
 
   // Format assets to rows

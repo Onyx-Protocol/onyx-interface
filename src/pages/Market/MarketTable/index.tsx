@@ -33,7 +33,7 @@ export interface MarketTableProps extends Pick<TableProps, 'getRowHref'> {
 }
 
 export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const sharedStyles = useSharedStyles();
   const localStyles = useLocalStyles();
 
@@ -65,7 +65,7 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
       },
       { key: 'price', label: t('market.columns.price'), orderable: true, align: 'right' },
     ],
-    [],
+    [i18n.language],
   );
 
   const cardColumns = useMemo(() => {
@@ -204,7 +204,7 @@ export const MarketTableUi: React.FC<MarketTableProps> = ({ markets, getRowHref 
           },
         ];
       }),
-    [JSON.stringify(markets), isXcnEnabled],
+    [JSON.stringify(markets), isXcnEnabled, i18n.language],
   );
 
   const handleXcnToggleChange: ToggleProps['onChange'] = (_event, checked) =>

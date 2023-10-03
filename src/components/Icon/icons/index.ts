@@ -47,3 +47,5 @@ export { default as person } from './person';
 export { default as magnifier } from './magnifier';
 export { default as wpunksOutlined } from './wpunks';
 export { default as stake } from './stake';
+export { default as uk } from './uk';
+export { default as turkey } from './turkey';

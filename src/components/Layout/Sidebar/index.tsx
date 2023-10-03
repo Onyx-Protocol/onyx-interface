@@ -17,6 +17,7 @@ import { ThemeContext } from 'context/ThemeContext';
 import { Icon } from '../../Icon';
 import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
 import ConnectButton from '../ConnectButton';
+import LanguageSwitch from '../Header/LanguageSwitch';
 import { Toolbar } from '../Toolbar';
 import { menuItems } from '../constants';
 import Link from './Link';
@@ -43,17 +44,19 @@ export const SidebarUi: React.FC = () => {
       <Drawer variant="permanent" css={styles.drawer}>
         <div css={styles.drawerContent}>
           <Toolbar css={styles.toolbar}>
-            {mode === 'dark' ? (
-              <>
-                <LogoDesktop css={styles.logo} />
-                <LogoNoText css={styles.logoClosed} />
-              </>
-            ) : (
-              <>
-                <LogoDesktopB css={styles.logo} />
-                <LogoNoTextB css={styles.logoClosed} />
-              </>
-            )}
+            <Link href="/">
+              {mode === 'dark' ? (
+                <>
+                  <LogoDesktop css={styles.logo} />
+                  <LogoNoText css={styles.logoClosed} />
+                </>
+              ) : (
+                <>
+                  <LogoDesktopB css={styles.logo} />
+                  <LogoNoTextB css={styles.logoClosed} />
+                </>
+              )}
+            </Link>
           </Toolbar>
 
           <List>
@@ -162,6 +165,7 @@ export const SidebarUi: React.FC = () => {
           </List>
 
           <ClaimXcnRewardButton css={styles.claimXcnRewardButton} />
+          <LanguageSwitch />
         </Menu>
       </div>
     </>

@@ -52,6 +52,7 @@
     "ethers": "^5.0.17",
     "formik": "^2.2.9",
     "i18next": "^21.6.15",
+    "i18next-browser-languagedetector": "^7.1.0",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "noop-ts": "^1.0.3",

@@ -24,7 +24,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
   offset,
   isFetching,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
 
   const columns = useMemo(
@@ -49,7 +49,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
         align: 'right',
       },
     ],
-    [],
+    [i18n.language],
   );
 
   const cardColumns = useMemo(() => {
@@ -115,7 +115,7 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
           align: 'right',
         },
       ]),
-    [JSON.stringify(voterAccounts)],
+    [JSON.stringify(voterAccounts), i18n.language],
   );
 
   return (

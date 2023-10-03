@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js';
 // import { Toggle, ToggleProps } from 'components';
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'translation';
 import { Asset } from 'types';
 
 import { useGetUserMarketInfo } from 'clients/api';
@@ -31,6 +32,7 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
   userTotalBorrowBalanceCents,
   userTotalSupplyBalanceCents,
 }) => {
+  const { t } = useTranslation();
   const styles = useStyles();
   const [isXcnEnabled, setIsXcnEnabled] = React.useState(true);
   // const [isInUsdEnabled, setIsInUsdEnabled] = React.useState(true);
@@ -71,15 +73,13 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
       <Paper css={styles.notification}>
         <Icon css={styles.infoIcon} name="info" />
         <div>
-          Onyx has launched a promotional Gas-Free campaign to celebrate the launch of Onyx
-          Protocol. Users will receive their entire ETH used for gas back every week. For more
-          information{' '}
+          {t('gasFreeCampaign.onyxHasLaunchedGasFreeCampaign')}{' '}
           <a
             href="https://blog.onyx.org/onyx-gas-refund-program-54fbd287d4c0"
             target="_blank"
             rel="noreferrer"
           >
-            see the announcement.
+            {t('gasFreeCampaign.seeTheAnnouncement')}.
           </a>
         </div>
       </Paper>

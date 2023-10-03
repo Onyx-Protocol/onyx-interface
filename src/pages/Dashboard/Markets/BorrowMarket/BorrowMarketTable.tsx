@@ -22,7 +22,7 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
   isXcnEnabled,
   rowOnClick,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
   const sharedStyles = useSharedStyles();
 
@@ -33,7 +33,7 @@ const BorrowMarketTable: React.FC<BorrowMarketTableProps> = ({
       { key: 'wallet', label: t('markets.columns.wallet'), orderable: true, align: 'right' },
       { key: 'liquidity', label: t('markets.columns.liquidity'), orderable: true, align: 'right' },
     ],
-    [],
+    [i18n.language],
   );
 
   // Format assets to rows
