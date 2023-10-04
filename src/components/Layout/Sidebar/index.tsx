@@ -44,19 +44,17 @@ export const SidebarUi: React.FC = () => {
       <Drawer variant="permanent" css={styles.drawer}>
         <div css={styles.drawerContent}>
           <Toolbar css={styles.toolbar}>
-            <Link href="/">
-              {mode === 'dark' ? (
-                <>
-                  <LogoDesktop css={styles.logo} />
-                  <LogoNoText css={styles.logoClosed} />
-                </>
-              ) : (
-                <>
-                  <LogoDesktopB css={styles.logo} />
-                  <LogoNoTextB css={styles.logoClosed} />
-                </>
-              )}
-            </Link>
+            {mode === 'dark' ? (
+              <>
+                <LogoDesktop css={styles.logo} />
+                <LogoNoText css={styles.logoClosed} />
+              </>
+            ) : (
+              <>
+                <LogoDesktopB css={styles.logo} />
+                <LogoNoTextB css={styles.logoClosed} />
+              </>
+            )}
           </Toolbar>
 
           <List>
