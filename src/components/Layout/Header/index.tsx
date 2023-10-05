@@ -6,7 +6,6 @@ import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
 import ConnectButton from '../ConnectButton';
 import { Toolbar } from '../Toolbar';
 // import ThemeSwitch from './ThemeSwitch';
-import LanguageSwitch from './LanguageSwitch';
 import Title from './Title';
 import { useStyles } from './styles';
 
@@ -22,7 +21,6 @@ const Header: React.FC = () => {
           <ClaimXcnRewardButton />
 
           {/* <ThemeSwitch /> */}
-          <LanguageSwitch />
           <ConnectButton />
         </div>
       </Toolbar>

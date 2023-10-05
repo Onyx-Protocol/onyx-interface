@@ -10,6 +10,26 @@ export const useStyles = () => {
       padding: 0 ${theme.spacing(10)};
       background-color: var(--color-bg-main);
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      ${theme.breakpoints.down('lg')} {
+        padding: 0 ${theme.spacing(6)};
+      }
+
+      ${theme.breakpoints.down('md')} {
+        padding: 0 ${theme.spacing(4)};
+        justify-content: space-between;
+        width: 100%;
+      }
+    `,
+    languageSwitch: css`
+      ${theme.breakpoints.down('md')} {
+        display: none;
+      }
+    `,
+    rightContainer: css`
+      display: flex;
       justify-content: flex-end;
       align-items: center;
 
@@ -20,6 +40,7 @@ export const useStyles = () => {
       ${theme.breakpoints.down('md')} {
         padding: 0 ${theme.spacing(4)};
         justify-content: space-between;
+        width: 100%;
       }
     `,
     blockInfo: css`
