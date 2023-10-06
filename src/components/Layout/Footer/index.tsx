@@ -31,57 +31,55 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
 
   return (
     <div css={styles.container}>
-      <div css={styles.languageSwitch}>
-        <LanguageSwitch />
+      {!!currentBlockNumber && (
+        <Typography
+          component="a"
+          variant="small2"
+          css={styles.blockInfo}
+          href={config.ethScanUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t('footer.latestNumber')}
+          <br css={styles.blockInfoMobileLineBreak} />
+          <span css={styles.blockInfoNumber}>{currentBlockNumber}</span>
+        </Typography>
+      )}
+
+      <div css={styles.links}>
+        <a
+          css={styles.link}
+          href={generateEthScanUrl(tokenAddresses.xcn[config.chainId])}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon name="xcn" color={styles.theme.palette.text.primary} size="12px" />
+        </a>
+
+        <a css={styles.link} href={XCN_MEDIUM_URL} target="_blank" rel="noreferrer">
+          <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
+        </a>
+
+        <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
+          <img src={discordImg} alt="discord" width="20px" height="20px" />
+          {/* <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" /> */}
+        </a>
+
+        <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
+          <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
+        </a>
+
+        <a css={styles.link} href={XCN_TWITTER_URL} target="_blank" rel="noreferrer">
+          <Icon name="twitter" color={styles.theme.palette.text.primary} size="12px" />
+        </a>
+
+        <a css={styles.link} href={XCN_GITHUB_URL} target="_blank" rel="noreferrer">
+          <Icon name="github" color={styles.theme.palette.text.primary} size="12px" />
+        </a>
       </div>
 
-      <div css={styles.rightContainer}>
-        {!!currentBlockNumber && (
-          <Typography
-            component="a"
-            variant="small2"
-            css={styles.blockInfo}
-            href={config.ethScanUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {t('footer.latestNumber')}
-            <br css={styles.blockInfoMobileLineBreak} />
-            <span css={styles.blockInfoNumber}>{currentBlockNumber}</span>
-          </Typography>
-        )}
-
-        <div css={styles.links}>
-          <a
-            css={styles.link}
-            href={generateEthScanUrl(tokenAddresses.xcn[config.chainId])}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Icon name="xcn" color={styles.theme.palette.text.primary} size="12px" />
-          </a>
-
-          <a css={styles.link} href={XCN_MEDIUM_URL} target="_blank" rel="noreferrer">
-            <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
-          </a>
-
-          <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
-            <img src={discordImg} alt="discord" width="20px" height="20px" />
-            {/* <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" /> */}
-          </a>
-
-          <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
-            <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
-          </a>
-
-          <a css={styles.link} href={XCN_TWITTER_URL} target="_blank" rel="noreferrer">
-            <Icon name="twitter" color={styles.theme.palette.text.primary} size="12px" />
-          </a>
-
-          <a css={styles.link} href={XCN_GITHUB_URL} target="_blank" rel="noreferrer">
-            <Icon name="github" color={styles.theme.palette.text.primary} size="12px" />
-          </a>
-        </div>
+      <div css={styles.languageSwitch}>
+        <LanguageSwitch />
       </div>
     </div>
   );
