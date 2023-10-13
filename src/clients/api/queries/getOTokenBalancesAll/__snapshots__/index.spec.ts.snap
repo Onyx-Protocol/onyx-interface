@@ -7,9 +7,9 @@ Object {
       "balanceOf": "10000",
       "balanceOfUnderlying": "20000",
       "borrowBalanceCurrent": "300",
+      "oToken": "0x3d759121234cd36F8124C21aFe1c6852d2bEd848",
       "tokenAllowance": "40000000000000000",
       "tokenBalance": "5000",
-      "oToken": "0x3d759121234cd36F8124C21aFe1c6852d2bEd848",
     },
   ],
 }
