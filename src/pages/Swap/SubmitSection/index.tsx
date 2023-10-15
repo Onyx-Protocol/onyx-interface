@@ -42,7 +42,7 @@ const SubmitSectionUi: React.FC<SubmitSectionUiProps> = ({
   disabled = false,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const submitButtonLabel = useMemo(() => {
     if (formErrors[0] === 'WRAPPING_UNSUPPORTED') {
@@ -89,7 +89,7 @@ const SubmitSectionUi: React.FC<SubmitSectionUiProps> = ({
     }
 
     return t('swapPage.submitButton.processing');
-  }, [swap, swapError, formErrors[0], isFormValid]);
+  }, [swap, swapError, formErrors[0], isFormValid, i18n.language]);
 
   const handleEnableFromToken = async () => {
     try {

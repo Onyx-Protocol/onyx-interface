@@ -20,6 +20,13 @@ export const useStyles = () => {
       ${theme.breakpoints.down('md')} {
         padding: 0 ${theme.spacing(4)};
         justify-content: space-between;
+        width: 100%;
+      }
+    `,
+    languageSwitch: css`
+      margin-left: ${theme.spacing(2)};
+      ${theme.breakpoints.down('md')} {
+        display: none;
       }
     `,
     blockInfo: css`

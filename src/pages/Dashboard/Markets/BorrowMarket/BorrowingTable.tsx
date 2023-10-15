@@ -27,7 +27,7 @@ const BorrowingTable: React.FC<BorrowingUiProps> = ({
   userTotalBorrowLimitCents,
   rowOnClick,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const sharedStyles = useSharedStyles();
   const localStyles = useLocalStyles();
   const styles = { ...sharedStyles, ...localStyles };
@@ -44,7 +44,7 @@ const BorrowingTable: React.FC<BorrowingUiProps> = ({
         align: 'right',
       },
     ],
-    [],
+    [i18n.language],
   );
 
   // Format assets to rows

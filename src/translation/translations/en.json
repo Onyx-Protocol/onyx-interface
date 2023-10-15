@@ -634,7 +634,8 @@
     },
     "totalStaked": "Total Staked",
     "withdrawButton": "Withdraw",
-    "youAreStaking": "You are staking"
+    "youAreStaking": "You are staking",
+    "addLiquidity": "Add Liquidity"
   },
   "vote": {
     "abstain": "Abstain",
@@ -902,7 +903,14 @@
   "liquidate": {
     "users": "Users",
     "userAddress": "User Address",
-    "tokenList": "Token list"
+    "tokenList": "Token list",
+    "supply": "Supply",
+    "borrow": "Borrow",
+    "view": "View",
+    "liquidate": "Liquidate",
+    "atRiskOnly": "At risk only",
+    "market": "Market",
+    "noUsers": "No Users"
   },
   "stakeWithdraw": {
     "enterValidAmountStake": "Enter a valid amount to supply",
@@ -921,5 +929,13 @@
     "walletBalance": "Wallet balance: <White>{{amount}}</White>",
     "withdraw": "Withdraw",
     "withdrawableAmount": "Withdrawable amount: <White>{{amount}}</White>"
+  },
+  "languageSwitch": {
+    "english": "English",
+    "turkish": "Türkçe"
+  },
+  "gasFreeCampaign": {
+    "onyxHasLaunchedGasFreeCampaign": "Onyx has launched a promotional Gas-Free campaign to celebrate the launch of Onyx Protocol. Users will receive their entire ETH used for gas back every week. For more information",
+    "seeTheAnnouncement": "see the announcement"
   }
 }

@@ -23,14 +23,14 @@ export const Transactions: React.FC<TransactionsProps> = ({
   voterTransactions = [],
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const columns = useMemo(
     () => [
       { key: 'action', label: t('voterDetail.actions'), orderable: false, align: 'left' },
       { key: 'sent', label: t('voterDetail.sent'), orderable: false, align: 'left' },
       { key: 'amount', label: t('voterDetail.amount'), orderable: false, align: 'right' },
     ],
-    [],
+    [i18n.language],
   );
 
   const rows: TableProps['data'] = useMemo(
@@ -122,7 +122,7 @@ export const Transactions: React.FC<TransactionsProps> = ({
           },
         ];
       }),
-    [JSON.stringify(voterTransactions)],
+    [JSON.stringify(voterTransactions), i18n.language],
   );
 
   return (

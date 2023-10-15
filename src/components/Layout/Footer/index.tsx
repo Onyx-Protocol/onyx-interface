@@ -11,6 +11,7 @@ import { useGetBlockNumber } from 'clients/api';
 import { Icon } from 'components/Icon';
 import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
+import LanguageSwitch from '../Header/LanguageSwitch';
 import {
   XCN_DISCORD_URL,
   XCN_GITHUB_URL,
@@ -75,6 +76,10 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
         <a css={styles.link} href={XCN_GITHUB_URL} target="_blank" rel="noreferrer">
           <Icon name="github" color={styles.theme.palette.text.primary} size="12px" />
         </a>
+      </div>
+
+      <div css={styles.languageSwitch}>
+        <LanguageSwitch />
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ export const ActiveVotingProgress: React.FC<ActiveVotingProgressProps> = ({
   votedTotalWei,
 }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const defaultProgressbarProps = {
     step: 1,
@@ -89,7 +89,7 @@ export const ActiveVotingProgress: React.FC<ActiveVotingProgressProps> = ({
       //   },
       // },
     ],
-    [votedForWei, votedAgainstWei, themeMode],
+    [votedForWei, votedAgainstWei, themeMode, i18n.language],
   );
 
   return (

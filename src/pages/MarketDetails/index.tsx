@@ -87,7 +87,7 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
   borrowChartData,
   interestRateChartData,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
 
   const token = unsafelyGetToken(oTokenId);
@@ -111,7 +111,12 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
         value: formatToReadablePercentage(supplyDistributionApyPercentage),
       },
     ],
-    [totalSupplyBalanceCents?.toFixed(), supplyApyPercentage, supplyDistributionApyPercentage],
+    [
+      totalSupplyBalanceCents?.toFixed(),
+      supplyApyPercentage,
+      supplyDistributionApyPercentage,
+      i18n.language,
+    ],
   );
 
   const supplyInfoLegends: CardProps['legends'] = [
@@ -141,7 +146,12 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
         value: formatToReadablePercentage(borrowDistributionApyPercentage),
       },
     ],
-    [totalBorrowBalanceCents?.toFixed(), borrowApyPercentage, borrowDistributionApyPercentage],
+    [
+      totalBorrowBalanceCents?.toFixed(),
+      borrowApyPercentage,
+      borrowDistributionApyPercentage,
+      i18n.language,
+    ],
   );
 
   const borrowInfoLegends: CardProps['legends'] = [
@@ -288,6 +298,7 @@ export const MarketDetailsUi: React.FC<MarketDetailsUiProps> = ({
       collateralFactor?.toFixed(),
       mintedTokens?.toFixed(),
       exchangeRateOTokens?.toFixed(),
+      i18n.language,
     ],
   );
 

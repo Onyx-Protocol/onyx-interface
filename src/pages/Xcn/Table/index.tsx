@@ -24,7 +24,7 @@ interface XcnTableProps {
 }
 
 const XcnTableUi: React.FC<XcnTableProps> = ({ assets }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
 
   const columns = useMemo(
@@ -44,7 +44,7 @@ const XcnTableUi: React.FC<XcnTableProps> = ({ assets }) => {
         align: 'right',
       },
     ],
-    [],
+    [i18n.language],
   );
 
   // Format assets to rows

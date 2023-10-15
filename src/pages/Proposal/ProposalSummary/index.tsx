@@ -57,7 +57,7 @@ export const ProposalSummaryUi: React.FC<
 }) => {
   const web3 = useWeb3();
   const styles = useStyles();
-  const { t, Trans } = useTranslation();
+  const { t, Trans, i18n } = useTranslation();
   const handleTransactionMutation = useHandleTransactionMutation();
   const [startDate, setStartDate] = useState<Date | undefined>();
   const [endDate, setEndDate] = useState<Date | undefined>();
@@ -208,7 +208,7 @@ export const ProposalSummaryUi: React.FC<
         i18nKey: 'voteProposalUi.timeUntilExecutable',
       };
     }
-  }, [state, proposalEta?.getTime(), endBlock, startBlock, startDate]);
+  }, [state, proposalEta?.getTime(), endBlock, startBlock, startDate, i18n.language]);
 
   return (
     <Paper css={styles.root} className={className}>

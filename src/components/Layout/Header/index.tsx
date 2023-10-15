@@ -18,7 +18,7 @@ const Header: React.FC = () => {
         <Title />
 
         <div css={styles.ctaContainer}>
-          <ClaimXcnRewardButton css={styles.claimXcnButton} />
+          <ClaimXcnRewardButton />
 
           {/* <ThemeSwitch /> */}
           <ConnectButton />

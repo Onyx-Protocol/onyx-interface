@@ -48,7 +48,7 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
   executedDate,
 }) => {
   const styles = useStyles();
-  const { t, Trans } = useTranslation();
+  const { t, Trans, i18n } = useTranslation();
   const voteChipText = useMemo(() => {
     switch (userVoteStatus) {
       case 'FOR':
@@ -60,7 +60,7 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
       default:
         return <Typography variant="small2">{t('voteProposalUi.voteStatus.notVoted')}</Typography>;
     }
-  }, [userVoteStatus]);
+  }, [userVoteStatus, i18n.language]);
 
   const votedTotalWei = BigNumber.sum.apply(null, [forVotesWei || 0, againstVotesWei || 0]);
 
@@ -159,7 +159,7 @@ const VoterProposal: React.FC<VoterProposalProps> = ({
       default:
         return [];
     }
-  }, [proposalState]);
+  }, [proposalState, i18n.language]);
 
   return (
     <ProposalCard

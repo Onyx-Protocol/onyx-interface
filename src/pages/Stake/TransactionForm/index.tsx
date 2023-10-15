@@ -58,7 +58,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
   increaseAllowanceButtonLabel,
 }) => {
   const { account } = React.useContext(AuthContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
 
   const handleTransactionMutation = useHandleTransactionMutation();
@@ -107,7 +107,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
     const unlockingDate = new Date(now.getTime() + lockingPeriodMs);
 
     return t('vault.transactionForm.lockingPeriod.duration', { date: unlockingDate });
-  }, [lockingPeriodMs?.toFixed()]);
+  }, [lockingPeriodMs?.toFixed(), i18n.language]);
 
   React.useEffect(() => {
     if (spenderAddress && amount !== '' && getTokenAllowanceData) {

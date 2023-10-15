@@ -25,9 +25,6 @@ export const useStyles = () => {
         padding: ${theme.spacing(6, 4, 0)} !important;
       }
     `,
-    claimXcnButton: css`
-      margin-right: ${theme.spacing(6)};
-    `,
     ctaContainer: css`
       display: flex;
       align-items: center;

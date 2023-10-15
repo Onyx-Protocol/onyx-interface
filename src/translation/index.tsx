@@ -1,6 +1,7 @@
 import { format as formatDate, formatDistanceToNowStrict, isDate } from 'date-fns';
-import { enUS } from 'date-fns/locale';
+import { enUS, tr } from 'date-fns/locale';
 import i18next, { TFunctionKeys } from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 import React from 'react';
 import {
   Trans as I18NextTrans,
@@ -10,33 +11,47 @@ import {
 } from 'react-i18next';
 
 import EnLocales from './translations/en.json';
+import TrLocales from './translations/tr.json';
+
+export const I18N_LOCALSTORAGE_KEY = 'i18nextLng';
 
 const init = () => {
-  i18next.use(initReactI18next).init({
-    resources: {
-      en: {
-        translation: EnLocales,
+  i18next
+    .use(initReactI18next)
+    .use(LanguageDetector)
+    .init({
+      detection: {
+        order: ['localStorage'],
+        lookupLocalStorage: I18N_LOCALSTORAGE_KEY,
       },
-    },
-    lng: 'en', // We only support English for now, but we'll need to detect the user's locale once we support more languages
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-      format: (value, format, lng) => {
-        const locales = { en: enUS };
+      resources: {
+        en: {
+          translation: EnLocales,
+        },
+        tr: {
+          translation: TrLocales,
+        },
+      },
+      // lng: 'en',
+      fallbackLng: 'en',
+      interpolation: {
+        escapeValue: false,
+        format: (value, format, lng) => {
+          const locales = { en: enUS, tr };
 
-        if (isDate(value)) {
-          const locale = lng && lng in locales ? locales[lng as keyof typeof locales] : locales.en;
-          if (format === 'distanceToNow') {
-            return formatDistanceToNowStrict(value, { locale });
+          if (isDate(value)) {
+            const locale =
+              lng && lng in locales ? locales[lng as keyof typeof locales] : locales.en;
+            if (format === 'distanceToNow') {
+              return formatDistanceToNowStrict(value, { locale });
+            }
+
+            return formatDate(value, format || 'dd MMM yyyy HH:mm a', { locale });
           }
-
-          return formatDate(value, format || 'dd MMM yyyy HH:mm a', { locale });
-        }
-        return value;
+          return value;
+        },
       },
-    },
-  });
+    });
   i18next.loadNamespaces('errors');
   return i18next;
 };
@@ -46,7 +61,7 @@ interface TransProps extends Omit<I18NextTransProps<'t'>, 't' | 'i18nKey'> {
 }
 
 export const useTranslation = () => {
-  const { t } = useI18NextTranslation();
+  const { t, i18n } = useI18NextTranslation();
 
   const Trans: React.FC<TransProps> = ({ children, ...otherProps }) => (
     <I18NextTrans t={t} {...otherProps}>
@@ -57,6 +72,7 @@ export const useTranslation = () => {
   return {
     t,
     Trans,
+    i18n,
   };
 };
 

@@ -23,7 +23,7 @@ export interface HistoryTableProps {
 }
 
 export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFetching }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = useStyles();
 
   const columns = useMemo(
@@ -37,7 +37,7 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
       { key: 'asset', label: t('history.columns.asset'), orderable: true, align: 'left' },
       { key: 'created', label: t('history.columns.created'), orderable: true, align: 'right' },
     ],
-    [],
+    [i18n.language],
   );
 
   const cardColumns = useMemo(() => {
@@ -208,7 +208,7 @@ export const HistoryTableUi: React.FC<HistoryTableProps> = ({ historyItems, isFe
           },
         ];
       }),
-    [JSON.stringify(historyItems)],
+    [JSON.stringify(historyItems), i18n.language],
   );
 
   return (

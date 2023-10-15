@@ -17,6 +17,7 @@ import { ThemeContext } from 'context/ThemeContext';
 import { Icon } from '../../Icon';
 import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
 import ConnectButton from '../ConnectButton';
+import LanguageSwitch from '../Header/LanguageSwitch';
 import { Toolbar } from '../Toolbar';
 import { menuItems } from '../constants';
 import Link from './Link';
@@ -162,6 +163,7 @@ export const SidebarUi: React.FC = () => {
           </List>
 
           <ClaimXcnRewardButton css={styles.claimXcnRewardButton} />
+          <LanguageSwitch />
         </Menu>
       </div>
     </>

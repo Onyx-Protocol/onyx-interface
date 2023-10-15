@@ -27,7 +27,7 @@ interface StateCard {
 
 const StatusCard: React.FC<StateCard> = ({ state }) => {
   const styles = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const statusContent: Record<
     Exclude<ProposalState, 'Active'>,
@@ -76,7 +76,7 @@ const StatusCard: React.FC<StateCard> = ({ state }) => {
         label: t('voteProposalUi.statusCard.cancelled'),
       },
     }),
-    [],
+    [i18n.language],
   );
   if (state !== 'Active' && state) {
     return (
@@ -121,7 +121,7 @@ const GovernanceProposalUi: React.FC<GovernanceProposalProps> = ({
   isUserConnected,
 }) => {
   const styles = useStyles();
-  const { t, Trans } = useTranslation();
+  const { t, Trans, i18n } = useTranslation();
 
   const voteStatusText = useMemo(() => {
     switch (userVoteStatus) {
@@ -134,7 +134,7 @@ const GovernanceProposalUi: React.FC<GovernanceProposalProps> = ({
       default:
         return t('voteProposalUi.voteStatus.notVoted');
     }
-  }, [userVoteStatus]);
+  }, [userVoteStatus, i18n.language]);
 
   const votedTotalWei = BigNumber.sum.apply(null, [forVotesWei || 0, againstVotesWei || 0]);
 
