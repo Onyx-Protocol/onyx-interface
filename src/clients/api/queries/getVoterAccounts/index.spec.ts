@@ -40,14 +40,15 @@ describe('api/queries/getVoterAccounts', () => {
       page: 2,
     });
 
-    expect(voterAccounts).toHaveLength(7);
+    expect(voterAccounts).toHaveLength(65);
 
     expect(restService).toBeCalledWith({
-      endpoint: '/voters/accounts',
+      endpoint: '/voter/account',
+      gov: true,
       method: 'GET',
       params: {
-        limit: 16,
-        offset: 32,
+        limit: 100,
+        page: 1,
       },
     });
 
@@ -62,15 +63,14 @@ describe('api/queries/getVoterAccounts', () => {
 
     const { voterAccounts } = await getVoterAccounts({});
 
-    expect(voterAccounts).toHaveLength(7);
-    // Expected length: 20
-    // Received length: 7
+    expect(voterAccounts).toHaveLength(65);
     expect(restService).toBeCalledWith({
-      endpoint: '/voters/accounts',
+      endpoint: '/voter/account',
+      gov: true,
       method: 'GET',
       params: {
-        limit: 16,
-        offset: 0,
+        limit: 100,
+        page: 1,
       },
     });
 

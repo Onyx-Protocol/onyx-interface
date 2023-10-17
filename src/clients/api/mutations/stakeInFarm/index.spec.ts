@@ -99,7 +99,7 @@ describe('api/mutation/stakeInFarm', () => {
 
     expect(response).toBe(fakeTransactionReceipt);
     expect(depositMock).toHaveBeenCalledTimes(1);
-    expect(depositMock).toHaveBeenCalledWith(fakeAmountWei.toFixed());
+    expect(depositMock).toHaveBeenCalledWith(0, fakeAmountWei.toFixed());
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledWith({ from: fakeFromAccountsAddress });
   });

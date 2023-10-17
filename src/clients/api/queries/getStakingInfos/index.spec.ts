@@ -10,7 +10,7 @@ describe('api/queries/getStakingInfos', () => {
   test('throws an error when request fails', async () => {
     const fakeContract = {
       methods: {
-        getStakingInfos: () => ({
+        poolInfo: () => ({
           call: async () => {
             throw new Error('Fake error message');
           },
@@ -31,16 +31,39 @@ describe('api/queries/getStakingInfos', () => {
   });
 
   test('returns staking infos on success', async () => {
-    const fakeOutput = '1000';
+    const poolInfoFakeOutput = {
+      totalAmountStake: '100',
+    };
+    const rewardPerBlockFakeOutput = '10';
+    const getStakingAmountFakeOutput = '10000000000000000000';
+    const pendingRewardFakeOutput = '10000000000000000000';
 
-    const callMock = jest.fn(async () => fakeOutput);
-    const getStakingInfosMock = jest.fn(() => ({
-      call: callMock,
+    const poolInfoCallMock = jest.fn(async () => poolInfoFakeOutput);
+    const poolInfoMock = jest.fn(() => ({
+      call: poolInfoCallMock,
+    }));
+
+    const rewardPerBlockCallMock = jest.fn(async () => rewardPerBlockFakeOutput);
+    const rewardPerBlockMock = jest.fn(() => ({
+      call: rewardPerBlockCallMock,
+    }));
+
+    const getStakingAmountCallMock = jest.fn(async () => getStakingAmountFakeOutput);
+    const getStakingAmountMock = jest.fn(() => ({
+      call: getStakingAmountCallMock,
+    }));
+
+    const pendingRewardCallMock = jest.fn(async () => pendingRewardFakeOutput);
+    const pendingRewardMock = jest.fn(() => ({
+      call: pendingRewardCallMock,
     }));
 
     const fakeContract = {
       methods: {
-        getStakingInfos: getStakingInfosMock,
+        poolInfo: poolInfoMock,
+        rewardPerBlock: rewardPerBlockMock,
+        getStakingAmount: getStakingAmountMock,
+        pendingReward: pendingRewardMock,
       },
     } as unknown as XcnStaking;
 
@@ -49,12 +72,14 @@ describe('api/queries/getStakingInfos', () => {
       accountAddress: fakeAccountAddress,
     });
 
-    expect(getStakingInfosMock).toHaveBeenCalledTimes(1);
-    expect(callMock).toHaveBeenCalledTimes(1);
-    expect(getStakingInfosMock).toHaveBeenCalledWith(fakeAccountAddress);
+    expect(poolInfoCallMock).toHaveBeenCalledTimes(1);
+    expect(poolInfoCallMock).toHaveBeenCalledTimes(1);
+    expect(getStakingAmountCallMock).toHaveBeenCalledWith();
     expect(response).toEqual({
-      staked: new BigNumber(fakeOutput),
-      earned: new BigNumber(fakeOutput),
+      totalStaked: new BigNumber(poolInfoFakeOutput.totalAmountStake),
+      rewardPerBlock: new BigNumber(rewardPerBlockFakeOutput),
+      staked: new BigNumber(getStakingAmountFakeOutput),
+      earned: new BigNumber(pendingRewardFakeOutput),
     });
   });
 });

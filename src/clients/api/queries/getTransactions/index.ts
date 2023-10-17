@@ -66,7 +66,6 @@ const getTransactions = async ({
     });
   }
 
-  // console.log('ZZZ', payload);
   if (!payload) {
     throw new VError({ type: 'unexpected', code: 'somethingWentWrongRetrievingTransactions' });
   }

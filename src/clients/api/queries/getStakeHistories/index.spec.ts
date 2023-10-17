@@ -45,12 +45,13 @@ describe('api/queries/getProposals', () => {
     });
 
     expect(restService).toBeCalledWith({
-      endpoint: '/proposals',
+      endpoint: '/staking/history',
+      gov: true,
       method: 'GET',
       params: {
+        address: '0x0000000000000000000000000000000000000000',
         limit: 10,
-        offset: 20,
-        version: 'v2',
+        page: 3,
       },
     });
 
@@ -68,12 +69,13 @@ describe('api/queries/getProposals', () => {
     });
 
     expect(restService).toBeCalledWith({
-      endpoint: '/proposals',
+      endpoint: '/staking/history',
+      gov: true,
       method: 'GET',
       params: {
-        limit: 5,
-        offset: 0,
-        version: 'v2',
+        address: '0x0000000000000000000000000000000000000000',
+        limit: 6,
+        page: 2,
       },
     });
 

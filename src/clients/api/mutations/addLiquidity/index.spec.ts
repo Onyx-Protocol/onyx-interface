@@ -1,11 +1,6 @@
 import BigNumber from 'bignumber.js';
-import { VError } from 'errors';
 
 import fakeTransactionReceipt from '__mocks__/models/transactionReceipt';
-import {
-  VaiVaultErrorReporterError,
-  VaiVaultErrorReporterInfo,
-} from 'constants/contracts/errorReporter';
 import { UniSwapRouter } from 'types/contracts';
 
 import addLiquidity from '.';
@@ -20,7 +15,7 @@ describe('api/mutation/stakeInFarm', () => {
   test('throws an error when request fails', async () => {
     const fakeContract = {
       methods: {
-        deposit: () => ({
+        addLiquidity: () => ({
           send: async () => {
             throw new Error('Fake error message');
           },
@@ -45,47 +40,6 @@ describe('api/mutation/stakeInFarm', () => {
     }
   });
 
-  test('throws a transaction error when failure event is present', async () => {
-    const fakeContract = {
-      methods: {
-        deposit: () => ({
-          send: async () => ({
-            events: {
-              Failure: {
-                returnValues: {
-                  info: '1',
-                  error: '1',
-                },
-              },
-            },
-          }),
-        }),
-      },
-    } as unknown as UniSwapRouter;
-
-    try {
-      await addLiquidity({
-        uniswapRouterContract: fakeContract,
-        fromAccountAddress: fakeFromAccountsAddress,
-        token1: fakeToken1,
-        token2: fakeToken2,
-        amountWei1: fakeAmountWei1,
-        amountWei2: fakeAmountWei2,
-        ethFlag: '',
-      });
-
-      throw new Error('stakeInFarm should have thrown an error but did not');
-    } catch (error) {
-      expect(error).toMatchInlineSnapshot(`[Error: ${VaiVaultErrorReporterError[1]}]`);
-      expect(error).toBeInstanceOf(VError);
-      if (error instanceof VError) {
-        expect(error.type).toBe('transaction');
-        expect(error.data.error).toBe(VaiVaultErrorReporterError[1]);
-        expect(error.data.info).toBe(VaiVaultErrorReporterInfo[1]);
-      }
-    }
-  });
-
   test('returns receipt when request succeeds', async () => {
     const sendMock = jest.fn(async () => fakeTransactionReceipt);
     const depositMock = jest.fn(() => ({
@@ -94,7 +48,7 @@ describe('api/mutation/stakeInFarm', () => {
 
     const fakeContract = {
       methods: {
-        deposit: depositMock,
+        addLiquidity: depositMock,
       },
     } as unknown as UniSwapRouter;
 

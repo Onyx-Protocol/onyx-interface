@@ -38,7 +38,7 @@ describe('api/queries/getDailyXcn', () => {
   test('returns the daily XCN wei on success', async () => {
     const fakeOutAmountWei = '1000';
 
-    const callMock = jest.fn(async () => fakeOutAmountWei);
+    const callMock = jest.fn(async () => [0, fakeOutAmountWei]);
     const getAmountsOutMock = jest.fn(() => ({
       call: callMock,
     }));
@@ -58,7 +58,7 @@ describe('api/queries/getDailyXcn', () => {
     expect(getAmountsOutMock).toHaveBeenCalledTimes(1);
     expect(callMock).toHaveBeenCalledTimes(1);
     expect(response).toEqual({
-      dailyXcnWei: new BigNumber(fakeOutAmountWei),
+      outAmount: new BigNumber(1000),
     });
   });
 });
