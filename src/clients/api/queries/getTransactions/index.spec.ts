@@ -48,14 +48,16 @@ describe('api/queries/getTransactions', () => {
     expect(transactions).toHaveLength(20);
 
     expect(restService).toBeCalledWith({
-      endpoint: '/transactions',
+      endpoint: '/user/history',
       method: 'GET',
       params: {
-        page: 2,
-        event: 'Withdraw',
+        action: 'Withdraw',
+        asset: undefined,
+        limit: 25,
+        offset: 50,
         order: 'event',
-        address: fakeAddress,
         sort: 'asc',
+        user_address: '0x3d759121234cd36F8124C21aFe1c6852d2bEd848',
         version: 'v2',
       },
     });
@@ -74,13 +76,15 @@ describe('api/queries/getTransactions', () => {
     expect(transactions).toHaveLength(20);
 
     expect(restService).toBeCalledWith({
-      endpoint: '/transactions',
+      endpoint: '/user/history',
       method: 'GET',
       params: {
-        page: 0,
-        event: undefined,
+        limit: 25,
+        offset: 0,
+        asset: undefined,
         order: 'blockNumber',
-        address: undefined,
+        action: undefined,
+        user_address: undefined,
         sort: 'desc',
         version: 'v2',
       },

@@ -24,7 +24,7 @@ export interface GetTransactionsInput {
 
 export interface GetTransactionsResponse {
   count: number;
-  rows: TransactionResponse[];
+  result: TransactionResponse[];
 }
 
 export interface GetTransactionsOutput {
@@ -66,11 +66,12 @@ const getTransactions = async ({
     });
   }
 
+  // console.log('ZZZ', payload);
   if (!payload) {
     throw new VError({ type: 'unexpected', code: 'somethingWentWrongRetrievingTransactions' });
   }
   const { count: total } = payload;
-  const transactions = payload.rows.map(data => formatTransaction(data));
+  const transactions = payload.result.map(data => formatTransaction(data));
   return { limit: 25, page, total, transactions };
 };
 

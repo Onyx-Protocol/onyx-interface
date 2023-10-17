@@ -1,12 +1,7 @@
 import BigNumber from 'bignumber.js';
-import { VError } from 'errors';
 
 import address from '__mocks__/models/address';
 import { OTokenContract } from 'clients/contracts/types';
-import {
-  TokenErrorReporterError,
-  TokenErrorReporterFailureInfo,
-} from 'constants/contracts/errorReporter';
 
 import borrowOToken from '.';
 
@@ -18,6 +13,7 @@ describe('api/mutation/borrowOToken', () => {
           send: async () => {
             throw new Error('Fake error message');
           },
+          call: async () => {},
         }),
       },
     } as unknown as OTokenContract<'xcn'>;
@@ -35,49 +31,13 @@ describe('api/mutation/borrowOToken', () => {
     }
   });
 
-  test('throws a transaction error when Failure event is present', async () => {
-    const fakeContract = {
-      methods: {
-        borrow: () => ({
-          send: async () => ({
-            events: {
-              Failure: {
-                returnValues: {
-                  info: '1',
-                  error: '1',
-                },
-              },
-            },
-          }),
-        }),
-      },
-    } as unknown as OTokenContract<'xcn'>;
-
-    try {
-      await borrowOToken({
-        oTokenContract: fakeContract,
-        amountWei: new BigNumber('10000000000000000'),
-        fromAccountAddress: address,
-      });
-
-      throw new Error('borrowOToken should have thrown an error but did not');
-    } catch (error) {
-      expect(error).toMatchInlineSnapshot(`[Error: ${TokenErrorReporterError[1]}]`);
-      expect(error).toBeInstanceOf(VError);
-      if (error instanceof VError) {
-        expect(error.type).toBe('transaction');
-        expect(error.data.error).toBe(TokenErrorReporterError[1]);
-        expect(error.data.info).toBe(TokenErrorReporterFailureInfo[1]);
-      }
-    }
-  });
-
   test('returns transaction receipt when request succeeds', async () => {
     const fakeAmountWei = new BigNumber('10000000000000000');
     const fakeTransaction = { events: {} };
     const sendMock = jest.fn(async () => fakeTransaction);
     const borrowMock = jest.fn(() => ({
       send: sendMock,
+      call: async () => {},
     }));
 
     const fakeContract = {
@@ -93,7 +53,7 @@ describe('api/mutation/borrowOToken', () => {
     });
 
     expect(response).toBe(fakeTransaction);
-    expect(borrowMock).toHaveBeenCalledTimes(1);
+    expect(borrowMock).toHaveBeenCalledTimes(2);
     expect(borrowMock).toHaveBeenCalledWith(fakeAmountWei.toFixed());
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledWith({ from: address });

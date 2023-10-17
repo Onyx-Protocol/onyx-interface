@@ -1,7 +1,7 @@
 const uniSwapRouter = {
   getReserves: {
     results: {
-      '0x58C6Fc654b3deE6839b65136f61cB9120d96BCc6': {
+      '0x46DDC681810Bd07d20B2BA0cdc644050bc35c6DE': {
         originalContractCallContext: {
           reference: '0x58C6Fc654b3deE6839b65136f61cB9120d96BCc6',
           contractAddress: '0x58C6Fc654b3deE6839b65136f61cB9120d96BCc6',
@@ -687,7 +687,7 @@ const uniSwapRouter = {
           },
         ],
       },
-      '0xa96818CA65B57bEc2155Ba5c81a70151f63300CD': {
+      '0x5A27b4966d1dC12CEf244D7Ecaf0e2593Ac91929': {
         originalContractCallContext: {
           reference: '0xa96818CA65B57bEc2155Ba5c81a70151f63300CD',
           contractAddress: '0xa96818CA65B57bEc2155Ba5c81a70151f63300CD',
@@ -1373,7 +1373,7 @@ const uniSwapRouter = {
           },
         ],
       },
-      '0x209eBd953FA5e3fE1375f7Dd0a848A9621e9eaFc': {
+      '0x80aDAD248e5037569771d6ff8a3DceE1cfF9FbDf': {
         originalContractCallContext: {
           reference: '0x209eBd953FA5e3fE1375f7Dd0a848A9621e9eaFc',
           contractAddress: '0x209eBd953FA5e3fE1375f7Dd0a848A9621e9eaFc',
