@@ -31,7 +31,7 @@ describe('api/queries/getVoterDetail', () => {
     }
   });
 
-  test('returns  formatted voter details', async () => {
+  test('returns formatted voter details', async () => {
     (restService as jest.Mock).mockImplementationOnce(async () => ({
       status: 200,
       data: voterDetailsResponse,
@@ -40,8 +40,9 @@ describe('api/queries/getVoterDetail', () => {
     const response = await getVoterDetail({ address: fakeAddress });
 
     expect(restService).toBeCalledWith({
-      endpoint: `/voters/accounts/${fakeAddress}`,
+      endpoint: `/voters/accounts/${fakeAddress}?page=1&limit=100`,
       method: 'GET',
+      gov: true,
     });
 
     expect(response).toMatchSnapshot();

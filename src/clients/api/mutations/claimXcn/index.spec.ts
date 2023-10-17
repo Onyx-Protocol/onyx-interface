@@ -1,5 +1,3 @@
-import { VError } from 'errors';
-
 import { XcnClaim } from 'types/contracts';
 
 import claimXcn from '.';
@@ -8,7 +6,7 @@ describe('api/mutation/claimXcn', () => {
   test('throws an error when request fails', async () => {
     const fakeContract = {
       methods: {
-        claimXcn: () => ({
+        claimReward: () => ({
           send: async () => {
             throw new Error('Fake error message');
           },
@@ -28,39 +26,6 @@ describe('api/mutation/claimXcn', () => {
     }
   });
 
-  test('throws a transaction error when Failure event is present', async () => {
-    const fakeContract = {
-      methods: {
-        claimXcn: () => ({
-          send: async () => ({
-            events: {
-              Failure: {
-                returnValues: {
-                  info: '1',
-                  error: '1',
-                },
-              },
-            },
-          }),
-        }),
-      },
-    } as unknown as XcnClaim;
-
-    try {
-      await claimXcn({
-        xcnClaimContract: fakeContract,
-        accountAddress: '0x32asdf',
-      });
-
-      throw new Error('claimXcn should have thrown an error but did not');
-    } catch (error) {
-      expect(error).toBeInstanceOf(VError);
-      if (error instanceof VError) {
-        expect(error.type).toBe('transaction');
-      }
-    }
-  });
-
   test('returns Receipt when request succeeds', async () => {
     const account = { address: '0x3d7598124C212d2121234cd36aFe1c685FbEd848' };
     const fakeTransactionReceipt = { events: {} };
@@ -71,7 +36,7 @@ describe('api/mutation/claimXcn', () => {
 
     const fakeContract = {
       methods: {
-        claimXcn: claimXcnMock,
+        claimReward: claimXcnMock,
       },
     } as unknown as XcnClaim;
 

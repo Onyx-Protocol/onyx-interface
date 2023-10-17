@@ -8,7 +8,7 @@ describe('api/queries/getStakingApy', () => {
   test('throws an error when request fails', async () => {
     const fakeContract = {
       methods: {
-        getStakingApy: () => ({
+        poolInfo: () => ({
           call: async () => {
             throw new Error('Fake error message');
           },
@@ -28,16 +28,25 @@ describe('api/queries/getStakingApy', () => {
   });
 
   test('returns staking apy on success', async () => {
-    const fakeOutput = '10';
+    const poolInfoFakeOutput = {
+      totalAmountStake: '100',
+    };
+    const rewardPerBlockFakeOutput = '10';
 
-    const callMock = jest.fn(async () => fakeOutput);
-    const getStakingApyMock = jest.fn(() => ({
-      call: callMock,
+    const poolInfoCallMock = jest.fn(async () => poolInfoFakeOutput);
+    const poolInfoMock = jest.fn(() => ({
+      call: poolInfoCallMock,
+    }));
+
+    const rewardPerBlockCallMock = jest.fn(async () => rewardPerBlockFakeOutput);
+    const rewardPerBlockMock = jest.fn(() => ({
+      call: rewardPerBlockCallMock,
     }));
 
     const fakeContract = {
       methods: {
-        getStakingApy: getStakingApyMock,
+        poolInfo: poolInfoMock,
+        rewardPerBlock: rewardPerBlockMock,
       },
     } as unknown as XcnStaking;
 
@@ -45,11 +54,14 @@ describe('api/queries/getStakingApy', () => {
       xcnStakingContract: fakeContract,
     });
 
-    expect(getStakingApyMock).toHaveBeenCalledTimes(1);
-    expect(callMock).toHaveBeenCalledTimes(1);
-    expect(getStakingApyMock).toHaveBeenCalledWith();
+    expect(poolInfoCallMock).toHaveBeenCalledTimes(1);
+    expect(poolInfoCallMock).toHaveBeenCalledTimes(1);
+    expect(poolInfoCallMock).toHaveBeenCalledWith();
     expect(response).toEqual({
-      apy: new BigNumber(fakeOutput),
+      apy: new BigNumber(rewardPerBlockFakeOutput)
+        .times(6400 * 365)
+        .div(new BigNumber(poolInfoFakeOutput.totalAmountStake))
+        .times(100),
     });
   });
 });

@@ -51,7 +51,7 @@ describe('api/mutation/castVote', () => {
 
     expect(response).toBe(fakeTransaction);
     expect(castVoteMock).toHaveBeenCalledTimes(1);
-    expect(castVoteMock).toHaveBeenCalledWith(1, 1);
+    expect(castVoteMock).toHaveBeenCalledWith(1, true);
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledWith({ from: address });
   });
