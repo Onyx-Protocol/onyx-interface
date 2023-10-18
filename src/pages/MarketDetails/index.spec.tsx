@@ -12,7 +12,7 @@ import renderComponent from 'testUtils/renderComponent';
 import MarketDetails from '.';
 import TEST_IDS from './testIds';
 
-const fakeOTokenId = 'aave';
+const fakeOTokenId = 'wbtc';
 
 jest.mock('clients/api');
 
