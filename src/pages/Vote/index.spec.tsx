@@ -28,11 +28,9 @@ jest.mock('hooks/useSuccessfulTransactionModal');
 
 describe('pages/Vote', () => {
   beforeEach(() => {
-    (getProposals as jest.Mock).mockImplementation(() => ({
-      proposals,
-      limit: 10,
+    (getProposals as jest.Mock).mockImplementation(async () => ({
+      proposals: await proposals,
       total: 100,
-      offset: 10,
     }));
     (getLatestProposalIdByProposer as jest.Mock).mockImplementation(() => '1');
 
@@ -221,12 +219,12 @@ describe('pages/Vote', () => {
     const { getAllByTestId } = renderComponent(<Vote />);
     // Getting all because the cards are rendered twice (once for mobile and once for larger screens)
     const firstProposalAnchor = await waitFor(async () =>
-      getAllByTestId(GOVERNANCE_PROPOSAL_TEST_IDS.governanceProposal('98')),
+      getAllByTestId(GOVERNANCE_PROPOSAL_TEST_IDS.governanceProposal('3')),
     );
 
     expect(firstProposalAnchor[0].firstChild).toHaveAttribute(
       'href',
-      PATHS.GOVERNANCE_PROPOSAL_DETAILS.replace(':id', '98'),
+      PATHS.GOVERNANCE_PROPOSAL_DETAILS.replace(':id', '3'),
     );
   });
 });

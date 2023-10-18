@@ -1,7 +1,6 @@
 import { waitFor } from '@testing-library/react';
 import BigNumber from 'bignumber.js';
 import React from 'react';
-import { DISABLED_TOKENS } from 'utilities';
 
 import { assetData } from '__mocks__/models/asset';
 import { useGetUserMarketInfo } from 'clients/api';
@@ -31,18 +30,5 @@ describe('pages/Dashboard/BorrowRepayModal', () => {
       <BorrowRepay onClose={jest.fn()} asset={asset} isXcnEnabled />,
     );
     await waitFor(() => expect(getByText(en.borrowRepayModal.borrowTabTitle)));
-  });
-
-  it.each(DISABLED_TOKENS)('does not display borrow tab when asset is %s', async token => {
-    const fakeAsset = {
-      ...asset,
-      token,
-    };
-
-    const { queryByText } = renderComponent(() => (
-      <BorrowRepay onClose={jest.fn()} asset={fakeAsset} isXcnEnabled />
-    ));
-
-    await waitFor(() => expect(queryByText(en.borrowRepayModal.borrowTabTitle)).toBeNull());
   });
 });

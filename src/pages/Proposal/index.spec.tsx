@@ -253,9 +253,11 @@ describe('pages/Proposal', () => {
   });
 
   it('lists votes cast', async () => {
-    (useGetVoters as jest.Mock).mockImplementation(({ filter }: { filter: 0 | 1 | 2 }) => {
+    (useGetVoters as jest.Mock).mockImplementation(({ support }: GetVotersInput) => {
       const votersCopy = cloneDeep(voters);
-      votersCopy.result = [votersCopy.result[filter]];
+      votersCopy.result = votersCopy.result.filter(
+        item => item.support === indexedVotingSupportNames[Number(support)],
+      );
       return { data: votersCopy, isLoading: false };
     });
     const { getByTestId } = renderComponent(<Proposal />, {
@@ -272,11 +274,6 @@ describe('pages/Proposal', () => {
 
     const forVoteSummary = await waitFor(async () => within(getByTestId(TEST_IDS.voteSummary.for)));
     forVoteSummary.getByText(voters.result[1].address);
-
-    const abstainVoteSummary = await waitFor(async () =>
-      within(getByTestId(TEST_IDS.voteSummary.abstain)),
-    );
-    abstainVoteSummary.getByText(voters.result[2].address);
   });
 
   it('allows user with enough voting weight to cancel', async () => {

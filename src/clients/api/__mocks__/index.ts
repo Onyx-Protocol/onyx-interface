@@ -216,3 +216,11 @@ export const useCastVote = (options?: MutationObserverOptions) =>
 export const swapTokens = jest.fn();
 export const useSwapTokens = (options?: MutationObserverOptions) =>
   useMutation(FunctionKey.SWAP_TOKENS, swapTokens, options);
+
+export const getIsApprovedForAll = jest.fn();
+export const useGetIsApprovedForAll = (options?: MutationObserverOptions) =>
+  useMutation(FunctionKey.GET_NFT_ALLOWANCE, getIsApprovedForAll, options);
+
+export const approveNftForAll = jest.fn();
+export const useApproveNftForAll = (options?: MutationObserverOptions) =>
+  useMutation(FunctionKey.APPROVE_NFT_TOKEN, approveNftForAll, options);
