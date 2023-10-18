@@ -97,6 +97,9 @@ export const useGetUserMarketInfo = jest.fn(() => ({
 export const getCurrentVotes = jest.fn(() => new BigNumber(100000000000000000));
 export const useGetCurrentVotes = () => useQuery(FunctionKey.GET_CURRENT_VOTES, getCurrentVotes);
 
+export const getPriorVotes = jest.fn(() => new BigNumber(100000000000000000));
+export const useGetPriorVotes = () => useQuery(FunctionKey.GET_PRIOR_VOTES, getPriorVotes);
+
 export const getProposals = jest.fn();
 export const useGetProposals = () => useQuery(FunctionKey.GET_PROPOSALS, getProposals);
 

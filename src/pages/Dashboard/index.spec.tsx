@@ -45,9 +45,9 @@ describe('pages/Dashboard', () => {
     // one
     const nonSuppliedTable = getAllByLabelText(en.markets.supplyMarketTableTitle)[0];
     // Supplied tokens in mock data include busd and usdt
-    within(nonSuppliedTable as HTMLTableSectionElement).getByText('BUSD');
+    within(nonSuppliedTable as HTMLTableSectionElement).getByText('WBTC');
     within(nonSuppliedTable as HTMLTableSectionElement).getByText('USDT');
-    expect(within(nonSuppliedTable as HTMLTableSectionElement).queryByText('SXP')).toBeNull();
+    expect(within(nonSuppliedTable as HTMLTableSectionElement).queryByText('XCN')).toBeNull();
     expect(within(nonSuppliedTable as HTMLTableSectionElement).queryByText('USDC')).toBeNull();
   });
 });

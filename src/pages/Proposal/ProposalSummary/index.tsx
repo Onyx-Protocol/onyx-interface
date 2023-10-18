@@ -10,11 +10,11 @@ import type { TransactionReceipt } from 'web3-core';
 import {
   useCancelProposal,
   useExecuteProposal,
+  useGetPriorVotes,
   useGetProposalEta,
   useGetProposalThreshold,
   useQueueProposal,
 } from 'clients/api';
-import useGetPriorVotes from 'clients/api/queries/getPriorVotes/useGetPriorVotes';
 import { useWeb3 } from 'clients/web3';
 import { BLOCK_TIME_MS } from 'constants/ethereum';
 import { AuthContext } from 'context/AuthContext';
@@ -302,6 +302,7 @@ const ProposalSummary: React.FC<ProposalSummaryUiProps> = ({ className, proposal
 
   const canCancelProposal =
     proposalThresholdData?.thresholdWei &&
+    currentVotesData?.priorVotes &&
     currentVotesData?.priorVotes.isGreaterThanOrEqualTo(proposalThresholdData?.thresholdWei);
 
   return (

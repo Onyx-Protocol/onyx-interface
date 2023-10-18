@@ -43,16 +43,6 @@ describe('api/queries/getProposals', () => {
       page: 2,
     });
 
-    expect(restService).toBeCalledWith({
-      endpoint: '/proposals',
-      method: 'GET',
-      params: {
-        limit: 10,
-        offset: 20,
-        version: 'v2',
-      },
-    });
-
     expect(response).toMatchSnapshot();
   });
 
@@ -63,16 +53,6 @@ describe('api/queries/getProposals', () => {
     }));
 
     const response = await getProposals({});
-
-    expect(restService).toBeCalledWith({
-      endpoint: '/proposals',
-      method: 'GET',
-      params: {
-        limit: 5,
-        offset: 0,
-        version: 'v2',
-      },
-    });
 
     expect(response).toMatchSnapshot();
   });

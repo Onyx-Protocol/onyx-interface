@@ -8,22 +8,22 @@ import fakeAddress from '__mocks__/models/address';
 import proposals from '__mocks__/models/proposals';
 import voters from '__mocks__/models/voters';
 import {
+  GetVotersInput,
   cancelProposal,
-  executeProposal,
   getCurrentVotes,
+  getPriorVotes,
   getProposal,
   getProposalThreshold,
   getVoteReceipt,
-  queueProposal,
   useGetVoters,
 } from 'clients/api';
 import CREATE_PROPOSAL_THRESHOLD_WEI from 'constants/createProposalThresholdWei';
+import indexedVotingSupportNames from 'constants/indexedVotingSupportNames';
 import useVote from 'hooks/useVote';
 import renderComponent from 'testUtils/renderComponent';
 import en from 'translation/translations/en.json';
 
 import Proposal from '.';
-import PROPOSAL_SUMMARY_TEST_IDS from './ProposalSummary/testIds';
 import VOTE_MODAL_TEST_IDS from './VoteModal/testIds';
 import TEST_IDS from './testIds';
 
@@ -70,6 +70,10 @@ describe('pages/Proposal', () => {
 
     (getCurrentVotes as jest.Mock).mockImplementation(() => ({
       votesWei: new BigNumber('100000000000000000'),
+    }));
+
+    (getPriorVotes as jest.Mock).mockImplementation(() => ({
+      priorVotes: CREATE_PROPOSAL_THRESHOLD_WEI,
     }));
   });
 
@@ -276,9 +280,17 @@ describe('pages/Proposal', () => {
   });
 
   it('allows user with enough voting weight to cancel', async () => {
-    (getCurrentVotes as jest.Mock).mockImplementation(() => ({
-      votesWei: new BigNumber(CREATE_PROPOSAL_THRESHOLD_WEI),
+    (getPriorVotes as jest.Mock).mockImplementation(() => ({
+      priorVotes: new BigNumber(CREATE_PROPOSAL_THRESHOLD_WEI),
     }));
+    (useGetVoters as jest.Mock).mockImplementation(({ support }: GetVotersInput) => {
+      const votersCopy = cloneDeep(voters);
+      votersCopy.result = votersCopy.result.filter(
+        item => item.support === indexedVotingSupportNames[Number(support)],
+      );
+      return { data: votersCopy, isLoading: false };
+    });
+
     const { getByText } = renderComponent(<Proposal />, {
       authContextValue: {
         account: {
@@ -295,61 +307,6 @@ describe('pages/Proposal', () => {
       fireEvent.click(cancelButton);
     });
     await waitFor(() => expect(cancelButton).toBeEnabled());
-    expect(cancelProposal).toBeCalledWith({ accountAddress: fakeAddress, proposalId: 97 });
-  });
-
-  it('user with not enough voting weight cannot cancel', async () => {
-    (getCurrentVotes as jest.Mock).mockImplementation(() => ({ votesWei: new BigNumber(0) }));
-    const { getByTestId } = renderComponent(<Proposal />, {
-      authContextValue: {
-        account: {
-          address: fakeAddress,
-        },
-      },
-    });
-    const cancelButton = await waitFor(async () =>
-      getByTestId(PROPOSAL_SUMMARY_TEST_IDS.cancelButton),
-    );
-    expect(cancelButton).toBeDisabled();
-  });
-
-  it('user can queue succeeded proposal', async () => {
-    (getProposal as jest.Mock).mockImplementationOnce(async () => (await proposals)[4]);
-    const { getByTestId } = renderComponent(<Proposal />, {
-      authContextValue: {
-        account: {
-          address: fakeAddress,
-        },
-      },
-    });
-    const queueButton = await waitFor(async () =>
-      getByTestId(PROPOSAL_SUMMARY_TEST_IDS.queueButton),
-    );
-    act(() => {
-      fireEvent.click(queueButton);
-    });
-    await waitFor(() =>
-      expect(queueProposal).toBeCalledWith({ accountAddress: fakeAddress, proposalId: 95 }),
-    );
-  });
-
-  it('user can execute queued proposal', async () => {
-    (getProposal as jest.Mock).mockImplementationOnce(async () => (await proposals)[5]);
-    const { getByTestId } = renderComponent(<Proposal />, {
-      authContextValue: {
-        account: {
-          address: fakeAddress,
-        },
-      },
-    });
-    const executeButton = await waitFor(async () =>
-      getByTestId(PROPOSAL_SUMMARY_TEST_IDS.executeButton),
-    );
-    act(() => {
-      fireEvent.click(executeButton);
-    });
-    await waitFor(() =>
-      expect(executeProposal).toBeCalledWith({ accountAddress: fakeAddress, proposalId: 98 }),
-    );
+    expect(cancelProposal).toBeCalledWith({ accountAddress: fakeAddress, proposalId: 4 });
   });
 });

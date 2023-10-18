@@ -206,6 +206,10 @@ export { default as getProposalVotes } from './queries/getProposalVotes';
 export * from './queries/getProposalVotes';
 export { default as useGetProposalVotes } from './queries/getProposalVotes/useGetProposalVotes';
 
+export { default as getPriorVotes } from './queries/getPriorVotes';
+export * from './queries/getPriorVotes';
+export { default as useGetPriorVotes } from './queries/getPriorVotes/useGetPriorVotes';
+
 export * from './queries/getStakeHistories';
 export { default as useGetStakeHistories } from './queries/getStakeHistories/useGetStakeHistories';
 
