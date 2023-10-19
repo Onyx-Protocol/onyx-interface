@@ -8,7 +8,7 @@ import proposalResponse from '../api/proposals.json';
 const proposals = Promise.all(
   proposalResponse.map(p =>
     formatToProposal(p as unknown as ProposalApiResponse, new BigNumber(20000), {
-      latestBlockNumber: 14636679,
+      latestBlockNumber: 4636679,
       latestBlockTimestamp: 1,
     }),
   ),

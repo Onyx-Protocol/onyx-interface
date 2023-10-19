@@ -101,7 +101,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
           fakePair.token1.address !== UNISWAP_TOKENS.usdt.address,
       );
 
-      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(() => ({
         pairs: customFakePairs,
       }));
 
@@ -131,7 +131,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     });
 
     it('returns swap in correct format if a trade is found', async () => {
-      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(() => ({
         pairs: fakePairs,
       }));
 
@@ -183,7 +183,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     });
 
     it('returns an error if no trade is found for the input provided', async () => {
-      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({ pairs: fakePairs }));
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(() => ({ pairs: fakePairs }));
 
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
@@ -211,7 +211,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     });
 
     it('returns swap in correct format if a trade is found', async () => {
-      (getUniSwapPairs as jest.Mock).mockImplementationOnce(async () => ({
+      (getUniSwapPairs as jest.Mock).mockImplementationOnce(() => ({
         pairs: fakePairs,
       }));
 

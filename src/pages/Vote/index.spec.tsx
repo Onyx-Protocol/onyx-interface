@@ -224,7 +224,7 @@ describe('pages/Vote', () => {
 
     expect(firstProposalAnchor[0].firstChild).toHaveAttribute(
       'href',
-      PATHS.GOVERNANCE_PROPOSAL_DETAILS.replace(':id', '3'),
+      `#${PATHS.GOVERNANCE_PROPOSAL_DETAILS.replace(':id', '3')}`,
     );
   });
 });

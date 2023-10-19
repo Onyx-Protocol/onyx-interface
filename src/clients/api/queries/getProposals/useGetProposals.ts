@@ -1,9 +1,6 @@
 import { QueryObserverOptions, useQuery } from 'react-query';
 
-import getProposals, {
-  GetProposalsInput,
-  GetProposalsOutput,
-} from 'clients/api/queries/getProposals';
+import { GetProposalsInput, GetProposalsOutput, getProposals } from 'clients/api';
 import FunctionKey from 'constants/functionKey';
 
 type Options = QueryObserverOptions<

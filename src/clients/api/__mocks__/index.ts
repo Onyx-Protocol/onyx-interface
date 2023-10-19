@@ -218,16 +218,15 @@ export const useSwapTokens = (options?: MutationObserverOptions) =>
   useMutation(FunctionKey.SWAP_TOKENS, swapTokens, options);
 
 export const getIsApprovedForAll = jest.fn();
-export const useGetIsApprovedForAll = (options?: MutationObserverOptions) =>
-  useMutation(FunctionKey.GET_NFT_ALLOWANCE, getIsApprovedForAll, options);
+export const useGetIsApprovedForAll = () =>
+  useQuery(FunctionKey.GET_NFT_ALLOWANCE, getIsApprovedForAll);
 
 export const approveNftForAll = jest.fn();
 export const useApproveNftForAll = (options?: MutationObserverOptions) =>
   useMutation(FunctionKey.APPROVE_NFT_TOKEN, approveNftForAll, options);
 
 export const getUniSwapPairs = jest.fn();
-export const useGetUniSwapPairs = (options?: MutationObserverOptions) =>
-  useMutation(FunctionKey.GET_UNISWAP_PAIRS, getUniSwapPairs, options);
+export const useGetUniSwapPairs = () => useQuery(FunctionKey.GET_UNISWAP_PAIRS, getUniSwapPairs);
 
 export const supplyNFT = jest.fn();
 export const useSupplyNFT = (options?: MutationObserverOptions) =>
