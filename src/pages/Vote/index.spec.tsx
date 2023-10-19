@@ -4,9 +4,8 @@ import { cloneDeep } from 'lodash';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 
-import fakeAccountAddress, { altAddress } from '__mocks__/models/address';
+import fakeAccountAddress from '__mocks__/models/address';
 import proposals from '__mocks__/models/proposals';
-import transactionReceipt from '__mocks__/models/transactionReceipt';
 import { vaults } from '__mocks__/models/vaults';
 import {
   getCurrentVotes,
@@ -15,7 +14,6 @@ import {
   getProposals,
 } from 'clients/api';
 import PATHS from 'constants/path';
-import useSuccessfulTransactionModal from 'hooks/useSuccessfulTransactionModal';
 import renderComponent from 'testUtils/renderComponent';
 import en from 'translation/translations/en.json';
 
@@ -76,35 +74,6 @@ describe('pages/Vote', () => {
     expect(createProposalButton).toBeDisabled();
   });
 
-  it('opens delegate modal when clicking text with connect wallet button when unauthenticated', async () => {
-    const { getByText, getAllByText, getByTestId } = renderComponent(<Vote />);
-    const delgateVoteText = getByTestId(VOTING_WALLET_TEST_IDS.delegateYourVoting);
-
-    act(() => {
-      fireEvent.click(delgateVoteText);
-    });
-    waitFor(() => getByText(en.vote.delegateAddress));
-
-    expect(getAllByText(en.connectWallet.connectButton)).toHaveLength(2);
-  });
-
-  it('opens delegate modal when clicking text with delegate button when authenticated', async () => {
-    const { getByText, getByTestId } = renderComponent(<Vote />, {
-      authContextValue: {
-        account: {
-          address: fakeAccountAddress,
-        },
-      },
-    });
-    const delgateVoteText = getByTestId(VOTING_WALLET_TEST_IDS.delegateYourVoting);
-
-    act(() => {
-      fireEvent.click(delgateVoteText);
-    });
-    waitFor(() => getByText(en.vote.delegateAddress));
-
-    expect(getByText(en.vote.delegateVotes));
-  });
   it('prompts user to connect Wallet', async () => {
     (getCurrentVotes as jest.Mock).mockImplementationOnce(() => ({ votesWei: new BigNumber(0) }));
 
@@ -126,93 +95,6 @@ describe('pages/Vote', () => {
     });
 
     expect(getByTestId(VOTING_WALLET_TEST_IDS.votingWeightValue)).toHaveTextContent('0');
-    expect(getByTestId(VOTING_WALLET_TEST_IDS.totalLockedValue)).toHaveTextContent('0');
-  });
-
-  it('successfully delegates to other address', async () => {
-    const { openSuccessfulTransactionModal } = useSuccessfulTransactionModal();
-    const vaultsCopy = cloneDeep(vaults);
-    vaultsCopy[1].userStakedWei = new BigNumber('10000000000000000000');
-
-    (getCurrentVotes as jest.Mock).mockImplementationOnce(() => ({
-      votesWei: new BigNumber('50000000000000000000'),
-    }));
-
-    const { getByText, getByPlaceholderText, getByTestId } = renderComponent(<Vote />, {
-      authContextValue: {
-        account: {
-          address: fakeAccountAddress,
-        },
-      },
-    });
-
-    waitFor(() =>
-      expect(getByTestId(VOTING_WALLET_TEST_IDS.votingWeightValue)).toHaveTextContent('50'),
-    );
-    waitFor(() =>
-      expect(getByTestId(VOTING_WALLET_TEST_IDS.totalLockedValue)).toHaveTextContent('10'),
-    );
-
-    const delgateVoteText = getByTestId(VOTING_WALLET_TEST_IDS.delegateYourVoting);
-
-    act(() => {
-      fireEvent.click(delgateVoteText);
-    });
-
-    const addressInput = await waitFor(async () =>
-      getByPlaceholderText(en.vote.enterContactAddress),
-    );
-
-    act(() => {
-      fireEvent.change(addressInput, {
-        target: { value: altAddress },
-      });
-    });
-
-    const delegateVotesButton = getByText(en.vote.delegateVotes);
-
-    act(() => {
-      fireEvent.click(delegateVotesButton);
-    });
-
-    waitFor(() =>
-      expect(openSuccessfulTransactionModal).toHaveBeenCalledWith({
-        transactionHash: transactionReceipt.transactionHash,
-      }),
-    );
-  });
-
-  it('successfully delegates to me', async () => {
-    const { openSuccessfulTransactionModal } = useSuccessfulTransactionModal();
-    const { getByText, getByTestId } = renderComponent(<Vote />, {
-      authContextValue: {
-        account: {
-          address: fakeAccountAddress,
-        },
-      },
-    });
-    const delgateVoteText = getByTestId(VOTING_WALLET_TEST_IDS.delegateYourVoting);
-
-    act(() => {
-      fireEvent.click(delgateVoteText);
-    });
-
-    waitFor(() => getByText(en.vote.delegateAddress));
-
-    act(() => {
-      fireEvent.click(getByText(en.vote.pasteYourAddress));
-    });
-
-    const delegateVotesButton = getByText(en.vote.delegateVotes);
-    act(() => {
-      fireEvent.click(delegateVotesButton);
-    });
-
-    waitFor(() =>
-      expect(openSuccessfulTransactionModal).toHaveBeenCalledWith({
-        transactionHash: transactionReceipt.transactionHash,
-      }),
-    );
   });
 
   it('proposals navigate to details', async () => {
