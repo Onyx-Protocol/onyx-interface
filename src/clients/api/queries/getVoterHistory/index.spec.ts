@@ -1,5 +1,4 @@
 import config from 'config';
-import { VError } from 'errors';
 import { enableFetchMocks } from 'jest-fetch-mock';
 
 import voterHistoryResponse from '__mocks__/api/voterHistory.json';

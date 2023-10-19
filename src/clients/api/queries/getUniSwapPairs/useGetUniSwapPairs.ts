@@ -1,9 +1,6 @@
 import { QueryObserverOptions, useQuery } from 'react-query';
 
-import getUniSwapPairs, {
-  GetUniSwapPairsInput,
-  GetUniSwapPairsOutput,
-} from 'clients/api/queries/getUniSwapPairs';
+import { GetUniSwapPairsInput, GetUniSwapPairsOutput, getUniSwapPairs } from 'clients/api';
 import { useMulticall } from 'clients/web3';
 import { BLOCK_TIME_MS } from 'constants/ethereum';
 import FunctionKey from 'constants/functionKey';

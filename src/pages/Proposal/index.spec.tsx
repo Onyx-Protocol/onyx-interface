@@ -40,13 +40,9 @@ const checkAllButtons = async (
   const voteAgainstButton = await waitFor(async () =>
     within(getByTestId(TEST_IDS.voteSummary.against)).getByRole('button'),
   );
-  const voteAbstainButton = await waitFor(async () =>
-    within(getByTestId(TEST_IDS.voteSummary.abstain)).getByRole('button'),
-  );
 
   check(voteForButton);
   check(voteAgainstButton);
-  check(voteAbstainButton);
 };
 
 describe('pages/Proposal', () => {
@@ -151,6 +147,9 @@ describe('pages/Proposal', () => {
       vote,
       isLoading: false,
     }));
+    (getPriorVotes as jest.Mock).mockImplementation(() => ({
+      priorVotes: new BigNumber('100000000000000000'),
+    }));
     const { getByTestId, getByLabelText } = renderComponent(<Proposal />, {
       authContextValue: {
         account: {
@@ -174,7 +173,7 @@ describe('pages/Proposal', () => {
     act(() => {
       fireEvent.click(castButton);
     });
-    waitFor(() => expect(vote).toBeCalledWith({ proposalId: 97, voteReason: '', voteType: 1 }));
+    waitFor(() => expect(vote).toBeCalledWith({ proposalId: 4, voteType: true }));
   });
 
   it('allows user to vote against with reason', async () => {
@@ -183,8 +182,10 @@ describe('pages/Proposal', () => {
       vote,
       isLoading: false,
     }));
+    (getPriorVotes as jest.Mock).mockImplementation(() => ({
+      priorVotes: new BigNumber('100000000000000000'),
+    }));
 
-    const comment = 'Not a good idea';
     const { getByTestId, getByLabelText } = renderComponent(<Proposal />, {
       authContextValue: {
         account: {
@@ -203,53 +204,13 @@ describe('pages/Proposal', () => {
     const votingPower = await waitFor(async () => getByLabelText(en.vote.votingPower));
     expect(votingPower).toHaveValue('0.1');
 
-    const commentInput = await waitFor(async () => getByLabelText(en.vote.comment));
-    fireEvent.change(commentInput, { target: { value: comment } });
-
     const castButton = await waitFor(async () => getByTestId(VOTE_MODAL_TEST_IDS.submitButton));
     expect(castButton).toBeEnabled();
     act(() => {
       fireEvent.click(castButton);
     });
 
-    await waitFor(() =>
-      expect(vote).toBeCalledWith({ proposalId: 97, voteReason: comment, voteType: 0 }),
-    );
-  });
-
-  it('allows user to vote abstain', async () => {
-    const vote = jest.fn();
-    (useVote as jest.Mock).mockImplementation(() => ({
-      vote,
-      isLoading: false,
-    }));
-
-    const { getByTestId, getByLabelText } = renderComponent(<Proposal />, {
-      authContextValue: {
-        account: {
-          address: fakeAddress,
-        },
-      },
-    });
-
-    const voteButton = await waitFor(async () =>
-      within(getByTestId(TEST_IDS.voteSummary.abstain)).getByRole('button'),
-    );
-    act(() => {
-      fireEvent.click(voteButton);
-    });
-
-    const votingPower = await waitFor(async () => getByLabelText(en.vote.votingPower));
-    expect(votingPower).toHaveValue('0.1');
-
-    const castButton = await waitFor(async () => getByTestId(VOTE_MODAL_TEST_IDS.submitButton));
-    expect(castButton).toBeEnabled();
-    act(() => {
-      fireEvent.click(castButton);
-    });
-    await waitFor(() =>
-      expect(vote).toBeCalledWith({ proposalId: 97, voteReason: '', voteType: 2 }),
-    );
+    await waitFor(() => expect(vote).toBeCalledWith({ proposalId: 4, voteType: false }));
   });
 
   it('lists votes cast', async () => {

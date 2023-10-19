@@ -1,9 +1,6 @@
 import { QueryObserverOptions, useQuery } from 'react-query';
 
-import getPriorVotes, {
-  GetPriorVotesInput,
-  GetPriorVotesOutput,
-} from 'clients/api/queries/getPriorVotes';
+import { GetPriorVotesInput, GetPriorVotesOutput, getPriorVotes } from 'clients/api';
 import { useXcnStakingContract } from 'clients/contracts/hooks';
 import FunctionKey from 'constants/functionKey';
 
