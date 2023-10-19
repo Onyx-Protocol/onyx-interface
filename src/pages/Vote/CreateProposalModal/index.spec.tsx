@@ -135,9 +135,6 @@ describe('pages/Proposal/CreateProposalModal', () => {
     completeFirstStep(getByPlaceholderText);
     next(nextButton);
 
-    completeSecondStep(getByPlaceholderText);
-    next(nextButton);
-
     const addActionButton = await waitFor(
       () =>
         getByText(en.vote.createProposalForm.addOneMoreAction).closest(
@@ -180,9 +177,6 @@ describe('pages/Proposal/CreateProposalModal', () => {
     ) as HTMLButtonElement;
 
     completeFirstStep(getByPlaceholderText);
-    next(nextButton);
-
-    completeSecondStep(getByPlaceholderText);
     next(nextButton);
 
     const addActionButton = await waitFor(
@@ -239,9 +233,6 @@ describe('pages/Proposal/CreateProposalModal', () => {
     completeFirstStep(getByPlaceholderText);
     next(nextButton);
 
-    completeSecondStep(getByPlaceholderText);
-    next(nextButton);
-
     const addActionButton = await waitFor(
       () =>
         getByText(en.vote.createProposalForm.addOneMoreAction).closest(
@@ -290,9 +281,6 @@ describe('pages/Proposal/CreateProposalModal', () => {
     completeFirstStep(getByPlaceholderText);
     next(nextButton);
 
-    completeSecondStep(getByPlaceholderText);
-    next(nextButton);
-
     const addActionButton = await waitFor(
       () =>
         getByText(en.vote.createProposalForm.addOneMoreAction).closest(
@@ -332,9 +320,6 @@ describe('pages/Proposal/CreateProposalModal', () => {
     ) as HTMLButtonElement;
 
     completeFirstStep(getByPlaceholderText);
-    next(nextButton);
-
-    completeSecondStep(getByPlaceholderText);
     next(nextButton);
 
     const addActionButton = await waitFor(

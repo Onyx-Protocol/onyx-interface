@@ -116,7 +116,9 @@ describe('pages/Proposal', () => {
   });
 
   it('vote buttons are disabled when voting weight is 0', async () => {
-    (getCurrentVotes as jest.Mock).mockImplementation(() => ({ votesWei: new BigNumber(0) }));
+    (getPriorVotes as jest.Mock).mockImplementation(() => ({
+      priorVotes: new BigNumber(0),
+    }));
 
     const { getByTestId } = renderComponent(<Proposal />, {
       authContextValue: {

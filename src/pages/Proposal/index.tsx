@@ -172,6 +172,7 @@ const Proposal = () => {
 
   const votingEnabled =
     !!accountAddress &&
+    currentVotesData.priorVotes.gt(new BigNumber(0)) &&
     proposal?.state === 'Active' &&
     userVoteReceipt?.voteSupport === 'NOT_VOTED';
 
