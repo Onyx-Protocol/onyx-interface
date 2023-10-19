@@ -188,6 +188,194 @@ This OIP is the final proposal to activate liquidations",
 }
 `;
 
+exports[`api/queries/getProposals Gets called with correct default arguments 2`] = `
+Object {
+  "proposals": Array [
+    Object {
+      "actions": Array [
+        Object {
+          "callData": "0x0000000000000000000000007d61ed92a6778f5abf5c94085739f1edabec28000000000000000000000000000000000000000000000000000000000000000001",
+          "signature": "grantDAO(address,uint256)",
+          "target": "0x28ca9caae31602d0312ebf6466c9dd57fca5da93",
+          "value": "0",
+        },
+      ],
+      "againstVotesWei": "0",
+      "cancelDate": undefined,
+      "cancelTxHash": undefined,
+      "createdDate": 2023-09-25T08:05:47.000Z,
+      "createdTxHash": "0x1bed1d9dfff4f2d1461d53d921f99be43c4f2bcbb5c0c128b0bf706b4402ab91",
+      "description": Object {
+        "description": "The goal of the proposed protocol improvement is to revamp the existing brand identity of the Onyx Protocol by adopting a new Brand Book and Design.
+
+Details and discussion are in the community forum: https://community.onyx.org/t/proposal-accept-new-brand-book-and-design/991 ",
+        "title": "OIP-21: Accept new Brand book and Design",
+        "version": "v2",
+      },
+      "endBlock": 18224299,
+      "executedDate": 2023-09-29T04:40:23.000Z,
+      "executedTxHash": "0x32011b6be387962789ee7aaf070768a08d5f37db5d0896f011a629ea7c37d8d7",
+      "forVotesWei": "2.40310958281307640552695559e+26",
+      "id": 21,
+      "isEnded": false,
+      "isStarted": false,
+      "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
+      "queuedDate": 2023-09-27T03:37:35.000Z,
+      "queuedTxHash": "0x7c3e2ee5a390e6a30a9758c01496a90bbd1a02794ac42f9cf4061d16fa5aa84a",
+      "startBlock": 18211499,
+      "state": "Pending",
+      "totalVotesWei": "2.40310958281307640552695559e+26",
+    },
+    Object {
+      "actions": Array [
+        Object {
+          "callData": "0x0000000000000000000000005fdf912be584009f120e16586a38b9f6b87e3e02000000000000000000000000000000000000000001f04ef12cb04cf158000000",
+          "signature": "grantDAO(address,uint256)",
+          "target": "0x28ca9caae31602d0312ebf6466c9dd57fca5da93",
+          "value": "0",
+        },
+      ],
+      "againstVotesWei": "0",
+      "cancelDate": undefined,
+      "cancelTxHash": undefined,
+      "createdDate": 2023-08-22T07:01:35.000Z,
+      "createdTxHash": "0x2a542844ba7220760fe6532f12e518cc8d5a3d6a9c5452d179869a8a1933ccab",
+      "description": Object {
+        "description": "The Onyx DAO proposes to allocate a budget to provide liquidity to exchanges, and cover new XCN listing expenses. Total is 600m XCN.
+
+Details and discussion are in the community forum: https://community.onyx.org/t/proposal-allocate-xcn-to-provide-liquidity-on-exchanges/892 ",
+        "title": "OIP-20: Allocate XCN to provide liquidity on exchanges",
+        "version": "v2",
+      },
+      "endBlock": 17981431,
+      "executedDate": 2023-08-26T13:27:47.000Z,
+      "executedTxHash": "0xf0eab1aa850547d8383e1304eb71c35d5f9fe599ad8bcc83939bbbca7b072052",
+      "forVotesWei": "2.37454397303796040016018751e+26",
+      "id": 20,
+      "isEnded": false,
+      "isStarted": false,
+      "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
+      "queuedDate": 2023-08-24T05:23:35.000Z,
+      "queuedTxHash": "0xe951c4d5e9aedaadbfa49bb1398df73564449d03ec12782c0199ed6c2a188843",
+      "startBlock": 17968631,
+      "state": "Pending",
+      "totalVotesWei": "2.37454397303796040016018751e+26",
+    },
+    Object {
+      "actions": Array [
+        Object {
+          "callData": "0x0000000000000000000000004410cbf371a86355ce0690fd08a92373dcd8e57f00000000000000000000000000000000000000000168a6975c3504b634000000",
+          "signature": "grantDAO(address,uint256)",
+          "target": "0x28ca9caae31602d0312ebf6466c9dd57fca5da93",
+          "value": "0",
+        },
+      ],
+      "againstVotesWei": "0",
+      "cancelDate": undefined,
+      "cancelTxHash": undefined,
+      "createdDate": 2023-07-23T17:22:11.000Z,
+      "createdTxHash": "0x241eade249b1dc53693ad371d36c824313d97bb754d888899d146d25358a3fb8",
+      "description": Object {
+        "description": "The Onyx DAO proposes to allocate a budget for current operations in Aug–Oct 2023:
+
+- Development and Infrastructure support
+- Marketing and Management
+
+Total is 436,000,000 XCN.
+
+Details and discussion are in the community forum: https://community.onyx.org/t/budget-allocation-for-current-operations-august-october-2023/768 ",
+        "title": "OIP-19: Budget allocation for current operations",
+        "version": "v2",
+      },
+      "endBlock": 17770072,
+      "executedDate": 2023-07-27T17:47:35.000Z,
+      "executedTxHash": "0x1dcc4466b73db4481ee1969e15799a1608beddde06bceb596e27f1d527b614de",
+      "forVotesWei": "2.35266819114955989350637682e+26",
+      "id": 19,
+      "isEnded": false,
+      "isStarted": false,
+      "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
+      "queuedDate": 2023-07-25T17:42:47.000Z,
+      "queuedTxHash": "0xf5a2b0d62e48e725697ebfcde5613744f0bd22b3506b1bea1819037982524e6c",
+      "startBlock": 17757272,
+      "state": "Pending",
+      "totalVotesWei": "2.35266819114955989350637682e+26",
+    },
+    Object {
+      "actions": Array [
+        Object {
+          "callData": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "signature": "_setSeizePaused(bool)",
+          "target": "0x7d61ed92a6778f5abf5c94085739f1edabec2800",
+          "value": "0",
+        },
+      ],
+      "againstVotesWei": "0",
+      "cancelDate": undefined,
+      "cancelTxHash": undefined,
+      "createdDate": 2023-05-26T00:09:23.000Z,
+      "createdTxHash": "0xb0383c7aa396c9eb6abcf0e256944f2112c38bad6c3e0d5bd811e49c8f3299a2",
+      "description": Object {
+        "description": "# OIP-18: Enabling Liquidation Portal
+
+This OIP will enable the communtiy to utilize the liquidation portal in the app and enable liquidations on-chain. ",
+        "title": "OIP-18: Enable Liquidation Portal",
+        "version": "v2",
+      },
+      "endBlock": 17352419,
+      "executedDate": 2023-05-31T15:59:11.000Z,
+      "executedTxHash": "0x9ec2e0ff6ba77a90422f90ca8d789a579c01766f2c65135d44b12e86c134da01",
+      "forVotesWei": "3.0017910977267230785014113e+26",
+      "id": 18,
+      "isEnded": false,
+      "isStarted": false,
+      "proposer": "0x09a74d465c49fd07d6eaf2028c7cff31c93d3a74",
+      "queuedDate": 2023-05-28T22:22:35.000Z,
+      "queuedTxHash": "0x2def242879b2f08b68581c1fe590f6dfaddc0ca3214831d3eb79fb52086e8916",
+      "startBlock": 17339619,
+      "state": "Pending",
+      "totalVotesWei": "3.0017910977267230785014113e+26",
+    },
+    Object {
+      "actions": Array [
+        Object {
+          "callData": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "signature": " _setSeizePaused(bool)",
+          "target": "0x7d61ed92a6778f5abf5c94085739f1edabec2800",
+          "value": "0",
+        },
+      ],
+      "againstVotesWei": "0",
+      "cancelDate": undefined,
+      "cancelTxHash": undefined,
+      "createdDate": 2023-05-17T21:18:23.000Z,
+      "createdTxHash": "0xb60c1c8016026433ac260340cabb04aaa1252bcf5abb4c0ecf5d9d664bf8365f",
+      "description": Object {
+        "description": "# OIP-17 Activate Liquidation
+
+This OIP is the final proposal to activate liquidations",
+        "title": "OIP-17: Activate Liquidations 3/3",
+        "version": "v2",
+      },
+      "endBlock": 17294749,
+      "executedDate": undefined,
+      "executedTxHash": undefined,
+      "forVotesWei": "3e+26",
+      "id": 17,
+      "isEnded": false,
+      "isStarted": false,
+      "proposer": "0x09a74d465c49fd07d6eaf2028c7cff31c93d3a74",
+      "queuedDate": 2023-05-20T20:19:23.000Z,
+      "queuedTxHash": "0x6a79dde3a82bd5f4f7f77ca6aae2c7bc54f317b225bee25546204516e2f78cb6",
+      "startBlock": 17281949,
+      "state": "Pending",
+      "totalVotesWei": "3e+26",
+    },
+  ],
+  "total": "21",
+}
+`;
+
 exports[`api/queries/getProposals returns formatted proposals 1`] = `
 Object {
   "proposals": Array [
@@ -206,8 +394,8 @@ Object {
       "createdDate": 2022-04-22T19:00:27.000Z,
       "createdTxHash": "0xb5c2ae6315b1904385063e2e2f90139a47eadb1622b3dcd4549abb054ea6c435",
       "description": Object {
-        "description": " Chain Improvement Proposal 4 (CIP-4) enables the Chain Governance module to update the Timelock smart contract for final mainnet testing purposes.\\\"",
-        "title": "\\\" CIP 4 Pre Governance Activation",
+        "description": " Chain Improvement Proposal 4 (CIP-4) enables the Chain Governance module to update the Timelock smart contract for final mainnet testing purposes.\\"",
+        "title": "\\" CIP 4 Pre Governance Activation",
         "version": "v1",
       },
       "endBlock": 14636441,

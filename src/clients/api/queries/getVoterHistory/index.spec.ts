@@ -1,79 +1,157 @@
+import config from 'config';
 import { VError } from 'errors';
-import { restService } from 'utilities';
+import { enableFetchMocks } from 'jest-fetch-mock';
 
 import voterHistoryResponse from '__mocks__/api/voterHistory.json';
 import fakeAddress from '__mocks__/models/address';
+import { SUBGRAPH_LINKS } from 'constants/endpoints';
 
 import getVoterHistory from '.';
 
-jest.mock('utilities/restService');
+enableFetchMocks();
 
 describe('api/queries/getVoterHistory', () => {
-  test('throws an error when request fails', async () => {
-    const fakeErrorMessage = 'Fake error message';
-
-    (restService as jest.Mock).mockImplementationOnce(async () => ({
-      result: 'error',
-      status: false,
-      message: fakeErrorMessage,
-    }));
-
-    try {
-      await getVoterHistory({ address: fakeAddress });
-
-      throw new Error('getVoterHistory should have thrown an error but did not');
-    } catch (error) {
-      expect(error).toBeInstanceOf(VError);
-      if (error instanceof VError) {
-        expect(error.type).toBe('unexpected');
-        expect(error.data.message).toBe('Fake error message');
-      }
-    }
-  });
-
   test('returns formatted voter history', async () => {
-    (restService as jest.Mock).mockImplementationOnce(async () => ({
-      status: 200,
-      data: voterHistoryResponse,
-    }));
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        status: 200,
+        data: {
+          proposalVotes: voterHistoryResponse,
+        },
+      }),
+    );
 
     const payload = await getVoterHistory({
       page: 2,
       address: fakeAddress,
     });
 
-    expect(restService).toBeCalledWith({
-      endpoint: `/voter/history/${fakeAddress}`,
-      method: 'GET',
-      params: {
-        page: 1,
-        limit: 6,
+    expect(fetchMock).toBeCalledWith(SUBGRAPH_LINKS[config.chainId].latest, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      gov: true,
+      body: JSON.stringify({
+        query: `
+          query proposalVotesQuery {
+            proposalVotes(
+              first: 5,
+              skip: 10,
+              where: { address: "${fakeAddress}" }
+              orderBy: proposal__createdBlockTimestamp,
+              orderDirection: desc
+            ) {
+              id
+              proposal {
+                id
+                proposer
+                targets
+                values
+                signatures
+                callDatas
+                startBlock
+                endBlock
+                description
+                state
+                eta
+                forVotes
+                againstVotes
+                createdBlockNumber
+                createdBlockTimestamp
+                createdTransactionHash
+                queuedBlockNumber
+                queuedBlockTimestamp
+                queuedTransactionHash
+                executedBlockNumber
+                executedBlockTimestamp
+                executedTransactionHash
+                canceledBlockNumber
+                canceledBlockTimestamp
+                canceledTransactionHash
+              }
+              address
+              support
+              votes
+              blockNumber
+              blockTimestamp
+              transactionHash
+            }
+          }
+        `,
+      }),
     });
 
     expect(payload).toMatchSnapshot();
   });
 
   test('Gets called with correct default arguments', async () => {
-    (restService as jest.Mock).mockImplementationOnce(async () => ({
-      status: 200,
-      data: voterHistoryResponse,
-    }));
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        status: 200,
+        data: {
+          proposalVotes: voterHistoryResponse,
+        },
+      }),
+    );
 
     const payload = await getVoterHistory({ address: fakeAddress });
 
-    expect(payload.voterHistory).toHaveLength(5);
-
-    expect(restService).toBeCalledWith({
-      endpoint: `/voter/history/${fakeAddress}`,
-      method: 'GET',
-      params: {
-        page: 1,
-        limit: 6,
+    expect(fetchMock).toBeCalledWith(SUBGRAPH_LINKS[config.chainId].latest, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      gov: true,
+      body: JSON.stringify({
+        query: `
+          query proposalVotesQuery {
+            proposalVotes(
+              first: 5,
+              skip: 0,
+              where: { address: "${fakeAddress}" }
+              orderBy: proposal__createdBlockTimestamp,
+              orderDirection: desc
+            ) {
+              id
+              proposal {
+                id
+                proposer
+                targets
+                values
+                signatures
+                callDatas
+                startBlock
+                endBlock
+                description
+                state
+                eta
+                forVotes
+                againstVotes
+                createdBlockNumber
+                createdBlockTimestamp
+                createdTransactionHash
+                queuedBlockNumber
+                queuedBlockTimestamp
+                queuedTransactionHash
+                executedBlockNumber
+                executedBlockTimestamp
+                executedTransactionHash
+                canceledBlockNumber
+                canceledBlockTimestamp
+                canceledTransactionHash
+              }
+              address
+              support
+              votes
+              blockNumber
+              blockTimestamp
+              transactionHash
+            }
+          }
+        `,
+      }),
     });
+
+    expect(payload.voterHistory).toHaveLength(3);
 
     expect(payload).toMatchSnapshot();
   });

@@ -3,254 +3,250 @@
 exports[`api/queries/getVoterHistory Gets called with correct default arguments 1`] = `
 Object {
   "limit": 5,
-  "offset": 0,
-  "total": 5,
+  "page": 0,
+  "total": 3,
   "voterHistory": Array [
     Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6752554,
-      "blockTimestamp": 1618987812,
-      "createdAt": 2021-04-21T06:51:10.000Z,
-      "id": "b8e4e6c5-ff53-4351-9a6c-afb05443f78d",
+      "address": "0x9d5be40cf72707d07513a3915afa8a3ad84f31e9",
+      "blockNumber": 17762676,
+      "blockTimestamp": 1690198247,
+      "createdAt": 2023-07-24T11:30:47.000Z,
+      "id": "0x006ac40ad30b592d6f21945e5e297f50720ad9cfa100642244647d4ea6ba20ceab000000",
       "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "27014047767849131149",
+        "actions": Array [
+          Object {
+            "callData": "0x0000000000000000000000004410cbf371a86355ce0690fd08a92373dcd8e57f00000000000000000000000000000000000000000168a6975c3504b634000000",
+            "signature": "grantDAO(address,uint256)",
+            "target": "0x28ca9caae31602d0312ebf6466c9dd57fca5da93",
+            "value": "0",
+          },
+        ],
+        "againstVotesWei": "0",
         "cancelDate": undefined,
         "cancelTxHash": undefined,
-        "createdDate": 2021-04-21T02:11:13.000Z,
-        "createdTxHash": "0x0480b47caff0d35105c2a01254ca8d3bdfea6e20745b24cae28bedc59531962d",
+        "createdDate": 2023-07-23T17:22:11.000Z,
+        "createdTxHash": "0x241eade249b1dc53693ad371d36c824313d97bb754d888899d146d25358a3fb8",
         "description": Object {
-          "description": "
-Due to recent VAI stabilization and market conditions, we have proposed VAI and USDC speed recalibration. This proposal update VAI Vault Rate and vUSDC Xcn Speed.
+          "description": "The Onyx DAO proposes to allocate a budget for current operations in Aug–Oct 2023:
 
-- VAI Vault Rate from 1250 XCN to 500 XCN daily
-- vUSDC Speed Rate from 1000 XCN to 1250 XCN daily
+- Development and Infrastructure support
+- Marketing and Management
 
-This proposal begins efforts of setting daily XCN emission rate for VAI and vUSDC.
-",
-          "title": " VAI and USDC Speed Recalibration",
-          "version": "v1",
+Total is 436,000,000 XCN.
+
+Details and discussion are in the community forum: https://community.onyx.org/t/budget-allocation-for-current-operations-august-october-2023/768 ",
+          "title": "OIP-19: Budget allocation for current operations",
+          "version": "v2",
         },
-        "endBlock": 6833387,
-        "endDate": 2021-04-24T03:39:49.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-04-26T05:26:17.000Z,
-        "executedTxHash": "0xb10169204331b0b6a1d6d6f818dbd2e511455c21e0927e1d1c580f20b1c6c9f8",
-        "forVotesWei": "6.02104728669217991013071e+23",
-        "id": 15,
-        "proposer": "0x4f38bbabf2197d8b7484cc904499f724e830408f",
-        "queuedDate": 2021-04-24T05:25:55.000Z,
-        "queuedTxHash": "0xb78d62fc008612f07a993f48b47004b84768c5fada450cb6c877feeee97cdf64",
-        "startDate": 2021-04-21T02:11:16.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "6.0213174271698584014422e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-21T06:51:10.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6755308,
-      "blockTimestamp": 1618996126,
-      "createdAt": 2021-04-21T09:12:03.000Z,
-      "id": "1f747159-e4e4-4b5c-9494-9cd408cf9647",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "1008475453184684811",
-        "cancelDate": undefined,
-        "cancelTxHash": undefined,
-        "createdDate": 2021-04-21T03:58:41.000Z,
-        "createdTxHash": "0x4735c0974124ae9b5379fdedee9d028773d98618f5c367d6fadc4c62c17d07b3",
-        "description": Object {
-          "description": "
-In accordance to our v2 roadmap, VIP-16 proposes to initiate our very first community driven buyback and burn of $3.5m in $XCN bought from Swipe Swap and UniSwap if approved and executed.
-",
-          "title": " VIP-16 Xcn XCN Burn",
-          "version": "v1",
-        },
-        "endBlock": 6835526,
-        "endDate": 2021-04-24T05:26:46.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-04-26T05:28:08.000Z,
-        "executedTxHash": "0xd4025a072e97840c604d7dd3afa8f2f0f0d6d41b6ae2262be234451a617e3f18",
-        "forVotesWei": "6.02571978482817997675743e+23",
-        "id": 16,
-        "proposer": "0x1ca3ac3686071be692be7f1fbecd668641476d7e",
-        "queuedDate": 2021-04-24T05:27:49.000Z,
-        "queuedTxHash": "0x30196ecabd366da698ff0465ed2186050c740f27f79be090bcc429bc66221ec3",
-        "startDate": 2021-04-21T03:58:44.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "6.02572986958271182360554e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-21T09:12:03.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6778623,
-      "blockTimestamp": 1619068919,
-      "createdAt": 2021-04-22T05:22:34.000Z,
-      "id": "cf7b8e0a-6d5d-470b-8668-24c33275ebad",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "271645438287511902563",
-        "cancelDate": undefined,
-        "cancelTxHash": undefined,
-        "createdDate": 2021-04-22T02:26:21.000Z,
-        "createdTxHash": "0xfbcdf3d457342a72de78ea1aacbf45162d9027aa7f8a08f99abe44324963dd78",
-        "description": Object {
-          "description": "
-Xcn Community has proposed proposal to support DOGE in Onyx Protocol Markets and implements an updated contract that supports vDOGE.
-
-## Asset Details
-Name: Dogecoin
-Symbol: DOGE
-Type: Cross-chain pegged asset by Binance 
-Price: $0.3032
-Market Cap: $39,197,370,632
-Rank: 6
-
-## About Dogecoin
-Dogecoin (DOGE) is based on the popular \\"doge\\" Internet meme and features a Shiba Inu on its logo. The open-source digital currency was created by [Billy Markus](https://coinmarketcap.com/alexandria/article/dogecoin-a-stunning-surge-a-crushing-blow-a-surprise-comeback) from Portland, Oregon and Jackson Palmer from Sydney, Australia, and was forked from Litecoin in December 2013. Dogecoin's creators envisaged it as a fun, light-hearted cryptocurrency that would have greater appeal beyond the core Bitcoin audience, since it was based on a dog meme. Tesla CEO Elon Musk posted several tweets on social media that Dogecoin is his favorite coin.
-
-For more information please visit: https://coinmarketcap.com/currencies/dogecoin/
-",
-          "title": " VIP-17 Support vDOGE",
-          "version": "v1",
-        },
-        "endBlock": 6861512,
-        "endDate": 2021-04-25T03:10:31.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-04-27T04:43:23.000Z,
-        "executedTxHash": "0x67c0b09c133f308f359253c4635bbeee51a1f329ed4f5d70b0cce3c0a307adea",
-        "forVotesWei": "6.00552505805358480959992e+23",
-        "id": 17,
-        "proposer": "0x5108944f6ac60adc9f152648c7c6b14d29426eb4",
-        "queuedDate": 2021-04-25T04:42:40.000Z,
-        "queuedTxHash": "0xd3d4cf260e5dc36431b81749dcf2ab3db691f55b5bb5a5100e6357b18953b0cb",
-        "startDate": 2021-04-22T02:26:24.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "6.00824151243645992862555e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-22T05:22:34.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6960733,
-      "blockTimestamp": 1619619883,
-      "createdAt": 2021-04-28T14:24:51.000Z,
-      "id": "d59e6b24-9ffd-4359-860f-5fd052f7a133",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "2342202445218922408",
-        "cancelDate": 2021-05-03T10:13:35.000Z,
-        "cancelTxHash": "0xa8618ee1def3927ae23f142867e15f557720e83d1af0e9cde1aa732918637e79",
-        "createdDate": 2021-04-28T13:57:04.000Z,
-        "createdTxHash": "0x05c99ce72b579018456c6def6ca83c66989eec4468e93c21f9391d3cb58b3290",
-        "description": Object {
-          "description": "
-## Summary
-Increase the borrow factors from 60% to 80% for selected big caps and stable coins. While markets are highly volatile and market swings happen in both directions, these assets have sufficient liquidity, volume, and markets available for liquidators to be compensated for their work. There have been millions of liquidations properly executed on-chain by liquidators, thus, these changes do not pose a systematic risk. Rather, these changes improve Xcn’s competitive advantage while still being over-collateralized.
-
-Update speed setting for Doge and Bitcoin Cash to 50 XCN daily.
-
-Proposal:
-- BTCB 60% to 80%
-- ETH 60% to 80%
-- ETH 60% to 80%
-- XCN 60% 80%
-- SXP 60% to 80%
-- USDT 60% to 80%
-- BUSD 60% to 80%
-- USDC 60% to 80%
-
-- Doge: Decrease speed setting from 119.99 to 50 XCN daily
-- BCH: Increase speed setting from 18.32 to 50 XCN daily
-
-By increasing the above asset collateral to 80%, which will allow users to utilize the higher borrow factors on their existing positions or receive more security for their open positions.
-",
-          "title": " VIP-18 Increase Qualifed Asset's Collateral Factor",
-          "version": "v1",
-        },
-        "endBlock": 7046581,
-        "endDate": 2021-05-01T14:44:30.000Z,
-        "endTxHash": undefined,
-        "executedDate": undefined,
-        "executedTxHash": undefined,
-        "forVotesWei": "9.0114116127025256799144e+23",
-        "id": 18,
-        "proposer": "0x5108944f6ac60adc9f152648c7c6b14d29426eb4",
-        "queuedDate": 2021-05-01T14:48:21.000Z,
-        "queuedTxHash": "0xa1a99e026a7ec21a31d5131203c7e0933bc3b22eb419c51bd57f8862ab9f93ed",
-        "startDate": 2021-04-28T13:57:07.000Z,
-        "startTxHash": undefined,
-        "state": "Canceled",
-        "totalVotesWei": "9.01143503472697786913848e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-28T14:24:51.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6970646,
-      "blockTimestamp": 1619649813,
-      "createdAt": 2021-04-28T22:43:45.000Z,
-      "id": "79c05c31-e6aa-412c-a340-eaf94cd6413f",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "6.00654038898943986646375e+23",
-        "cancelDate": undefined,
-        "cancelTxHash": undefined,
-        "createdDate": 2021-04-28T14:40:25.000Z,
-        "createdTxHash": "0x36868f584cdb8743de7ab1ecc05b42fd1ba794e5f387ea5f66232cbc619925be",
-        "description": Object {
-          "description": "
-Liquidators play a key role in securing the platform by performing liquidations when users have gone over their borrowing limit. This liquidation process guarantees that all assets borrowed by Xcn are 100% backed by supplied collateral. So to ensure liquidators continue to secure the protocol during market volatility, propose increasing liquidator fee incentives from 10% to 15% for all assets.
-
-Proposal:
-Increase liquidator fee incentives from 10% to 15% for all assets
-
-FIL: Increase speed setting from 18.32 to 50 XCN daily
-",
-          "title": " VIP-19 Increase Liquidation Incentive Rate",
-          "version": "v1",
-        },
-        "endBlock": 7047448,
-        "endDate": 2021-05-01T15:28:18.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-05-03T15:59:08.000Z,
-        "executedTxHash": "0x9b4e0e2c189f0250df82d369d81625ca190c4455ecbc6d8198264b19600d36b9",
-        "forVotesWei": "6.00922622227605168758294e+23",
+        "endBlock": 17770072,
+        "executedDate": 2023-07-27T17:47:35.000Z,
+        "executedTxHash": "0x1dcc4466b73db4481ee1969e15799a1608beddde06bceb596e27f1d527b614de",
+        "forVotesWei": "2.35266819114955989350637682e+26",
         "id": 19,
-        "proposer": "0x4f38bbabf2197d8b7484cc904499f724e830408f",
-        "queuedDate": 2021-05-01T15:56:53.000Z,
-        "queuedTxHash": "0x5b650ae3d9f49d7a7951fe4c2ec73ec5c237e8e2674a126e8fba2bbce064131b",
-        "startDate": 2021-04-28T14:40:28.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "1.201576661126549155404669e+24",
+        "isEnded": false,
+        "isStarted": false,
+        "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
+        "queuedDate": 2023-07-25T17:42:47.000Z,
+        "queuedTxHash": "0xf5a2b0d62e48e725697ebfcde5613744f0bd22b3506b1bea1819037982524e6c",
+        "startBlock": 17757272,
+        "state": "Pending",
+        "totalVotesWei": "2.35266819114955989350637682e+26",
       },
       "reason": undefined,
-      "support": "AGAINST",
-      "updatedAt": 2021-04-28T22:43:45.000Z,
-      "votesWei": "19000000007051654283",
+      "support": "FOR",
+      "updatedAt": 2023-07-24T11:30:47.000Z,
+      "votesWei": "0",
+    },
+    Object {
+      "address": "0xbabbf5261afbdb1f1353b574f5cae76ae916d315",
+      "blockNumber": 16899221,
+      "blockTimestamp": 1679683451,
+      "createdAt": 2023-03-24T18:44:11.000Z,
+      "id": "0x00db9beebc743dbcdcd34c1ac647bd4bb8f2c2ee3506d6f338921f1cba0c91d38c000000",
+      "proposal": Object {
+        "actions": Array [
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x7d61ed92a6778f5abf5c94085739f1edabec2800",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x1961ad247b47f4f2242e55a0e5578c6cf01f8d12",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x714bd93ab6ab2f0bcfd2aeaf46a46719991d0d79",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x1933f1183c421d44d531ed40a5d2445f6a91646d",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xbced4e924f28f43a24ceedec69ee21ed4d04d2dd",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x8f35113cfaba700ed7a907d92b114b44421e412a",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x830dacd5d0a62afa92c9bc6878461e9cd317b085",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xfee4428b7f403499c50a6da947916b71d33142dc",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x7497e945f23192d1dc3095409837f67927170f2d",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xc0534bb221c0963b213f417585e3ca581993793a",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xf52459e8bc708d55400c167e0d77ed49641226d3",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x307269cf921213bd2e16b22dcd4401aec21d00bf",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x11b258a1c5ec962f43ab523be9b8fa317cb2eb69",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x4476175752a4947de953e26b40fc8c1e145fea82",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x0c19d213e9f2a5cbaa4ec6e8eac55a22276b0641",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x3f2dd7adbcd464d5b0a766f7eb367bd20a249691",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x7ab16ed27ab8b22cb625db55c0e58521969cb091",
+            "value": "0",
+          },
+        ],
+        "againstVotesWei": "0",
+        "cancelDate": undefined,
+        "cancelTxHash": undefined,
+        "createdDate": 2023-03-24T12:13:11.000Z,
+        "createdTxHash": "0xdfebb830682e5a776850d057eb908636558c0d49d8a6c1020010a76cf76db5cd",
+        "description": Object {
+          "description": "Abstract: After 3 weeks of testing and live network activity, the Onyx Liquidity Protocol (OLP) will now be fully shifted to the Onyx Governance and Onyx DAO . This proposal is deployed in two parts which will migrate the ownership of the OLP smart contracts to the time lock which is controlled by the Onyx Governance Onyxcoin $XCN stakers who secure and govern the network. Alongside this proposal, the OLP is now fully available via IPFS, a decentralized hosting making Onyx and OLP fully decentralized from the smart contract level to hosting.
+XCN holders are asked to vote in favor for this proposal to transfer OLP to Onyx DAO and Governance.",
+          "title": "OIP-9: Launch OLP Governance",
+          "version": "v2",
+        },
+        "endBlock": 16910087,
+        "executedDate": 2023-03-28T17:37:23.000Z,
+        "executedTxHash": "0xddbe09d6597b72d88f93f9f31ec630c01a1c384cae9ab454a562f113ba834e0c",
+        "forVotesWei": "2.873025810619257470619105486e+27",
+        "id": 8,
+        "isEnded": false,
+        "isStarted": false,
+        "proposer": "0xa8738f54c6c31ea559565a468056df233e6f4c12",
+        "queuedDate": 2023-03-26T16:37:47.000Z,
+        "queuedTxHash": "0x7d1960521610acfe101e477ca7a39ae8b2296f97097373347c8f196f050657a8",
+        "startBlock": 16897287,
+        "state": "Pending",
+        "totalVotesWei": "2.873025810619257470619105486e+27",
+      },
+      "reason": undefined,
+      "support": "FOR",
+      "updatedAt": 2023-03-24T18:44:11.000Z,
+      "votesWei": "0",
+    },
+    Object {
+      "address": "0x7cb436777bcff797f465a96f6b34383e10a43483",
+      "blockNumber": 16743192,
+      "blockTimestamp": 1677788351,
+      "createdAt": 2023-03-02T20:19:11.000Z,
+      "id": "0x040e1a4716ce3f28c60835d4f6cdd8c3b6ca3e9d42e08b0d58792519aefe063942000000",
+      "proposal": Object {
+        "actions": Array [
+          Object {
+            "callData": "0x00000000000000000000000000000000000000000000002a5a058fc295ed0000",
+            "signature": "setRewardPerblock(uint256)",
+            "target": "0x23445c63feef8d85956dc0f19ade87606d0e19a9",
+            "value": "0",
+          },
+        ],
+        "againstVotesWei": "0",
+        "cancelDate": undefined,
+        "cancelTxHash": undefined,
+        "createdDate": 2023-03-02T20:09:47.000Z,
+        "createdTxHash": "0x40e386129ea53babe8084dc68449cb711cdb7661c2b8344ca1d15ff0d48c6f20",
+        "description": Object {
+          "description": "## Increase Staking Rewards
+
+Onyx DAO proposes to the community to increase the staking vault rewards which would make the APR approximately 33% as opposed to todays approximately 6.7% staking rate.
+
+By making this change the staking rewards still remain under the constitution threshold and creates incentive rewards for those who are securing and voting on the Onyx Protocol and Onyx DAO.
+
+Discussion: https://community.onyx.org/t/oip-8-increase-staking-rewards/35",
+          "title": "OIP-8: Increase Staking Rewards",
+          "version": "v2",
+        },
+        "endBlock": 16755946,
+        "executedDate": 2023-03-07T20:39:35.000Z,
+        "executedTxHash": "0x857d533ae969d5e26fea14447bf8d5f0c81bbef97daaee4078148e626dfea6f8",
+        "forVotesWei": "3.02286978509899863154493852e+26",
+        "id": 7,
+        "isEnded": false,
+        "isStarted": false,
+        "proposer": "0x09a74d465c49fd07d6eaf2028c7cff31c93d3a74",
+        "queuedDate": 2023-03-05T16:31:35.000Z,
+        "queuedTxHash": "0xb804ff32c580407f7d45a443de08029a6bf05670c480d324d2bca5c6e4761a7a",
+        "startBlock": 16743146,
+        "state": "Pending",
+        "totalVotesWei": "3.02286978509899863154493852e+26",
+      },
+      "reason": undefined,
+      "support": "FOR",
+      "updatedAt": 2023-03-02T20:19:11.000Z,
+      "votesWei": "2.04949456e+24",
     },
   ],
 }
@@ -259,254 +255,250 @@ FIL: Increase speed setting from 18.32 to 50 XCN daily
 exports[`api/queries/getVoterHistory returns formatted voter history 1`] = `
 Object {
   "limit": 5,
-  "offset": 0,
-  "total": 5,
+  "page": 2,
+  "total": 13,
   "voterHistory": Array [
     Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6752554,
-      "blockTimestamp": 1618987812,
-      "createdAt": 2021-04-21T06:51:10.000Z,
-      "id": "b8e4e6c5-ff53-4351-9a6c-afb05443f78d",
+      "address": "0x9d5be40cf72707d07513a3915afa8a3ad84f31e9",
+      "blockNumber": 17762676,
+      "blockTimestamp": 1690198247,
+      "createdAt": 2023-07-24T11:30:47.000Z,
+      "id": "0x006ac40ad30b592d6f21945e5e297f50720ad9cfa100642244647d4ea6ba20ceab000000",
       "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "27014047767849131149",
+        "actions": Array [
+          Object {
+            "callData": "0x0000000000000000000000004410cbf371a86355ce0690fd08a92373dcd8e57f00000000000000000000000000000000000000000168a6975c3504b634000000",
+            "signature": "grantDAO(address,uint256)",
+            "target": "0x28ca9caae31602d0312ebf6466c9dd57fca5da93",
+            "value": "0",
+          },
+        ],
+        "againstVotesWei": "0",
         "cancelDate": undefined,
         "cancelTxHash": undefined,
-        "createdDate": 2021-04-21T02:11:13.000Z,
-        "createdTxHash": "0x0480b47caff0d35105c2a01254ca8d3bdfea6e20745b24cae28bedc59531962d",
+        "createdDate": 2023-07-23T17:22:11.000Z,
+        "createdTxHash": "0x241eade249b1dc53693ad371d36c824313d97bb754d888899d146d25358a3fb8",
         "description": Object {
-          "description": "
-Due to recent VAI stabilization and market conditions, we have proposed VAI and USDC speed recalibration. This proposal update VAI Vault Rate and vUSDC Xcn Speed.
+          "description": "The Onyx DAO proposes to allocate a budget for current operations in Aug–Oct 2023:
 
-- VAI Vault Rate from 1250 XCN to 500 XCN daily
-- vUSDC Speed Rate from 1000 XCN to 1250 XCN daily
+- Development and Infrastructure support
+- Marketing and Management
 
-This proposal begins efforts of setting daily XCN emission rate for VAI and vUSDC.
-",
-          "title": " VAI and USDC Speed Recalibration",
-          "version": "v1",
+Total is 436,000,000 XCN.
+
+Details and discussion are in the community forum: https://community.onyx.org/t/budget-allocation-for-current-operations-august-october-2023/768 ",
+          "title": "OIP-19: Budget allocation for current operations",
+          "version": "v2",
         },
-        "endBlock": 6833387,
-        "endDate": 2021-04-24T03:39:49.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-04-26T05:26:17.000Z,
-        "executedTxHash": "0xb10169204331b0b6a1d6d6f818dbd2e511455c21e0927e1d1c580f20b1c6c9f8",
-        "forVotesWei": "6.02104728669217991013071e+23",
-        "id": 15,
-        "proposer": "0x4f38bbabf2197d8b7484cc904499f724e830408f",
-        "queuedDate": 2021-04-24T05:25:55.000Z,
-        "queuedTxHash": "0xb78d62fc008612f07a993f48b47004b84768c5fada450cb6c877feeee97cdf64",
-        "startDate": 2021-04-21T02:11:16.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "6.0213174271698584014422e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-21T06:51:10.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6755308,
-      "blockTimestamp": 1618996126,
-      "createdAt": 2021-04-21T09:12:03.000Z,
-      "id": "1f747159-e4e4-4b5c-9494-9cd408cf9647",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "1008475453184684811",
-        "cancelDate": undefined,
-        "cancelTxHash": undefined,
-        "createdDate": 2021-04-21T03:58:41.000Z,
-        "createdTxHash": "0x4735c0974124ae9b5379fdedee9d028773d98618f5c367d6fadc4c62c17d07b3",
-        "description": Object {
-          "description": "
-In accordance to our v2 roadmap, VIP-16 proposes to initiate our very first community driven buyback and burn of $3.5m in $XCN bought from Swipe Swap and UniSwap if approved and executed.
-",
-          "title": " VIP-16 Xcn XCN Burn",
-          "version": "v1",
-        },
-        "endBlock": 6835526,
-        "endDate": 2021-04-24T05:26:46.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-04-26T05:28:08.000Z,
-        "executedTxHash": "0xd4025a072e97840c604d7dd3afa8f2f0f0d6d41b6ae2262be234451a617e3f18",
-        "forVotesWei": "6.02571978482817997675743e+23",
-        "id": 16,
-        "proposer": "0x1ca3ac3686071be692be7f1fbecd668641476d7e",
-        "queuedDate": 2021-04-24T05:27:49.000Z,
-        "queuedTxHash": "0x30196ecabd366da698ff0465ed2186050c740f27f79be090bcc429bc66221ec3",
-        "startDate": 2021-04-21T03:58:44.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "6.02572986958271182360554e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-21T09:12:03.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6778623,
-      "blockTimestamp": 1619068919,
-      "createdAt": 2021-04-22T05:22:34.000Z,
-      "id": "cf7b8e0a-6d5d-470b-8668-24c33275ebad",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "271645438287511902563",
-        "cancelDate": undefined,
-        "cancelTxHash": undefined,
-        "createdDate": 2021-04-22T02:26:21.000Z,
-        "createdTxHash": "0xfbcdf3d457342a72de78ea1aacbf45162d9027aa7f8a08f99abe44324963dd78",
-        "description": Object {
-          "description": "
-Xcn Community has proposed proposal to support DOGE in Onyx Protocol Markets and implements an updated contract that supports vDOGE.
-
-## Asset Details
-Name: Dogecoin
-Symbol: DOGE
-Type: Cross-chain pegged asset by Binance 
-Price: $0.3032
-Market Cap: $39,197,370,632
-Rank: 6
-
-## About Dogecoin
-Dogecoin (DOGE) is based on the popular \\"doge\\" Internet meme and features a Shiba Inu on its logo. The open-source digital currency was created by [Billy Markus](https://coinmarketcap.com/alexandria/article/dogecoin-a-stunning-surge-a-crushing-blow-a-surprise-comeback) from Portland, Oregon and Jackson Palmer from Sydney, Australia, and was forked from Litecoin in December 2013. Dogecoin's creators envisaged it as a fun, light-hearted cryptocurrency that would have greater appeal beyond the core Bitcoin audience, since it was based on a dog meme. Tesla CEO Elon Musk posted several tweets on social media that Dogecoin is his favorite coin.
-
-For more information please visit: https://coinmarketcap.com/currencies/dogecoin/
-",
-          "title": " VIP-17 Support vDOGE",
-          "version": "v1",
-        },
-        "endBlock": 6861512,
-        "endDate": 2021-04-25T03:10:31.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-04-27T04:43:23.000Z,
-        "executedTxHash": "0x67c0b09c133f308f359253c4635bbeee51a1f329ed4f5d70b0cce3c0a307adea",
-        "forVotesWei": "6.00552505805358480959992e+23",
-        "id": 17,
-        "proposer": "0x5108944f6ac60adc9f152648c7c6b14d29426eb4",
-        "queuedDate": 2021-04-25T04:42:40.000Z,
-        "queuedTxHash": "0xd3d4cf260e5dc36431b81749dcf2ab3db691f55b5bb5a5100e6357b18953b0cb",
-        "startDate": 2021-04-22T02:26:24.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "6.00824151243645992862555e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-22T05:22:34.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6960733,
-      "blockTimestamp": 1619619883,
-      "createdAt": 2021-04-28T14:24:51.000Z,
-      "id": "d59e6b24-9ffd-4359-860f-5fd052f7a133",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "2342202445218922408",
-        "cancelDate": 2021-05-03T10:13:35.000Z,
-        "cancelTxHash": "0xa8618ee1def3927ae23f142867e15f557720e83d1af0e9cde1aa732918637e79",
-        "createdDate": 2021-04-28T13:57:04.000Z,
-        "createdTxHash": "0x05c99ce72b579018456c6def6ca83c66989eec4468e93c21f9391d3cb58b3290",
-        "description": Object {
-          "description": "
-## Summary
-Increase the borrow factors from 60% to 80% for selected big caps and stable coins. While markets are highly volatile and market swings happen in both directions, these assets have sufficient liquidity, volume, and markets available for liquidators to be compensated for their work. There have been millions of liquidations properly executed on-chain by liquidators, thus, these changes do not pose a systematic risk. Rather, these changes improve Xcn’s competitive advantage while still being over-collateralized.
-
-Update speed setting for Doge and Bitcoin Cash to 50 XCN daily.
-
-Proposal:
-- BTCB 60% to 80%
-- ETH 60% to 80%
-- ETH 60% to 80%
-- XCN 60% 80%
-- SXP 60% to 80%
-- USDT 60% to 80%
-- BUSD 60% to 80%
-- USDC 60% to 80%
-
-- Doge: Decrease speed setting from 119.99 to 50 XCN daily
-- BCH: Increase speed setting from 18.32 to 50 XCN daily
-
-By increasing the above asset collateral to 80%, which will allow users to utilize the higher borrow factors on their existing positions or receive more security for their open positions.
-",
-          "title": " VIP-18 Increase Qualifed Asset's Collateral Factor",
-          "version": "v1",
-        },
-        "endBlock": 7046581,
-        "endDate": 2021-05-01T14:44:30.000Z,
-        "endTxHash": undefined,
-        "executedDate": undefined,
-        "executedTxHash": undefined,
-        "forVotesWei": "9.0114116127025256799144e+23",
-        "id": 18,
-        "proposer": "0x5108944f6ac60adc9f152648c7c6b14d29426eb4",
-        "queuedDate": 2021-05-01T14:48:21.000Z,
-        "queuedTxHash": "0xa1a99e026a7ec21a31d5131203c7e0933bc3b22eb419c51bd57f8862ab9f93ed",
-        "startDate": 2021-04-28T13:57:07.000Z,
-        "startTxHash": undefined,
-        "state": "Canceled",
-        "totalVotesWei": "9.01143503472697786913848e+23",
-      },
-      "reason": undefined,
-      "support": "FOR",
-      "updatedAt": 2021-04-28T14:24:51.000Z,
-      "votesWei": "19000000007051654283",
-    },
-    Object {
-      "address": "0x8b592f7b651b3b4200a05834929f5b28ead289fe",
-      "blockNumber": 6970646,
-      "blockTimestamp": 1619649813,
-      "createdAt": 2021-04-28T22:43:45.000Z,
-      "id": "79c05c31-e6aa-412c-a340-eaf94cd6413f",
-      "proposal": Object {
-        "abstainedVotesWei": "0",
-        "actions": Array [],
-        "againstVotesWei": "6.00654038898943986646375e+23",
-        "cancelDate": undefined,
-        "cancelTxHash": undefined,
-        "createdDate": 2021-04-28T14:40:25.000Z,
-        "createdTxHash": "0x36868f584cdb8743de7ab1ecc05b42fd1ba794e5f387ea5f66232cbc619925be",
-        "description": Object {
-          "description": "
-Liquidators play a key role in securing the platform by performing liquidations when users have gone over their borrowing limit. This liquidation process guarantees that all assets borrowed by Xcn are 100% backed by supplied collateral. So to ensure liquidators continue to secure the protocol during market volatility, propose increasing liquidator fee incentives from 10% to 15% for all assets.
-
-Proposal:
-Increase liquidator fee incentives from 10% to 15% for all assets
-
-FIL: Increase speed setting from 18.32 to 50 XCN daily
-",
-          "title": " VIP-19 Increase Liquidation Incentive Rate",
-          "version": "v1",
-        },
-        "endBlock": 7047448,
-        "endDate": 2021-05-01T15:28:18.000Z,
-        "endTxHash": undefined,
-        "executedDate": 2021-05-03T15:59:08.000Z,
-        "executedTxHash": "0x9b4e0e2c189f0250df82d369d81625ca190c4455ecbc6d8198264b19600d36b9",
-        "forVotesWei": "6.00922622227605168758294e+23",
+        "endBlock": 17770072,
+        "executedDate": 2023-07-27T17:47:35.000Z,
+        "executedTxHash": "0x1dcc4466b73db4481ee1969e15799a1608beddde06bceb596e27f1d527b614de",
+        "forVotesWei": "2.35266819114955989350637682e+26",
         "id": 19,
-        "proposer": "0x4f38bbabf2197d8b7484cc904499f724e830408f",
-        "queuedDate": 2021-05-01T15:56:53.000Z,
-        "queuedTxHash": "0x5b650ae3d9f49d7a7951fe4c2ec73ec5c237e8e2674a126e8fba2bbce064131b",
-        "startDate": 2021-04-28T14:40:28.000Z,
-        "startTxHash": undefined,
-        "state": "Executed",
-        "totalVotesWei": "1.201576661126549155404669e+24",
+        "isEnded": false,
+        "isStarted": false,
+        "proposer": "0xb0f1ff21e71f5e5fe1d98309e6c6595bff625615",
+        "queuedDate": 2023-07-25T17:42:47.000Z,
+        "queuedTxHash": "0xf5a2b0d62e48e725697ebfcde5613744f0bd22b3506b1bea1819037982524e6c",
+        "startBlock": 17757272,
+        "state": "Pending",
+        "totalVotesWei": "2.35266819114955989350637682e+26",
       },
       "reason": undefined,
-      "support": "AGAINST",
-      "updatedAt": 2021-04-28T22:43:45.000Z,
-      "votesWei": "19000000007051654283",
+      "support": "FOR",
+      "updatedAt": 2023-07-24T11:30:47.000Z,
+      "votesWei": "0",
+    },
+    Object {
+      "address": "0xbabbf5261afbdb1f1353b574f5cae76ae916d315",
+      "blockNumber": 16899221,
+      "blockTimestamp": 1679683451,
+      "createdAt": 2023-03-24T18:44:11.000Z,
+      "id": "0x00db9beebc743dbcdcd34c1ac647bd4bb8f2c2ee3506d6f338921f1cba0c91d38c000000",
+      "proposal": Object {
+        "actions": Array [
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x7d61ed92a6778f5abf5c94085739f1edabec2800",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x1961ad247b47f4f2242e55a0e5578c6cf01f8d12",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x714bd93ab6ab2f0bcfd2aeaf46a46719991d0d79",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x1933f1183c421d44d531ed40a5d2445f6a91646d",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xbced4e924f28f43a24ceedec69ee21ed4d04d2dd",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x8f35113cfaba700ed7a907d92b114b44421e412a",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x830dacd5d0a62afa92c9bc6878461e9cd317b085",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xfee4428b7f403499c50a6da947916b71d33142dc",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x7497e945f23192d1dc3095409837f67927170f2d",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xc0534bb221c0963b213f417585e3ca581993793a",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0xf52459e8bc708d55400c167e0d77ed49641226d3",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x307269cf921213bd2e16b22dcd4401aec21d00bf",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x11b258a1c5ec962f43ab523be9b8fa317cb2eb69",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x4476175752a4947de953e26b40fc8c1e145fea82",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x0c19d213e9f2a5cbaa4ec6e8eac55a22276b0641",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x3f2dd7adbcd464d5b0a766f7eb367bd20a249691",
+            "value": "0",
+          },
+          Object {
+            "callData": "0x",
+            "signature": "_acceptAdmin()",
+            "target": "0x7ab16ed27ab8b22cb625db55c0e58521969cb091",
+            "value": "0",
+          },
+        ],
+        "againstVotesWei": "0",
+        "cancelDate": undefined,
+        "cancelTxHash": undefined,
+        "createdDate": 2023-03-24T12:13:11.000Z,
+        "createdTxHash": "0xdfebb830682e5a776850d057eb908636558c0d49d8a6c1020010a76cf76db5cd",
+        "description": Object {
+          "description": "Abstract: After 3 weeks of testing and live network activity, the Onyx Liquidity Protocol (OLP) will now be fully shifted to the Onyx Governance and Onyx DAO . This proposal is deployed in two parts which will migrate the ownership of the OLP smart contracts to the time lock which is controlled by the Onyx Governance Onyxcoin $XCN stakers who secure and govern the network. Alongside this proposal, the OLP is now fully available via IPFS, a decentralized hosting making Onyx and OLP fully decentralized from the smart contract level to hosting.
+XCN holders are asked to vote in favor for this proposal to transfer OLP to Onyx DAO and Governance.",
+          "title": "OIP-9: Launch OLP Governance",
+          "version": "v2",
+        },
+        "endBlock": 16910087,
+        "executedDate": 2023-03-28T17:37:23.000Z,
+        "executedTxHash": "0xddbe09d6597b72d88f93f9f31ec630c01a1c384cae9ab454a562f113ba834e0c",
+        "forVotesWei": "2.873025810619257470619105486e+27",
+        "id": 8,
+        "isEnded": false,
+        "isStarted": false,
+        "proposer": "0xa8738f54c6c31ea559565a468056df233e6f4c12",
+        "queuedDate": 2023-03-26T16:37:47.000Z,
+        "queuedTxHash": "0x7d1960521610acfe101e477ca7a39ae8b2296f97097373347c8f196f050657a8",
+        "startBlock": 16897287,
+        "state": "Pending",
+        "totalVotesWei": "2.873025810619257470619105486e+27",
+      },
+      "reason": undefined,
+      "support": "FOR",
+      "updatedAt": 2023-03-24T18:44:11.000Z,
+      "votesWei": "0",
+    },
+    Object {
+      "address": "0x7cb436777bcff797f465a96f6b34383e10a43483",
+      "blockNumber": 16743192,
+      "blockTimestamp": 1677788351,
+      "createdAt": 2023-03-02T20:19:11.000Z,
+      "id": "0x040e1a4716ce3f28c60835d4f6cdd8c3b6ca3e9d42e08b0d58792519aefe063942000000",
+      "proposal": Object {
+        "actions": Array [
+          Object {
+            "callData": "0x00000000000000000000000000000000000000000000002a5a058fc295ed0000",
+            "signature": "setRewardPerblock(uint256)",
+            "target": "0x23445c63feef8d85956dc0f19ade87606d0e19a9",
+            "value": "0",
+          },
+        ],
+        "againstVotesWei": "0",
+        "cancelDate": undefined,
+        "cancelTxHash": undefined,
+        "createdDate": 2023-03-02T20:09:47.000Z,
+        "createdTxHash": "0x40e386129ea53babe8084dc68449cb711cdb7661c2b8344ca1d15ff0d48c6f20",
+        "description": Object {
+          "description": "## Increase Staking Rewards
+
+Onyx DAO proposes to the community to increase the staking vault rewards which would make the APR approximately 33% as opposed to todays approximately 6.7% staking rate.
+
+By making this change the staking rewards still remain under the constitution threshold and creates incentive rewards for those who are securing and voting on the Onyx Protocol and Onyx DAO.
+
+Discussion: https://community.onyx.org/t/oip-8-increase-staking-rewards/35",
+          "title": "OIP-8: Increase Staking Rewards",
+          "version": "v2",
+        },
+        "endBlock": 16755946,
+        "executedDate": 2023-03-07T20:39:35.000Z,
+        "executedTxHash": "0x857d533ae969d5e26fea14447bf8d5f0c81bbef97daaee4078148e626dfea6f8",
+        "forVotesWei": "3.02286978509899863154493852e+26",
+        "id": 7,
+        "isEnded": false,
+        "isStarted": false,
+        "proposer": "0x09a74d465c49fd07d6eaf2028c7cff31c93d3a74",
+        "queuedDate": 2023-03-05T16:31:35.000Z,
+        "queuedTxHash": "0xb804ff32c580407f7d45a443de08029a6bf05670c480d324d2bca5c6e4761a7a",
+        "startBlock": 16743146,
+        "state": "Pending",
+        "totalVotesWei": "3.02286978509899863154493852e+26",
+      },
+      "reason": undefined,
+      "support": "FOR",
+      "updatedAt": 2023-03-02T20:19:11.000Z,
+      "votesWei": "2.04949456e+24",
     },
   ],
 }

@@ -47,7 +47,7 @@ describe('pages/SupplyMarket', () => {
         <SupplyMarket
           isXcnEnabled
           suppliedAssets={[]}
-          supplyMarketAssets={assetData}
+          supplyMarketAssets={assetData.filter(item => !item.collateral)}
           accountAddress={fakeAccountAddress}
         />
       ),
