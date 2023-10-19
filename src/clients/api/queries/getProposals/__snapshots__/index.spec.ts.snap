@@ -72,7 +72,7 @@ Object {
       "queuedDate": undefined,
       "queuedTxHash": undefined,
       "startBlock": 4636678,
-      "state": "Executed",
+      "state": "Defeated",
       "totalVotesWei": "0",
     },
     Object {
@@ -138,7 +138,7 @@ Object {
       "queuedDate": undefined,
       "queuedTxHash": undefined,
       "startBlock": 4636636,
-      "state": "Executed",
+      "state": "Defeated",
       "totalVotesWei": "0",
     },
     Object {
@@ -251,7 +251,7 @@ Object {
       "queuedDate": undefined,
       "queuedTxHash": undefined,
       "startBlock": 4636678,
-      "state": "Executed",
+      "state": "Defeated",
       "totalVotesWei": "0",
     },
     Object {
@@ -317,7 +317,7 @@ Object {
       "queuedDate": undefined,
       "queuedTxHash": undefined,
       "startBlock": 4636636,
-      "state": "Executed",
+      "state": "Defeated",
       "totalVotesWei": "0",
     },
     Object {

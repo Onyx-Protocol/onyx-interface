@@ -4,12 +4,18 @@ exports[`api/queries/getVoters returns proposal 1`] = `
 Object {
   "result": Array [
     Object {
-      "address": "0x1b7081943449db22e4d68c5bac45cfc85b44d3a7",
+      "address": "0xe864c9439eb042e969c59dd13d38cfdb28e16d73",
+      "reason": undefined,
+      "support": "AGAINST",
+      "voteWeightWei": "2.324562998201e+26",
+    },
+    Object {
+      "address": "0xe864c9439eb042e969c59dd13d38cfdb28e16d74",
       "reason": undefined,
       "support": "FOR",
-      "voteWeightWei": "1.0998195e+26",
+      "voteWeightWei": "2.324562998201e+26",
     },
   ],
-  "sumVotes": "1.0998195e+26",
+  "sumVotes": "4.649125996402e+26",
 }
 `;
