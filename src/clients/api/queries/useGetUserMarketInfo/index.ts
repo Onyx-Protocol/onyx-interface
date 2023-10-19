@@ -100,10 +100,13 @@ const useGetUserMarketInfo = ({
     } = (getMarketsData?.markets || []).reduce(
       (acc, market) => {
         const token = unsafelyGetToken(market.id);
+        if (!token) {
+          return acc;
+        }
         const oEthToken = unsafelyGetOToken(token.id);
 
         // Skip token if it isn't listed
-        if (!token || !oEthToken) {
+        if (!oEthToken) {
           return acc;
         }
 

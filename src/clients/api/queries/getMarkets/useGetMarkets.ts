@@ -1,6 +1,6 @@
 import { QueryObserverOptions, useQuery } from 'react-query';
 
-import getMarkets, { GetMarketsOutput } from 'clients/api/queries/getMarkets';
+import { GetMarketsOutput, getMarkets } from 'clients/api';
 import { DEFAULT_REFETCH_INTERVAL_MS } from 'constants/defaultRefetchInterval';
 import FunctionKey from 'constants/functionKey';
 
