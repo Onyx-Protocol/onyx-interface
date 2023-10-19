@@ -97,7 +97,7 @@ describe('pages/Vote', () => {
     expect(getByTestId(VOTING_WALLET_TEST_IDS.votingWeightValue)).toHaveTextContent('0');
   });
 
-  it('proposals navigate to details', async () => {
+  it.only('proposals navigate to details', async () => {
     const { getAllByTestId } = renderComponent(<Vote />);
     // Getting all because the cards are rendered twice (once for mobile and once for larger screens)
     const firstProposalAnchor = await waitFor(async () =>

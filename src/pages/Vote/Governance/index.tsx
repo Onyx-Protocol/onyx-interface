@@ -4,7 +4,6 @@ import { Icon, Pagination, Spinner, TextButton, Tooltip } from 'components';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
 import { Proposal } from 'types';
-import Web3 from 'web3';
 import type { TransactionReceipt } from 'web3-core';
 
 import {
@@ -56,36 +55,23 @@ export const GovernanceUi: React.FC<GovernanceUiProps> = ({
   >([]);
 
   useEffect(() => {
-    web3.eth.getBlock(9895283).then(block => {
-      // setModifiedProposals(proposals);
-      console.log('PPP');
-    });
-  }, [web3]);
+    if (proposals) {
+      Promise.all(
+        proposals.map(async proposal => {
+          let endDate;
+          if (proposal.isEnded) {
+            const block = await web3.eth.getBlock(proposal.endBlock);
+            endDate = createDateFromSecondsTimestamp(+block.timestamp ?? 0);
+          }
 
-  useEffect(() => {
-    if (proposals && proposals.length !== 0) {
-      console.log(web3);
-      // web3.eth.getBlock(9895283).then(block => {
-      //   // setModifiedProposals(proposals);
-      //   console.log('PPP');
-      // });
-      // Promise.all(
-      //   [proposals.filter(item => item.isEnded)[0]].map(async proposal => {
-      //     let endDate;
-      //     if (proposal.isEnded) {
-      //       console.log('TTT', proposal.endBlock);
-      //       const block = await web3.eth.getBlock(proposal.endBlock);
-      //       endDate = createDateFromSecondsTimestamp(+block.timestamp ?? 0);
-      //     }
-
-      //     return {
-      //       ...proposal,
-      //       endDate,
-      //     };
-      //   }),
-      // ).then(p => setModifiedProposals(p));
+          return {
+            ...proposal,
+            endDate,
+          };
+        }),
+      ).then(p => setModifiedProposals(p));
     }
-  }, [proposals, web3]);
+  }, [proposals]);
 
   return (
     <div css={styles.root}>
