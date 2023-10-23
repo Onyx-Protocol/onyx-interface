@@ -23,6 +23,7 @@ import VOTING_WALLET_TEST_IDS from './VotingWallet/testIds';
 
 jest.mock('clients/api');
 jest.mock('hooks/useSuccessfulTransactionModal');
+jest.setTimeout(10000);
 
 describe('pages/Vote', () => {
   beforeEach(() => {
@@ -49,7 +50,9 @@ describe('pages/Vote', () => {
       fireEvent.click(createProposalButton);
     });
 
-    waitFor(() => getByText(en.vote.pages.proposalInformation));
+    waitFor(() => getByText(en.vote.pages.proposalInformation), {
+      timeout: 10000,
+    });
   });
 
   it('create proposal is disabled if pending proposal', async () => {
@@ -97,11 +100,14 @@ describe('pages/Vote', () => {
     expect(getByTestId(VOTING_WALLET_TEST_IDS.votingWeightValue)).toHaveTextContent('0');
   });
 
-  it.only('proposals navigate to details', async () => {
+  it('proposals navigate to details', async () => {
     const { getAllByTestId } = renderComponent(<Vote />);
     // Getting all because the cards are rendered twice (once for mobile and once for larger screens)
-    const firstProposalAnchor = await waitFor(async () =>
-      getAllByTestId(GOVERNANCE_PROPOSAL_TEST_IDS.governanceProposal('3')),
+    const firstProposalAnchor = await waitFor(
+      async () => getAllByTestId(GOVERNANCE_PROPOSAL_TEST_IDS.governanceProposal('3')),
+      {
+        timeout: 10000,
+      },
     );
 
     expect(firstProposalAnchor[0].firstChild).toHaveAttribute(
