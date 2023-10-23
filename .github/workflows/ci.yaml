@@ -5,6 +5,7 @@ on: [push]
 env:
   REACT_APP_CHAIN_ID: 5
   IS_CI_ENV: true
+  REACT_APP_THEGRAPH_ENDPOINT: https://gateway.thegraph.com/api/64b2ea62b6f163e106a8b4d699a26dff/deployments/id/QmNkNXwA7Cr59Rm48Y5EcWBRuusFGpBKZrL1fNygRzbX8Q
 
 jobs:
   typecheck:
