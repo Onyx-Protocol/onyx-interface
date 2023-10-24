@@ -82,6 +82,10 @@ jobs:
         run: yarn regression
 
   test:
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: write
     runs-on: ubuntu-20.04
     container:
       image: node:14.15.1-buster
@@ -102,7 +106,7 @@ jobs:
           yarn test --ci --json --coverage --testLocationInResults
           --outputFile=./coverage/report.json
 
-      - uses: ArtiomTr/jest-coverage-report-action@v2.2.0
+      - uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
           coverage-file: ./coverage/report.json
