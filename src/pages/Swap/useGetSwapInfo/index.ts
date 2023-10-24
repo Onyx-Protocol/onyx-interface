@@ -9,6 +9,7 @@ import config from 'config';
 import { useMemo } from 'react';
 import { EthChainId } from 'types';
 import { convertTokensToWei } from 'utilities';
+import { toChecksumAddress } from 'web3-utils';
 
 import { useGetUniSwapPairs } from 'clients/api';
 
@@ -62,7 +63,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
       const currencyAmountIn = new PSTokenAmount(
         new PSToken(
           config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-          wrappedFromToken.address,
+          toChecksumAddress(wrappedFromToken.address),
           wrappedFromToken.decimals,
           wrappedFromToken.symbol,
         ),
@@ -71,7 +72,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
 
       const currencyOut = new PSToken(
         config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-        wrappedToToken.address,
+        toChecksumAddress(wrappedToToken.address),
         wrappedToToken.decimals,
         wrappedToToken.symbol,
       );
@@ -100,7 +101,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
     ) {
       const currencyIn = new PSToken(
         config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-        wrappedFromToken.address,
+        toChecksumAddress(wrappedFromToken.address),
         wrappedFromToken.decimals,
         wrappedFromToken.symbol,
       );
@@ -113,7 +114,7 @@ const useGetSwapInfo = (input: UseGetSwapInfoInput): UseGetSwapInfoOutput => {
       const currencyAmountOut = new PSTokenAmount(
         new PSToken(
           config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-          wrappedToToken.address,
+          toChecksumAddress(wrappedToToken.address),
           wrappedToToken.decimals,
           wrappedToToken.symbol,
         ),
