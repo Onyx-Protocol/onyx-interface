@@ -11,7 +11,8 @@ import { Modal, ModalProps } from '../Modal';
 import { TokenIcon } from '../TokenIcon';
 import { useStyles } from './styles';
 
-export interface SuccessfulTransactionModalProps extends Omit<ModalProps, 'children'> {
+export interface SuccessfulTransactionModalProps
+  extends Omit<Omit<ModalProps, 'children'>, 'content'> {
   title: string;
   content?: string | React.ReactElement;
   transactionHash: string;

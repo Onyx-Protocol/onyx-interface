@@ -11,11 +11,14 @@ export interface Config {
   apiUrl: string;
   apiGovUrl: string;
   ethScanUrl: string;
+  rangoSwapApiKey: string;
 }
 
 const chainId: EthChainId = process.env.REACT_APP_CHAIN_ID
   ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   : EthChainId.MAINNET;
+
+const rangoSwapApiKey = process.env.REACT_APP_RANGO_SWAP_API_KEY ?? '';
 
 const isOnTestnet = chainId === EthChainId.TESTNET;
 const rpcUrl = sample(RPC_URLS[chainId]) as string;
@@ -30,6 +33,7 @@ const config: Config = {
   apiUrl,
   apiGovUrl,
   ethScanUrl,
+  rangoSwapApiKey,
 };
 
 export default config;

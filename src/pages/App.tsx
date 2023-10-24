@@ -28,6 +28,7 @@ import Xcn from 'pages/Xcn';
 import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 
 import FarmPage from './Farm';
+import RangoSwapPage from './RangoSwap';
 import SwapPage from './Swap';
 
 const App = () => (
@@ -71,6 +72,8 @@ const App = () => (
                       <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
 
                       <Route exact path={Path.SWAP} component={SwapPage} />
+
+                      <Route exact path={Path.RANGO_SWAP} component={RangoSwapPage} />
 
                       <Route exact path={Path.FARM} component={FarmPage} />
 

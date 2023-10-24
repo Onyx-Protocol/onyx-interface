@@ -37,6 +37,15 @@ export const menuItems: MenuItem[] = [
     isNew: true,
   },
   {
+    href: Path.RANGO_SWAP,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.swap')
+    i18nKey: 'layout.menuItems.rangoSwap',
+    i18nTitleKey: 'layout.menuItems.rangoSwap',
+    icon: 'convert',
+    isNew: true,
+  },
+  {
     href: Path.FARM,
     // Translation key: do not remove this comment
     // t('layout.menuItems.farm')

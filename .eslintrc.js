@@ -10,6 +10,8 @@ module.exports = {
     project: './tsconfig.eslint.json',
   },
   rules: {
+    'import/no-cycle': 0,
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'no-console': 'off',
     'react/no-danger': 'off',
     // handled by prettier

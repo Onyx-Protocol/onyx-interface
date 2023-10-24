@@ -3,7 +3,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector';
 import { ConnectorUpdate } from '@web3-react/types';
 
 export const URI_AVAILABLE = 'URI_AVAILABLE';
-const PROJECT_ID = process.env.REACT_APP_PROJECT_ID ?? '';
+export const PROJECT_ID = process.env.REACT_APP_PROJECT_ID ?? '';
 
 declare type ArrayOneOrMore<T> = {
   0: T;
