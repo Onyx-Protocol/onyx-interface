@@ -102,7 +102,7 @@ jobs:
           yarn test --ci --json --coverage --testLocationInResults
           --outputFile=./coverage/report.json
 
-      - uses: ArtiomTr/jest-coverage-report-action@v2
+      - uses: ArtiomTr/jest-coverage-report-action@v2.2.0
         with:
           package-manager: yarn
           coverage-file: ./coverage/report.json
