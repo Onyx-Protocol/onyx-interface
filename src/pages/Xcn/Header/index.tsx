@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Paper, Typography } from '@mui/material';
 import BigNumber from 'bignumber.js';
-import { EllipseAddress, Icon, LabeledProgressBar, TokenIcon } from 'components';
+import { EllipseAddress, Icon, LabeledProgressBar } from 'components';
 import React, { useContext, useMemo } from 'react';
 import { useTranslation } from 'translation';
 import {
@@ -39,7 +39,8 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
   const { t } = useTranslation();
 
   const copy = useCopyToClipboard(t('interactive.copy.contractAddress'));
-  const copyAddress = () => copy(getContractAddress('comptroller'));
+  const copyComptrollerAddress = () => copy(getContractAddress('comptroller'));
+  const copyXcnAddress = () => copy(TOKENS.xcn.address);
 
   const readableDailyDistribution = useMemo(() => {
     const dailyXcnTokens = convertWeiToTokens({
@@ -74,24 +75,46 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
 
   return (
     <Paper className={className} css={styles.headerRoot}>
-      <div css={styles.addressContainer}>
-        <div css={styles.xcnIconContainer}>
-          <TokenIcon token={TOKENS.xcn} css={styles.icon} />
+      <div css={styles.addressListContainer}>
+        <div css={styles.addressContainer}>
+          <Typography
+            href={generateEthScanUrl('xcn', 'token')}
+            target="_blank"
+            rel="noreferrer"
+            variant="small2"
+            component="a"
+            css={[styles.whiteText, styles.addressText]}
+          >
+            {
+              'XCN token: '
+            }
+            <EllipseAddress address={TOKENS.xcn.address} ellipseBreakpoint="xl" />
+          </Typography>
+
+          <div css={styles.copyIconContainer}>
+            <Icon name="copy" onClick={copyXcnAddress} css={styles.copyIcon} size={styles.iconSizeXl} />
+          </div>
         </div>
 
-        <Typography
-          href={generateEthScanUrl('xcn', 'token')}
-          target="_blank"
-          rel="noreferrer"
-          variant="small2"
-          component="a"
-          css={[styles.whiteText, styles.addressText]}
-        >
-          <EllipseAddress address={getContractAddress('comptroller')} ellipseBreakpoint="xl" />
-        </Typography>
+        <div css={styles.addressContainer}>
+          <Typography
+            href={generateEthScanUrl(getContractAddress('comptroller'), 'address')}
+            target="_blank"
+            rel="noreferrer"
+            variant="small2"
+            component="a"
+            css={[styles.whiteText, styles.addressText]}
+          >
+            {
+              'Comptroller: '
+            }
+            <EllipseAddress address={getContractAddress('comptroller')} ellipseBreakpoint="xl" />
+          </Typography>
 
-        <div css={styles.copyIconContainer}>
-          <Icon name="copy" onClick={copyAddress} css={styles.copyIcon} size={styles.iconSizeXl} />
+
+          <div css={styles.copyIconContainer}>
+            <Icon name="copy" onClick={copyComptrollerAddress} css={styles.copyIcon} size={styles.iconSizeXl} />
+          </div>
         </div>
       </div>
 

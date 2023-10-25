@@ -52,6 +52,10 @@ export const useStyles = () => {
         justify-content: flex-start;
       }
     `,
+    addressListContainer: css`
+      display: block,
+      align-items: center,
+    `,
     addressContainer: css`
       display: flex;
       align-items: center;
