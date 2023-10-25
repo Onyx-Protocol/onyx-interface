@@ -85,14 +85,17 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
             component="a"
             css={[styles.whiteText, styles.addressText]}
           >
-            {
-              'XCN token: '
-            }
+            {'XCN token: '}
             <EllipseAddress address={TOKENS.xcn.address} ellipseBreakpoint="xl" />
           </Typography>
 
           <div css={styles.copyIconContainer}>
-            <Icon name="copy" onClick={copyXcnAddress} css={styles.copyIcon} size={styles.iconSizeXl} />
+            <Icon
+              name="copy"
+              onClick={copyXcnAddress}
+              css={styles.copyIcon}
+              size={styles.iconSizeXl}
+            />
           </div>
         </div>
 
@@ -105,15 +108,17 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
             component="a"
             css={[styles.whiteText, styles.addressText]}
           >
-            {
-              'Comptroller: '
-            }
+            {'Comptroller: '}
             <EllipseAddress address={getContractAddress('comptroller')} ellipseBreakpoint="xl" />
           </Typography>
 
-
           <div css={styles.copyIconContainer}>
-            <Icon name="copy" onClick={copyComptrollerAddress} css={styles.copyIcon} size={styles.iconSizeXl} />
+            <Icon
+              name="copy"
+              onClick={copyComptrollerAddress}
+              css={styles.copyIcon}
+              size={styles.iconSizeXl}
+            />
           </div>
         </div>
       </div>

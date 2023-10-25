@@ -53,8 +53,8 @@ export const useStyles = () => {
       }
     `,
     addressListContainer: css`
-      display: block,
-      align-items: center,
+      display: block;
+      align-items: center;
     `,
     addressContainer: css`
       display: flex;
