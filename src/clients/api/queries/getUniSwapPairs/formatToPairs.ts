@@ -12,6 +12,11 @@ const formatToPairs = ({
   reserveCallResults: ContractCallResults;
 }): PSPair[] =>
   pairAddresses.reduce((acc, pairAddress) => {
+    if (!reserveCallResults.results[pairAddress.address]) {
+      console.log('T1T', pairAddress);
+      console.log(reserveCallResults.results);
+    }
+
     const reserveCallResult =
       reserveCallResults.results[pairAddress.address].callsReturnContext[0].returnValues;
 

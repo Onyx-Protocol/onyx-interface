@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/Swap displays exactAmountIn swap details correctly  1`] = `"Exchange rate1 BNB ≈ 2 USDTSlippage tolerance0.5%Minimum received15 USDT"`;
+exports[`pages/Swap displays exactAmountIn swap details correctly  1`] = `"Exchange rate1 ETH ≈ 2 XCNSlippage tolerance0.5%Minimum received15 XCN"`;
 
-exports[`pages/Swap displays exactAmountOut swap details correctly  1`] = `"Exchange rate1 BNB ≈ 2 USDTSlippage tolerance0.5%Maximum sold40 ETH"`;
+exports[`pages/Swap displays exactAmountOut swap details correctly  1`] = `"Exchange rate1 ETH ≈ 2 XCNSlippage tolerance0.5%Maximum sold20 ETH"`;

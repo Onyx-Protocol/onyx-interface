@@ -21,9 +21,9 @@ const getProposalVotesSubGraph = (
       body: JSON.stringify({
         query: `
           query proposalVotesQuery {
-            proposalVotes(
-              ${filter ? `where: { address: "${filter.address}" }` : ''}
-            ) {
+            proposalVotes${
+              filter && filter.address ? `(where: { address: "${filter.address}" })` : ''
+            } {
               id
               proposal {
                 id

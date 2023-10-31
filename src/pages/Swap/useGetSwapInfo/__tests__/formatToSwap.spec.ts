@@ -1,5 +1,6 @@
 import { ChainId, Token as PSToken } from '@uniswap/sdk';
 import BigNumber from 'bignumber.js';
+import { toChecksumAddress } from 'web3-utils';
 
 import { UNISWAP_TOKENS } from 'constants/tokens';
 
@@ -10,13 +11,13 @@ const fakeRoute = {
   path: [
     new PSToken(
       ChainId.GÖRLI,
-      UNISWAP_TOKENS.usdt.address,
+      toChecksumAddress(UNISWAP_TOKENS.usdt.address),
       UNISWAP_TOKENS.usdt.decimals,
       UNISWAP_TOKENS.usdt.symbol,
     ),
     new PSToken(
       ChainId.GÖRLI,
-      UNISWAP_TOKENS.uni.address,
+      toChecksumAddress(UNISWAP_TOKENS.uni.address),
       UNISWAP_TOKENS.uni.decimals,
       UNISWAP_TOKENS.uni.symbol,
     ),

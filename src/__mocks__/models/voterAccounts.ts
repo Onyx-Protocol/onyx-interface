@@ -2,6 +2,9 @@ import formatVoterAccountResponse from 'clients/api/queries/getVoterAccounts/for
 
 import voterAccountsResponse from '../api/voterAccounts.json';
 
-const voterAccounts = formatVoterAccountResponse(voterAccountsResponse);
+const voterAccounts = formatVoterAccountResponse(
+  voterAccountsResponse.data,
+  voterAccountsResponse.metadata,
+);
 
 export default voterAccounts;

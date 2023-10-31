@@ -1,22 +1,26 @@
-import { fireEvent } from '@testing-library/react';
+import config from 'config';
+import { enableFetchMocks } from 'jest-fetch-mock';
 import React from 'react';
 
-import fakeAddress from '__mocks__/models/address';
-import transactions from '__mocks__/models/transactions';
-import { useGetTransactions } from 'clients/api';
+import historyItems from '__mocks__/models/historyItems';
 import TEST_IDS from 'components/Spinner/testIds';
+import { SUBGRAPH_LINKS } from 'constants/endpoints';
 import renderComponent from 'testUtils/renderComponent';
 
 import History from '.';
 
-jest.mock('clients/api');
+enableFetchMocks();
 
 describe('pages/History', () => {
   beforeEach(() => {
-    (useGetTransactions as jest.Mock).mockImplementation(() => ({
-      data: { transactions, total: 120 },
-      isLoading: false,
-    }));
+    fetchMock.mockResponse(
+      JSON.stringify({
+        status: 200,
+        data: {
+          historyItems,
+        },
+      }),
+    );
   });
 
   it('renders without crashing', async () => {
@@ -25,52 +29,45 @@ describe('pages/History', () => {
 
   it('fetches transaction on mount', async () => {
     renderComponent(<History />);
-    expect(useGetTransactions).toBeCalledTimes(1);
-    expect(useGetTransactions).toBeCalledWith({ address: undefined, event: undefined, page: 0 });
+
+    expect(fetchMock).toBeCalledWith(SUBGRAPH_LINKS[config.chainId].latest, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query historyItemsQuery {
+            historyItems(
+              first: 26,
+              skip: 0,
+              orderBy: blockTimestamp,
+              orderDirection: desc
+              ${''}
+            ) {
+              id
+              type
+              to
+              from
+              amount
+              blockNumber
+              blockTimestamp
+              transactionHash
+            }
+          }
+        `,
+      }),
+    });
   });
 
   it('renders spinner when fetching', async () => {
-    (useGetTransactions as jest.Mock).mockImplementation(() => ({
-      data: undefined,
-      isFetching: true,
-    }));
     const { getByTestId } = renderComponent(<History />);
     getByTestId(TEST_IDS.spinner);
-  });
-
-  it('rerequests when toggling event filter', async () => {
-    const { container } = renderComponent(<History />);
-    // Firing the change event on the input for select
-    fireEvent.change(container.querySelector('input') as HTMLInputElement, {
-      target: {
-        value: 'Mint',
-      },
-    });
-    expect(useGetTransactions).toBeCalledTimes(2);
-    expect(useGetTransactions).toBeCalledWith({ address: undefined, event: 'Mint', page: 0 });
-  });
-
-  it('rerequests when toggling addressFilter', async () => {
-    const { getByRole } = renderComponent(<History />, {
-      authContextValue: { account: { address: fakeAddress } },
-    });
-    const myAddressCheckbox = getByRole('checkbox');
-    fireEvent.click(myAddressCheckbox);
-    expect(useGetTransactions).toBeCalledTimes(2);
-    expect(useGetTransactions).toBeCalledWith({ address: fakeAddress, event: undefined, page: 0 });
   });
 
   it('address filter is hidden with no wallet connected', async () => {
     const { queryByRole } = renderComponent(<History />);
     const myAddressCheckbox = queryByRole('checkbox');
     expect(myAddressCheckbox).toBe(null);
-  });
-
-  it('rerequests when paginating', async () => {
-    const { getByText } = renderComponent(<History />);
-    const pageTwoButton = getByText('2');
-    fireEvent.click(pageTwoButton);
-    expect(useGetTransactions).toBeCalledTimes(2);
-    expect(useGetTransactions).toBeCalledWith({ address: undefined, event: undefined, page: 1 });
   });
 });

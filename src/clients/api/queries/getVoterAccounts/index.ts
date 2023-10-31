@@ -3,7 +3,7 @@ import { VoterAccount } from 'types';
 import { restService } from 'utilities';
 
 import formatVoterAccountResponse from './formatVoterAccountResponse';
-import { GetVoterAccountsResponse } from './types';
+import { GetVoterAccountsMetadata, GetVoterAccountsResponse } from './types';
 
 export interface GetVoterAccountsInput {
   page?: number;
@@ -19,7 +19,7 @@ export interface GetVoterAccountsOutput {
 const getVoterAccounts = async ({
   page = 0,
 }: GetVoterAccountsInput): Promise<GetVoterAccountsOutput> => {
-  const response = await restService<GetVoterAccountsResponse>({
+  const response = await restService<GetVoterAccountsResponse[]>({
     endpoint: '/voter/account',
     method: 'GET',
     params: {
@@ -43,8 +43,13 @@ const getVoterAccounts = async ({
     throw new VError({ type: 'unexpected', code: 'somethingWentWrongRetrievingVoterAccounts' });
   }
 
-  payload.metadata.totalItem = 100;
-  return formatVoterAccountResponse(payload);
+  const metadata: GetVoterAccountsMetadata = {
+    page: page ? 1 : 1,
+    limit: 100,
+    totalItem: 100,
+    totalPage: 1,
+  };
+  return formatVoterAccountResponse(payload, metadata);
 };
 
 export default getVoterAccounts;

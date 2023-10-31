@@ -97,6 +97,9 @@ export const useGetUserMarketInfo = jest.fn(() => ({
 export const getCurrentVotes = jest.fn(() => new BigNumber(100000000000000000));
 export const useGetCurrentVotes = () => useQuery(FunctionKey.GET_CURRENT_VOTES, getCurrentVotes);
 
+export const getPriorVotes = jest.fn(() => new BigNumber(100000000000000000));
+export const useGetPriorVotes = () => useQuery(FunctionKey.GET_PRIOR_VOTES, getPriorVotes);
+
 export const getProposals = jest.fn();
 export const useGetProposals = () => useQuery(FunctionKey.GET_PROPOSALS, getProposals);
 
@@ -213,3 +216,22 @@ export const useCastVote = (options?: MutationObserverOptions) =>
 export const swapTokens = jest.fn();
 export const useSwapTokens = (options?: MutationObserverOptions) =>
   useMutation(FunctionKey.SWAP_TOKENS, swapTokens, options);
+
+export const getIsApprovedForAll = jest.fn();
+export const useGetIsApprovedForAll = () =>
+  useQuery(FunctionKey.GET_NFT_ALLOWANCE, getIsApprovedForAll);
+
+export const approveNftForAll = jest.fn();
+export const useApproveNftForAll = (options?: MutationObserverOptions) =>
+  useMutation(FunctionKey.APPROVE_NFT_TOKEN, approveNftForAll, options);
+
+export const getUniSwapPairs = jest.fn();
+export const useGetUniSwapPairs = () => useQuery(FunctionKey.GET_UNISWAP_PAIRS, getUniSwapPairs);
+
+export const supplyNFT = jest.fn();
+export const useSupplyNFT = (options?: MutationObserverOptions) =>
+  useMutation(FunctionKey.SUPPLY_NFT, supplyNFT, options);
+
+export const redeemNFT = jest.fn();
+export const useRedeemNFT = (options?: MutationObserverOptions) =>
+  useMutation(FunctionKey.REDEEM_NFT, redeemNFT, options);

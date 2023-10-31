@@ -35,7 +35,7 @@ describe('api/queries/getMarketHistory', () => {
 
     try {
       await getMarketHistory({
-        oTokenId: 'aave',
+        oTokenId: 'uni',
       });
 
       throw new Error('getMarketHistory should have thrown an error but did not');
@@ -55,7 +55,7 @@ describe('api/queries/getMarketHistory', () => {
     }));
 
     const response = await getMarketHistory({
-      oTokenId: 'aave',
+      oTokenId: 'uni',
     });
 
     expect(response).toEqual({
@@ -70,15 +70,15 @@ describe('api/queries/getMarketHistory', () => {
     }));
 
     await getMarketHistory({
-      oTokenId: 'aave',
-      type: 'fake-type',
+      oTokenId: 'uni',
+      type: '1day',
       limit: 6,
     });
 
     expect(restService).toHaveBeenCalledTimes(1);
     expect(restService).toHaveBeenCalledWith({
       endpoint:
-        '/market_history/graph?asset=0x714db6c38A17883964B68a07d56cE331501d9eb6&type=fake-type&limit=6',
+        '/market_history/graph?asset=0x1Ce205A29B8E83a528A9d498122C7C67d82a67a0&type=1day&limit=6',
       method: 'GET',
     });
   });

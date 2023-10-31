@@ -10,7 +10,7 @@ describe('api/queries/getCurrentVotes', () => {
   test('throws an error when request fails', async () => {
     const fakeContract = {
       methods: {
-        getCurrentVotes: () => ({
+        getStakingAmount: () => ({
           call: async () => {
             throw new Error('Fake error message');
           },
@@ -40,7 +40,7 @@ describe('api/queries/getCurrentVotes', () => {
 
     const fakeContract = {
       methods: {
-        getCurrentVotes: getCurrentVotesMock,
+        getStakingAmount: getCurrentVotesMock,
       },
     } as unknown as XcnStaking;
 
@@ -51,7 +51,7 @@ describe('api/queries/getCurrentVotes', () => {
 
     expect(getCurrentVotesMock).toHaveBeenCalledTimes(1);
     expect(callMock).toHaveBeenCalledTimes(1);
-    expect(getCurrentVotesMock).toHaveBeenCalledWith(fakeAccountAddress);
+    expect(getCurrentVotesMock).toHaveBeenCalledWith(0, fakeAccountAddress);
     expect(response).toEqual({
       votesWei: new BigNumber(fakeOutput),
     });

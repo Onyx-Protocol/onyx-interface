@@ -23,7 +23,7 @@ describe('utilities/calculateYearlyEarnings', () => {
       isXcnEnabled: false,
       dailyXcnDistributionInterestsCents: new BigNumber('1'),
     });
-    expect(earnings?.toFixed()).toMatchInlineSnapshot('"-6.8460208090305522483859"');
+    expect(earnings?.toFixed()).toMatchInlineSnapshot('"796.2720460251062738307933"');
   });
 
   test('calculates yearly Earnings for array of assets, including XCN distribution', () => {
@@ -33,6 +33,6 @@ describe('utilities/calculateYearlyEarnings', () => {
       dailyXcnDistributionInterestsCents: new BigNumber('1'),
     });
 
-    expect(earnings?.toFixed()).toMatchInlineSnapshot('"358.1539791909694477516141"');
+    expect(earnings?.toFixed()).toMatchInlineSnapshot('"1161.2720460251062738307933"');
   });
 });

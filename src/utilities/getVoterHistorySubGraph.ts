@@ -13,6 +13,9 @@ const getVoterHistorySubGraph = (
   if (!SUBGRAPH_LINKS[network] && !SUBGRAPH_LINKS[network].latest) {
     return Promise.resolve([]);
   }
+  if (!address) {
+    return Promise.resolve([]);
+  }
   return new Promise(resolve =>
     fetch(SUBGRAPH_LINKS[network].latest, {
       method: 'POST',

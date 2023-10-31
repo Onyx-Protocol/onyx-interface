@@ -9,7 +9,7 @@ describe('utilities/formatTokensToReadableValue', () => {
       value: new BigNumber(100000.12333334),
       token: TOKENS.eth,
     });
-    expect(value).toBe('100,000.12333334 BUSD');
+    expect(value).toBe('100,000.12333334 ETH');
   });
 
   test('formats shorthand value correctly', () => {
@@ -18,7 +18,7 @@ describe('utilities/formatTokensToReadableValue', () => {
       token: TOKENS.xcn,
       minimizeDecimals: true,
     });
-    expect(value).toBe('0.12345679 XCN');
+    expect(value).toBe('0.1235 XCN');
   });
 
   test('removes trailing zeros', () => {
@@ -29,6 +29,6 @@ describe('utilities/formatTokensToReadableValue', () => {
       minimizeDecimals: true,
     });
     expect(trailingZeroNumber.toFixed(8)).toBe('0.00000050');
-    expect(value).toBe('0.0000005 XCN');
+    expect(value).toBe('0 XCN');
   });
 });

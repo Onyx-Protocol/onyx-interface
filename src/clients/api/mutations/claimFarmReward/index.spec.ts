@@ -10,7 +10,7 @@ describe('api/mutation/claimFarmReward', () => {
   test('throws an error when request fails', async () => {
     const fakeContract = {
       methods: {
-        claim: () => ({
+        deposit: () => ({
           send: async () => {
             throw new Error('Fake error message');
           },
@@ -33,13 +33,13 @@ describe('api/mutation/claimFarmReward', () => {
 
   test('returns Receipt when request succeeds', async () => {
     const sendMock = jest.fn(async () => fakeTransactionReceipt);
-    const claimMock = jest.fn(() => ({
+    const depositMock = jest.fn(() => ({
       send: sendMock,
     }));
 
     const fakeContract = {
       methods: {
-        claim: claimMock,
+        deposit: depositMock,
       },
     } as unknown as MasterChef;
 
@@ -50,7 +50,7 @@ describe('api/mutation/claimFarmReward', () => {
     });
 
     expect(response).toBe(fakeTransactionReceipt);
-    expect(claimMock).toHaveBeenCalledTimes(1);
+    expect(depositMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledWith({ from: fakeFromAccountsAddress });
   });

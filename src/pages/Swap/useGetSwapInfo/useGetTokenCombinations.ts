@@ -3,6 +3,7 @@ import config from 'config';
 import flatMap from 'lodash/flatMap';
 import { useMemo } from 'react';
 import { EthChainId, PSTokenCombination, Token } from 'types';
+import { toChecksumAddress } from 'web3-utils';
 
 import { MAINNET_UNISWAP_TOKENS, TESTNET_UNISWAP_TOKENS } from 'constants/tokens';
 
@@ -35,14 +36,14 @@ const useGetTokenCombinations = ({
 
     const psFromToken = new PSToken(
       config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-      wrappedFromToken.address,
+      toChecksumAddress(wrappedFromToken.address),
       wrappedFromToken.decimals,
       wrappedFromToken.symbol,
     );
 
     const psToToken = new PSToken(
       config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-      wrappedToToken.address,
+      toChecksumAddress(wrappedToToken.address),
       wrappedToToken.decimals,
       wrappedToToken.symbol,
     );
@@ -53,7 +54,7 @@ const useGetTokenCombinations = ({
         token =>
           new PSToken(
             config.chainId === EthChainId.MAINNET ? ChainId.MAINNET : ChainId.GÖRLI,
-            token.address,
+            toChecksumAddress(token.address),
             token.decimals,
             token.symbol,
           ),

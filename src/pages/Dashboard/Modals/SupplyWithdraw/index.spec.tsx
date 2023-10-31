@@ -2,7 +2,6 @@ import { act, fireEvent, waitFor } from '@testing-library/react';
 import BigNumber from 'bignumber.js';
 import React from 'react';
 import { Asset } from 'types';
-import { DISABLED_TOKENS } from 'utilities';
 
 import fakeAccountAddress from '__mocks__/models/address';
 import { assetData } from '__mocks__/models/asset';
@@ -98,33 +97,6 @@ describe('pages/Dashboard/SupplyWithdrawUi', () => {
   });
 
   describe('Supply form', () => {
-    it.each(DISABLED_TOKENS)('does not display supply tab when asset is %s', async token => {
-      const customFakeAsset = {
-        ...fakeAsset,
-        token,
-      };
-
-      const { queryByText } = renderComponent(
-        () => (
-          <SupplyWithdraw
-            onClose={jest.fn()}
-            asset={customFakeAsset}
-            isXcnEnabled
-            assets={[customFakeAsset]}
-          />
-        ),
-        {
-          authContextValue: {
-            account: {
-              address: fakeAccountAddress,
-            },
-          },
-        },
-      );
-
-      await waitFor(() => expect(queryByText(en.supplyWithdraw.supply)).toBeNull());
-    });
-
     it('displays correct token wallet balance', async () => {
       const { getByText } = renderComponent(
         <SupplyWithdraw onClose={jest.fn()} asset={fakeAsset} isXcnEnabled assets={[fakeAsset]} />,

@@ -1,12 +1,15 @@
 import BigNumber from 'bignumber.js';
 
-import { GetVoterAccountsResponse } from './types';
+import { GetVoterAccountsMetadata, GetVoterAccountsResponse } from './types';
 
-const formatVoterResponse = (data: GetVoterAccountsResponse) => ({
-  limit: data.metadata.limit,
-  page: data.metadata.page,
-  total: data.metadata.totalItem,
-  voterAccounts: data.data.map(d => ({
+const formatVoterResponse = (
+  data: GetVoterAccountsResponse[],
+  metadata: GetVoterAccountsMetadata,
+) => ({
+  limit: metadata.limit,
+  page: metadata.page,
+  total: metadata.totalItem,
+  voterAccounts: data.map(d => ({
     rank: d.rank,
     address: d.address,
     chnStake: new BigNumber(d.chnStake),

@@ -1,53 +1,75 @@
-import { VError } from 'errors';
-import { restService } from 'utilities';
+import config from 'config';
+import { enableFetchMocks } from 'jest-fetch-mock';
 
 import proposalResponse from '__mocks__/api/proposals.json';
+import { SUBGRAPH_LINKS } from 'constants/endpoints';
 
 import getProposal from './getProposal';
 
-jest.mock('utilities/restService');
+enableFetchMocks();
 
 describe('api/queries/getProposal', () => {
-  test('throws an error when request fails', async () => {
-    const fakeErrorMessage = 'Fake error message';
-
-    (restService as jest.Mock).mockImplementationOnce(async () => ({
-      result: 'error',
-      status: false,
-      message: fakeErrorMessage,
-    }));
-
-    try {
-      await getProposal({ id: 0 });
-
-      throw new Error('getProposal should have thrown an error but did not');
-    } catch (error) {
-      expect(error).toBeInstanceOf(VError);
-      if (error instanceof VError) {
-        expect(error.type).toBe('unexpected');
-        expect(error.code).toBe('somethingWentWrong');
-        expect(error.message).toBe('somethingWentWrong');
-        expect(error.data.message).toBe(fakeErrorMessage);
-      }
-    }
-  });
-
   test('returns proposal', async () => {
-    (restService as jest.Mock).mockImplementationOnce(async () => ({
-      status: 200,
-      data: { data: proposalResponse.data[0] },
-    }));
+    fetchMock.mockResponseOnce(
+      JSON.stringify({
+        status: 200,
+        data: {
+          proposals: [proposalResponse[0]],
+          proposalCounts: [{ count: 1 }],
+        },
+      }),
+    );
 
     const response = await getProposal({
       id: 1,
     });
 
-    expect(restService).toBeCalledWith({
-      endpoint: '/proposals/1',
-      method: 'GET',
-      params: {
-        version: 'v2',
+    expect(fetchMock).toBeCalledWith(SUBGRAPH_LINKS[config.chainId].latest, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        query: `
+          query proposalsQuery {
+            proposals(
+              first: 5,
+              skip: 0,
+              orderBy: createdBlockTimestamp,
+              orderDirection: desc
+              where: { id: "1" }
+            ) {
+              id
+              proposer
+              targets
+              values
+              signatures
+              callDatas
+              startBlock
+              endBlock
+              description
+              state
+              eta
+              forVotes
+              againstVotes
+              createdBlockNumber
+              createdBlockTimestamp
+              createdTransactionHash
+              queuedBlockNumber
+              queuedBlockTimestamp
+              queuedTransactionHash
+              executedBlockNumber
+              executedBlockTimestamp
+              executedTransactionHash
+              canceledBlockNumber
+              canceledBlockTimestamp
+              canceledTransactionHash
+            }
+            
+            proposalCounts(where: { id: "0" }) { count }
+          }
+        `,
+      }),
     });
 
     expect(response).toMatchSnapshot();

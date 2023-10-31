@@ -99,7 +99,7 @@ describe('api/mutation/withdrawFromFarm', () => {
 
     expect(response).toBe(fakeTransactionReceipt);
     expect(withdrawMock).toHaveBeenCalledTimes(1);
-    expect(withdrawMock).toHaveBeenCalledWith(fakeAmountWei.toFixed());
+    expect(withdrawMock).toHaveBeenCalledWith(0, fakeAmountWei.toFixed());
     expect(sendMock).toHaveBeenCalledTimes(1);
     expect(sendMock).toHaveBeenCalledWith({ from: fakeFromAccountsAddress });
   });

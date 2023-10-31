@@ -26,7 +26,7 @@ import useGetSwapInfo from '../useGetSwapInfo';
 import {
   FAKE_DEFAULT_BALANCE_TOKENS,
   FAKE_ETH_BALANCE_TOKENS,
-  FAKE_USDT_BALANCE_TOKENS,
+  FAKE_XCN_BALANCE_TOKENS,
   fakeExactAmountInSwap,
   fakeExactAmountOutSwap,
   fakeNonNativeSwap,
@@ -53,8 +53,8 @@ const fakeTokenBalances: TokenBalance[] = Object.values(UNISWAP_TOKENS).map(toke
 
   if (token.isNative) {
     fakeBalanceTokens = FAKE_ETH_BALANCE_TOKENS;
-  } else if (token.address === UNISWAP_TOKENS.usdt.address) {
-    fakeBalanceTokens = FAKE_USDT_BALANCE_TOKENS;
+  } else if (token.address === UNISWAP_TOKENS.xcn.address) {
+    fakeBalanceTokens = FAKE_XCN_BALANCE_TOKENS;
   }
 
   return {
@@ -95,8 +95,8 @@ describe('pages/Swap', () => {
       },
     });
 
-    await waitFor(() => expect(getByText(`${FAKE_ETH_BALANCE_TOKENS} BNB`)));
-    await waitFor(() => expect(getByText(`${FAKE_USDT_BALANCE_TOKENS} BUSD`)));
+    await waitFor(() => expect(getByText(`${FAKE_ETH_BALANCE_TOKENS} ETH`)));
+    await waitFor(() => expect(getByText(`${FAKE_XCN_BALANCE_TOKENS} XCN`)));
   });
 
   it('updates toToken when changing fromToken for toToken', () => {
@@ -112,7 +112,7 @@ describe('pages/Swap', () => {
     selectToken({
       container,
       selectTokenTextFieldTestId: TEST_IDS.fromTokenSelectTokenTextField,
-      token: UNISWAP_TOKENS.usdt,
+      token: UNISWAP_TOKENS.xcn,
     });
 
     // Check toToken was updated to fromToken
@@ -130,13 +130,13 @@ describe('pages/Swap', () => {
           parentTestId: TEST_IDS.fromTokenSelectTokenTextField,
         }),
       ).textContent,
-    ).toBe(UNISWAP_TOKENS.usdt.symbol);
+    ).toBe(UNISWAP_TOKENS.xcn.symbol);
 
     // Revert toToken back to BUSD
     selectToken({
       container,
       selectTokenTextFieldTestId: TEST_IDS.toTokenSelectTokenTextField,
-      token: UNISWAP_TOKENS.usdt,
+      token: UNISWAP_TOKENS.xcn,
     });
 
     // Check fromToken was updated to toToken
@@ -154,7 +154,7 @@ describe('pages/Swap', () => {
           parentTestId: TEST_IDS.toTokenSelectTokenTextField,
         }),
       ).textContent,
-    ).toBe(UNISWAP_TOKENS.usdt.symbol);
+    ).toBe(UNISWAP_TOKENS.xcn.symbol);
   });
 
   it('switches form values when pressing on switch tokens button', () => {
@@ -203,7 +203,7 @@ describe('pages/Swap', () => {
           parentTestId: TEST_IDS.fromTokenSelectTokenTextField,
         }),
       ).textContent,
-    ).toBe(UNISWAP_TOKENS.usdt.symbol);
+    ).toBe(UNISWAP_TOKENS.xcn.symbol);
 
     expect(
       getByTestId(
@@ -238,7 +238,7 @@ describe('pages/Swap', () => {
           parentTestId: TEST_IDS.toTokenSelectTokenTextField,
         }),
       ).textContent,
-    ).toBe(UNISWAP_TOKENS.usdt.symbol);
+    ).toBe(UNISWAP_TOKENS.xcn.symbol);
 
     // Check swap direction was updated back correctly
     expect(getLastUseGetSwapInfoCallArgs()[0].direction).toBe('exactAmountIn');
@@ -454,7 +454,7 @@ describe('pages/Swap', () => {
     ) as HTMLInputElement;
 
     // Enter valid amount in toToken input
-    fireEvent.change(toTokenInput, { target: { value: FAKE_USDT_BALANCE_TOKENS } });
+    fireEvent.change(toTokenInput, { target: { value: FAKE_XCN_BALANCE_TOKENS } });
 
     // Check fromToken input value was updated correctly
     const fromTokenInput = getByTestId(
@@ -690,7 +690,7 @@ describe('pages/Swap', () => {
     });
 
     // wait for the balance to be updated
-    await waitFor(() => expect(getByText(`${FAKE_ETH_BALANCE_TOKENS} BNB`)));
+    await waitFor(() => expect(getByText(`${FAKE_ETH_BALANCE_TOKENS} ETH`)));
 
     // get and click the MAX from token button
     const fromTokenInput = getByTestId(

@@ -7,12 +7,12 @@ Object {
   "expectedToTokenAmountReceivedWei": "10000000000000000000",
   "fromToken": Object {
     "address": "0xcE546eE9E8Bc0732A1e0083ef578a19F79c73D74",
-    "asset": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
+    "asset": "usdt.svg",
     "decimals": 6,
     "id": "usdt",
     "symbol": "USDT",
   },
-  "fromTokenAmountSoldWei": "10000000000000000000",
+  "fromTokenAmountSoldWei": "10000000",
   "minimumToTokenAmountReceivedWei": "9000000000000000000",
   "routePath": Array [
     "0xcE546eE9E8Bc0732A1e0083ef578a19F79c73D74",
@@ -20,7 +20,7 @@ Object {
   ],
   "toToken": Object {
     "address": "0x651A2a9D3Fc81A5c95E8232d71a558FFd4111126",
-    "asset": "ipfs://QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg",
+    "asset": "uni.svg",
     "decimals": 18,
     "id": "uni",
     "symbol": "UNI",
@@ -32,22 +32,22 @@ exports[`pages/Swap/useGetSwapInfo/formatToSwap formats trade to swap correctly 
 Object {
   "direction": "exactAmountOut",
   "exchangeRate": "1",
-  "expectedFromTokenAmountSoldWei": "10000000000000000000",
+  "expectedFromTokenAmountSoldWei": "10000000",
   "fromToken": Object {
     "address": "0xcE546eE9E8Bc0732A1e0083ef578a19F79c73D74",
-    "asset": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
+    "asset": "usdt.svg",
     "decimals": 6,
     "id": "usdt",
     "symbol": "USDT",
   },
-  "maximumFromTokenAmountSoldWei": "11000000000000000000",
+  "maximumFromTokenAmountSoldWei": "11000000",
   "routePath": Array [
     "0xcE546eE9E8Bc0732A1e0083ef578a19F79c73D74",
     "0x651A2a9D3Fc81A5c95E8232d71a558FFd4111126",
   ],
   "toToken": Object {
     "address": "0x651A2a9D3Fc81A5c95E8232d71a558FFd4111126",
-    "asset": "ipfs://QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg",
+    "asset": "uni.svg",
     "decimals": 18,
     "id": "uni",
     "symbol": "UNI",
