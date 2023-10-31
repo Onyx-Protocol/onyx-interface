@@ -71,7 +71,7 @@ Types are checked by running `tsc`.
 
 ### Code Style
 
-We are enforcing code styles using eslint, prettier and stylelint.
+We are enforcing code styles using eslint and prettier.
 
 ### Visual Regression Tests
 
