@@ -1,4 +1,4 @@
-import { Layout, ResetScrollOnRouteChange } from 'components';
+import { Layout, Modal, ResetScrollOnRouteChange } from 'components';
 import React from 'react';
 import { QueryClientProvider } from 'react-query';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
@@ -42,6 +42,16 @@ const App = () => (
                   <ToastContainer />
                   <Layout>
                     <ResetScrollOnRouteChange />
+                    <Modal isOpen showCloseButton={false} handleClose={() => {}}>
+                      <div>
+                        The OnyxProtocol experienced an exploit, see{' '}
+                        <a href="https://twitter.com/peckshield/status/1719664641109037551">
+                          https://twitter.com/peckshield/status/1719664641109037551
+                        </a>{' '}
+                        for details. We are aware of the situation, closed the vulnerability, and
+                        working on the consequences with our partners.
+                      </div>
+                    </Modal>
 
                     <Switch>
                       <Route exact path={Path.ROOT} component={Dashboard} />
