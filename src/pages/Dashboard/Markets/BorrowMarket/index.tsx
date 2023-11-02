@@ -5,6 +5,7 @@ import { Delimiter } from 'components';
 import React, { useContext } from 'react';
 import { Asset } from 'types';
 
+import { IS_BORROW_TOKEN_ENABLED } from 'constants/enabled';
 import { DisableLunaUstWarningContext } from 'context/DisableLunaUstWarning';
 import BorrowRepayModal from 'pages/Dashboard/Modals/BorrowRepay';
 
@@ -81,7 +82,7 @@ export const BorrowMarketUi: React.FC<BorrowMarketUiProps> = ({
         />
       </Paper>
 
-      {selectedAsset && (
+      {selectedAsset && IS_BORROW_TOKEN_ENABLED && (
         <BorrowRepayModal
           asset={selectedAsset}
           onClose={() => setSelectedAssetId(undefined)}
