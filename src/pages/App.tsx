@@ -1,5 +1,5 @@
-import { Layout, Modal, ResetScrollOnRouteChange } from 'components';
-import React from 'react';
+import { Layout, Modal, PrimaryButton, ResetScrollOnRouteChange } from 'components';
+import React, { useState } from 'react';
 import { QueryClientProvider } from 'react-query';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -30,71 +30,80 @@ import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 import FarmPage from './Farm';
 import SwapPage from './Swap';
 
-const App = () => (
-  <Web3Wrapper>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <MuiThemeProvider>
-          <AuthProvider>
-            <SuccessfulTransactionModalProvider>
-              <DisableLunaUstWarningProvider>
-                <HashRouter>
-                  <ToastContainer />
-                  <Layout>
-                    <ResetScrollOnRouteChange />
-                    <Modal isOpen showCloseButton={false} handleClose={() => {}}>
-                      <div>
-                        The OnyxProtocol experienced an exploit, see{' '}
-                        <a href="https://twitter.com/peckshield/status/1719664641109037551">
-                          https://twitter.com/peckshield/status/1719664641109037551
-                        </a>{' '}
-                        for details. We are aware of the situation, closed the vulnerability, and
-                        working on the consequences with our partners.
-                      </div>
-                    </Modal>
+const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
-                    <Switch>
-                      <Route exact path={Path.ROOT} component={Dashboard} />
+  return (
+    <Web3Wrapper>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <MuiThemeProvider>
+            <AuthProvider>
+              <SuccessfulTransactionModalProvider>
+                <DisableLunaUstWarningProvider>
+                  <HashRouter>
+                    <ToastContainer />
+                    <Layout>
+                      <ResetScrollOnRouteChange />
+                      <Modal isOpen={isModalOpen} showCloseButton={false} handleClose={() => {}}>
+                        <div>
+                          The OnyxProtocol experienced an exploit, see{' '}
+                          <a href="https://twitter.com/peckshield/status/1719664641109037551">
+                            https://twitter.com/peckshield/status/1719664641109037551
+                          </a>{' '}
+                          for details. We are aware of the situation, closed the vulnerability, and
+                          working on the consequences with our partners.
+                          <div style={{ marginTop: '20px' }}>
+                            <PrimaryButton onClick={() => setIsModalOpen(false)}>
+                              I understand
+                            </PrimaryButton>
+                          </div>
+                        </div>
+                      </Modal>
 
-                      <Route exact path={Path.MARKETS} component={Markets} />
-                      <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} />
+                      <Switch>
+                        <Route exact path={Path.ROOT} component={Dashboard} />
 
-                      <Route exact path={Path.HISTORY} component={History} />
+                        <Route exact path={Path.MARKETS} component={Markets} />
+                        <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} />
 
-                      <Route exact path={Path.STAKE} component={Stake} />
+                        <Route exact path={Path.HISTORY} component={History} />
 
-                      <Route exact path={Path.GOVERNANCE} component={Vote} />
-                      <Route
-                        exact
-                        path={Path.GOVERNANCE_LEADER_BOARD}
-                        component={VoterLeaderboard}
-                      />
-                      <Route exact path={Path.GOVERNANCE_ADDRESS} component={VoterDetails} />
-                      <Route exact path={Path.GOVERNANCE_PROPOSAL_DETAILS} component={Proposal} />
+                        <Route exact path={Path.STAKE} component={Stake} />
 
-                      <Route exact path={Path.XCN} component={Xcn} />
+                        <Route exact path={Path.GOVERNANCE} component={Vote} />
+                        <Route
+                          exact
+                          path={Path.GOVERNANCE_LEADER_BOARD}
+                          component={VoterLeaderboard}
+                        />
+                        <Route exact path={Path.GOVERNANCE_ADDRESS} component={VoterDetails} />
+                        <Route exact path={Path.GOVERNANCE_PROPOSAL_DETAILS} component={Proposal} />
 
-                      <Route exact path={Path.WPUNKS} component={Wpunks} />
+                        <Route exact path={Path.XCN} component={Xcn} />
 
-                      <Route exact path={Path.LIQUIDATE} component={Liquidate} />
+                        <Route exact path={Path.WPUNKS} component={Wpunks} />
 
-                      <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
+                        <Route exact path={Path.LIQUIDATE} component={Liquidate} />
 
-                      <Route exact path={Path.SWAP} component={SwapPage} />
+                        <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
 
-                      <Route exact path={Path.FARM} component={FarmPage} />
+                        <Route exact path={Path.SWAP} component={SwapPage} />
 
-                      <Redirect to={Path.ROOT} />
-                    </Switch>
-                  </Layout>
-                </HashRouter>
-              </DisableLunaUstWarningProvider>
-            </SuccessfulTransactionModalProvider>
-          </AuthProvider>
-        </MuiThemeProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </Web3Wrapper>
-);
+                        <Route exact path={Path.FARM} component={FarmPage} />
+
+                        <Redirect to={Path.ROOT} />
+                      </Switch>
+                    </Layout>
+                  </HashRouter>
+                </DisableLunaUstWarningProvider>
+              </SuccessfulTransactionModalProvider>
+            </AuthProvider>
+          </MuiThemeProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </Web3Wrapper>
+  );
+};
 
 export default App;
