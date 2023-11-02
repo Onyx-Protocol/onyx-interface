@@ -47,12 +47,16 @@ const App = () => {
                       <ResetScrollOnRouteChange />
                       <Modal isOpen={isModalOpen} showCloseButton={false} handleClose={() => {}}>
                         <div>
-                          The OnyxProtocol experienced an exploit, see{' '}
-                          <a href="https://twitter.com/peckshield/status/1719664641109037551">
-                            https://twitter.com/peckshield/status/1719664641109037551
-                          </a>{' '}
-                          for details. We are aware of the situation, closed the vulnerability, and
-                          working on the consequences with our partners.
+                          After the The OnyxProtocol hack, we are working on the reimbursement plan.
+                          The Supply and Borrow are temporary disabled; other features, including
+                          staking and voting, work as usual. Details are on the Forum (
+                          <a
+                            about="_blank"
+                            href="https://community.onyx.org/t/the-onyxprotocol-experienced-an-exploit/1125/5?u=alex"
+                          >
+                            https://community.onyx.org/t/the-onyxprotocol-experienced-an-exploit/1125/5?u=alex
+                          </a>
+                          ).
                           <div style={{ marginTop: '20px' }}>
                             <PrimaryButton onClick={() => setIsModalOpen(false)}>
                               I understand
