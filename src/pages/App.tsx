@@ -47,12 +47,14 @@ const App = () => {
                       <ResetScrollOnRouteChange />
                       <Modal isOpen={isModalOpen} showCloseButton={false} handleClose={() => {}}>
                         <div>
-                          After the The OnyxProtocol hack, we are working on the reimbursement plan.
-                          The Supply and Borrow are temporary disabled; other features, including
-                          staking and voting, work as usual. Details are on the Forum (
+                          After the OnyxProtocol hack, we are working on the reimbursement plan. The
+                          Supply and Borrow, except for XCN, are temporarily disabled; other
+                          features, including staking and voting, work as usual. Details are on the
+                          Forum (
                           <a
-                            about="_blank"
+                            target="_blank"
                             href="https://community.onyx.org/t/the-onyxprotocol-experienced-an-exploit/1125/5?u=alex"
+                            rel="noreferrer"
                           >
                             https://community.onyx.org/t/the-onyxprotocol-experienced-an-exploit/1125/5?u=alex
                           </a>

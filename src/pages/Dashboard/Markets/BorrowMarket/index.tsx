@@ -5,7 +5,8 @@ import { Delimiter } from 'components';
 import React, { useContext } from 'react';
 import { Asset } from 'types';
 
-import { IS_BORROW_TOKEN_ENABLED } from 'constants/enabled';
+import { IS_BORROW_TOKEN_ENABLED, IS_XCN_BORROW_ENABLED } from 'constants/enabled';
+import { TOKENS } from 'constants/tokens';
 import { DisableLunaUstWarningContext } from 'context/DisableLunaUstWarning';
 import BorrowRepayModal from 'pages/Dashboard/Modals/BorrowRepay';
 
@@ -82,13 +83,15 @@ export const BorrowMarketUi: React.FC<BorrowMarketUiProps> = ({
         />
       </Paper>
 
-      {selectedAsset && IS_BORROW_TOKEN_ENABLED && (
-        <BorrowRepayModal
-          asset={selectedAsset}
-          onClose={() => setSelectedAssetId(undefined)}
-          isXcnEnabled={isXcnEnabled}
-        />
-      )}
+      {selectedAsset &&
+        (IS_BORROW_TOKEN_ENABLED ||
+          (IS_XCN_BORROW_ENABLED && selectedAsset.token.id === TOKENS.xcn.id)) && (
+          <BorrowRepayModal
+            asset={selectedAsset}
+            onClose={() => setSelectedAssetId(undefined)}
+            isXcnEnabled={isXcnEnabled}
+          />
+        )}
     </>
   );
 };
