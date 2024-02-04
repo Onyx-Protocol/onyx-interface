@@ -1,7 +1,7 @@
 import { EthChainId } from 'types';
 
 export const API_ENDPOINT_URLS = {
-  [EthChainId.MAINNET]: 'https://api.onyx.org/api',
+  [EthChainId.MAINNET]: 'https://v2api.onyx.org/api',
   [EthChainId.TESTNET]: 'https://testapi.onyx.org/api',
 };
 
@@ -19,7 +19,7 @@ export const RPC_URLS: {
 
 export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
   1: {
-    legacy: 'https://api.thegraph.com/subgraphs/name/seme0801/onyx-subgraph',
+    legacy: 'https://api.thegraph.com/subgraphs/name/drinyx/onyx-protocol-subgraph',
     latest: process.env.REACT_APP_THEGRAPH_ENDPOINT ?? '',
   },
   5: {
