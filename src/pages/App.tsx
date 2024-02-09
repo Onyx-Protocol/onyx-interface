@@ -30,63 +30,61 @@ import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 import FarmPage from './Farm';
 import SwapPage from './Swap';
 
-const App = () => {
-  return (
-    <Web3Wrapper>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <MuiThemeProvider>
-            <AuthProvider>
-              <SuccessfulTransactionModalProvider>
-                <DisableLunaUstWarningProvider>
-                  <HashRouter>
-                    <ToastContainer />
-                    <Layout>
-                      <ResetScrollOnRouteChange />
+const App = () => (
+  <Web3Wrapper>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <MuiThemeProvider>
+          <AuthProvider>
+            <SuccessfulTransactionModalProvider>
+              <DisableLunaUstWarningProvider>
+                <HashRouter>
+                  <ToastContainer />
+                  <Layout>
+                    <ResetScrollOnRouteChange />
 
-                      <Switch>
-                        <Route exact path={Path.ROOT} component={Dashboard} />
+                    <Switch>
+                      <Route exact path={Path.ROOT} component={Dashboard} />
 
-                        <Route exact path={Path.MARKETS} component={Markets} />
-                        <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} />
+                      <Route exact path={Path.MARKETS} component={Markets} />
+                      <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} />
 
-                        <Route exact path={Path.HISTORY} component={History} />
+                      <Route exact path={Path.HISTORY} component={History} />
 
-                        <Route exact path={Path.STAKE} component={Stake} />
+                      <Route exact path={Path.STAKE} component={Stake} />
 
-                        <Route exact path={Path.GOVERNANCE} component={Vote} />
-                        <Route
-                          exact
-                          path={Path.GOVERNANCE_LEADER_BOARD}
-                          component={VoterLeaderboard}
-                        />
-                        <Route exact path={Path.GOVERNANCE_ADDRESS} component={VoterDetails} />
-                        <Route exact path={Path.GOVERNANCE_PROPOSAL_DETAILS} component={Proposal} />
+                      <Route exact path={Path.GOVERNANCE} component={Vote} />
+                      <Route
+                        exact
+                        path={Path.GOVERNANCE_LEADER_BOARD}
+                        component={VoterLeaderboard}
+                      />
+                      <Route exact path={Path.GOVERNANCE_ADDRESS} component={VoterDetails} />
+                      <Route exact path={Path.GOVERNANCE_PROPOSAL_DETAILS} component={Proposal} />
 
-                        <Route exact path={Path.XCN} component={Xcn} />
+                      <Route exact path={Path.XCN} component={Xcn} />
 
-                        <Route exact path={Path.WPUNKS} component={Wpunks} />
+                      <Route exact path={Path.WPUNKS} component={Wpunks} />
 
-                        <Route exact path={Path.LIQUIDATE} component={Liquidate} />
+                      <Route exact path={Path.LIQUIDATE} component={Liquidate} />
 
-                        <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
+                      <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
 
-                        <Route exact path={Path.SWAP} component={SwapPage} />
+                      <Route exact path={Path.SWAP} component={SwapPage} />
 
-                        <Route exact path={Path.FARM} component={FarmPage} />
+                      <Route exact path={Path.FARM} component={FarmPage} />
 
-                        <Redirect to={Path.ROOT} />
-                      </Switch>
-                    </Layout>
-                  </HashRouter>
-                </DisableLunaUstWarningProvider>
-              </SuccessfulTransactionModalProvider>
-            </AuthProvider>
-          </MuiThemeProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </Web3Wrapper>
-  );
-};
+                      <Redirect to={Path.ROOT} />
+                    </Switch>
+                  </Layout>
+                </HashRouter>
+              </DisableLunaUstWarningProvider>
+            </SuccessfulTransactionModalProvider>
+          </AuthProvider>
+        </MuiThemeProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </Web3Wrapper>
+);
 
 export default App;
