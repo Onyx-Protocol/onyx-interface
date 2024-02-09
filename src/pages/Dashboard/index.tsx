@@ -75,7 +75,7 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
         <div>
           {t('gasFreeCampaign.onyxHasLaunchedGasFreeCampaign')}{' '}
           <a
-            href="https://blog.onyx.org/onyx-gas-refund-program-54fbd287d4c0"
+            href="https://community.onyx.org/t/onyx-protocol-v2-launch-announcement-new-product/1364"
             target="_blank"
             rel="noreferrer"
           >
