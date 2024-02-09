@@ -45,27 +45,6 @@ const App = () => {
                     <ToastContainer />
                     <Layout>
                       <ResetScrollOnRouteChange />
-                      <Modal isOpen={isModalOpen} showCloseButton={false} handleClose={() => {}}>
-                        <div>
-                          After the OnyxProtocol hack, we are working on the reimbursement plan. The
-                          Supply and Borrow, except for XCN, are temporarily disabled; other
-                          features, including staking and voting, work as usual. Details are on the
-                          Forum (
-                          <a
-                            target="_blank"
-                            href="https://community.onyx.org/t/the-onyxprotocol-experienced-an-exploit/1125/5?u=alex"
-                            rel="noreferrer"
-                          >
-                            https://community.onyx.org/t/the-onyxprotocol-experienced-an-exploit/1125/5?u=alex
-                          </a>
-                          ).
-                          <div style={{ marginTop: '20px' }}>
-                            <PrimaryButton onClick={() => setIsModalOpen(false)}>
-                              I understand
-                            </PrimaryButton>
-                          </div>
-                        </div>
-                      </Modal>
 
                       <Switch>
                         <Route exact path={Path.ROOT} component={Dashboard} />
