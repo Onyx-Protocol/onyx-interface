@@ -1,4 +1,5 @@
 import { Layout, ResetScrollOnRouteChange } from 'components';
+import React from 'react';
 import { QueryClientProvider } from 'react-query';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -30,7 +31,6 @@ import FarmPage from './Farm';
 import SwapPage from './Swap';
 
 const App = () => {
-
   return (
     <Web3Wrapper>
       <QueryClientProvider client={queryClient}>
