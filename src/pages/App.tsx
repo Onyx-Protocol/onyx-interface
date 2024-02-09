@@ -1,5 +1,4 @@
-import { Layout, Modal, PrimaryButton, ResetScrollOnRouteChange } from 'components';
-import React, { useState } from 'react';
+import { Layout, ResetScrollOnRouteChange } from 'components';
 import { QueryClientProvider } from 'react-query';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -31,7 +30,6 @@ import FarmPage from './Farm';
 import SwapPage from './Swap';
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
 
   return (
     <Web3Wrapper>
