@@ -75,7 +75,7 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
         .dividedBy(MINTED_XCN_WEI)
         .multipliedBy(100)
         .toNumber(),
-    [],
+    [remainingDistributionWei],
   );
 
   return (
