@@ -70,7 +70,7 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
   const percentOfXcnDistributed = useMemo(
     // () => totalXcnDistributedWei.dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
     () =>
-      MINTED_XCN_WEI.minus(remainingDistributionWei)
+      new BigNumber(remainingDistributionWei)
         .dividedBy(MINTED_XCN_WEI)
         .multipliedBy(100)
         .toNumber(),
