@@ -129,6 +129,10 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     token: TOKENS.xcn,
     accountAddress: getContractAddress('xcnClaim'),
   });
+  console.log(
+    'xcnRemainingDistributionData: ',
+    xcnRemainingDistributionData?.balanceWei.toString(),
+  );
 
   return (
     <HeaderUi
