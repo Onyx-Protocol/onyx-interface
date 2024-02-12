@@ -68,7 +68,8 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
   );
 
   const percentOfXcnDistributed = useMemo(
-    () => totalXcnDistributedWei.dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
+    // () => totalXcnDistributedWei.dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
+    () => MINTED_XCN_WEI.minus(remainingDistributionWei).dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
     [],
   );
 
@@ -122,7 +123,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
   });
   const { data: xcnRemainingDistributionData } = useGetBalanceOf({
     token: TOKENS.xcn,
-    accountAddress: getContractAddress('comptroller'),
+    accountAddress: getContractAddress('xcnClaim'),
   });
 
   return (
