@@ -26,14 +26,14 @@ interface HeaderProps {
 interface HeaderContainerProps {
   remainingDistributionWei: BigNumber;
   dailyXcnWei: BigNumber;
-  totalXcnDistributedWei: BigNumber;
+  // totalXcnDistributedWei: BigNumber;
 }
 
 export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
   className,
   remainingDistributionWei,
   dailyXcnWei,
-  totalXcnDistributedWei,
+  // totalXcnDistributedWei,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -69,7 +69,11 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
 
   const percentOfXcnDistributed = useMemo(
     // () => totalXcnDistributedWei.dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
-    () => MINTED_XCN_WEI.minus(remainingDistributionWei).dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
+    () =>
+      MINTED_XCN_WEI.minus(remainingDistributionWei)
+        .dividedBy(MINTED_XCN_WEI)
+        .multipliedBy(100)
+        .toNumber(),
     [],
   );
 
@@ -117,7 +121,7 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
 const Header: React.FC<HeaderProps> = ({ className }) => {
   const { account } = useContext(AuthContext);
   const {
-    data: { dailyXcnWei, totalXcnDistributedWei },
+    data: { dailyXcnWei },
   } = useGetUserMarketInfo({
     accountAddress: account?.address,
   });
@@ -131,7 +135,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       remainingDistributionWei={xcnRemainingDistributionData?.balanceWei || new BigNumber(0)}
       className={className}
       dailyXcnWei={dailyXcnWei}
-      totalXcnDistributedWei={totalXcnDistributedWei}
+      // totalXcnDistributedWei={totalXcnDistributedWei}
     />
   );
 };
