@@ -11,12 +11,14 @@ export const formatTokensToReadableValue = ({
   minimizeDecimals = false,
   shortenLargeValue = false,
   addSymbol = true,
+  removeDecimals = false,
 }: {
   value: BigNumber | undefined;
   token: Token;
   minimizeDecimals?: boolean;
   shortenLargeValue?: boolean;
   addSymbol?: boolean;
+  removeDecimals?: boolean;
 }) => {
   if (value === undefined) {
     return PLACEHOLDER_KEY;
@@ -27,6 +29,10 @@ export const formatTokensToReadableValue = ({
     decimalPlaces = 4;
   } else {
     decimalPlaces = token.decimals;
+  }
+
+  if (removeDecimals) {
+    decimalPlaces = 0;
   }
 
   let symbolPlacement = '';

@@ -63,6 +63,7 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
         token: TOKENS.xcn,
         returnInReadableFormat: true,
         minimizeDecimals: true,
+        removeDecimals: true,
       }),
     [remainingDistributionWei.toFixed()],
   );
@@ -129,10 +130,6 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     token: TOKENS.xcn,
     accountAddress: getContractAddress('xcnClaim'),
   });
-  console.log(
-    'xcnRemainingDistributionData: ',
-    xcnRemainingDistributionData?.balanceWei.toString(),
-  );
 
   return (
     <HeaderUi

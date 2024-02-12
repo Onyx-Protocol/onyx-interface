@@ -19,7 +19,7 @@ export const RPC_URLS: {
 
 export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
   1: {
-    legacy: 'https://api.thegraph.com/subgraphs/name/drinyx/history-subgraph',
+    legacy: 'https://api.thegraph.com/subgraphs/name/drinyx/onyx-protocol-subgraph',
     latest: process.env.REACT_APP_THEGRAPH_ENDPOINT ?? '',
   },
   5: {
