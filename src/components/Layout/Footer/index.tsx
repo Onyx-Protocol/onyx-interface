@@ -6,7 +6,6 @@ import { useTranslation } from 'translation';
 // import { EthChainId } from 'types';
 import { generateEthScanUrl } from 'utilities';
 
-import discordImg from 'assets/img/discord.png';
 import { useGetBlockNumber } from 'clients/api';
 import { Icon } from 'components/Icon';
 import tokenAddresses from 'constants/contracts/addresses/tokens.json';
@@ -59,11 +58,6 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
         <a css={styles.link} href={XCN_MEDIUM_URL} target="_blank" rel="noreferrer">
           <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
         </a>
-
-{/*         <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
-          <img src={discordImg} alt="discord" width="20px" height="20px" />
-          <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" />
-        </a> */}
 
         <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
           <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
