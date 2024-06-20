@@ -60,10 +60,10 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
           <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
-        <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
+{/*         <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
           <img src={discordImg} alt="discord" width="20px" height="20px" />
-          {/* <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" /> */}
-        </a>
+          <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" />
+        </a> */}
 
         <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
           <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
