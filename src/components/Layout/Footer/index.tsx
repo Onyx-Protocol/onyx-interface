@@ -11,12 +11,7 @@ import { Icon } from 'components/Icon';
 import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
 import LanguageSwitch from '../Header/LanguageSwitch';
-import {
-  XCN_GITHUB_URL,
-  XCN_MEDIUM_URL,
-  XCN_TELEGRAM_URL,
-  XCN_TWITTER_URL,
-} from './constants';
+import { XCN_GITHUB_URL, XCN_MEDIUM_URL, XCN_TELEGRAM_URL, XCN_TWITTER_URL } from './constants';
 import { useStyles } from './styles';
 
 export interface FooterUiProps {
