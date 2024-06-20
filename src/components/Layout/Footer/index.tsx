@@ -12,7 +12,6 @@ import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
 import LanguageSwitch from '../Header/LanguageSwitch';
 import {
-  XCN_DISCORD_URL,
   XCN_GITHUB_URL,
   XCN_MEDIUM_URL,
   XCN_TELEGRAM_URL,
