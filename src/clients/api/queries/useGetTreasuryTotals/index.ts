@@ -20,30 +20,30 @@ const useGetTreasuryTotals = (): UseGetTreasuryTotalsOutput => {
   const {
     data: getMarketsData = {
       markets: [] as Market[],
+      reserves: BigNumber,
     },
     isLoading: isGetMarketsLoading,
   } = useGetMarkets({
     placeholderData: {
       markets: [],
       dailyXcnWei: new BigNumber(0),
+      reserves: new BigNumber(0),
     },
   });
 
-  const { markets } = getMarketsData;
+  const { markets, reserves } = getMarketsData;
+  const treasuryTotalBalanceCents = BigNumber.isBigNumber(reserves) ? reserves : new BigNumber(0);
   const {
     treasuryTotalSupplyBalanceCents,
     treasuryTotalBorrowBalanceCents,
-    treasuryTotalBalanceCents,
+    // treasuryTotalBalanceCents,
     treasuryTotalAvailableLiquidityBalanceCents,
   } = useMemo(() => {
     const data = markets.reduce(
       (acc, curr) => {
-        acc.treasuryTotalBalanceCents = acc.treasuryTotalBalanceCents.plus(
-          new BigNumber(curr.totalReserves)
-            .dividedBy(new BigNumber(10).pow(curr.underlyingDecimal))
-            .multipliedBy(curr.tokenPrice)
-            .times(100),
-        );
+        // acc.treasuryTotalBalanceCents = acc.treasuryTotalBalanceCents.plus(
+        //   new BigNumber(0)
+        // );
 
         acc.treasuryTotalSupplyBalanceCents = acc.treasuryTotalSupplyBalanceCents.plus(
           curr.treasuryTotalSupplyCents,
@@ -61,7 +61,7 @@ const useGetTreasuryTotals = (): UseGetTreasuryTotalsOutput => {
       {
         treasuryTotalSupplyBalanceCents: new BigNumber(0),
         treasuryTotalBorrowBalanceCents: new BigNumber(0),
-        treasuryTotalBalanceCents: new BigNumber(0),
+        // treasuryTotalBalanceCents: new BigNumber(0),
         treasuryTotalAvailableLiquidityBalanceCents: new BigNumber(0),
       },
     );

@@ -21,7 +21,7 @@ const Liquidate: React.FC = () => {
   const { t } = useTranslation();
 
   const { data: { markets } = { markets: [], dailyXcnWei: undefined } } = useGetMarkets({
-    placeholderData: { markets: [], dailyXcnWei: undefined },
+    placeholderData: { markets: [], reserves: new BigNumber(0), dailyXcnWei: undefined },
   });
   const [users, setUsers] = useState<AccountInfo[]>([]);
   const [isFetching, setIsFetching] = useState(false);
