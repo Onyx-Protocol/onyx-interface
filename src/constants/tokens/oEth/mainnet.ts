@@ -17,6 +17,7 @@ import oUsdt from 'assets/img/tokens/oUsdt.png';
 import oWbtc from 'assets/img/tokens/oWbtc.png';
 import oWpunks from 'assets/img/tokens/oWpunks.png';
 import oXcn from 'assets/img/tokens/oXcn.png';
+import oVusd from 'assets/img/tokens/oLink.png';
 
 import OETH_TOKEN_ADDRESSES from '../../contracts/addresses/oEthTokens.json';
 
@@ -62,6 +63,13 @@ export const MAINNET_OETH_TOKENS = {
     decimals: 8,
     address: OETH_TOKEN_ADDRESSES.xcn[EthChainId.MAINNET],
     asset: oXcn,
+  } as Token,
+  vusd: {
+    id: 'vusd',
+    symbol: 'oVUSD',
+    decimals: 8,
+    address: OETH_TOKEN_ADDRESSES.vusd[EthChainId.MAINNET],
+    asset: oVusd,
   } as Token,
   bayc: {
     id: 'bayc',
