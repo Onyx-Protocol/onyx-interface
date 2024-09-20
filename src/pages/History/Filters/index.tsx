@@ -4,7 +4,7 @@ import { Checkbox, Select } from 'components';
 import React from 'react';
 import { useTranslation } from 'translation';
 
-import { OETH_TOKENS } from 'constants/tokens';
+import { OETH_TOKENS, TOKENS } from 'constants/tokens';
 import { HistoryItemType } from 'utilities/getHistorySubGraph';
 
 import { useStyles } from './styles';
@@ -61,7 +61,7 @@ export const Filters: React.FC<FilterProps> = ({
       const newAsset = {
         label: OETH_TOKENS[key as keyof typeof OETH_TOKENS].symbol.substring(1),
         value: OETH_TOKENS[key as keyof typeof OETH_TOKENS].address,
-        image: OETH_TOKENS[key as keyof typeof OETH_TOKENS].asset,
+        image: TOKENS[key as keyof typeof OETH_TOKENS].asset,
       };
 
       return [...assets, newAsset];
