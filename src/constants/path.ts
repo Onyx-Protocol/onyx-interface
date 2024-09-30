@@ -1,5 +1,10 @@
+/**
+ * Updated by ozdav
+ * Just Updated ROOT path for changing default path
+ */
 enum Path {
-  ROOT = '/',
+  // ROOT = '/',
+  ROOT = '/stake',
   XCN = '/xcn',
   WPUNKS = '/wpunks',
   MARKETS = '/markets',
