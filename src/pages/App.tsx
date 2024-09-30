@@ -14,7 +14,7 @@ import { SuccessfulTransactionModalProvider } from 'context/SuccessfulTransactio
 import { ThemeProvider } from 'context/ThemeContext';
 // import Dashboard from 'pages/Dashboard';
 import History from 'pages/History';
-import Liquidate from 'pages/Liquidate';
+// import Liquidate from 'pages/Liquidate';
 import LiquidateDetail from 'pages/Liquidate/Detail';
 // import Markets from 'pages/Market';
 // import MarketDetails from 'pages/MarketDetails';
@@ -69,7 +69,7 @@ const App = () => (
 
                       {/* <Route exact path={Path.WPUNKS} component={Wpunks} /> */}
 
-                      <Route exact path={Path.LIQUIDATE} component={Liquidate} />
+                      {/* <Route exact path={Path.LIQUIDATE} component={Liquidate} /> */}
 
                       <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
 
