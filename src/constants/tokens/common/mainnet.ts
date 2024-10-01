@@ -17,7 +17,7 @@ import usdt from 'assets/img/tokens/usdt.svg';
 import wbtc from 'assets/img/tokens/wbtc.svg';
 import wpunks from 'assets/img/tokens/wpunks.svg';
 import xcn from 'assets/img/tokens/xcn.svg';
-import vusd from 'assets/img/tokens/vusd.svg';
+// import vusd from 'assets/img/tokens/vusd.svg';
 
 import TOKEN_ADDRESSES from '../../contracts/addresses/tokens.json';
 
@@ -65,13 +65,13 @@ export const MAINNET_TOKENS = {
     address: TOKEN_ADDRESSES.xcn[EthChainId.MAINNET],
     asset: xcn,
   } as Token,
-  vusd: {
-    id: 'vusd',
-    symbol: 'VUSD',
-    decimals: 6,
-    address: TOKEN_ADDRESSES.vusd[EthChainId.MAINNET],
-    asset: vusd,
-  } as Token,
+  // vusd: {
+  //   id: 'vusd',
+  //   symbol: 'VUSD',
+  //   decimals: 6,
+  //   address: TOKEN_ADDRESSES.vusd[EthChainId.MAINNET],
+  //   asset: vusd,
+  // } as Token,
   bayc: {
     id: 'bayc',
     symbol: 'BAYC',
