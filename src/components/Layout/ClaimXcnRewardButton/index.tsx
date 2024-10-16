@@ -5,10 +5,11 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'translation';
 import type { TransactionReceipt } from 'web3-core/types';
 
-import { useClaimXcnReward, useGetXcnReward } from 'clients/api';
+// import { useClaimXcnReward, useGetXcnReward } from 'clients/api';
+import { useClaimXcn, useGetStakingInfos } from 'clients/api';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
-import { DisableLunaUstWarningContext } from 'context/DisableLunaUstWarning';
+// import { DisableLunaUstWarningContext } from 'context/DisableLunaUstWarning';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
 import useHandleTransactionMutation from 'hooks/useHandleTransactionMutation';
 
@@ -80,42 +81,69 @@ export const ClaimXcnRewardButtonUi: React.FC<ClaimXcnRewardButtonProps> = ({
 export const ClaimXcnRewardButton: React.FC<ButtonProps> = props => {
   const { account } = useContext(AuthContext);
 
-  const { hasLunaOrUstCollateralEnabled, openLunaUstWarningModal } = useContext(
-    DisableLunaUstWarningContext,
-  );
+  // const { hasLunaOrUstCollateralEnabled, openLunaUstWarningModal } = useContext(
+  //   DisableLunaUstWarningContext,
+  // );
 
-  const { data: xcnRewardData } = useGetXcnReward(
-    {
-      accountAddress: account?.address || '',
-    },
-    {
-      enabled: !!account?.address,
-    },
-  );
+  // const { data: xcnRewardData } = useGetXcnReward(
+  //   {
+  //     accountAddress: account?.address || '',
+  //   },
+  //   {
+  //     enabled: !!account?.address,
+  //   },
+  // );
 
-  const { mutateAsync: claimXcnReward, isLoading: isClaimXcnRewardLoading } = useClaimXcnReward();
+  // const { mutateAsync: claimXcnReward, isLoading: isClaimXcnRewardLoading } = useClaimXcnReward();
 
-  const handleClaim = async () => {
+  const { data: stakingInfo } = useGetStakingInfos({ accountAddress: account?.address || '' });
+
+  const { mutateAsync: claimXcn, isLoading: isClaimXcnLoading } = useClaimXcn();
+
+  // const handleClaim = async () => {
+  //   if (!account?.address) {
+  //     throw new VError({ type: 'unexpected', code: 'walletNotConnected' });
+  //   }
+
+  //   // Block action is user has LUNA or UST enabled as collateral
+  //   if (hasLunaOrUstCollateralEnabled) {
+  //     openLunaUstWarningModal();
+  //     return;
+  //   }
+
+  //   return claimXcnReward({
+  //     fromAccountAddress: account.address,
+  //   });
+  // };
+
+  const onClaimReward = async () => {
     if (!account?.address) {
       throw new VError({ type: 'unexpected', code: 'walletNotConnected' });
     }
-
     // Block action is user has LUNA or UST enabled as collateral
-    if (hasLunaOrUstCollateralEnabled) {
-      openLunaUstWarningModal();
-      return;
-    }
+    // if (hasLunaOrUstCollateralEnabled) {
+    //   openLunaUstWarningModal();
+    //   return;
+    // }
 
-    return claimXcnReward({
-      fromAccountAddress: account.address,
+    claimXcn({
+      accountAddress: account?.address || '',
     });
   };
 
+  // return (
+  //   <ClaimXcnRewardButtonUi
+  //     amountWei={xcnRewardData?.xcnRewardWei}
+  //     loading={isClaimXcnRewardLoading}
+  //     onClaimReward={handleClaim}
+  //     {...props}
+  //   />
+  // );
   return (
     <ClaimXcnRewardButtonUi
-      amountWei={xcnRewardData?.xcnRewardWei}
-      loading={isClaimXcnRewardLoading}
-      onClaimReward={handleClaim}
+      amountWei={stakingInfo?.earned}
+      loading={isClaimXcnLoading}
+      onClaimReward={onClaimReward}
       {...props}
     />
   );
