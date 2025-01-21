@@ -13,8 +13,8 @@ export const API_GOV_ENDPOINT_URLS = {
 export const RPC_URLS: {
   [key: string]: string[];
 } = {
-  [EthChainId.MAINNET]: ['https://mainnet.infura.io/v3/2a396817d3e349d289318db583cc123c'],
-  [EthChainId.TESTNET]: ['https://goerli.infura.io/v3/2a396817d3e349d289318db583cc123c'],
+  [EthChainId.MAINNET]: ['https://mainnet.infura.io/v3/54af4f71d6c44e0ea83badb0886458f9'],
+  [EthChainId.TESTNET]: ['https://goerli.infura.io/v3/54af4f71d6c44e0ea83badb0886458f9'],
 };
 
 export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
