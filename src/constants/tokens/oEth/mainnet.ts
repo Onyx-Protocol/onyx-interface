@@ -17,8 +17,8 @@ import oUsdt from 'assets/img/tokens/oUsdt.png';
 import oWbtc from 'assets/img/tokens/oWbtc.png';
 import oWpunks from 'assets/img/tokens/oWpunks.png';
 import oXcn from 'assets/img/tokens/oXcn.png';
-// import oVusd from 'assets/img/tokens/oVusd.png';
 
+// import oVusd from 'assets/img/tokens/oVusd.png';
 import OETH_TOKEN_ADDRESSES from '../../contracts/addresses/oEthTokens.json';
 
 export const MAINNET_OETH_TOKENS = {

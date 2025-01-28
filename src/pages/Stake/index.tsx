@@ -2,7 +2,12 @@
 import BigNumber from 'bignumber.js';
 import React, { useContext } from 'react';
 
-import { useGetBalanceOf, useGetStakingApy, useGetStakingInfos, useGetTreasuryTotals } from 'clients/api';
+import {
+  useGetBalanceOf,
+  useGetStakingApy,
+  useGetStakingInfos,
+  useGetTreasuryTotals,
+} from 'clients/api';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 
@@ -23,9 +28,7 @@ const FarmPage: React.FC = () => {
   const { data: stakingApy } = useGetStakingApy();
 
   const {
-    data: {
-      treasuryTotalBalanceCents,
-    },
+    data: { treasuryTotalBalanceCents },
   } = useGetTreasuryTotals();
 
   return (

@@ -29,6 +29,7 @@ import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 
 import FarmPage from './Farm';
 import SwapPage from './Swap';
+
 /**
  * Updated by ozdav
  * Just commented to hide some menu links

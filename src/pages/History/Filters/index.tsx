@@ -60,18 +60,20 @@ export const Filters: React.FC<FilterProps> = ({
    * Updated by ozdav
    * Just updated token filter to show only xcn in history
    */
-  const selectAssetOptions = Object.keys(OETH_TOKENS).filter(token => token === 'xcn').reduce<AssetRecord[]>(
-    (assets: AssetRecord[], key: string) => {
-      const newAsset = {
-        label: OETH_TOKENS[key as keyof typeof OETH_TOKENS].symbol.substring(1),
-        value: OETH_TOKENS[key as keyof typeof OETH_TOKENS].address,
-        image: TOKENS[key as keyof typeof OETH_TOKENS].asset,
-      };
+  const selectAssetOptions = Object.keys(OETH_TOKENS)
+    .filter(token => token === 'xcn')
+    .reduce<AssetRecord[]>(
+      (assets: AssetRecord[], key: string) => {
+        const newAsset = {
+          label: OETH_TOKENS[key as keyof typeof OETH_TOKENS].symbol.substring(1),
+          value: OETH_TOKENS[key as keyof typeof OETH_TOKENS].address,
+          image: TOKENS[key as keyof typeof OETH_TOKENS].asset,
+        };
 
-      return [...assets, newAsset];
-    },
-    [{ label: t('history.all'), value: 'all' }],
-  );
+        return [...assets, newAsset];
+      },
+      [{ label: t('history.all'), value: 'all' }],
+    );
 
   return (
     <Paper css={styles.root}>

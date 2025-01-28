@@ -181,10 +181,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         value: (
           <>
             <TokenIcon css={styles.tokenIcon} token={rewardToken} />
-            {readableTresuryTokens}{' '}
-            (
-            {readableTresuryValue}
-            )
+            {readableTresuryTokens} ({readableTresuryValue})
           </>
         ),
       },
