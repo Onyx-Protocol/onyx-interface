@@ -6,19 +6,12 @@ import { useTranslation } from 'translation';
 // import { EthChainId } from 'types';
 import { generateEthScanUrl } from 'utilities';
 
-import discordImg from 'assets/img/discord.png';
 import { useGetBlockNumber } from 'clients/api';
 import { Icon } from 'components/Icon';
-import tokenAddresses from 'constants/contracts/addresses/tokens.json';
+// import tokenAddresses from 'constants/contracts/addresses/tokens.json';
 
 import LanguageSwitch from '../Header/LanguageSwitch';
-import {
-  XCN_DISCORD_URL,
-  XCN_GITHUB_URL,
-  XCN_MEDIUM_URL,
-  XCN_TELEGRAM_URL,
-  XCN_TWITTER_URL,
-} from './constants';
+import { XCN_GITHUB_URL, XCN_MEDIUM_URL, XCN_TELEGRAM_URL, XCN_TWITTER_URL } from './constants';
 import { useStyles } from './styles';
 
 export interface FooterUiProps {
@@ -49,7 +42,7 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
       <div css={styles.links}>
         <a
           css={styles.link}
-          href={generateEthScanUrl(tokenAddresses.xcn[config.chainId])}
+          href={generateEthScanUrl('xcn', 'token')}
           target="_blank"
           rel="noreferrer"
         >
@@ -60,17 +53,12 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
           <Icon name="medium" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
-        <a css={styles.link} href={XCN_DISCORD_URL} target="_blank" rel="noreferrer">
-          <img src={discordImg} alt="discord" width="20px" height="20px" />
-          {/* <Icon name="discord" color={styles.theme.palette.text.primary} size="12px" /> */}
-        </a>
-
         <a css={styles.link} href={XCN_TELEGRAM_URL} target="_blank" rel="noreferrer">
           <Icon name="telegram" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
         <a css={styles.link} href={XCN_TWITTER_URL} target="_blank" rel="noreferrer">
-          <Icon name="twitter" color={styles.theme.palette.text.primary} size="12px" />
+          <Icon name="twitterX" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
         <a css={styles.link} href={XCN_GITHUB_URL} target="_blank" rel="noreferrer">

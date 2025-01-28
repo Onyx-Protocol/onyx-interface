@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 // import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import BigNumber from 'bignumber.js';
 // import { Toggle, ToggleProps } from 'components';
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'translation';
+// import { useTranslation } from 'translation';
 import { Asset } from 'types';
 
 import { useGetUserMarketInfo } from 'clients/api';
@@ -32,7 +32,7 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
   userTotalBorrowBalanceCents,
   userTotalSupplyBalanceCents,
 }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const styles = useStyles();
   const [isXcnEnabled, setIsXcnEnabled] = React.useState(true);
   // const [isInUsdEnabled, setIsInUsdEnabled] = React.useState(true);
@@ -70,19 +70,19 @@ const DashboardUi: React.FC<DashboardUiProps> = ({
 
   return (
     <>
-      <Paper css={styles.notification}>
+      {/* <Paper css={styles.notification}>
         <Icon css={styles.infoIcon} name="info" />
         <div>
           {t('gasFreeCampaign.onyxHasLaunchedGasFreeCampaign')}{' '}
           <a
-            href="https://blog.onyx.org/onyx-gas-refund-program-54fbd287d4c0"
+            href="https://community.onyx.org/t/onyx-protocol-v2-launch-announcement-new-product/1364"
             target="_blank"
             rel="noreferrer"
           >
             {t('gasFreeCampaign.seeTheAnnouncement')}.
           </a>
         </div>
-      </Paper>
+      </Paper> */}
 
       <div css={styles.row}>
         <MyAccount

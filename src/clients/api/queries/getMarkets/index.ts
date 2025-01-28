@@ -9,10 +9,12 @@ export interface GetMarketsResponse {
   markets: Market[];
   request: { addresses: string[] };
   xcnRate: string;
+  reserves: number;
 }
 
 export interface GetMarketsOutput {
   markets: Market[];
+  reserves?: BigNumber | undefined;
   dailyXcnWei: BigNumber | undefined;
 }
 
@@ -26,7 +28,9 @@ const getMarkets = async (): Promise<GetMarketsOutput> => {
   }
   let markets: Market[] = [];
   let dailyXcnWei;
+  let reserves = new BigNumber(0);
   if (response && response.data && response.data.data) {
+    reserves = new BigNumber(response.data.data.reserves).dp(0, 1);
     dailyXcnWei = new BigNumber(response.data.data.dailyXcn);
     markets = Object.keys(OETH_TOKENS).reduce<Market[]>((acc: Market[], curr: string) => {
       const activeMarket = response.data?.data.markets.find(
@@ -61,7 +65,7 @@ const getMarkets = async (): Promise<GetMarketsOutput> => {
   );
   markets = [...nftMarkets, ...tokenMarkets];
 
-  return { markets, dailyXcnWei };
+  return { markets, dailyXcnWei, reserves };
 };
 
 export default getMarkets;

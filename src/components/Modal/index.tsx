@@ -14,6 +14,7 @@ export interface ModalProps extends Omit<MUIModalProps, 'title' | 'open'> {
   handleBackAction?: () => void;
   title?: string | ReactElement | ReactElement[];
   noHorizontalPadding?: boolean;
+  showCloseButton?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -24,6 +25,7 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   title,
   noHorizontalPadding,
+  showCloseButton = true,
   ...otherModalProps
 }) => {
   const s = useModalStyles({
@@ -52,9 +54,11 @@ export const Modal: React.FC<ModalProps> = ({
               </Button>
             )}
             <div css={s.titleComponent}>{title}</div>
-            <Button css={s.closeIcon} disableRipple onClick={handleClose}>
-              <Icon name="close" />
-            </Button>
+            {showCloseButton && (
+              <Button css={s.closeIcon} disableRipple onClick={handleClose}>
+                <Icon name="close" />
+              </Button>
+            )}
           </div>
           <div css={s.contentWrapper}>{children}</div>
         </div>

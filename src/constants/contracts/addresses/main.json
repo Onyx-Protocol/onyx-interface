@@ -1,6 +1,6 @@
 {
   "comptroller": {
-    "1": "0x7D61ed92a6778f5ABf5c94085739f1EDAbec2800",
+    "1": "0xcC53F8fF403824a350885A345ED4dA649e060369",
     "5": "0xCD83e681c42E824f264B62Dca8A4E8FddA6095a9"
   },
   "oracle": {
@@ -12,7 +12,7 @@
     "5": "0xD9b7303683A63c2bd574F093410e85f026fED29a"
   },
   "xcnLens": {
-    "1": "0x58e9a7E38FD7094AE086B134b74ac7B9b8FFEbba",
+    "1": "0x138471b0f92cDA9Ea74b2845858E494Abc670b78",
     "5": "0x1D133323d1f7e8c5642627DeFAf68cFC89cb2583"
   },
   "maximillion": {

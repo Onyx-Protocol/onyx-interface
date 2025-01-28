@@ -48,7 +48,7 @@ const LiquidateDetail = ({
   const web3 = useWeb3();
 
   const { data: { markets } = { markets: [], dailyXcnWei: undefined } } = useGetMarkets({
-    placeholderData: { markets: [], dailyXcnWei: undefined },
+    placeholderData: { markets: [], reserves: new BigNumber(0), dailyXcnWei: undefined },
   });
 
   const [isOpen, setIsOpen] = useState(false);

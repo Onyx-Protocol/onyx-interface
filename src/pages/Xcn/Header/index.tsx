@@ -26,14 +26,14 @@ interface HeaderProps {
 interface HeaderContainerProps {
   remainingDistributionWei: BigNumber;
   dailyXcnWei: BigNumber;
-  totalXcnDistributedWei: BigNumber;
+  // totalXcnDistributedWei: BigNumber;
 }
 
 export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
   className,
   remainingDistributionWei,
   dailyXcnWei,
-  totalXcnDistributedWei,
+  // totalXcnDistributedWei,
 }) => {
   const styles = useStyles();
   const { t } = useTranslation();
@@ -63,13 +63,19 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
         token: TOKENS.xcn,
         returnInReadableFormat: true,
         minimizeDecimals: true,
+        removeDecimals: true,
       }),
     [remainingDistributionWei.toFixed()],
   );
 
   const percentOfXcnDistributed = useMemo(
-    () => totalXcnDistributedWei.dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
-    [],
+    // () => totalXcnDistributedWei.dividedBy(MINTED_XCN_WEI).multipliedBy(100).toNumber(),
+    () =>
+      new BigNumber(remainingDistributionWei)
+        .dividedBy(MINTED_XCN_WEI)
+        .multipliedBy(100)
+        .toNumber(),
+    [remainingDistributionWei],
   );
 
   return (
@@ -116,13 +122,13 @@ export const HeaderUi: React.FC<HeaderProps & HeaderContainerProps> = ({
 const Header: React.FC<HeaderProps> = ({ className }) => {
   const { account } = useContext(AuthContext);
   const {
-    data: { dailyXcnWei, totalXcnDistributedWei },
+    data: { dailyXcnWei },
   } = useGetUserMarketInfo({
     accountAddress: account?.address,
   });
   const { data: xcnRemainingDistributionData } = useGetBalanceOf({
     token: TOKENS.xcn,
-    accountAddress: getContractAddress('comptroller'),
+    accountAddress: getContractAddress('xcnClaim'),
   });
 
   return (
@@ -130,7 +136,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       remainingDistributionWei={xcnRemainingDistributionData?.balanceWei || new BigNumber(0)}
       className={className}
       dailyXcnWei={dailyXcnWei}
-      totalXcnDistributedWei={totalXcnDistributedWei}
+      // totalXcnDistributedWei={totalXcnDistributedWei}
     />
   );
 };

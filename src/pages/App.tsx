@@ -12,24 +12,27 @@ import { AuthProvider } from 'context/AuthContext';
 import { DisableLunaUstWarningProvider } from 'context/DisableLunaUstWarning';
 import { SuccessfulTransactionModalProvider } from 'context/SuccessfulTransactionModalContext';
 import { ThemeProvider } from 'context/ThemeContext';
-import Dashboard from 'pages/Dashboard';
+// import Dashboard from 'pages/Dashboard';
 import History from 'pages/History';
-import Liquidate from 'pages/Liquidate';
+// import Liquidate from 'pages/Liquidate';
 import LiquidateDetail from 'pages/Liquidate/Detail';
-import Markets from 'pages/Market';
-import MarketDetails from 'pages/MarketDetails';
+// import Markets from 'pages/Market';
+// import MarketDetails from 'pages/MarketDetails';
 import Proposal from 'pages/Proposal';
 import Stake from 'pages/Stake';
 import Vote from 'pages/Vote';
 import VoterDetails from 'pages/VoterDetails';
 import VoterLeaderboard from 'pages/VoterLeaderboard';
-import Wpunks from 'pages/Wpunks';
+// import Wpunks from 'pages/Wpunks';
 import Xcn from 'pages/Xcn';
 import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 
 import FarmPage from './Farm';
 import SwapPage from './Swap';
-
+/**
+ * Updated by ozdav
+ * Just commented to hide some menu links
+ */
 const App = () => (
   <Web3Wrapper>
     <QueryClientProvider client={queryClient}>
@@ -44,10 +47,10 @@ const App = () => (
                     <ResetScrollOnRouteChange />
 
                     <Switch>
-                      <Route exact path={Path.ROOT} component={Dashboard} />
+                      {/* <Route exact path={Path.ROOT} component={Dashboard} /> */}
 
-                      <Route exact path={Path.MARKETS} component={Markets} />
-                      <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} />
+                      {/* <Route exact path={Path.MARKETS} component={Markets} /> */}
+                      {/* <Route exact path={Path.MARKET_DETAILS} component={MarketDetails} /> */}
 
                       <Route exact path={Path.HISTORY} component={History} />
 
@@ -64,9 +67,9 @@ const App = () => (
 
                       <Route exact path={Path.XCN} component={Xcn} />
 
-                      <Route exact path={Path.WPUNKS} component={Wpunks} />
+                      {/* <Route exact path={Path.WPUNKS} component={Wpunks} /> */}
 
-                      <Route exact path={Path.LIQUIDATE} component={Liquidate} />
+                      {/* <Route exact path={Path.LIQUIDATE} component={Liquidate} /> */}
 
                       <Route exact path={Path.LIQUIDATE_DETAIL} component={LiquidateDetail} />
 

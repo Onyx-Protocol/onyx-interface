@@ -15,10 +15,10 @@ export interface UseGetTokenCombinationsInput {
 
 // List tokens to check trades against
 const BASE_TRADE_TOKENS = config.isOnTestnet
-  ? [TESTNET_UNISWAP_TOKENS.weth, TESTNET_UNISWAP_TOKENS.usdt, TESTNET_UNISWAP_TOKENS.uni]
+  ? [TESTNET_UNISWAP_TOKENS.weth, TESTNET_UNISWAP_TOKENS.usdt]
   : [
       MAINNET_UNISWAP_TOKENS.weth,
-      MAINNET_UNISWAP_TOKENS.uni,
+      // MAINNET_UNISWAP_TOKENS.uni,
       MAINNET_UNISWAP_TOKENS.usdc,
       MAINNET_UNISWAP_TOKENS.usdt,
       MAINNET_UNISWAP_TOKENS.wbtc,

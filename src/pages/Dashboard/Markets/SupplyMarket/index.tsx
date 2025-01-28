@@ -15,6 +15,8 @@ import {
 } from 'clients/api';
 import { getOTokenContract, useComptrollerContract } from 'clients/contracts';
 import { useWeb3 } from 'clients/web3';
+import { IS_SUPPLY_TOKEN_ENABLED, IS_XCN_SUPPLY_ENABLED } from 'constants/enabled';
+import { TOKENS } from 'constants/tokens';
 import { DisableLunaUstWarningContext } from 'context/DisableLunaUstWarning';
 
 import { SupplyWithdrawModal } from '../../Modals';
@@ -103,20 +105,25 @@ export const SupplyMarketUi: React.FC<SupplyMarketProps> = ({
         isXcnEnabled={isXcnEnabled}
         assets={supplyMarketAssets}
         rowOnClick={rowOnClick}
-        collateralOnChange={collateralOnChange}
+        collateralOnChange={IS_SUPPLY_TOKEN_ENABLED ? collateralOnChange : () => {}}
       />
-      <CollateralConfirmModal
-        asset={confirmCollateral}
-        handleClose={() => setConfirmCollateral(undefined)}
-      />
-      {selectedAsset && (
-        <SupplyWithdrawModal
-          asset={selectedAsset}
-          assets={[...suppliedAssets, ...supplyMarketAssets]}
-          isXcnEnabled={isXcnEnabled}
-          onClose={() => setSelectedAssetId(undefined)}
+      {(IS_SUPPLY_TOKEN_ENABLED ||
+        (IS_XCN_SUPPLY_ENABLED && confirmCollateral?.token.id === TOKENS.xcn.id)) && (
+        <CollateralConfirmModal
+          asset={confirmCollateral}
+          handleClose={() => setConfirmCollateral(undefined)}
         />
       )}
+      {selectedAsset &&
+        (IS_SUPPLY_TOKEN_ENABLED ||
+          (IS_XCN_SUPPLY_ENABLED && selectedAsset.token.id === TOKENS.xcn.id)) && (
+          <SupplyWithdrawModal
+            asset={selectedAsset}
+            assets={[...suppliedAssets, ...supplyMarketAssets]}
+            isXcnEnabled={isXcnEnabled}
+            onClose={() => setSelectedAssetId(undefined)}
+          />
+        )}
     </Paper>
   );
 };

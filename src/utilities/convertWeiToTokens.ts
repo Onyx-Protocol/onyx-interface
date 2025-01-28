@@ -10,6 +10,7 @@ export interface ConvertWeiToTokensInput<T extends boolean | undefined = false> 
   minimizeDecimals?: boolean;
   addSymbol?: boolean;
   shortenLargeValue?: boolean;
+  removeDecimals?: boolean;
 }
 
 export type ConvertWeiToTokensOutput<T> = T extends true ? string : BigNumber;
@@ -21,6 +22,7 @@ export function convertWeiToTokens<T extends boolean | undefined = false>({
   minimizeDecimals = false,
   addSymbol = true,
   shortenLargeValue = false,
+  removeDecimals = false,
 }: ConvertWeiToTokensInput<T>): ConvertWeiToTokensOutput<T> {
   const valueTokens = valueWei
     .dividedBy(new BigNumber(10).pow(token.decimals))
@@ -34,6 +36,7 @@ export function convertWeiToTokens<T extends boolean | undefined = false>({
           minimizeDecimals,
           addSymbol,
           shortenLargeValue,
+          removeDecimals,
         })
       : valueTokens
   ) as ConvertWeiToTokensOutput<T>;
