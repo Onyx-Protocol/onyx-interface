@@ -58,7 +58,7 @@ export const FooterUi: React.FC<FooterUiProps> = ({ currentBlockNumber }) => {
         </a>
 
         <a css={styles.link} href={XCN_TWITTER_URL} target="_blank" rel="noreferrer">
-          <Icon name="twitter" color={styles.theme.palette.text.primary} size="12px" />
+          <Icon name="twitterX" color={styles.theme.palette.text.primary} size="12px" />
         </a>
 
         <a css={styles.link} href={XCN_GITHUB_URL} target="_blank" rel="noreferrer">
