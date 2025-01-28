@@ -152,15 +152,15 @@ const Proposal = () => {
     sumVotes: new BigNumber(0),
   };
   const { data: againstVoters = defaultValue } = useGetVoters(
-    { id: id || '', support: false, limit: 100 },
+    { id: id || '', support: false, limit: 500 },
     { enabled: !!id },
   );
   const { data: forVoters = defaultValue } = useGetVoters(
-    { id: id || '', support: true, limit: 100 },
+    { id: id || '', support: true, limit: 500 },
     { enabled: !!id },
   );
   const { data: abstainVoters = defaultValue } = useGetVoters(
-    { id: id || '', support: false, limit: 100 },
+    { id: id || '', support: false, limit: 500 },
     { enabled: !!id },
   );
 
