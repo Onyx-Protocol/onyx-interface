@@ -2,7 +2,7 @@
 import { ThemeOptions, createTheme } from '@mui/material/styles';
 import lo from 'lodash';
 
-const fontFamily = ['ProximaNova', 'Arial', 'sans-serif'].join(',');
+const fontFamily = ['Inter', 'Arial', 'sans-serif'].join(',');
 
 export const FONTS = {
   primary: fontFamily,

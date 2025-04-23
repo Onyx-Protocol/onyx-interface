@@ -43,7 +43,7 @@ export interface FarmItemUiProps {
   rewardPerBlock: BigNumber;
   staked: BigNumber;
   earned: BigNumber;
-  tresury: BigNumber;
+  // tresury: BigNumber;
 }
 
 export const FarmItemUi: React.FC<FarmItemUiProps> = ({
@@ -61,10 +61,13 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   rewardPerBlock,
   staked,
   earned,
-  tresury,
+  // tresury,
 }) => {
   const styles = useStyles();
   const { t, i18n } = useTranslation();
+
+  // Hardcoded treasury value
+  const tresury = new BigNumber('3339343576000000000000000000');
 
   const {
     data: { assets },
@@ -126,11 +129,16 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   });
 
   const readableTresuryValue = formatCentsToReadableValue({
-    value: tresury.times(100),
+    value: tresury
+      // .times(100),
+      .div(1e18)
+      .times(xcnAsset?.tokenPrice || new BigNumber(0))
+      .times(100),
     shortenLargeValue: true,
   });
   const readableTresuryTokens = convertWeiToTokens({
-    valueWei: tresury.times(1e18).div(xcnAsset?.tokenPrice || 1) || new BigNumber(0),
+    // valueWei: tresury.times(1e18).div(xcnAsset?.tokenPrice || 1) || new BigNumber(0),
+    valueWei: tresury,
     token: stakedToken,
     returnInReadableFormat: true,
     shortenLargeValue: true,
