@@ -252,8 +252,17 @@ export const useStyles = () => {
       margin-left: ${theme.spacing(8)};
       margin-right: ${theme.spacing(8)};
     `,
+    menuMobileButton: css`
+      margin-left: ${theme.spacing(0)};
+      margin-right: ${theme.spacing(0)};
+    `,
     claimXcnRewardButton: css`
       margin: ${theme.spacing(4, 4, 0, 4)};
+    `,
+    mobileButtonsContainer: css`
+      display: inline-grid;
+      gap: 8px;
+      margin: 0 16px;
     `,
   };
 };

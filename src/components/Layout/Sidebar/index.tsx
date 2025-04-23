@@ -15,6 +15,7 @@ import { ReactComponent as LogoDesktopB } from 'assets/img/xcnLogoWithTextB.svg'
 import { ThemeContext } from 'context/ThemeContext';
 
 import { Icon } from '../../Icon';
+import { AddNetworkButton } from '../AddNetworkButton';
 import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
 import ConnectButton from '../ConnectButton';
 import LanguageSwitch from '../Header/LanguageSwitch';
@@ -117,9 +118,6 @@ export const SidebarUi: React.FC = () => {
         >
           <div css={[styles.flexRow, styles.doublePadding]}>
             <Icon name="logoMobile" css={styles.mobileLogo} />
-
-            <ConnectButton small fullWidth css={styles.mobileConnectButton} />
-
             <button type="button" onClick={closeMenu} css={styles.actionButton}>
               <Icon name="close" css={styles.burger} />
             </button>
@@ -163,6 +161,10 @@ export const SidebarUi: React.FC = () => {
           </List>
 
           <ClaimXcnRewardButton css={styles.claimXcnRewardButton} />
+          <div css={styles.mobileButtonsContainer}>
+            <AddNetworkButton small fullWidth css={styles.menuMobileButton} />
+            <ConnectButton small fullWidth css={styles.menuMobileButton} />
+          </div>
           <LanguageSwitch />
         </Menu>
       </div>
