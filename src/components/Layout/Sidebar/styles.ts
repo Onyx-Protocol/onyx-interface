@@ -248,6 +248,9 @@ export const useStyles = () => {
       justify-content: center;
       padding: 0;
     `,
+    addNetworkButton: css`
+      margin-bottom: ${theme.spacing(6)};
+    `,
     mobileConnectButton: css`
       margin-left: ${theme.spacing(8)};
       margin-right: ${theme.spacing(8)};
@@ -263,6 +266,11 @@ export const useStyles = () => {
       display: inline-grid;
       gap: 8px;
       margin: 0 16px;
+    `,
+    addNetworkContainer: css`
+      margin-top: auto;
+      padding: ${theme.spacing(4)};
+      text-align: center;
     `,
   };
 };

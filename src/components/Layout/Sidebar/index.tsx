@@ -89,6 +89,10 @@ export const SidebarUi: React.FC = () => {
             ))}
           </List>
         </div>
+        <div css={styles.addNetworkContainer}>
+          <p>To Access XCN Ledger:</p>
+          <AddNetworkButton css={styles.addNetworkButton} />
+        </div>
       </Drawer>
 
       {/* Mobile menu */}

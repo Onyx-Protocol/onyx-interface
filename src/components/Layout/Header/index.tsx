@@ -2,7 +2,6 @@
 import AppBar from '@mui/material/AppBar';
 import React from 'react';
 
-import AddNetworkButton from '../AddNetworkButton';
 import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
 import ConnectButton from '../ConnectButton';
 import { Toolbar } from '../Toolbar';
@@ -19,7 +18,6 @@ const Header: React.FC = () => {
         <Title />
         <div css={styles.ctaContainer}>
           <ClaimXcnRewardButton />
-          <AddNetworkButton />
           {/* <ThemeSwitch /> */}
           <ConnectButton />
         </div>
