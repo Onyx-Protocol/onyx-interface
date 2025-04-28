@@ -27,6 +27,7 @@ import { useStyles } from './styles';
 export const SidebarUi: React.FC = () => {
   const { mode } = React.useContext(ThemeContext);
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
+  const [openSubMenuKey, setOpenSubMenuKey] = useState<string | null>(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation();
   const styles = useStyles();
@@ -37,6 +38,116 @@ export const SidebarUi: React.FC = () => {
 
   const closeMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleSubMenuToggle = (key: string) => {
+    setOpenSubMenuKey(prev => (prev === key ? null : key));
+  };
+
+  const renderMenuItem = (menuItem: typeof menuItems[0], isMobile = false) => {
+    const hasSubMenu = menuItem.subMenu && menuItem.subMenu.length > 0;
+    const isOpen = openSubMenuKey === menuItem.i18nKey;
+
+    let handleClick;
+    if (hasSubMenu) {
+      handleClick = () => handleSubMenuToggle(menuItem.i18nKey);
+    } else if (isMobile) {
+      handleClick = closeMenu;
+    } else {
+      handleClick = undefined;
+    }
+
+    let content;
+    if (hasSubMenu) {
+      content = (
+        <span className="menu-link-content" css={styles.menuLinkContent}>
+          <div className="left-border" />
+          <ListItemIcon css={styles.listItemIcon}>
+            <Icon name={menuItem.icon} />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            component="span"
+            css={[styles.listItemText, isMobile && styles.mobileListItemText]}
+          >
+            {t(menuItem.i18nKey)}
+          </Typography>
+          {menuItem.isNew && (
+            <div css={styles.listItemNewBadge}>
+              <Typography variant="tiny" css={styles.listItemNewBadgeText}>
+                {t('sidebar.newBadge')}
+              </Typography>
+            </div>
+          )}
+          <span css={styles.chevronIcon}>
+            <Icon name={isOpen ? 'chevronUp' : 'chevronDown'} size="24" />
+          </span>
+        </span>
+      );
+    } else {
+      content = (
+        <Link href={menuItem.href} onClick={isMobile ? closeMenu : undefined}>
+          <div className="left-border" />
+          <ListItemIcon css={styles.listItemIcon}>
+            <Icon name={menuItem.icon} />
+          </ListItemIcon>
+          <Typography
+            variant="body2"
+            component="span"
+            css={[styles.listItemText, isMobile && styles.mobileListItemText]}
+          >
+            {t(menuItem.i18nKey)}
+          </Typography>
+          {menuItem.isNew && (
+            <div css={styles.listItemNewBadge}>
+              <Typography variant="tiny" css={styles.listItemNewBadgeText}>
+                {t('sidebar.newBadge')}
+              </Typography>
+            </div>
+          )}
+          {isMobile && <Icon name="arrowRight" css={styles.mobileArrow} />}
+        </Link>
+      );
+    }
+
+    return (
+      <React.Fragment key={menuItem.i18nKey}>
+        <ListItemButton
+          component="li"
+          css={[styles.listItem, isMobile && styles.mobileListItem]}
+          disableRipple
+          onClick={handleClick}
+        >
+          {content}
+        </ListItemButton>
+        {hasSubMenu && isOpen && (
+          <List component="div" disablePadding css={styles.subMenu}>
+            {menuItem.subMenu?.map(subMenuItem => (
+              <ListItemButton
+                key={subMenuItem.i18nKey}
+                component="li"
+                css={[styles.listItem, styles.subMenuItem, isMobile && styles.mobileListItem]}
+                disableRipple
+                onClick={isMobile ? closeMenu : undefined}
+              >
+                <Link href={subMenuItem.href} onClick={isMobile ? closeMenu : undefined}>
+                  <ListItemIcon css={styles.listItemIcon}>
+                    <Icon name={subMenuItem.icon} />
+                  </ListItemIcon>
+                  <Typography
+                    variant="body2"
+                    component="span"
+                    css={[styles.listItemText, isMobile && styles.mobileListItemText]}
+                  >
+                    {t(subMenuItem.i18nKey)}
+                  </Typography>
+                </Link>
+              </ListItemButton>
+            ))}
+          </List>
+        )}
+      </React.Fragment>
+    );
   };
 
   return (
@@ -58,36 +169,7 @@ export const SidebarUi: React.FC = () => {
             )}
           </Toolbar>
 
-          <List>
-            {menuItems.map(menuItem => (
-              <ListItemButton
-                key={menuItem.i18nKey}
-                component="li"
-                css={styles.listItem}
-                disableRipple
-              >
-                <Link href={menuItem.href}>
-                  <div className="left-border" />
-
-                  <ListItemIcon css={styles.listItemIcon}>
-                    <Icon name={menuItem.icon} />
-                  </ListItemIcon>
-
-                  <Typography variant="body2" component="span" css={styles.listItemText}>
-                    {t(menuItem.i18nKey)}
-                  </Typography>
-
-                  {menuItem.isNew && (
-                    <div css={styles.listItemNewBadge}>
-                      <Typography variant="tiny" css={styles.listItemNewBadgeText}>
-                        {t('sidebar.newBadge')}
-                      </Typography>
-                    </div>
-                  )}
-                </Link>
-              </ListItemButton>
-            ))}
-          </List>
+          <List>{menuItems.map(menuItem => renderMenuItem(menuItem))}</List>
         </div>
         <div css={styles.addNetworkContainer}>
           <p>To Access XCN Ledger:</p>
@@ -127,42 +209,7 @@ export const SidebarUi: React.FC = () => {
             </button>
           </div>
 
-          <List>
-            {menuItems.map(({ href, icon, i18nKey, isNew }) => (
-              <ListItemButton
-                key={i18nKey}
-                component="li"
-                css={[styles.listItem, styles.mobileListItem]}
-                disableRipple
-              >
-                <Link onClick={closeMenu} href={href}>
-                  <div css={styles.mobileLabel}>
-                    <ListItemIcon css={styles.listItemIcon}>
-                      <Icon name={icon} />
-                    </ListItemIcon>
-
-                    <Typography
-                      variant="body2"
-                      component="span"
-                      css={[styles.listItemText, styles.mobileListItemText]}
-                    >
-                      {t(i18nKey)}
-                    </Typography>
-
-                    {isNew && (
-                      <div css={styles.listItemNewBadge}>
-                        <Typography variant="tiny" css={styles.listItemNewBadgeText}>
-                          {t('sidebar.newBadge')}
-                        </Typography>
-                      </div>
-                    )}
-                  </div>
-
-                  <Icon name="arrowRight" css={styles.mobileArrow} />
-                </Link>
-              </ListItemButton>
-            ))}
-          </List>
+          <List>{menuItems.map(menuItem => renderMenuItem(menuItem, true))}</List>
 
           <ClaimXcnRewardButton css={styles.claimXcnRewardButton} />
           <div css={styles.mobileButtonsContainer}>

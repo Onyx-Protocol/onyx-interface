@@ -89,4 +89,39 @@ export const menuItems: MenuItem[] = [
   //   i18nTitleKey: 'layout.menuItems.fpunk',
   //   icon: 'wpunksOutlined',
   // },
+  // TO BE ACTIVATED ONCE CALCULATOR IS READY
+  // {
+  //     href: Path.GOVERNANCE_LEADER_BOARD,
+  //     // Translation key: do not remove this comment
+  //     // t('layout.menuItems.xcn')
+  //     i18nKey: 'layout.menuItems.leaderboard',
+  //     i18nTitleKey: 'layout.menuItems.leaderboard',
+  //     icon: 'xcnOutlined',
+  // },
+  {
+    href: Path.POINTS,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.points')
+    i18nKey: 'layout.menuItems.points',
+    i18nTitleKey: 'layout.menuItems.points',
+    icon: 'gem',
+    subMenu: [
+      {
+        href: Path.POINTS,
+        // Translation key: do not remove this comment
+        // t('layout.menuItems.pointsDashboard')
+        i18nKey: 'layout.menuItems.pointsDashboard',
+        i18nTitleKey: 'layout.menuItems.pointsDashboard',
+        icon: 'dashboard',
+      },
+      {
+        href: Path.POINTS_LEADERBOARD,
+        // Translation key: do not remove this comment
+        // t('layout.menuItems.pointsLeaderboard')
+        i18nKey: 'layout.menuItems.pointsLeaderboard',
+        i18nTitleKey: 'layout.menuItems.pointsLeaderboard',
+        icon: 'person',
+      },
+    ],
+  },
 ];
