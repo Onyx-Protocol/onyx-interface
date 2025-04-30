@@ -210,7 +210,8 @@
       "xcnPrediction": "XCN Prediction",
       "fpunk": "Punk Wrapper",
       "liquidate": "Liquidate",
-      "stake": "Stake"
+      "stake": "Stake",
+      "aiagent": "AI Agent"
     }
   },
   "lunaUstWarningModal": {

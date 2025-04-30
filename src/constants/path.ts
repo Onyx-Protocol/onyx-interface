@@ -19,6 +19,7 @@ enum Path {
   LIQUIDATE_DETAIL = '/liquidate/:userId',
   SWAP = '/swap',
   FARM = '/farm',
+  AIAGENT = '/aiagent',
 }
 
 export default Path;
