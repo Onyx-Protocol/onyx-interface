@@ -8,6 +8,9 @@
     "max": "Max:",
     "safeBorrowLimitTooltip": "Güvenli ödünç limiti:<LineBreak/>{{safeBorrowLimit}} ({{safeBorrowLimitPercentage}} borçlanma limitinizin %'si)"
   },
+  "addNetworkButton": {
+    "title": "Ağ Ekle"
+  },
   "apyChart": {
     "tooltipItemLabels": {
       "borrowApy": "Ödünç APY",
@@ -202,6 +205,7 @@
       "convertVrtTitle": "VRT'yi XCN'ye Dönüştür",
       "dashboard": "Panel",
       "governance": "Yönetişim",
+      "leaderboard": "Liderlik Tablosu",
       "history": "Tarih",
       "markets": "Piyasalar",
       "swap": "Takas",

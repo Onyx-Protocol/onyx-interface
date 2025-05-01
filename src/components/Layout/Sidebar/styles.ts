@@ -55,6 +55,10 @@ export const useStyles = () => {
       transition: color 0.3s;
       color: ${theme.palette.text.secondary};
       padding: 0;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
 
       ${theme.breakpoints.down('lg')} {
         :hover {
@@ -248,12 +252,79 @@ export const useStyles = () => {
       justify-content: center;
       padding: 0;
     `,
+    addNetworkButton: css`
+      margin-bottom: ${theme.spacing(6)};
+    `,
     mobileConnectButton: css`
       margin-left: ${theme.spacing(8)};
       margin-right: ${theme.spacing(8)};
     `,
+    menuMobileButton: css`
+      margin-left: ${theme.spacing(0)};
+      margin-right: ${theme.spacing(0)};
+    `,
     claimXcnRewardButton: css`
       margin: ${theme.spacing(4, 4, 0, 4)};
+    `,
+    mobileButtonsContainer: css`
+      display: inline-grid;
+      gap: 8px;
+      margin: 0 16px;
+    `,
+    addNetworkContainer: css`
+      margin-top: auto;
+      padding: ${theme.spacing(4)};
+      text-align: center;
+    `,
+    subMenu: css`
+      .MuiPaper-root {
+        background-color: ${theme.palette.background.default};
+        min-width: 200px;
+      }
+    `,
+    subMenuItem: css`
+      padding: ${theme.spacing(2)} ${theme.spacing(4)};
+      display: flex;
+      align-items: center;
+      color: ${theme.palette.text.secondary};
+
+      &:hover {
+        background-color: ${theme.palette.background.paper};
+      }
+    `,
+    chevronIcon: css`
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      height: 24px;
+    `,
+    menuLinkContent: css`
+      padding: ${theme.spacing(4)} ${theme.spacing(4)} ${theme.spacing(4)} ${theme.spacing(8)};
+      display: inline-flex;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      color: ${theme.palette.text.secondary};
+
+      ${theme.breakpoints.down('lg')} {
+        width: auto;
+        margin: auto;
+        border-radius: ${theme.shape.borderRadius.medium}px;
+        padding: ${theme.spacing(4)};
+        justify-content: center;
+      }
+
+      ${theme.breakpoints.down('md')} {
+        border-radius: 0;
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        padding-top: ${theme.spacing(4)};
+        padding-bottom: ${theme.spacing(4)};
+        justify-content: space-between;
+        padding-left: ${theme.spacing(6)};
+        padding-right: ${theme.spacing(6)};
+      }
     `,
   };
 };

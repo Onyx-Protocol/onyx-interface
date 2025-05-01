@@ -21,7 +21,7 @@ export const FAKE_USDT_BALANCE_WEI = convertTokensToWei({
 export const FAKE_UNI_BALANCE_TOKENS = '30';
 export const FAKE_UNI_BALANCE_WEI = convertTokensToWei({
   value: new BigNumber(FAKE_UNI_BALANCE_TOKENS),
-  token: UNISWAP_TOKENS.uni,
+  token: UNISWAP_TOKENS.weth,
 });
 
 export const fakeExactAmountInSwap: ExactAmountInSwap = {
@@ -47,12 +47,12 @@ export const fakeExactAmountOutSwap: ExactAmountOutSwap = {
 };
 
 export const fakeNonNativeSwap: ExactAmountInSwap = {
-  fromToken: UNISWAP_TOKENS.uni,
+  fromToken: UNISWAP_TOKENS.weth,
   fromTokenAmountSoldWei: FAKE_UNI_BALANCE_WEI,
   toToken: UNISWAP_TOKENS.usdt,
   minimumToTokenAmountReceivedWei: FAKE_UNI_BALANCE_WEI.multipliedBy(1.5),
   expectedToTokenAmountReceivedWei: FAKE_UNI_BALANCE_WEI.multipliedBy(2),
   direction: 'exactAmountIn',
-  routePath: [UNISWAP_TOKENS.uni.address, UNISWAP_TOKENS.usdt.address],
+  routePath: [UNISWAP_TOKENS.weth.address, UNISWAP_TOKENS.usdt.address],
   exchangeRate: new BigNumber(2),
 };

@@ -8,6 +8,9 @@
     "max": "Max:",
     "safeBorrowLimitTooltip": "Safe borrow limit:<LineBreak/>{{safeBorrowLimit}} ({{safeBorrowLimitPercentage}}% of your borrow limit)"
   },
+  "addNetworkButton": {
+    "title": "Add Network"
+  },
   "apyChart": {
     "tooltipItemLabels": {
       "borrowApy": "Borrow APY",
@@ -202,6 +205,7 @@
       "convertVrtTitle": "Convert VRT to XCN",
       "dashboard": "Dashboard",
       "governance": "Governance",
+      "leaderboard": "Leader Board",
       "history": "History",
       "markets": "Markets",
       "swap": "Swap",
@@ -890,7 +894,7 @@
   "wpunks": {
     "title": "Your CryptoPunks",
     "wPunksTitle": "Your Wrapped PUNKS",
-    "emptyPunk": "You don’t have any Punks",
+    "emptyPunk": "You don't have any Punks",
     "description": "You need to register your own Proxy for your Punks.",
     "registerProxyBtn": "Register Proxy",
     "emptyWPUNKSOrLockedPunk": "You don't have any WPUNKS or locked Punks",

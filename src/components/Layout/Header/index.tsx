@@ -16,10 +16,8 @@ const Header: React.FC = () => {
     <AppBar position="relative" css={styles.appBar}>
       <Toolbar css={styles.toolbar}>
         <Title />
-
         <div css={styles.ctaContainer}>
           <ClaimXcnRewardButton />
-
           {/* <ThemeSwitch /> */}
           <ConnectButton />
         </div>

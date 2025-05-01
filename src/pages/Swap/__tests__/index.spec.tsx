@@ -42,7 +42,7 @@ jest.mock('../useGetSwapInfo');
 const useTokenApprovalOriginal = useTokenApproval(
   // These aren't used since useTokenApproval is mocked
   {
-    token: UNISWAP_TOKENS.uni,
+    token: UNISWAP_TOKENS.weth,
     spenderAddress: '',
     accountAddress: '',
   },
