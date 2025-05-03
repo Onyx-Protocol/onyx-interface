@@ -65,6 +65,15 @@ export const menuItems: MenuItem[] = [
     i18nTitleKey: 'layout.menuItems.governance',
     icon: 'vote',
   },
+  {
+    href: Path.AIAGENT,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.governance')
+    i18nKey: 'layout.menuItems.aiagent',
+    i18nTitleKey: 'layout.menuItems.aiagent',
+    icon: 'person',
+    isNew: true,
+  },
   // {
   //   href: Path.XCN,
   //   // Translation key: do not remove this comment

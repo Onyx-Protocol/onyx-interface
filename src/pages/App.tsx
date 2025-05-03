@@ -30,6 +30,8 @@ import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 import FarmPage from './Farm';
 import SwapPage from './Swap';
 
+import AiagentPage from './Aiagent';
+
 /**
  * Updated by ozdav
  * Just commented to hide some menu links
@@ -77,6 +79,8 @@ const App = () => (
                       <Route exact path={Path.SWAP} component={SwapPage} />
 
                       <Route exact path={Path.FARM} component={FarmPage} />
+
+                      <Route exact path={Path.AIAGENT} component={AiagentPage} />
 
                       <Redirect to={Path.ROOT} />
                     </Switch>
