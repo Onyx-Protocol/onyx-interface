@@ -17,6 +17,8 @@ const EnrollModal: React.FC<StakeModalProps> = ({ handleClose }) => {
       handleClose={handleClose}
       isInitialLoading={false}
       connectWalletMessage={t('enrollModal.connectWalletMessage')}
+      submitButtonDisabledLabel={t('enrollModal.submitButtonDisabledLabel')}
+      submitButtonLabel={t('enrollModal.submitButtonLabel')}
     />
   );
 };

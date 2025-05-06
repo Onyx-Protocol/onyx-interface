@@ -3,6 +3,7 @@ import { Box, Grid, Paper, Typography } from '@mui/material';
 import { Button, Spinner } from 'components';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'translation';
 
 import { Farm, useGetFarms } from 'clients/api';
 import useGetUserInfo from 'clients/api/queries/getUserInfo/useGetUserInfo';
@@ -37,10 +38,11 @@ export const formatPoint = (point: number, digit?: number) => {
 
 export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) => {
   const [activeModal, setActiveModal] = useState<ActiveModal | undefined>();
-  const styles = useStyles();
   const { account } = React.useContext(AuthContext);
-
+  const styles = useStyles();
+  const { t } = useTranslation();
   const { data } = useGetUserInfo({ address: account?.address || '' }, { enabled: !!account });
+
   const onEnroll = () => {
     setActiveModal('enroll');
   };
@@ -54,14 +56,12 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
       <Paper css={styles.container}>
         <Box css={styles.titleContainer}>
           <Typography variant="h3" fontWeight="bold" css={styles.titleText}>
-            Onyx Points
+            {t('pointsUi.header.title')}
           </Typography>
-          <Typography color="text.secondary">
-            Track your points and see how you rank against other users
-          </Typography>
+          <Typography color="text.secondary">{t('pointsUi.header.description')}</Typography>
           <a href="https://bridge.onyx.org" target="_blank" rel="noreferrer">
             <Button css={styles.buttonStyle} variant="secondaryConnectWallet">
-              Bridge
+              {t('pointsUi.header.buttonBridge')}
             </Button>
           </a>
         </Box>
@@ -69,7 +69,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
           {!account && (
             <Box css={styles.pointUserContainer}>
               <Typography color="text.secondary">
-                Connect your wallet to view your points
+                {t('pointsUi.pointsUser.descriptionNotConnect')}
               </Typography>
               <ConnectButton small fullWidth css={styles.enrollButton} />
             </Box>
@@ -86,7 +86,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
                 }}
               >
                 <Typography color="text.secondary" sx={{ fontSize: '12px' }}>
-                  My Onyx Points
+                  {t('pointsUi.pointsUser.pointsSubtitle')}
                 </Typography>
                 <Box css={styles.pointsContainer}>
                   <Typography component="h2" css={styles.pointsText}>
@@ -108,15 +108,14 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
           {account && !data && (
             <Box css={styles.pointUserContainer}>
               <Typography color="text.secondary" textAlign="center">
-                Join the Onyx system now to earn points and win amazing rewards — be part of a
-                growing community of thousands!
+                {t('pointsUi.pointsUser.descriptionConnect')}
               </Typography>
               <Button
                 css={styles.menuMobileButton}
                 variant="secondaryConnectWallet"
                 onClick={onEnroll}
               >
-                Enroll now!
+                {t('pointsUi.pointsUser.enrollButton')}
               </Button>
             </Box>
           )}
@@ -125,36 +124,36 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
           <Box css={styles.howToEarnContainer}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography variant="h6" fontWeight="bold" mb={2}>
-                How to Earn Points
+                {t('pointsUi.howToEarn.title')}
               </Typography>
               <Link to="/">
                 <Typography color="text.secondary" fontSize="14px">
-                  Learn more
+                  {t('pointsUi.howToEarn.learnMoreButton')}
                 </Typography>
               </Link>
             </Box>
             <Grid container spacing={3}>
               {[
                 {
-                  title: 'Passive Points',
-                  description: 'Earn points by simply holding whitelisted assets.',
+                  title: t('pointsUi.howToEarn.passivePoints.title'),
+                  description: t('pointsUi.howToEarn.passivePoints.description'),
                   badge: 'PP',
                   color: '#BD6EAC',
-                  buttonText: 'Explore assets',
+                  buttonText: t('pointsUi.howToEarn.passivePoints.actionButton'),
                 },
                 {
-                  title: 'Activity Points',
-                  description: 'Earn points by deploying your whitelisted assets.',
+                  title: t('pointsUi.howToEarn.activityPoints.title'),
+                  description: t('pointsUi.howToEarn.activityPoints.description'),
                   badge: 'AP',
                   color: '#6EBD70',
-                  buttonText: 'Explore apps',
+                  buttonText: t('pointsUi.howToEarn.activityPoints.actionButton'),
                 },
                 {
-                  title: 'App Points',
-                  description: 'Earn points by using Onyx apps.',
+                  title: t('pointsUi.howToEarn.appPoints.title'),
+                  description: t('pointsUi.howToEarn.appPoints.description'),
                   badge: 'APP',
                   color: '#7095BD',
-                  buttonText: 'Explore apps',
+                  buttonText: t('pointsUi.howToEarn.appPoints.actionButton'),
                 },
               ].map(item => (
                 <Grid item xs={12} md={6} xl={4} key={item.title}>
@@ -207,11 +206,11 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
             }}
           >
             <Typography variant="h6" fontWeight="bold">
-              Top 5 user
+              {t('pointsUi.topUsers.title')}
             </Typography>
             <Link to="/points-leaderboard">
               <Typography color="text.secondary" fontSize="14px">
-                View all
+                {t('pointsUi.topUsers.viewAllButton')}
               </Typography>
             </Link>
           </Box>

@@ -14,6 +14,8 @@ export interface ActionModalProps extends Pick<ModalProps, 'handleClose'> {
   title: ModalProps['title'];
   isInitialLoading: boolean;
   connectWalletMessage: string;
+  submitButtonDisabledLabel: string;
+  submitButtonLabel: string;
 }
 
 const ActionModal: React.FC<ActionModalProps> = ({
@@ -21,6 +23,8 @@ const ActionModal: React.FC<ActionModalProps> = ({
   isInitialLoading,
   title,
   connectWalletMessage,
+  submitButtonDisabledLabel,
+  submitButtonLabel,
 }) => {
   const styles = useStyles();
   const { account } = React.useContext(AuthContext);
@@ -65,14 +69,14 @@ const ActionModal: React.FC<ActionModalProps> = ({
               variant="secondaryConnectWallet"
               onClick={handleClose}
             >
-              Close
+              {submitButtonDisabledLabel}
             </Button>
             <Button
               css={styles.menuMobileButton}
               variant="secondaryConnectWallet"
               onClick={signMessage}
             >
-              Enroll now!
+              {submitButtonLabel}
             </Button>
           </Box>
         </ConnectWallet>

@@ -126,6 +126,8 @@
   },
   "enrollModal": {
     "connectWalletMessage": "Hemen Onyx sistemine katılın, puan kazanın ve harika ödüller kazanın — binlerce kişilik büyüyen topluluğun bir parçası olun!",
+    "submitButtonDisabledLabel": "Kapat",
+    "submitButtonLabel": "Hemen kaydol!",
     "button": {
       "close": "Kapat",
       "enroll": "Kaydol"
@@ -147,7 +149,9 @@
   "header": {
     "proposalDetailsTitle": "Genel Bakış",
     "voteLeaderboardTitle": "Oylama",
-    "liquidateDetailsTitle": "Tasfiye Detayı"
+    "liquidateDetailsTitle": "Tasfiye Detayı",
+    "pointsDashboardTitle": "Puan Paneli",
+    "pointsLeaderboardTitle": "Puan Sıralaması"
   },
   "history": {
     "all": "Hepsi",
@@ -222,7 +226,10 @@
       "xcnPrediction": "XCN Tahmini",
       "fpunk": "Punk Wrapper",
       "liquidate": "Tasfiye",
-      "stake": "Stake"
+      "stake": "Stake",
+      "points": "Puanlar",
+      "pointsDashboard": "Puan Paneli",
+      "pointsLeaderboard": "Puan Sıralaması"
     }
   },
   "lunaUstWarningModal": {
@@ -364,6 +371,42 @@
   "pagination": {
     "itemOf": "{{itemsCount}} dışında {{currentPageLastIndex}} öğesi",
     "itemsOf": "ürünler {{firstItemNumber}} - {{currentPageLastIndex}} dışında {{itemsCount}}"
+  },
+  "pointsUi": {
+    "header": {
+      "title": "Onyx Puanları",
+      "description": "Puanlarınızı takip edin ve diğer kullanıcılarla karşılaştırmalı sıralamanızı görün.",
+      "buttonBridge": "Köprüle"
+    },
+    "pointsUser": {
+      "descriptionNotConnect": "Puanlarınızı görüntülemek için cüzdanınızı bağlayın.",
+      "descriptionConnect": "Onyx sistemine şimdi katılın, puan kazanın ve harika ödüller kazanın — binlerce kişilik büyüyen topluluğun bir parçası olun!",
+      "pointsSubtitle": "Onyx Puanlarım",
+      "enrollButton": "Hemen kaydol!"
+    },
+    "howToEarn": {
+      "title": "Puan nasıl kazanılır",
+      "learnMoreButton": "Daha fazla bilgi edinin",
+      "passivePoints": {
+        "title": "Pasif Puanlar",
+        "description": "Beyaz listeye alınmış varlıkları sadece elinizde tutarak puan kazanın.",
+        "actionButton": "Varlıkları keşfet"
+      },
+      "activityPoints": {
+        "title": "Etkinlik Puanları",
+        "description": "Beyaz listeye alınmış varlıklarınızı dağıtarak puan kazanın.",
+        "actionButton": "Uygulamaları keşfet"
+      },
+      "appPoints": {
+        "title": "Uygulama Puanları",
+        "description": "Onyx uygulamalarını kullanarak puan kazanın.",
+        "actionButton": "Uygulamaları keşfet"
+      }
+    },
+    "topUsers": {
+      "title": "En İyi 5 Kullanıcı",
+      "viewAllButton": "Tümünü Görüntüle"
+    }
   },
   "selectTokenTextField": {
     "searchInput": {
