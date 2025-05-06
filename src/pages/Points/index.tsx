@@ -207,7 +207,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
             }}
           >
             <Typography variant="h6" fontWeight="bold">
-              Top 10 user
+              Top 5 user
             </Typography>
             <Link to="/points-leaderboard">
               <Typography color="text.secondary" fontSize="14px">
