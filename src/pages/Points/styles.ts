@@ -85,7 +85,7 @@ export const useStyles = () => {
     content: '';
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 0;
     display: block;
     background: linear-gradient(to top, ${theme.palette.background.default}, transparent);
     border-radius: inherit;
@@ -96,12 +96,12 @@ export const useStyles = () => {
   return {
     container: css`
       width: 100%;
-      padding: ${theme.spacing(4)};
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: ${theme.spacing(4)};
       background: transparent;
+      padding: 0;
     `,
     titleContainer: css`
       text-align: center;
@@ -119,7 +119,6 @@ export const useStyles = () => {
     howToEarnBefore: css`
       ${commonContainerStyles}
       position: relative;
-      max-width: 90%;
       padding: ${theme.spacing(0.5)};
       border-radius: ${roundedXl};
       box-shadow: ${theme.shadows[2]};
@@ -131,7 +130,7 @@ export const useStyles = () => {
 
       & > * {
         position: relative;
-        z-index: 2;
+        z-index: 0;
       }
     `,
     leaderBoard: css`
@@ -141,7 +140,7 @@ export const useStyles = () => {
 
     howToEarnContainer: css`
       position: relative;
-      z-index: 2;
+      z-index: 0;
       height: 100%;
       width: 100%;
       flex: 1;
@@ -183,7 +182,7 @@ export const useStyles = () => {
       border-radius: ${roundedXl};
       border: 2px solid rgba(255, 255, 255, 0.2);
       background-color: ${alpha(theme.palette.background.default, 0.7)};
-      z-index: 2;
+      z-index: 0;
 
       @media (prefers-color-scheme: dark) {
         background-color: ${alpha(theme.palette.background.default, 0.9)};
@@ -222,23 +221,6 @@ export const useStyles = () => {
         pointer-events: none;
         opacity: 0.5;
       }
-
-      &:focus-visible {
-        border-color: var(--ring);
-        ring: 3px var(--ring-ring) / 0.5;
-      }
-
-      &[aria-invalid='true'] {
-        ring: var(--destructive) / 0.2;
-        border-color: var(--destructive);
-      }
-
-      @media (prefers-color-scheme: dark) {
-        &[aria-invalid='true'] {
-          ring: var(--destructive) / 0.4;
-        }
-      }
-
       & svg {
         pointer-events: none;
         flex-shrink: 0;
@@ -268,56 +250,68 @@ export const useStyles = () => {
       justify-content: center;
     `,
     pointsText: css`
-      font-size: 40px;
+      font-size: clamp(20px, 6vw, 40px);
       color: white;
       text-shadow: -1px 1px 0px #183954, -2px 2px 0px #183954, -3px 3px 0px #183954,
         -4px 4px 0px #183954, -9px 9px 10px rgba(0, 0, 0, 0.5), -9px 9px 25px rgba(0, 0, 0, 0.5);
       ${theme.breakpoints.up('md')} {
-        font-size: 60px;
+        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: 90px;
+        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+      }
+      ${theme.breakpoints.up('xl')} {
+        font-size: clamp(60px, 3.5vw, 90px); // desktop
       }
     `,
     liquidText1: css`
       ${liquidKeyframes.liquid1}
       position: absolute;
-      font-size: 40px;
+      font-size: clamp(20px, 6vw, 40px);
       color: #2196f3;
       opacity: 0.5;
       animation: liquid1 3s ease-in-out infinite;
       ${theme.breakpoints.up('md')} {
-        font-size: 60px;
+        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: 90px;
+        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+      }
+      ${theme.breakpoints.up('xl')} {
+        font-size: clamp(60px, 3.5vw, 90px); // desktop
       }
     `,
     liquidText2: css`
       ${liquidKeyframes.liquid2}
       position: absolute;
-      font-size: 40px;
+      font-size: clamp(20px, 6vw, 40px);
       color: #2196f3;
       opacity: 0.5;
       animation: liquid2 6s ease-in-out infinite;
       ${theme.breakpoints.up('md')} {
-        font-size: 60px;
+        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: 90px;
+        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+      }
+      ${theme.breakpoints.up('xl')} {
+        font-size: clamp(60px, 3.5vw, 90px); // desktop
       }
     `,
     liquidText3: css`
       ${liquidKeyframes.liquid3}
       position: absolute;
-      font-size: 40px;
+      font-size: clamp(20px, 6vw, 40px);
       color: #2196f3;
       animation: liquid3 4s ease-in-out infinite;
       ${theme.breakpoints.up('md')} {
-        font-size: 60px;
+        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: 90px;
+        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+      }
+      ${theme.breakpoints.up('xl')} {
+        font-size: clamp(60px, 3.5vw, 90px); // desktop
       }
     `,
     buttonIconStyle: css`

@@ -124,6 +124,17 @@
   "enableToken": {
     "enableButtonLabel": "Enable"
   },
+  "enrollModal": {
+    "connectWalletMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+    "increaseAllowanceButtonLabel": "Increase {{tokenSymbol}} spending limit",
+    "submitButtonDisabledLabel": "Enter a valid amount to stake",
+    "submitButtonLabel": "Stake",
+    "successfulTransactionModal": {
+      "description": "You successful staked",
+      "title": "Your stake was successful"
+    },
+    "title": "Enroll"
+  },
   "errors": {
     "somethingWentWrong": "Something went wrong",
     "somethingWentWrongRetrievingTransactions": "Something went wrong retrieving transactions",
@@ -386,19 +397,6 @@
       "title": "Your stake was successful"
     },
     "title": "Stake {{tokenSymbol}}"
-  },
-  "enrollModal": {
-    "availableTokensLabel": "Available {{tokenSymbol}}",
-    "connectWalletMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
-    "enableTokenMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
-    "increaseAllowanceButtonLabel": "Increase {{tokenSymbol}} spending limit",
-    "submitButtonDisabledLabel": "Enter a valid amount to stake",
-    "submitButtonLabel": "Stake",
-    "successfulTransactionModal": {
-      "description": "You successful staked",
-      "title": "Your stake was successful"
-    },
-    "title": "Enroll"
   },
   "supplyWithdraw": {
     "borrowLimit": "Borrow limit",

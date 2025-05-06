@@ -51,7 +51,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
   }
   return (
     <>
-      <Paper elevation={3} css={styles.container}>
+      <Paper css={styles.container}>
         <Box css={styles.titleContainer}>
           <Typography variant="h3" fontWeight="bold" css={styles.titleText}>
             Onyx Points
@@ -76,7 +76,15 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
           )}
           {account && data && (
             <Box css={styles.pointUserContainer}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 2,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 <Typography color="text.secondary" sx={{ fontSize: '12px' }}>
                   My Onyx Points
                 </Typography>
@@ -99,7 +107,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
           )}
           {account && !data && (
             <Box css={styles.pointUserContainer}>
-              <Typography color="text.secondary">
+              <Typography color="text.secondary" textAlign="center">
                 Join the Onyx system now to earn points and win amazing rewards — be part of a
                 growing community of thousands!
               </Typography>
@@ -153,7 +161,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
                   <Paper
                     variant="outlined"
                     sx={{
-                      p: 3,
+                      p: 6,
                       display: 'flex',
                       flexDirection: 'column',
                       gap: 2,
@@ -179,7 +187,9 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
                         {item.badge}
                       </Box>
                     </Box>
-                    <Typography color="text.secondary">{item.description}</Typography>
+                    <Typography color="text.secondary" fontSize="12px" sx={{ opacity: 50 }}>
+                      {item.description}
+                    </Typography>
                     <Button variant="primary">{item.buttonText}</Button>
                   </Paper>
                 </Grid>
@@ -188,10 +198,27 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
           </Box>
         </Box>
         <Box css={styles.leaderBoard}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 2,
+            }}
+          >
+            <Typography variant="h6" fontWeight="bold">
+              Top 10 user
+            </Typography>
+            <Link to="/points-leaderboard">
+              <Typography color="text.secondary" fontSize="14px">
+                View all
+              </Typography>
+            </Link>
+          </Box>
           <LeaderboardTable useRankIcon isPaginated={false} />
         </Box>
       </Paper>
-      {activeModal === 'enroll' && <EnrollModal farm={farms[0]} handleClose={closeActiveModal} />}
+      {activeModal === 'enroll' && <EnrollModal handleClose={closeActiveModal} />}
     </>
   );
 };

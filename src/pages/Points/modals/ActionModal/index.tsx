@@ -2,7 +2,6 @@
 import { Box, Typography } from '@mui/material';
 import { Button, ConnectWallet, Modal, ModalProps, Spinner } from 'components';
 import React from 'react';
-import { Token } from 'types';
 
 import getSignedMessage from 'clients/api/queries/getSignedMessage';
 import verifySignature from 'clients/api/queries/useVerifysignature';
@@ -12,14 +11,9 @@ import { AuthContext } from 'context/AuthContext';
 import { useStyles } from '../../styles';
 
 export interface ActionModalProps extends Pick<ModalProps, 'handleClose'> {
-  token1: Token;
-  token2: Token;
   title: ModalProps['title'];
   isInitialLoading: boolean;
   connectWalletMessage: string;
-  spenderAddress?: string;
-  tokenNeedsToBeEnabled?: boolean;
-  enableTokenMessage?: string;
 }
 
 const ActionModal: React.FC<ActionModalProps> = ({
@@ -63,8 +57,7 @@ const ActionModal: React.FC<ActionModalProps> = ({
       ) : (
         <ConnectWallet message={`${connectWalletMessage}`}>
           <Typography color="text.secondary" sx={{ fontSize: '12px', marginBottom: '28px' }}>
-            Join the Onyx system now to earn points and win amazing rewards — be part of a growing
-            community of thousands!
+            {connectWalletMessage}
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Button

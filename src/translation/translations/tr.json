@@ -124,6 +124,14 @@
   "enableToken": {
     "enableButtonLabel": "Etkinleştir"
   },
+  "enrollModal": {
+    "connectWalletMessage": "Hemen Onyx sistemine katılın, puan kazanın ve harika ödüller kazanın — binlerce kişilik büyüyen topluluğun bir parçası olun!",
+    "button": {
+      "close": "Kapat",
+      "enroll": "Kaydol"
+    },
+    "title": "Kaydol"
+  },
   "errors": {
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "somethingWentWrongRetrievingTransactions": "İşlemler alınırken bir şeyler yanlış gitti",
