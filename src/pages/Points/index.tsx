@@ -215,7 +215,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
               </Typography>
             </Link>
           </Box>
-          <LeaderboardTable useRankIcon isPaginated={false} />
+          <LeaderboardTable useRankIcon={false} isPaginated={false} limit={5} />
         </Box>
       </Paper>
       {activeModal === 'enroll' && <EnrollModal handleClose={closeActiveModal} />}

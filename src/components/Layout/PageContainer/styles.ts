@@ -20,6 +20,7 @@ export const useStyles = () => {
       }
     `,
     footer: css`
+      z-index: 5;
       position: fixed;
       bottom: 0;
       right: 0;
