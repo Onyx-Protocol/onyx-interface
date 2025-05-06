@@ -128,6 +128,8 @@
     "somethingWentWrong": "Something went wrong",
     "somethingWentWrongRetrievingTransactions": "Something went wrong retrieving transactions",
     "somethingWentWrongRetrievingVoterAccounts": "Something went wrong retrieving voter accounts",
+    "somethingWentWrongRetrievingSignedMessage": "Something went wrong retrieving signed message",
+    "somethingWentWrongRetrievingUserInfo": "Something went wrong retrieving user info",
     "somethingWentWrongRetrievingVoterDetails": "Something went wrong retrieving voter details",
     "somethingWentWrongRetrievingVoterHistory": "Something went wrong retrieving voter history  ",
     "undefinedAccountErrorMessage": "Account undefined",
@@ -384,6 +386,19 @@
       "title": "Your stake was successful"
     },
     "title": "Stake {{tokenSymbol}}"
+  },
+  "enrollModal": {
+    "availableTokensLabel": "Available {{tokenSymbol}}",
+    "connectWalletMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+    "enableTokenMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+    "increaseAllowanceButtonLabel": "Increase {{tokenSymbol}} spending limit",
+    "submitButtonDisabledLabel": "Enter a valid amount to stake",
+    "submitButtonLabel": "Stake",
+    "successfulTransactionModal": {
+      "description": "You successful staked",
+      "title": "Your stake was successful"
+    },
+    "title": "Enroll"
   },
   "supplyWithdraw": {
     "borrowLimit": "Borrow limit",

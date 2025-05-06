@@ -16,6 +16,57 @@ export const useStyles = () => {
     #214e81
   )`;
 
+  const liquidKeyframes = {
+    liquid1: `
+      @keyframes liquid1 {
+        0%, 100% {
+          clip-path: polygon(
+            0 30%, 15% 28%, 34% 35%, 50% 45%, 
+            68% 50%, 85% 45%, 100% 35%, 100% 100%, 0% 100%
+          );
+        }
+        50% {
+          clip-path: polygon(
+            3% 40%, 17% 50%, 36% 55%, 51% 50%,
+            65% 40%, 81% 35%, 99% 30%, 100% 100%, 0% 100%
+          );
+        }
+      }
+    `,
+    liquid2: `
+      @keyframes liquid2 {
+        0%, 100% {
+          clip-path: polygon(
+            0 30%, 15% 28%, 34% 35%, 50% 45%,
+            68% 50%, 85% 45%, 100% 35%, 100% 100%, 0% 100%
+          );
+        }
+        50% {
+          clip-path: polygon(
+            3% 40%, 17% 50%, 36% 55%, 51% 50%,
+            65% 40%, 81% 35%, 99% 30%, 100% 100%, 0% 100%
+          );
+        }
+      }
+    `,
+    liquid3: `
+      @keyframes liquid3 {
+        0%, 100% {
+          clip-path: polygon(
+            0 30%, 15% 28%, 34% 35%, 50% 45%,
+            68% 50%, 85% 45%, 100% 35%, 100% 100%, 0% 100%
+          );
+        }
+        50% {
+          clip-path: polygon(
+            3% 40%, 17% 50%, 36% 55%, 51% 50%,
+            65% 40%, 81% 35%, 99% 30%, 100% 100%, 0% 100%
+          );
+        }
+      }
+    `,
+  };
+
   const commonContainerStyles = `
     width: 100%;
     min-height: 150px;
@@ -118,6 +169,8 @@ export const useStyles = () => {
       display: flex;
       width: 100%;
       flex: 1;
+      padding-right: ${theme.spacing(6.25)};
+      padding-left: ${theme.spacing(6.25)};
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -192,6 +245,89 @@ export const useStyles = () => {
       &:has(> svg) {
         padding-left: ${theme.spacing(3)};
         padding-right: ${theme.spacing(3)};
+      }
+    `,
+    enrollButton: css`
+      width: fit-content;
+      height: fit-content;
+      border-radius: 9999px;
+      background-color: white;
+      color: black;
+    `,
+    pointsContainer: css`
+      position: relative;
+      display: flex;
+      min-height: 90px;
+      width: 100%;
+      min-width: 60px;
+      align-items: center;
+      justify-content: center;
+    `,
+    pointsText: css`
+      font-size: 40px;
+      color: white;
+      text-shadow: -1px 1px 0px #183954, -2px 2px 0px #183954, -3px 3px 0px #183954,
+        -4px 4px 0px #183954, -9px 9px 10px rgba(0, 0, 0, 0.5), -9px 9px 25px rgba(0, 0, 0, 0.5);
+      ${theme.breakpoints.up('md')} {
+        font-size: 60px;
+      }
+      ${theme.breakpoints.up('lg')} {
+        font-size: 90px;
+      }
+    `,
+    liquidText1: css`
+      ${liquidKeyframes.liquid1}
+      position: absolute;
+      font-size: 40px;
+      color: #2196f3;
+      opacity: 0.5;
+      animation: liquid1 3s ease-in-out infinite;
+      ${theme.breakpoints.up('md')} {
+        font-size: 60px;
+      }
+      ${theme.breakpoints.up('lg')} {
+        font-size: 90px;
+      }
+    `,
+    liquidText2: css`
+      ${liquidKeyframes.liquid2}
+      position: absolute;
+      font-size: 40px;
+      color: #2196f3;
+      opacity: 0.5;
+      animation: liquid2 6s ease-in-out infinite;
+      ${theme.breakpoints.up('md')} {
+        font-size: 60px;
+      }
+      ${theme.breakpoints.up('lg')} {
+        font-size: 90px;
+      }
+    `,
+    liquidText3: css`
+      ${liquidKeyframes.liquid3}
+      position: absolute;
+      font-size: 40px;
+      color: #2196f3;
+      animation: liquid3 4s ease-in-out infinite;
+      ${theme.breakpoints.up('md')} {
+        font-size: 60px;
+      }
+      ${theme.breakpoints.up('lg')} {
+        font-size: 90px;
+      }
+    `,
+    buttonIconStyle: css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: ${theme.spacing(2)};
+      color: ${theme.palette.primary.main}; // text-button-main
+      font-size: ${theme.typography.fontSize * 0.875}px; // text-sm
+      font-weight: 600; // font-semibold
+
+      & > svg {
+        height: 16px;
+        width: 16px;
       }
     `,
   };
