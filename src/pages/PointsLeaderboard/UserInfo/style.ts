@@ -10,6 +10,7 @@ export const useStyles = () => {
       align-items: center;
       justify-content: start;
       gap: ${theme.spacing(2)};
+      padding: 0!important;
       color: ${theme.palette.primary.main};
       font-size: 0.875rem;
       text-decoration: none;

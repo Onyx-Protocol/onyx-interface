@@ -8,7 +8,7 @@ import { Farm, useGetFarms } from 'clients/api';
 import useGetUserInfo from 'clients/api/queries/getUserInfo/useGetUserInfo';
 import ConnectButton from 'components/Layout/ConnectButton';
 import { AuthContext } from 'context/AuthContext';
-import { LeaderboardTable } from 'pages/PointsLeaderboard';
+import LeaderboardTable from 'pages/PointsLeaderboard/LeaderboardTable';
 
 import EnrollModal from './modals/EnrollModal';
 // import PointUser from './PointUser';

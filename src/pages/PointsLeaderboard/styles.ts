@@ -1,15 +1,9 @@
 import { css } from '@emotion/react';
-import { useTheme } from '@mui/material';
 
-export const useStyles = () => {
-  const theme = useTheme();
-  return {
-    userContainer: css`
-      width: 100% !important;
-      gap: ${theme.spacing(2)};
+export const useStyles = () => ({
+  root: css`
+      border-radius: 24px;
+      overflow: hidden;
+
     `,
-    tooltip: css`
-      font-size: 0.875rem;
-    `,
-  };
-};
+});
