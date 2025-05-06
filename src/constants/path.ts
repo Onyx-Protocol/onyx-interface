@@ -20,6 +20,8 @@ enum Path {
   SWAP = '/swap',
   FARM = '/farm',
   AIAGENT = '/aiagent',
+  POINTS = '/points-dashboard',
+  POINTS_LEADERBOARD = '/points-leaderboard',
 }
 
 export default Path;

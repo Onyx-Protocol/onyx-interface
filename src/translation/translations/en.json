@@ -139,7 +139,9 @@
   "header": {
     "proposalDetailsTitle": "Overview",
     "voteLeaderboardTitle": "Vote",
-    "liquidateDetailsTitle": "Liquidate Detail"
+    "liquidateDetailsTitle": "Liquidate Detail",
+    "pointsDashboardTitle": "Points Dashboard",
+    "pointsLeaderboardTitle": "Points Leaderboard"
   },
   "history": {
     "all": "All",
@@ -215,7 +217,10 @@
       "fpunk": "Punk Wrapper",
       "liquidate": "Liquidate",
       "stake": "Stake",
-      "aiagent": "AI Agent"
+      "aiagent": "AI Agent",
+      "points": "Points",
+      "pointsDashboard": "Points Dashboard",
+      "pointsLeaderboard": "Points Leaderboard"
     }
   },
   "lunaUstWarningModal": {

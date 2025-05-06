@@ -1,7 +1,12 @@
 import sample from 'lodash/sample';
 import { EthChainId } from 'types';
 
-import { API_ENDPOINT_URLS, API_GOV_ENDPOINT_URLS, RPC_URLS } from 'constants/endpoints';
+import {
+  API_ENDPOINT_URLS,
+  API_GOV_ENDPOINT_URLS,
+  API_POINT_URLS,
+  RPC_URLS,
+} from 'constants/endpoints';
 import { ETH_SCAN_URLS } from 'constants/ethereum';
 
 export interface Config {
@@ -11,6 +16,7 @@ export interface Config {
   apiUrl: string;
   apiGovUrl: string;
   ethScanUrl: string;
+  apiPointUrl: string;
 }
 
 const chainId: EthChainId = process.env.REACT_APP_CHAIN_ID
@@ -22,6 +28,7 @@ const rpcUrl = sample(RPC_URLS[chainId]) as string;
 const apiUrl = API_ENDPOINT_URLS[chainId];
 const apiGovUrl = API_GOV_ENDPOINT_URLS[chainId];
 const ethScanUrl = ETH_SCAN_URLS[chainId];
+const apiPointUrl = API_POINT_URLS;
 
 const config: Config = {
   chainId,
@@ -30,6 +37,7 @@ const config: Config = {
   apiUrl,
   apiGovUrl,
   ethScanUrl,
+  apiPointUrl,
 };
 
 export default config;

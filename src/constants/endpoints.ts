@@ -29,3 +29,5 @@ export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
     latest: process.env.REACT_APP_THEGRAPH_ENDPOINT ?? '',
   },
 };
+
+export const API_POINT_URLS = 'https://api-onyxpoint.zinza.com.vn/api/v1';
