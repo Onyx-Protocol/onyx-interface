@@ -134,6 +134,10 @@ export const useStyles = () => {
         z-index: 2;
       }
     `,
+    leaderBoard: css`
+      ${commonContainerStyles}
+      position: relative;
+    `,
 
     howToEarnContainer: css`
       position: relative;
@@ -321,8 +325,8 @@ export const useStyles = () => {
       align-items: center;
       justify-content: center;
       gap: ${theme.spacing(2)};
-      color: ${theme.palette.primary.main}; // text-button-main
-      font-size: ${theme.typography.fontSize * 0.875}px; // text-sm
+      color: ${theme.palette.primary.main};
+      font-size: ${theme.typography.fontSize * 0.875}px;
       font-weight: 600; // font-semibold
 
       & > svg {

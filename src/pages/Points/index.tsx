@@ -8,6 +8,7 @@ import { Farm, useGetFarms } from 'clients/api';
 import useGetUserInfo from 'clients/api/queries/getUserInfo/useGetUserInfo';
 import ConnectButton from 'components/Layout/ConnectButton';
 import { AuthContext } from 'context/AuthContext';
+import { LeaderboardTable } from 'pages/PointsLeaderboard';
 
 import EnrollModal from './modals/EnrollModal';
 // import PointUser from './PointUser';
@@ -185,6 +186,9 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
               ))}
             </Grid>
           </Box>
+        </Box>
+        <Box css={styles.leaderBoard}>
+          <LeaderboardTable useRankIcon isPaginated={false} />
         </Box>
       </Paper>
       {activeModal === 'enroll' && <EnrollModal farm={farms[0]} handleClose={closeActiveModal} />}

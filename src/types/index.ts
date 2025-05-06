@@ -402,3 +402,20 @@ export type UserNftResponse = {
   tokenIds: UserNftTokenIdResponse[];
   balances: UserNftTokenBalanceResponse[];
 }[];
+
+export type PaginationPayload = {
+  page?: number;
+  limit?: number;
+};
+
+export type GetLeaderBoardPayload = PaginationPayload;
+
+export type UserPoints = {
+  address: string;
+  points: number;
+};
+
+export type Leaderboard = {
+  id: string;
+  index: number;
+} & UserPoints;
