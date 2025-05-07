@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { Box } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -61,7 +62,7 @@ export const SidebarUi: React.FC = () => {
     if (hasSubMenu) {
       content = (
         <span className="menu-link-content" css={styles.menuLinkContent}>
-          <div className="left-border" />
+          {/* <div className="left-border" /> */}
           <ListItemIcon css={styles.listItemIcon}>
             <Icon name={menuItem.icon} />
           </ListItemIcon>
@@ -87,7 +88,7 @@ export const SidebarUi: React.FC = () => {
     } else {
       content = (
         <Link href={menuItem.href} onClick={isMobile ? closeMenu : undefined}>
-          <div className="left-border" />
+          {/* <div className="left-border" /> */}
           <ListItemIcon css={styles.listItemIcon}>
             <Icon name={menuItem.icon} />
           </ListItemIcon>
@@ -171,10 +172,10 @@ export const SidebarUi: React.FC = () => {
 
           <List>{menuItems.map(menuItem => renderMenuItem(menuItem))}</List>
         </div>
-        <div css={styles.addNetworkContainer}>
-          <p>To Access XCN Ledger:</p>
+        <Box css={styles.addNetworkContainer}>
+          <p>{t('sidebar.addNetworkLabel')}</p>
           <AddNetworkButton css={styles.addNetworkButton} />
-        </div>
+        </Box>
       </Drawer>
 
       {/* Mobile menu */}

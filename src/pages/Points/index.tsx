@@ -59,7 +59,12 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
             {t('pointsUi.header.title')}
           </Typography>
           <Typography color="text.secondary">{t('pointsUi.header.description')}</Typography>
-          <a href="https://bridge.onyx.org" target="_blank" rel="noreferrer">
+          <a
+            href="https://bridge.onyx.org"
+            target="_blank"
+            rel="noreferrer"
+            css={{ width: 'fit-content' }}
+          >
             <Button css={styles.buttonStyle} variant="secondaryConnectWallet">
               {t('pointsUi.header.buttonBridge')}
             </Button>

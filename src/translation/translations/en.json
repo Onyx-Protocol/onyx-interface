@@ -419,7 +419,8 @@
     "walletBalance": "Wallet balance: <White>{{balance}}</White>"
   },
   "sidebar": {
-    "newBadge": "NEW"
+    "newBadge": "NEW",
+    "addNetworkLabel": "To Access XCN Ledger:"
   },
   "stakeModal": {
     "availableTokensLabel": "Available {{tokenSymbol}}",

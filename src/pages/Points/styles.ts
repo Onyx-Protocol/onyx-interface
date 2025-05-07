@@ -107,6 +107,8 @@ export const useStyles = () => {
       text-align: center;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: ${theme.spacing(2)};
     `,
 

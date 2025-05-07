@@ -415,7 +415,8 @@
     "walletBalance": "Cüzdan bakiyesi: <White>{{balance}}</White>"
   },
   "sidebar": {
-    "newBadge": "YENİ"
+    "newBadge": "YENİ",
+    "addNetworkLabel": "XCN Defterine Erişmek İçin:"
   },
   "stakeModal": {
     "availableTokensLabel": "Mevcut {{tokenSymbol}}",
