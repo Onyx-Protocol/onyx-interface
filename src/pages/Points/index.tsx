@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightArrowLeft, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import { Button, Spinner } from 'components';
@@ -136,7 +136,8 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
               </Typography>
               <Link to="/">
                 <Typography color="text.secondary" fontSize="14px">
-                  {t('pointsUi.howToEarn.learnMoreButton')}
+                  {t('pointsUi.howToEarn.learnMoreButton')}{' '}
+                  <FontAwesomeIcon css={{ paddingTop: '3px' }} icon={faArrowUpRightFromSquare} />
                 </Typography>
               </Link>
             </Box>
@@ -181,11 +182,8 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
                         {item.title}
                       </Typography>
                       <Box
+                        css={styles.badgeContainer}
                         sx={{
-                          px: 1,
-                          py: 0.5,
-                          fontSize: '0.75rem',
-                          borderRadius: '999px',
                           backgroundColor: `${item.color}29`,
                           border: `1px solid ${item.color}`,
                           color: item.color,
@@ -193,6 +191,9 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
                       >
                         {item.badge}
                       </Box>
+                      {(item.badge === 'AP' || item.badge === 'APP') && (
+                        <Box css={styles.comingSoonBadge}>Coming Soon</Box>
+                      )}
                     </Box>
                     <Typography color="text.secondary" fontSize="12px" sx={{ opacity: 50 }}>
                       {item.description}

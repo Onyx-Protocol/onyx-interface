@@ -126,7 +126,7 @@ export const useStyles = () => {
       box-shadow: ${theme.shadows[2]};
       background-image: ${gradientPrimary} !important;
 
-      &:before {
+      &::before {
         ${gradientOverlay}
       }
 
@@ -174,8 +174,7 @@ export const useStyles = () => {
       display: flex;
       width: 100%;
       flex: 1;
-      padding-right: ${theme.spacing(6.25)};
-      padding-left: ${theme.spacing(6.25)};
+
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -254,16 +253,16 @@ export const useStyles = () => {
     pointsText: css`
       font-size: clamp(20px, 6vw, 40px);
       color: white;
-      text-shadow: -1px 1px 0px #183954, -2px 2px 0px #183954, -3px 3px 0px #183954,
-        -4px 4px 0px #183954, -9px 9px 10px rgba(0, 0, 0, 0.5), -9px 9px 25px rgba(0, 0, 0, 0.5);
+      text-shadow: -1px 1px 0 #183954, -2px 2px 0 #183954, -3px 3px 0 #183954,
+        -4px 4px 0 #183954, -9px 9px 10px rgba(0, 0, 0, 0.5), -9px 9px 25px rgba(0, 0, 0, 0.5);
       ${theme.breakpoints.up('md')} {
-        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
+        font-size: clamp(30px, 5vw, 55px);
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+        font-size: clamp(45px, 4vw, 70px);
       }
       ${theme.breakpoints.up('xl')} {
-        font-size: clamp(60px, 3.5vw, 90px); // desktop
+        font-size: clamp(60px, 3.5vw, 90px);
       }
     `,
     liquidText1: css`
@@ -274,13 +273,13 @@ export const useStyles = () => {
       opacity: 0.5;
       animation: liquid1 3s ease-in-out infinite;
       ${theme.breakpoints.up('md')} {
-        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
+        font-size: clamp(30px, 5vw, 55px);
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+        font-size: clamp(45px, 4vw, 70px);
       }
       ${theme.breakpoints.up('xl')} {
-        font-size: clamp(60px, 3.5vw, 90px); // desktop
+        font-size: clamp(60px, 3.5vw, 90px);
       }
     `,
     liquidText2: css`
@@ -291,13 +290,13 @@ export const useStyles = () => {
       opacity: 0.5;
       animation: liquid2 6s ease-in-out infinite;
       ${theme.breakpoints.up('md')} {
-        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
+        font-size: clamp(30px, 5vw, 55px);
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+        font-size: clamp(45px, 4vw, 70px);
       }
       ${theme.breakpoints.up('xl')} {
-        font-size: clamp(60px, 3.5vw, 90px); // desktop
+        font-size: clamp(60px, 3.5vw, 90px);
       }
     `,
     liquidText3: css`
@@ -307,13 +306,13 @@ export const useStyles = () => {
       color: #2196f3;
       animation: liquid3 4s ease-in-out infinite;
       ${theme.breakpoints.up('md')} {
-        font-size: clamp(30px, 5vw, 55px); // tablet/laptop nhỏ
+        font-size: clamp(30px, 5vw, 55px);
       }
       ${theme.breakpoints.up('lg')} {
-        font-size: clamp(45px, 4vw, 70px); // laptop lớn
+        font-size: clamp(45px, 4vw, 70px);
       }
       ${theme.breakpoints.up('xl')} {
-        font-size: clamp(60px, 3.5vw, 90px); // desktop
+        font-size: clamp(60px, 3.5vw, 90px);
       }
     `,
     buttonIconStyle: css`
@@ -323,12 +322,26 @@ export const useStyles = () => {
       gap: ${theme.spacing(2)};
       color: ${theme.palette.primary.main};
       font-size: ${theme.typography.fontSize * 0.875}px;
-      font-weight: 600; // font-semibold
+      font-weight: 600;
 
       & > svg {
         height: 16px;
         width: 16px;
       }
+    `,
+    comingSoonBadge: css`
+      padding: 4px 6px;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      background-color: #ffb80029;
+      border: 1px solid #ffb800;
+      color: #ffb800;
+      text-align: center;
+    `,
+    badgeContainer: css`
+      padding: 4px 6px;
+      font-size: 0.75rem;
+      border-radius: 999px;
     `,
   };
 };
