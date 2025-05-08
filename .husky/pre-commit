@@ -1,8 +1,4 @@
-#!/usr/bin/env node
-const { execSync } = require('child_process');
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-try {
-  execSync('yarn lint-staged', { stdio: 'inherit' });
-} catch (error) {
-  process.exit(1);
-}
+yarn lint-staged
