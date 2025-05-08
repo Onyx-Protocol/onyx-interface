@@ -1,17 +1,25 @@
-import React, { useState, useRef, useEffect, KeyboardEvent } from 'react';
+import { useChat } from '@ai-sdk/react';
+import { ConnectKitButton } from 'connectkit';
+import React, { useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+import { useAccount } from 'wagmi';
+
 import './ChatApp.css';
 
-// Define types for our chat messages
-interface Message {
-  id: number;
-  text: string;
-  sender: 'user' | 'bot';
-  timestamp: Date;
-}
+('use client');
 
 const ChatApp: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState<string>('');
+  const { address } = useAccount();
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: process.env.NEXT_PUBLIC_AGENT_URL ?? '',
+    body: {
+      address: address ?? '0x0000000000000000000000000000000000000000',
+    },
+  });
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -24,52 +32,16 @@ const ChatApp: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const sendMessage = () => {
-    if (input.trim() === '') return;
-
-    // Add user message
-    const userMessage: Message = {
-      id: Date.now(),
-      text: input,
-      sender: 'user',
-      timestamp: new Date(),
-    };
-
-    setMessages(prevMessages => [...prevMessages, userMessage]);
-    setInput('');
-
-    // Adjust textarea height back to default
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-    }
-
-    // Simulate bot response after a short delay
-    setTimeout(() => {
-      const botMessage: Message = {
-        id: Date.now() + 1,
-        text: `${input}`,
-        sender: 'bot',
-        timestamp: new Date(),
-      };
-      setMessages(prevMessages => [...prevMessages, botMessage]);
-    }, 1000);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    sendMessage();
-  };
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      sendMessage();
+      handleSubmit(e as unknown as React.FormEvent);
     }
   };
 
   // Auto-resize textarea based on content
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInput(e.target.value);
+  const handleTextareaResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handleInputChange(e);
 
     // Auto adjust height
     e.target.style.height = 'auto';
@@ -77,57 +49,94 @@ const ChatApp: React.FC = () => {
   };
 
   return (
-    <div className="chat-container">
-
-      <div className="chat-messages">
-        {messages.length === 0 ? (
-          <div className="empty-chat">
-            <p>No messages yet. Start a conversation!</p>
-          </div>
-        ) : (
-          messages.map((message) => (
-            <div
-              key={message.id}
-              className={`message-row ${message.sender === 'user' ? 'user-message-row' : 'bot-message-row'}`}
-            >
-              {message.sender === 'bot' && (
-                <div className="message-avatar">
-                  <span role="img" aria-label="donut">🤖</span>
-                </div>
-              )}
-
-              <div className={`message-bubble ${message.sender === 'user' ? 'user-message' : 'bot-message'}`}>
-                <div className="message-text">{message.text}</div>
-                <div className="message-timestamp">
-                  {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </div>
-              </div>
-
-              {message.sender === 'user' && (
-                <div className="message-avatar">
-                  <span role="img" aria-label="donut">👤</span>
-                </div>
-              )}
-            </div>
-          ))
-        )}
-        <div ref={messagesEndRef} />
+    <div className="chat-container-full">
+      <div className="chat-header flex justify-end items-center px-4 py-3 border-b bg-white rounded-t-lg">
+        <ConnectKitButton />
       </div>
+      <div className="chat-container flex-1 flex flex-col">
+        <div className="chat-messages">
+          {messages.length === 0 ? (
+            <div className="empty-chat">
+              <p>No messages yet. Start a conversation!</p>
+            </div>
+          ) : (
+            messages.map(message => (
+              <div
+                key={message.id}
+                className={`message-row ${
+                  message.role === 'user' ? 'user-message-row' : 'bot-message-row'
+                }`}
+              >
+                {message.role === 'assistant' && (
+                  <div className="message-avatar">
+                    <span role="img" aria-label="donut">
+                      🤖
+                    </span>
+                  </div>
+                )}
 
-      <form className="chat-input-form" onSubmit={handleSubmit}>
-        <textarea
-          ref={textareaRef}
-          value={input}
-          onChange={handleTextareaChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Type a message..."
-          className="chat-input"
-          rows={3}
-        />
-        <button type="submit" className="send-button">
-          Send
-        </button>
-      </form>
+                <div
+                  className={`message-bubble ${
+                    message.role === 'user' ? 'user-message' : 'bot-message'
+                  }`}
+                >
+                  <div className="message-text">
+                    {message.role === 'assistant' ? (
+                      <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeHighlight]}>
+                        {message.content}
+                      </ReactMarkdown>
+                    ) : (
+                      message.content
+                    )}
+                  </div>
+                  <div className="message-timestamp">
+                    {new Date().toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </div>
+                </div>
+
+                {message.role === 'user' && (
+                  <div className="message-avatar">
+                    <span role="img" aria-label="donut">
+                      👤
+                    </span>
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+          <div ref={messagesEndRef} />
+          {isLoading && (
+            <div className="typing-indicator">
+              <span className="message-avatar">
+                <span role="img" aria-label="donut">
+                  🤖
+                </span>
+              </span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          )}
+        </div>
+
+        <form className="chat-input-form" onSubmit={handleSubmit}>
+          <textarea
+            ref={textareaRef}
+            value={input}
+            onChange={handleTextareaResize}
+            onKeyDown={handleKeyDown}
+            placeholder="Type a message..."
+            className="chat-input"
+            rows={3}
+          />
+          <button type="submit" className="send-button">
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

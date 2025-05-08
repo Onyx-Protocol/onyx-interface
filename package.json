@@ -25,6 +25,7 @@
     "regression": "reg-suit run"
   },
   "dependencies": {
+    "@ai-sdk/react": "^1.2.12",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@emotion/react": "^11.9.3",
     "@infinitywallet/infinity-connector": "^1.0.5",
@@ -68,11 +69,14 @@
     "react-toastify": "9.0.1",
     "react-uid": "^2.3.1",
     "recharts": "2.1.9",
+    "rehype-highlight": "^7.0.2",
     "rehype-sanitize": "^5.0.1",
     "sass": "^1.49.7",
     "web3": "^1.7.1",
     "web3-utils": "1.7.1",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "wagmi": "^2.15.2",
+    "connectkit": "^1.9.0",
   },
   "devDependencies": {
     "@storybook/addon-actions": "6.4.9",
