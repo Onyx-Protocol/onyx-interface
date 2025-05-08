@@ -53,3 +53,4 @@ export { default as stake } from './stake';
 export { default as uk } from './uk';
 export { default as turkey } from './turkey';
 export { default as gem } from './gem';
+export { default as aiagent } from './aiagent';

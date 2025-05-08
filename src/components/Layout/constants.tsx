@@ -46,7 +46,7 @@ export const menuItems: MenuItem[] = [
     i18nKey: 'layout.menuItems.swap',
     i18nTitleKey: 'layout.menuItems.swap',
     icon: 'convert',
-    isNew: true,
+    // isNew: true,
   },
   {
     href: Path.FARM,
@@ -55,7 +55,7 @@ export const menuItems: MenuItem[] = [
     i18nKey: 'layout.menuItems.farm',
     i18nTitleKey: 'layout.menuItems.farm',
     icon: 'farm',
-    isNew: true,
+    // isNew: true,
   },
   {
     href: Path.GOVERNANCE,
@@ -71,7 +71,7 @@ export const menuItems: MenuItem[] = [
     // t('layout.menuItems.governance')
     i18nKey: 'layout.menuItems.aiagent',
     i18nTitleKey: 'layout.menuItems.aiagent',
-    icon: 'person',
+    icon: 'aiagent',
     isNew: true,
   },
   // {
@@ -114,6 +114,7 @@ export const menuItems: MenuItem[] = [
     i18nKey: 'layout.menuItems.points',
     i18nTitleKey: 'layout.menuItems.points',
     icon: 'gem',
+    isNew: true,
     subMenu: [
       {
         href: Path.POINTS,
