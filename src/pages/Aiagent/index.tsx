@@ -57,7 +57,7 @@ const ChatApp: React.FC = () => {
         <div className="chat-messages">
           {messages.length === 0 ? (
             <div className="empty-chat">
-              <p>No messages yet. Start a conversation!</p>
+              <p>No messages yet. Start a conversation now!</p>
             </div>
           ) : (
             messages.map(message => (
