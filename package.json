@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=16.x.x"
   },
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "prepare": "git apply patches/@stylelint+postcss-css-in-js+0.37.2.patch",
@@ -27,6 +28,9 @@
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
     "@emotion/react": "^11.9.3",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@infinitywallet/infinity-connector": "^1.0.5",
     "@lottiefiles/react-lottie-player": "^3.4.5",
     "@mui/material": "^5.4.2",

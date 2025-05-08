@@ -125,7 +125,7 @@
     "enableButtonLabel": "Enable"
   },
   "enrollModal": {
-    "connectWalletMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+    "connectWalletMessage": "Sign up for the Onyx Points system to start earning points today on the XCN Ledger blockchain.",
     "increaseAllowanceButtonLabel": "Increase {{tokenSymbol}} spending limit",
     "submitButtonDisabledLabel": "Close",
     "submitButtonLabel": "Enroll now!",

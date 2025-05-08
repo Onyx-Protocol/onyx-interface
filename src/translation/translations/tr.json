@@ -125,7 +125,7 @@
     "enableButtonLabel": "Etkinleştir"
   },
   "enrollModal": {
-    "connectWalletMessage": "Hemen Onyx sistemine katılın, puan kazanın ve harika ödüller kazanın — binlerce kişilik büyüyen topluluğun bir parçası olun!",
+    "connectWalletMessage": "XCN Ledger blok zincirinde puan kazanmaya bugün başlamak için Onyx Points sistemine kaydolun.",
     "submitButtonDisabledLabel": "Kapat",
     "submitButtonLabel": "Hemen kaydol!",
     "button": {

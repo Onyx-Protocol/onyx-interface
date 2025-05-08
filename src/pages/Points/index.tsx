@@ -1,4 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import { Button, Spinner } from 'components';
 import React, { useContext, useState } from 'react';
@@ -66,6 +68,7 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
             css={{ width: 'fit-content' }}
           >
             <Button css={styles.buttonStyle} variant="secondaryConnectWallet">
+              <FontAwesomeIcon css={{ paddingTop: '3px' }} icon={faArrowRightArrowLeft} />{' '}
               {t('pointsUi.header.buttonBridge')}
             </Button>
           </a>
