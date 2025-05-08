@@ -134,12 +134,12 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
               <Typography variant="h6" fontWeight="bold" mb={2}>
                 {t('pointsUi.howToEarn.title')}
               </Typography>
-              <Link to="/">
+              <a href="https://docs.onyx.org/points/onyx-points" target="_blank" rel="noreferrer">
                 <Typography color="text.secondary" fontSize="14px">
                   {t('pointsUi.howToEarn.learnMoreButton')}{' '}
                   <FontAwesomeIcon css={{ paddingTop: '3px' }} icon={faArrowUpRightFromSquare} />
                 </Typography>
-              </Link>
+              </a>
             </Box>
             <Grid container spacing={3}>
               {[
@@ -198,7 +198,36 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
                     <Typography color="text.secondary" fontSize="12px" sx={{ opacity: 50 }}>
                       {item.description}
                     </Typography>
-                    <Button variant="primary">{item.buttonText}</Button>
+                    {item.badge === 'PP' && (
+                      <a
+                        href="https://docs.onyx.org/points/earning-points/passive-points"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Button variant="primary">{item.buttonText}</Button>
+                      </a>
+                    )}
+                    {item.badge === 'AP' && (
+                      <a
+                        href="https://docs.onyx.org/points/earning-points/activity-points"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Button variant="primary">{item.buttonText}</Button>
+                      </a>
+                    )}
+                    {item.badge === 'APP' && (
+                      <a
+                        href="https://docs.onyx.org/points/earning-points/app-points"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Button variant="primary">{item.buttonText}</Button>
+                      </a>
+                    )}
                   </Paper>
                 </Grid>
               ))}

@@ -393,17 +393,17 @@
       "learnMoreButton": "Learn more",
       "passivePoints": {
         "title": "Passive Points",
-        "description": "Earn points by using the Onyx protocol. The more you use it, the more points you earn",
+        "description": "Earn PP by simply holding whitelisted assets on XCN Ledger.",
         "actionButton": "Explore assets"
       },
       "activityPoints": {
         "title": "Activity Points",
-        "description": "Earn points by deploying your whitelisted assets.",
+        "description": "Earn AP by deploying your whitelisted assets on XCN Ledger.",
         "actionButton": "Explore apps"
       },
       "appPoints": {
         "title": "App Points",
-        "description": "Earn points by using Onyx apps.",
+        "description": "Earn APP by using Onyx XCN Ledger based dApps.",
         "actionButton": "Explore apps"
       }
     },

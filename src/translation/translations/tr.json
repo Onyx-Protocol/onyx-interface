@@ -389,17 +389,17 @@
       "learnMoreButton": "Daha fazla bilgi edinin",
       "passivePoints": {
         "title": "Pasif Puanlar",
-        "description": "Beyaz listeye alınmış varlıkları sadece elinizde tutarak puan kazanın.",
+        "description": "XCN Ledger'da beyaz listeye eklediğiniz varlıkları tutarak PP kazanın.",
         "actionButton": "Varlıkları keşfet"
       },
       "activityPoints": {
         "title": "Etkinlik Puanları",
-        "description": "Beyaz listeye alınmış varlıklarınızı dağıtarak puan kazanın.",
+        "description": "Beyaz listeye eklediğiniz varlıklarınızı XCN Ledger'da dağıtarak AP kazanın.",
         "actionButton": "Uygulamaları keşfet"
       },
       "appPoints": {
         "title": "Uygulama Puanları",
-        "description": "Onyx uygulamalarını kullanarak puan kazanın.",
+        "description": "Onyx XCN Ledger tabanlı dApp'leri kullanarak APP kazanın.",
         "actionButton": "Uygulamaları keşfet"
       }
     },
