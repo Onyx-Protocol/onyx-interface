@@ -28,6 +28,8 @@ const Title: React.FC = () => {
   const voteLeaderboardMatch = useRouteMatch(Path.GOVERNANCE_LEADER_BOARD);
   const proposalDetailsMatch = useRouteMatch<{ id: string }>(Path.GOVERNANCE_PROPOSAL_DETAILS);
   const liquidateDetailMatch = useRouteMatch(Path.LIQUIDATE_DETAIL);
+  const pointDashboardMatch = useRouteMatch(Path.POINTS);
+  const pointLeaderboardMatch = useRouteMatch(Path.POINTS_LEADERBOARD);
   const { t } = useTranslation();
   const copyToClipboard = useCopyToClipboard(t('interactive.copy.walletAddress'));
 
@@ -85,6 +87,19 @@ const Title: React.FC = () => {
           {voteLeaderboardMatch
             ? t('header.voteLeaderboardTitle')
             : t('header.proposalDetailsTitle')}
+        </h3>
+      </BackButton>
+    );
+  }
+
+  // Handle special case of Points and Points Leaderboard pages
+  if (pointDashboardMatch || pointLeaderboardMatch) {
+    return (
+      <BackButton>
+        <h3>
+          {pointDashboardMatch
+            ? t('header.pointsDashboardTitle')
+            : t('header.pointsLeaderboardTitle')}
         </h3>
       </BackButton>
     );

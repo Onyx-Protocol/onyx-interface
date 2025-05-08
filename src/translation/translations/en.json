@@ -124,10 +124,23 @@
   "enableToken": {
     "enableButtonLabel": "Enable"
   },
+  "enrollModal": {
+    "connectWalletMessage": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+    "increaseAllowanceButtonLabel": "Increase {{tokenSymbol}} spending limit",
+    "submitButtonDisabledLabel": "Close",
+    "submitButtonLabel": "Enroll now!",
+    "successfulTransactionModal": {
+      "description": "Close",
+      "title": "Enroll"
+    },
+    "title": "Enroll"
+  },
   "errors": {
     "somethingWentWrong": "Something went wrong",
     "somethingWentWrongRetrievingTransactions": "Something went wrong retrieving transactions",
     "somethingWentWrongRetrievingVoterAccounts": "Something went wrong retrieving voter accounts",
+    "somethingWentWrongRetrievingSignedMessage": "Something went wrong retrieving signed message",
+    "somethingWentWrongRetrievingUserInfo": "Something went wrong retrieving user info",
     "somethingWentWrongRetrievingVoterDetails": "Something went wrong retrieving voter details",
     "somethingWentWrongRetrievingVoterHistory": "Something went wrong retrieving voter history  ",
     "undefinedAccountErrorMessage": "Account undefined",
@@ -139,7 +152,9 @@
   "header": {
     "proposalDetailsTitle": "Overview",
     "voteLeaderboardTitle": "Vote",
-    "liquidateDetailsTitle": "Liquidate Detail"
+    "liquidateDetailsTitle": "Liquidate Detail",
+    "pointsDashboardTitle": "Points Dashboard",
+    "pointsLeaderboardTitle": "Points Leaderboard"
   },
   "history": {
     "all": "All",
@@ -215,7 +230,10 @@
       "fpunk": "Punk Wrapper",
       "liquidate": "Liquidate",
       "stake": "Stake",
-      "aiagent": "AI Agent"
+      "aiagent": "AI Agent",
+      "points": "Points",
+      "pointsDashboard": "Points Dashboard",
+      "pointsLeaderboard": "Points Leaderboard"
     }
   },
   "lunaUstWarningModal": {
@@ -358,6 +376,42 @@
     "itemOf": "Item {{currentPageLastIndex}} out of {{itemsCount}}",
     "itemsOf": "Items {{firstItemNumber}} - {{currentPageLastIndex}} out of {{itemsCount}}"
   },
+  "pointsUi": {
+    "header": {
+      "title": "Onyx Points",
+      "description": "Track your points and see how you rank against other users.",
+      "buttonBridge": "Bridge"
+    },
+    "pointsUser": {
+      "descriptionNotConnect": "Connect your wallet to view your points.",
+      "descriptionConnect": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+      "pointsSubtitle": "My Onyx Points",
+      "enrollButton": "Enroll now!"
+    },
+    "howToEarn": {
+      "title": "How to earn points",
+      "learnMoreButton": "Learn more",
+      "passivePoints": {
+        "title": "Passive Points",
+        "description": "Earn points by using the Onyx protocol. The more you use it, the more points you earn",
+        "actionButton": "Explore assets"
+      },
+      "activityPoints": {
+        "title": "Activity Points",
+        "description": "Earn points by deploying your whitelisted assets.",
+        "actionButton": "Explore apps"
+      },
+      "appPoints": {
+        "title": "App Points",
+        "description": "Earn points by using Onyx apps.",
+        "actionButton": "Explore apps"
+      }
+    },
+    "topUsers": {
+      "title": "Top 5 user",
+      "viewAllButton": "View all"
+    }
+  },
   "selectTokenTextField": {
     "searchInput": {
       "placeholder": "Search asset"
@@ -365,7 +419,8 @@
     "walletBalance": "Wallet balance: <White>{{balance}}</White>"
   },
   "sidebar": {
-    "newBadge": "NEW"
+    "newBadge": "NEW",
+    "addNetworkLabel": "To Access XCN Ledger:"
   },
   "stakeModal": {
     "availableTokensLabel": "Available {{tokenSymbol}}",
@@ -942,5 +997,11 @@
   "gasFreeCampaign": {
     "onyxHasLaunchedGasFreeCampaign": "Onyx has now launched the v2 money market protocol which users can utilize to access liquidity for supported NFTs and tokens. Onyx will be launching MetaUSD (MUSD), a decentralized yield-bearing stable coin, and airdrop soon.",
     "seeTheAnnouncement": "Read more"
+  },
+  "point": {
+    "columns": {
+      "userAddress": "User Address",
+      "totalPoint": "Total Points"
+    }
   }
 }

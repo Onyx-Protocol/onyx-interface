@@ -29,3 +29,8 @@ export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
     latest: process.env.REACT_APP_THEGRAPH_ENDPOINT ?? '',
   },
 };
+
+export const POINTS_API_ENDPOINTS = {
+  [EthChainId.MAINNET]: 'https://pnt.onyx.org/api/v1',
+  [EthChainId.TESTNET]: 'https://testpnt.onyx.org/api/v1',
+};

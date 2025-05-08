@@ -7,6 +7,7 @@ interface RestServiceInput {
   token?: string | null;
   params?: Record<string, unknown>;
   gov?: boolean | null;
+  apiPoint?: boolean;
 }
 
 const createQueryParams = (params: Record<string, unknown>) => {
@@ -25,6 +26,7 @@ export async function restService<D>({
   params,
   token = null,
   gov = false,
+  apiPoint = false,
 }: RestServiceInput): Promise<
   | {
       status: number;
@@ -41,7 +43,14 @@ export async function restService<D>({
     }
 > {
   const headers = {};
-  let path = gov ? `${config.apiGovUrl}${endpoint}` : `${config.apiUrl}${endpoint}`;
+  let path = '';
+  if (gov) {
+    path = `${config.apiGovUrl}${endpoint}`;
+  } else if (apiPoint) {
+    path = `${config.apiPointUrl}${endpoint}`;
+  } else {
+    path = `${config.apiUrl}${endpoint}`;
+  }
 
   set(headers, 'Accept', 'application/json');
   set(headers, 'Content-Type', 'application/json');
@@ -50,32 +59,35 @@ export async function restService<D>({
     set(headers, 'Authorization', `Bearer ${token}`);
   }
 
-  const reqBody = {
+  const reqBody: RequestInit = {
     method,
     headers,
-    body: {},
   };
 
-  if (params && !isEmpty(params) && method === 'POST') {
-    reqBody.body = JSON.stringify(params);
-  } else if (params && !isEmpty(params) && method === 'GET') {
-    const queryParams = createQueryParams(params);
-    path = `${path}?${queryParams}`;
+  if (params && !isEmpty(params)) {
+    if (method === 'POST') {
+      reqBody.body = JSON.stringify(params);
+    } else if (method === 'GET') {
+      const queryParams = createQueryParams(params);
+      path = `${path}?${queryParams}`;
+    }
   }
-  return fetch(path)
-    .then(response =>
-      response.json().then(json => {
-        if (json) {
-          if (gov) return { data: { data: json } };
-          return { status: response.status, data: json };
-        }
-        return { status: response.status, data: undefined };
-      }),
-    )
-    .catch(error => ({
+
+  try {
+    const response = await fetch(path, reqBody);
+    const json = await response.json();
+
+    if (json) {
+      if (gov) return { data: { data: json } };
+      return { status: response.status, data: json };
+    }
+    return { status: response.status, data: undefined };
+  } catch (error) {
+    return {
       status: false,
       data: undefined,
       result: 'error',
-      message: error,
-    }));
+      message: error instanceof Error ? error.message : String(error),
+    };
+  }
 }

@@ -254,6 +254,11 @@ export const useStyles = () => {
     `,
     addNetworkButton: css`
       margin-bottom: ${theme.spacing(6)};
+      ${theme.breakpoints.down('lg')} {
+        display: flex;
+        flex-direction: column;
+        width: 80px;
+      }
     `,
     mobileConnectButton: css`
       margin-left: ${theme.spacing(8)};
@@ -272,9 +277,24 @@ export const useStyles = () => {
       margin: 0 16px;
     `,
     addNetworkContainer: css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      outline: none;
       margin-top: auto;
-      padding: ${theme.spacing(4)};
       text-align: center;
+      margin-left: ${theme.spacing(1)};
+      margin-right: ${theme.spacing(1)};
+      ${theme.breakpoints.up('lg')} {
+        max-width: 224px;
+        padding: ${theme.spacing(3)};
+        margin-left: ${theme.spacing(0)};
+        margin-right: ${theme.spacing(0)};
+        text-align: center;
+        width: 100%;
+      }
     `,
     subMenu: css`
       .MuiPaper-root {
