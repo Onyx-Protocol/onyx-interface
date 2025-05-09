@@ -5,7 +5,6 @@
   "engines": {
     "node": ">=16.x.x"
   },
-  "packageManager": "yarn@1.22.22",
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "prepare": "git apply patches/@stylelint+postcss-css-in-js+0.37.2.patch",
