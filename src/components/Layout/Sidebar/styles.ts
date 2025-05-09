@@ -290,7 +290,6 @@ export const useStyles = () => {
       ${theme.breakpoints.up('lg')} {
         max-width: 224px;
         padding: ${theme.spacing(3)};
-        padding-bottom: ${theme.spacing(8)};
         margin-left: ${theme.spacing(0)};
         margin-right: ${theme.spacing(0)};
         text-align: center;
