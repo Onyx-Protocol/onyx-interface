@@ -9,24 +9,24 @@ import { UniSwapRouter } from 'types/contracts';
 import swapTokens from '.';
 
 const fakeExactAmountInSwap: ExactAmountInSwap = {
-  fromToken: UNISWAP_TOKENS.uni,
+  fromToken: UNISWAP_TOKENS.weth,
   fromTokenAmountSoldWei: new BigNumber('10000000000000000'),
   toToken: UNISWAP_TOKENS.usdt,
   minimumToTokenAmountReceivedWei: new BigNumber('20000000000000000'),
   expectedToTokenAmountReceivedWei: new BigNumber('30000000000000000'),
   direction: 'exactAmountIn',
-  routePath: [UNISWAP_TOKENS.uni.address, UNISWAP_TOKENS.usdt.address],
+  routePath: [UNISWAP_TOKENS.weth.address, UNISWAP_TOKENS.usdt.address],
   exchangeRate: new BigNumber(2),
 };
 
 const fakeExactAmountOutSwap: ExactAmountOutSwap = {
-  fromToken: UNISWAP_TOKENS.uni,
+  fromToken: UNISWAP_TOKENS.weth,
   expectedFromTokenAmountSoldWei: new BigNumber('20000000000000000'),
   maximumFromTokenAmountSoldWei: new BigNumber('30000000000000000'),
   toToken: UNISWAP_TOKENS.usdt,
   toTokenAmountReceivedWei: new BigNumber('10000000000000000'),
   direction: 'exactAmountOut',
-  routePath: [UNISWAP_TOKENS.uni.address, UNISWAP_TOKENS.usdt.address],
+  routePath: [UNISWAP_TOKENS.weth.address, UNISWAP_TOKENS.usdt.address],
   exchangeRate: new BigNumber(2),
 };
 

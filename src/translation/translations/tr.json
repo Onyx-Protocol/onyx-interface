@@ -8,6 +8,9 @@
     "max": "Max:",
     "safeBorrowLimitTooltip": "Güvenli ödünç limiti:<LineBreak/>{{safeBorrowLimit}} ({{safeBorrowLimitPercentage}} borçlanma limitinizin %'si)"
   },
+  "addNetworkButton": {
+    "title": "Ağ Ekle"
+  },
   "apyChart": {
     "tooltipItemLabels": {
       "borrowApy": "Ödünç APY",
@@ -121,6 +124,16 @@
   "enableToken": {
     "enableButtonLabel": "Etkinleştir"
   },
+  "enrollModal": {
+    "connectWalletMessage": "XCN Ledger blok zincirinde puan kazanmaya bugün başlamak için Onyx Points sistemine kaydolun.",
+    "submitButtonDisabledLabel": "Kapat",
+    "submitButtonLabel": "Hemen kaydol!",
+    "button": {
+      "close": "Kapat",
+      "enroll": "Kaydol"
+    },
+    "title": "Kaydol"
+  },
   "errors": {
     "somethingWentWrong": "Bir şeyler yanlış gitti",
     "somethingWentWrongRetrievingTransactions": "İşlemler alınırken bir şeyler yanlış gitti",
@@ -136,7 +149,9 @@
   "header": {
     "proposalDetailsTitle": "Genel Bakış",
     "voteLeaderboardTitle": "Oylama",
-    "liquidateDetailsTitle": "Tasfiye Detayı"
+    "liquidateDetailsTitle": "Tasfiye Detayı",
+    "pointsDashboardTitle": "Puan Paneli",
+    "pointsLeaderboardTitle": "Puan Sıralaması"
   },
   "history": {
     "all": "Hepsi",
@@ -202,6 +217,7 @@
       "convertVrtTitle": "VRT'yi XCN'ye Dönüştür",
       "dashboard": "Panel",
       "governance": "Yönetişim",
+      "leaderboard": "Liderlik Tablosu",
       "history": "Tarih",
       "markets": "Piyasalar",
       "swap": "Takas",
@@ -210,7 +226,10 @@
       "xcnPrediction": "XCN Tahmini",
       "fpunk": "Punk Wrapper",
       "liquidate": "Tasfiye",
-      "stake": "Stake"
+      "stake": "Stake",
+      "points": "Puanlar",
+      "pointsDashboard": "Puan Paneli",
+      "pointsLeaderboard": "Puan Sıralaması"
     }
   },
   "lunaUstWarningModal": {
@@ -353,6 +372,42 @@
     "itemOf": "{{itemsCount}} dışında {{currentPageLastIndex}} öğesi",
     "itemsOf": "ürünler {{firstItemNumber}} - {{currentPageLastIndex}} dışında {{itemsCount}}"
   },
+  "pointsUi": {
+    "header": {
+      "title": "Onyx Puanları",
+      "description": "Puanlarınızı takip edin ve diğer kullanıcılarla karşılaştırmalı sıralamanızı görün.",
+      "buttonBridge": "Köprüle"
+    },
+    "pointsUser": {
+      "descriptionNotConnect": "Puanlarınızı görüntülemek için cüzdanınızı bağlayın.",
+      "descriptionConnect": "Onyx sistemine şimdi katılın, puan kazanın ve harika ödüller kazanın — binlerce kişilik büyüyen topluluğun bir parçası olun!",
+      "pointsSubtitle": "Onyx Puanlarım",
+      "enrollButton": "Hemen kaydol!"
+    },
+    "howToEarn": {
+      "title": "Puan nasıl kazanılır",
+      "learnMoreButton": "Daha fazla bilgi edinin",
+      "passivePoints": {
+        "title": "Pasif Puanlar",
+        "description": "XCN Ledger'da beyaz listeye eklediğiniz varlıkları tutarak PP kazanın.",
+        "actionButton": "Varlıkları keşfet"
+      },
+      "activityPoints": {
+        "title": "Etkinlik Puanları",
+        "description": "Beyaz listeye eklediğiniz varlıklarınızı XCN Ledger'da dağıtarak AP kazanın.",
+        "actionButton": "Uygulamaları keşfet"
+      },
+      "appPoints": {
+        "title": "Uygulama Puanları",
+        "description": "Onyx XCN Ledger tabanlı dApp'leri kullanarak APP kazanın.",
+        "actionButton": "Uygulamaları keşfet"
+      }
+    },
+    "topUsers": {
+      "title": "En İyi 5 Kullanıcı",
+      "viewAllButton": "Tümünü Görüntüle"
+    }
+  },
   "selectTokenTextField": {
     "searchInput": {
       "placeholder": "Arama varlığı"
@@ -360,7 +415,8 @@
     "walletBalance": "Cüzdan bakiyesi: <White>{{balance}}</White>"
   },
   "sidebar": {
-    "newBadge": "YENİ"
+    "newBadge": "YENİ",
+    "addNetworkLabel": "XCN Defterine Erişmek İçin:"
   },
   "stakeModal": {
     "availableTokensLabel": "Mevcut {{tokenSymbol}}",

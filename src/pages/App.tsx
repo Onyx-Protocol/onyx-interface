@@ -28,7 +28,12 @@ import Xcn from 'pages/Xcn';
 import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 
 import FarmPage from './Farm';
+import PointsPage from './Points';
+import PointsLeaderboardPage from './PointsLeaderboard';
 import SwapPage from './Swap';
+
+import AiagentPage from './Aiagent';
+
 /**
  * Updated by ozdav
  * Just commented to hide some menu links
@@ -76,6 +81,14 @@ const App = () => (
                       <Route exact path={Path.SWAP} component={SwapPage} />
 
                       <Route exact path={Path.FARM} component={FarmPage} />
+                      <Route exact path={Path.POINTS} component={PointsPage} />
+                      <Route
+                        exact
+                        path={Path.POINTS_LEADERBOARD}
+                        component={PointsLeaderboardPage}
+                      />
+
+                      <Route exact path={Path.AIAGENT} component={AiagentPage} />
 
                       <Redirect to={Path.ROOT} />
                     </Switch>

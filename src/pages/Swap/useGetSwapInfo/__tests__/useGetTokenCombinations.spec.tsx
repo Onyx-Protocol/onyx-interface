@@ -13,7 +13,7 @@ describe('pages/Swap/useGetSwapInfo/useGetTokenCombinations', () => {
     const TestComponent = () => {
       tokenCombinations = useGetTokenCombinations({
         fromToken: UNISWAP_TOKENS.usdt,
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
       });
 
       return <></>;
@@ -45,7 +45,7 @@ describe('pages/Swap/useGetSwapInfo/useGetTokenCombinations', () => {
     const TestComponent = () => {
       tokenCombinations = useGetTokenCombinations({
         fromToken: UNISWAP_TOKENS.eth,
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
       });
 
       return <></>;

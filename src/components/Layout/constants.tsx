@@ -1,6 +1,7 @@
 import Path from 'constants/path';
 
 import { MenuItem } from './types';
+
 /**
  * Updated by ozdav
  * Just commented to hide some menu links
@@ -45,7 +46,7 @@ export const menuItems: MenuItem[] = [
     i18nKey: 'layout.menuItems.swap',
     i18nTitleKey: 'layout.menuItems.swap',
     icon: 'convert',
-    isNew: true,
+    // isNew: true,
   },
   {
     href: Path.FARM,
@@ -54,7 +55,7 @@ export const menuItems: MenuItem[] = [
     i18nKey: 'layout.menuItems.farm',
     i18nTitleKey: 'layout.menuItems.farm',
     icon: 'farm',
-    isNew: true,
+    // isNew: true,
   },
   {
     href: Path.GOVERNANCE,
@@ -63,6 +64,15 @@ export const menuItems: MenuItem[] = [
     i18nKey: 'layout.menuItems.governance',
     i18nTitleKey: 'layout.menuItems.governance',
     icon: 'vote',
+  },
+  {
+    href: Path.AIAGENT,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.governance')
+    i18nKey: 'layout.menuItems.aiagent',
+    i18nTitleKey: 'layout.menuItems.aiagent',
+    icon: 'aiagent',
+    isNew: true,
   },
   // {
   //   href: Path.XCN,
@@ -88,4 +98,40 @@ export const menuItems: MenuItem[] = [
   //   i18nTitleKey: 'layout.menuItems.fpunk',
   //   icon: 'wpunksOutlined',
   // },
+  // TO BE ACTIVATED ONCE CALCULATOR IS READY
+  // {
+  //     href: Path.GOVERNANCE_LEADER_BOARD,
+  //     // Translation key: do not remove this comment
+  //     // t('layout.menuItems.xcn')
+  //     i18nKey: 'layout.menuItems.leaderboard',
+  //     i18nTitleKey: 'layout.menuItems.leaderboard',
+  //     icon: 'xcnOutlined',
+  // },
+  {
+    href: Path.POINTS,
+    // Translation key: do not remove this comment
+    // t('layout.menuItems.points')
+    i18nKey: 'layout.menuItems.points',
+    i18nTitleKey: 'layout.menuItems.points',
+    icon: 'gem',
+    isNew: true,
+    subMenu: [
+      {
+        href: Path.POINTS,
+        // Translation key: do not remove this comment
+        // t('layout.menuItems.pointsDashboard')
+        i18nKey: 'layout.menuItems.pointsDashboard',
+        i18nTitleKey: 'layout.menuItems.pointsDashboard',
+        icon: 'dashboard',
+      },
+      {
+        href: Path.POINTS_LEADERBOARD,
+        // Translation key: do not remove this comment
+        // t('layout.menuItems.pointsLeaderboard')
+        i18nKey: 'layout.menuItems.pointsLeaderboard',
+        i18nTitleKey: 'layout.menuItems.pointsLeaderboard',
+        icon: 'person',
+      },
+    ],
+  },
 ];

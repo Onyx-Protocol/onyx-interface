@@ -72,7 +72,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
     it('returns no swap and no error if fromTokenAmountTokens is not provided', async () => {
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
         toTokenAmountTokens: '1',
         direction: 'exactAmountIn',
       };
@@ -108,7 +108,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
         fromTokenAmountTokens: '1',
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
         direction: 'exactAmountIn',
       };
 
@@ -138,7 +138,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
         fromTokenAmountTokens: '1',
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
         direction: 'exactAmountIn',
       };
 
@@ -162,7 +162,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
         fromTokenAmountTokens: '1',
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
         direction: 'exactAmountOut',
       };
 
@@ -188,7 +188,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
         toTokenAmountTokens: '10', // Higher amount than available liquidities in pools
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
         direction: 'exactAmountOut',
       };
 
@@ -218,7 +218,7 @@ describe('pages/Swap/useGetSwapInfo', () => {
       const input: UseGetSwapInfoInput = {
         fromToken: UNISWAP_TOKENS.usdt,
         toTokenAmountTokens: '0.5',
-        toToken: UNISWAP_TOKENS.uni,
+        toToken: UNISWAP_TOKENS.weth,
         direction: 'exactAmountOut',
       };
 

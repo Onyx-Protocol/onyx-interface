@@ -1,0 +1,19 @@
+.ai-agent-container {
+  width: 100%;
+  height: calc(100vh - 162px);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .ai-agent-container {
+    height: calc(100vh - 205px);
+  }
+}
+
+.ai-agent-container iframe {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}

@@ -16,9 +16,9 @@ const fakeRoute = {
     ),
     new PSToken(
       ChainId.GÖRLI,
-      UNISWAP_TOKENS.uni.address,
-      UNISWAP_TOKENS.uni.decimals,
-      UNISWAP_TOKENS.uni.symbol,
+      UNISWAP_TOKENS.weth.address,
+      UNISWAP_TOKENS.weth.decimals,
+      UNISWAP_TOKENS.weth.symbol,
     ),
   ],
 };
@@ -35,7 +35,7 @@ describe('pages/Swap/useGetSwapInfo/formatToSwap', () => {
 
     const fakeInput: FormatToSwapInput['input'] = {
       fromToken: UNISWAP_TOKENS.usdt,
-      toToken: UNISWAP_TOKENS.uni,
+      toToken: UNISWAP_TOKENS.weth,
       direction: 'exactAmountIn',
     };
 
@@ -55,7 +55,7 @@ describe('pages/Swap/useGetSwapInfo/formatToSwap', () => {
 
     const fakeInput: FormatToSwapInput['input'] = {
       fromToken: UNISWAP_TOKENS.usdt,
-      toToken: UNISWAP_TOKENS.uni,
+      toToken: UNISWAP_TOKENS.weth,
       direction: 'exactAmountOut',
     };
 
