@@ -284,12 +284,13 @@ export const useStyles = () => {
       width: 80px;
       outline: none;
       margin-top: auto;
+      margin-bottom: ${theme.spacing(4)};
       text-align: center;
       margin-left: ${theme.spacing(1)};
       margin-right: ${theme.spacing(1)};
       ${theme.breakpoints.up('lg')} {
         max-width: 224px;
-        padding: ${theme.spacing(3)};
+        padding: ${theme.spacing(5)};
         margin-left: ${theme.spacing(0)};
         margin-right: ${theme.spacing(0)};
         text-align: center;
