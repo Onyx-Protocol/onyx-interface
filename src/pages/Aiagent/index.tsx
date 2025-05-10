@@ -45,7 +45,7 @@ const AiagentPage: React.FC = () => {
     <div className="ai-agent-container">
       <iframe
         ref={iframeRef}
-        src="https://onyx-frontend-main.vercel.app/"
+        src="https://ai.onyx.org/"
         title="AI Agent"
         style={{
           width: '100%',
