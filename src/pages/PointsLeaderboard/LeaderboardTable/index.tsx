@@ -127,6 +127,7 @@ export const LeaderboardTable: React.FC<Props> = ({
 }: Props) => {
   const styles = useStyles();
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
   const { data: leaderboardResponse = { data: [], totalPage: 0, page: 0, total: 0 }, isLoading } =
     useGetLeaderBoard({ page: currentPage, limit });
 
@@ -144,7 +145,10 @@ export const LeaderboardTable: React.FC<Props> = ({
 
       setLeaderboard(newLeaderboard);
     }
-  }, [data, limit, page]);
+    if (total && total > 0) {
+      setTotalCount(total);
+    }
+  }, [data, limit, page, total]);
 
   return (
     <Box css={styles.root}>
@@ -153,9 +157,9 @@ export const LeaderboardTable: React.FC<Props> = ({
         isFetching={isLoading}
         useRankIcon={useRankIcon}
       />
-      {total && isPaginated ? (
+      {totalCount && isPaginated ? (
         <Pagination
-          itemsCount={total}
+          itemsCount={totalCount}
           onChange={(nextIndex: number) => {
             setCurrentPage(nextIndex + 1);
             window.scrollTo(0, 0);
