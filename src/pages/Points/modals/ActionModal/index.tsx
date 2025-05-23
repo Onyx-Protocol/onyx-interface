@@ -4,6 +4,7 @@ import { Button, ConnectWallet, Modal, ModalProps, Spinner } from 'components';
 import React from 'react';
 
 import getSignedMessage from 'clients/api/queries/getSignedMessage';
+import useGetUserInfo from 'clients/api/queries/getUserInfo/useGetUserInfo';
 import verifySignature from 'clients/api/queries/useVerifysignature';
 import { useWeb3 } from 'clients/web3';
 import { AuthContext } from 'context/AuthContext';
@@ -29,6 +30,8 @@ const ActionModal: React.FC<ActionModalProps> = ({
   const styles = useStyles();
   const { account } = React.useContext(AuthContext);
   const web3 = useWeb3();
+  const { refetch } = useGetUserInfo({ address: account?.address || '' }, { enabled: !!account });
+
   const signMessage = async () => {
     if (!account) {
       return;
@@ -48,6 +51,7 @@ const ActionModal: React.FC<ActionModalProps> = ({
         signedMessage: messageRes.signedMessage,
         address: account.address,
       });
+      await refetch();
       handleClose();
     } catch (error) {
       console.error('Failed to sign message:', error);

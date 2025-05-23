@@ -127,13 +127,14 @@ export const LeaderboardTable: React.FC<Props> = ({
 }: Props) => {
   const styles = useStyles();
   const [currentPage, setCurrentPage] = useState(1);
+  const [total, setTotal] = useState(0);
   const { data: leaderboardResponse = { data: [], totalPage: 0, page: 0, total: 0 }, isLoading } =
     useGetLeaderBoard({ page: currentPage, limit });
 
-  const { data, page, total } = leaderboardResponse;
   const [leaderboard, setLeaderboard] = useState<LeaderboardItem[]>([]);
 
   useEffect(() => {
+    const { data, page, total: totalData } = leaderboardResponse;
     if (data && page) {
       const newLeaderboard = data.map((item, index) => ({
         ...item,
@@ -144,7 +145,10 @@ export const LeaderboardTable: React.FC<Props> = ({
 
       setLeaderboard(newLeaderboard);
     }
-  }, [data, limit, page]);
+    if (totalData && totalData > 0) {
+      setTotal(totalData);
+    }
+  }, [leaderboardResponse, limit]);
 
   return (
     <Box css={styles.root}>
