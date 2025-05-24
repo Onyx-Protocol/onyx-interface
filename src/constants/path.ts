@@ -19,7 +19,7 @@ enum Path {
   LIQUIDATE_DETAIL = '/liquidate/:userId',
   SWAP = '/swap',
   FARM = '/farm',
-  AIAGENT = '/aiagent',
+  AIAGENT = 'https://ai.onyx.org/',
   POINTS = '/points-dashboard',
   POINTS_LEADERBOARD = '/points-leaderboard',
 }
