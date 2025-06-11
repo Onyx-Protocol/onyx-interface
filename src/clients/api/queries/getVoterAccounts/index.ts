@@ -14,6 +14,7 @@ export interface GetVoterAccountsOutput {
   limit: number;
   page: number;
   total: number;
+  totalStake: string;
 }
 
 const getVoterAccounts = async ({

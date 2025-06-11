@@ -13,6 +13,7 @@ interface VoterLeaderboardProps {
   page: number;
   total: number | undefined;
   limit: number | undefined;
+  totalStake: string;
   isFetching: boolean;
   setCurrentPage: (page: number) => void;
 }
@@ -22,6 +23,7 @@ export const VoterLeaderboardUi: React.FC<VoterLeaderboardProps> = ({
   page,
   total,
   limit,
+  totalStake,
   isFetching,
   setCurrentPage,
 }) => {
@@ -32,6 +34,7 @@ export const VoterLeaderboardUi: React.FC<VoterLeaderboardProps> = ({
       <LeaderboardTable
         voterAccounts={voterAccounts}
         offset={(page - 1) * (limit || 100)}
+        totalStake={totalStake}
         isFetching={isFetching}
       />
 
@@ -50,13 +53,14 @@ export const VoterLeaderboardUi: React.FC<VoterLeaderboardProps> = ({
 };
 
 const VoterLeaderboard = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0); // Start from 0 for Pagination component
   const {
-    data: { voterAccounts, page, total, limit } = {
+    data: { voterAccounts, page, total, limit, totalStake } = {
       voterAccounts: [],
       page: 1,
       total: 0,
       limit: 100,
+      totalStake: '',
     },
     isFetching,
   } = useGetVoterAccounts({ page: currentPage });
@@ -67,6 +71,7 @@ const VoterLeaderboard = () => {
       page={page}
       total={total}
       limit={limit}
+      totalStake={totalStake}
       isFetching={isFetching}
       setCurrentPage={setCurrentPage}
     />
