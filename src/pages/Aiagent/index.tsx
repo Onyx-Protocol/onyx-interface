@@ -16,7 +16,7 @@ const AiagentPage: React.FC = () => {
   useEffect(() => {
     const sendWalletAddress = () => {
       if (iframeRef.current && iframeRef.current.contentWindow) {
-        const targetOrigin = 'https://onyx-frontend-main.vercel.app/';
+        const targetOrigin = 'https://ai.onyx.org/';
 
         iframeRef.current.contentWindow.postMessage(
           {
@@ -45,7 +45,7 @@ const AiagentPage: React.FC = () => {
     <div className="ai-agent-container">
       <iframe
         ref={iframeRef}
-        src="https://onyx-frontend-main.vercel.app/"
+        src="https://ai.onyx.org/"
         title="AI Agent"
         style={{
           width: '100%',

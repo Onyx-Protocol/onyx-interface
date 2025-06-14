@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useLocation, useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'translation';
-import { unsafelyGetToken } from 'utilities';
+import { generateEthScanUrl, unsafelyGetToken } from 'utilities';
 
 import addTokenToWallet from 'clients/web3/addTokenToWallet';
 import Path from 'constants/path';
@@ -70,7 +70,15 @@ const Title: React.FC = () => {
     const { address } = voterDetailMatch.params;
     return (
       <div css={styles.address}>
-        <Typography variant="h3" color="textPrimary">
+        <Typography
+          variant="h3"
+          color="textPrimary"
+          component="a"
+          href={generateEthScanUrl(address, 'address')}
+          target="_blank"
+          rel="noreferrer"
+          css={styles.addressLink}
+        >
           <EllipseAddress address={address} />
         </Typography>
 

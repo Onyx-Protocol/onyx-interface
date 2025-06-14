@@ -40,7 +40,14 @@ export const useStyles = () => {
       }
     `,
     getButtonStyles: ({ isActive }: { isActive: boolean }) => css`
-      color: ${isActive ? theme.palette.text.primary : theme.palette.text.secondary};
+      color: ${isActive ? '#1db9a6' : theme.palette.text.secondary};
+      background-color: ${isActive ? 'rgba(29, 185, 166, 0.1)' : theme.palette.background.paper};
+      font-weight: ${isActive ? 600 : 400};
+
+      &:hover {
+        color: ${isActive ? '#1db9a6' : theme.palette.text.primary}!important;
+        background-color: ${isActive ? 'rgba(29, 185, 166, 0.15)' : theme.palette.background.paper};
+      }
     `,
     iconArrow: css`
       width: ${theme.shape.iconSize.xLarge}px;
