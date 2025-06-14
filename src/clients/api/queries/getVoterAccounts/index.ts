@@ -20,12 +20,13 @@ export interface GetVoterAccountsOutput {
 const getVoterAccounts = async ({
   page = 0,
 }: GetVoterAccountsInput): Promise<GetVoterAccountsOutput> => {
+  const limit = 100;
   const response = await restService<GetVoterAccountsResponse>({
     endpoint: '/voter/account',
     method: 'GET',
     params: {
-      limit: 100,
-      page: page ? 1 : 1,
+      limit,
+      page: page + 1,
     },
     gov: true,
   });
@@ -44,7 +45,7 @@ const getVoterAccounts = async ({
     throw new VError({ type: 'unexpected', code: 'somethingWentWrongRetrievingVoterAccounts' });
   }
 
-  payload.metadata.totalItem = 100;
+  // Format the response using the metadata object for pagination
   return formatVoterAccountResponse(payload);
 };
 

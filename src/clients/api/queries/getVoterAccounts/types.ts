@@ -7,8 +7,8 @@ export interface GetVoterAccountsResponse {
     voteWeight: string;
   }[];
   metadata: {
-    page: number;
-    limit: number;
+    page: string;
+    limit: string;
     totalItem: number;
     totalPage: number;
     totalStake: string;
