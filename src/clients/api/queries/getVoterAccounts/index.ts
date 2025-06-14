@@ -25,7 +25,7 @@ const getVoterAccounts = async ({
     method: 'GET',
     params: {
       limit: 100,
-      page: page ? 1 : 1,
+      page: page + 1, // Convert 0-based page to 1-based for API
     },
     gov: true,
   });
@@ -44,7 +44,7 @@ const getVoterAccounts = async ({
     throw new VError({ type: 'unexpected', code: 'somethingWentWrongRetrievingVoterAccounts' });
   }
 
-  payload.metadata.totalItem = 100;
+  // Don't override the total count from API response
   return formatVoterAccountResponse(payload);
 };
 
