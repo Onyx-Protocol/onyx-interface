@@ -67,7 +67,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   const { t, i18n } = useTranslation();
 
   // Hardcoded treasury value
-  const tresury = new BigNumber('3095754425965809200662896729');
+  const tresury = new BigNumber('3079754425965809200662896729');
 
   const {
     data: { assets },
