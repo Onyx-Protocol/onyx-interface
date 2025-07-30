@@ -46,7 +46,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   onClaimReward,
   onStake,
   onWithdraw,
-  //onAddLiquidity,
+  // onAddLiquidity,
   closeActiveModal,
   isClaimRewardLoading,
   canWithdraw = true,
