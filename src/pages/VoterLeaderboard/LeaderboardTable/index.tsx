@@ -17,12 +17,14 @@ export interface LeaderboardTableProps extends Pick<TableProps, 'getRowHref'> {
   voterAccounts: VoterAccount[];
   offset: number;
   isFetching: boolean;
+  totalStake?: string;
 }
 
 export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
   voterAccounts,
   offset,
   isFetching,
+  totalStake,
 }) => {
   const { t, i18n } = useTranslation();
   const styles = useStyles();
@@ -119,21 +121,42 @@ export const LeaderboardTable: React.FC<LeaderboardTableProps> = ({
   );
 
   return (
-    <Table
-      title={t('voterLeaderboard.addressesByVotingWeight')}
-      columns={columns}
-      cardColumns={cardColumns}
-      data={rows}
-      isFetching={isFetching}
-      initialOrder={{
-        orderBy: 'rank',
-        orderDirection: 'asc',
-      }}
-      rowKeyIndex={0}
-      tableCss={styles.table}
-      cardsCss={styles.cards}
-      css={styles.cardContentGrid}
-    />
+    <>
+      {totalStake && (
+        <Typography
+          variant="small1"
+          color="textSecondary"
+          css={{ marginTop: '16px', textAlign: 'right' }}
+        >
+          <a
+            href="https://etherscan.io/address/0x23445c63feef8d85956dc0f19ade87606d0e19a9"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Total Stake:{' '}
+            {Number(totalStake.replace('XCN', '')).toLocaleString('en-US', {
+              minimumFractionDigits: 4,
+              maximumFractionDigits: 4,
+            })}{' '}
+          </a>
+        </Typography>
+      )}
+      <Table
+        title={t('voterLeaderboard.addressesByVotingWeight')}
+        columns={columns}
+        cardColumns={cardColumns}
+        data={rows}
+        isFetching={isFetching}
+        initialOrder={{
+          orderBy: 'rank',
+          orderDirection: 'asc',
+        }}
+        rowKeyIndex={0}
+        tableCss={styles.table}
+        cardsCss={styles.cards}
+        css={styles.cardContentGrid}
+      />
+    </>
   );
 };
 

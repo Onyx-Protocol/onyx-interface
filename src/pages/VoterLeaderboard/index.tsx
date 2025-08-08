@@ -13,6 +13,7 @@ interface VoterLeaderboardProps {
   page: number;
   total: number | undefined;
   limit: number | undefined;
+  totalStake: string;
   isFetching: boolean;
   setCurrentPage: (page: number) => void;
 }
@@ -22,6 +23,7 @@ export const VoterLeaderboardUi: React.FC<VoterLeaderboardProps> = ({
   page,
   total,
   limit,
+  totalStake,
   isFetching,
   setCurrentPage,
 }) => {
@@ -32,17 +34,19 @@ export const VoterLeaderboardUi: React.FC<VoterLeaderboardProps> = ({
       <LeaderboardTable
         voterAccounts={voterAccounts}
         offset={(page - 1) * (limit || 100)}
+        totalStake={totalStake}
         isFetching={isFetching}
       />
 
-      {total && (
+      {total && total > (limit || 100) && (
         <Pagination
           itemsCount={total}
           onChange={(nextIndex: number) => {
-            setCurrentPage(nextIndex);
+            setCurrentPage(nextIndex + 1); // Convert 0-based index to 1-based page
             window.scrollTo(0, 0);
           }}
           itemsPerPageCount={limit}
+          initialPageIndex={page - 1} // Convert 1-based page to 0-based index
         />
       )}
     </div>
@@ -50,16 +54,17 @@ export const VoterLeaderboardUi: React.FC<VoterLeaderboardProps> = ({
 };
 
 const VoterLeaderboard = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1); // Start from 1 for proper pagination
   const {
-    data: { voterAccounts, page, total, limit } = {
+    data: { voterAccounts, page, total, limit, totalStake } = {
       voterAccounts: [],
       page: 1,
       total: 0,
       limit: 100,
+      totalStake: '',
     },
     isFetching,
-  } = useGetVoterAccounts({ page: currentPage });
+  } = useGetVoterAccounts({ page: currentPage - 1 }); // Convert to 0-based for API
 
   return (
     <VoterLeaderboardUi
@@ -67,6 +72,7 @@ const VoterLeaderboard = () => {
       page={page}
       total={total}
       limit={limit}
+      totalStake={totalStake}
       isFetching={isFetching}
       setCurrentPage={setCurrentPage}
     />

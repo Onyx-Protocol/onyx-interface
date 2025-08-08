@@ -9,7 +9,7 @@ const getProposalVotesSubGraph = (
   network: number,
   filter?: GetProposalVotesInput,
 ): Promise<{ proposalVotes: ProposalVotesApiResponse[] }> => {
-  if (!SUBGRAPH_LINKS[network] && !SUBGRAPH_LINKS[network].latest) {
+  if (!SUBGRAPH_LINKS[network] && !SUBGRAPH_LINKS[network]) {
     return Promise.resolve({ proposalVotes: [] });
   }
   return new Promise(resolve =>

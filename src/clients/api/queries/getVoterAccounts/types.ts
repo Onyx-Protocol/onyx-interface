@@ -11,5 +11,6 @@ export interface GetVoterAccountsResponse {
     limit: number;
     totalItem: number;
     totalPage: number;
+    totalStake: string;
   };
 }
