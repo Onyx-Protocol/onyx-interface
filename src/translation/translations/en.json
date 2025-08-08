@@ -868,6 +868,7 @@
     "binanceChainWallet": "Binance Chain Wallet",
     "bitKeep": "BitKeep",
     "braveWallet": "Brave Wallet",
+    "browser": "Browser Wallet",
     "coinbaseWallet": "Coinbase Wallet",
     "errors": {
       "authorizeAccess": "You need to authorize access to your account",

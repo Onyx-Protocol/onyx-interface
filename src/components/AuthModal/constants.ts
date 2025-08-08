@@ -3,6 +3,7 @@ import { t } from 'translation';
 // import { ReactComponent as BinanceChainWalletLogo } from 'assets/img/wallets/binanceChainWalletLogo.svg';
 // import { ReactComponent as BitKeepLogo } from 'assets/img/wallets/bitKeepLogo.svg';
 // import { ReactComponent as BraveWalletLogo } from 'assets/img/wallets/braveWalletLogo.svg';
+import { ReactComponent as BrowserWalletLogo } from 'assets/img/wallets/browserWalletLogo.svg';
 import { ReactComponent as CoinbaseWalletLogo } from 'assets/img/wallets/coinbaseWalletLogo.svg';
 // import { ReactComponent as InfinityWalletLogo } from 'assets/img/wallets/infinityWalletLogo.svg';
 import { ReactComponent as LedgerLogo } from 'assets/img/wallets/ledgerLogo.svg';
@@ -37,6 +38,11 @@ export const WALLETS: Wallet[] = [
     name: t('wallets.walletConnect'),
     Logo: WalletConnectLogo,
     connector: Connector.WalletConnect,
+  },
+  {
+    name: t('wallets.browser'),
+    Logo: BrowserWalletLogo,
+    connector: Connector.Browser,
   },
   // {
   //   name: t('wallets.binanceChainWallet'),
