@@ -8,4 +8,5 @@ export enum Connector {
   InfinityWallet = 'InfinityWallet',
   OperaWallet = 'OperaWallet',
   BitKeep = 'BitKeep',
+  Browser = 'Browser',
 }

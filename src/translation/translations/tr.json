@@ -864,6 +864,7 @@
     "binanceChainWallet": "Binance Zincir Cüzdanı",
     "bitKeep": "BitKeep",
     "braveWallet": "Brave cüzdan",
+    "browser": "Tarayıcı Cüzdanı",
     "coinbaseWallet": "Coinbase Cüzdan",
     "errors": {
       "authorizeAccess": "Hesabınıza erişim yetkisi vermeniz gerekiyor",

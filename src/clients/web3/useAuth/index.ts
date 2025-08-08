@@ -54,6 +54,10 @@ const useAuth = () => {
       }
 
       try {
+        // Handling browser native wallet injection
+        if (connectorID === Connector.Browser && typeof window.ethereum !== 'undefined') {
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+        }
         // Log user in
         await activate(connector, undefined, true);
 

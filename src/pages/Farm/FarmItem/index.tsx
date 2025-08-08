@@ -46,7 +46,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   onClaimReward,
   onStake,
   onWithdraw,
-  onAddLiquidity,
+  // onAddLiquidity,
   closeActiveModal,
   isClaimRewardLoading,
   canWithdraw = true,
@@ -205,7 +205,14 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
                 {stakedToken.symbol}
               </Typography>
             </div>
-            <span css={styles.add_liquidity_btn} onClick={onAddLiquidity}>
+            <span
+              css={styles.add_liquidity_btn}
+              onClick={() => window.open(
+              'https://app.uniswap.org/positions/create/v2?currencyA=0xA2cd3D43c775978A96BdBf12d733D5A1ED94fb18&currencyB=NATIVE&chain=ethereum&feeTier=3000',
+              '_blank',
+              'noopener,noreferrer',
+              )}
+            >
               {t('farmItem.addLiquidity')}
             </span>
           </div>
