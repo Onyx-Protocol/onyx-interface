@@ -101,8 +101,8 @@
     "@types/recharts": "^1.8.23",
     "@types/redux-actions": "^2.6.2",
     "@types/styled-components": "^5.1.22",
-    "@typescript-eslint/eslint-plugin": "^5.10.2",
-    "@typescript-eslint/parser": "^5.10.2",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "17.1.1",
     "eslint-config-airbnb-typescript": "^16.1.0",
@@ -134,7 +134,7 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.9.2",
     "typechain": "^8.0.0",
-    "typescript": "^4.5.5",
+    "typescript": "^4.9.5",
     "web3-core": "^1.7.3"
   },
   "browserslist": {
