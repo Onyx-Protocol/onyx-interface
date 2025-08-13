@@ -2,13 +2,15 @@ import { BscConnector } from '@binance-chain/bsc-connector';
 import { InfinityWalletConnector } from '@infinitywallet/infinity-connector';
 import { InjectedConnector } from '@web3-react/injected-connector';
 import { WalletLinkConnector } from '@web3-react/walletlink-connector';
-import config from 'config';
+import config, { ONYX_CHAIN_ID } from 'config';
 import { EthChainId } from 'types';
 
 import { Connector } from './types';
 import { WalletConnectV2Connector } from './walletconnectV2';
 
-export const injectedConnector = new InjectedConnector({ supportedChainIds: [config.chainId] });
+export const injectedConnector = new InjectedConnector({
+  supportedChainIds: [config.chainId, ONYX_CHAIN_ID],
+});
 
 const walletConnectV2Connector = new WalletConnectV2Connector({
   supportedChainIds: [EthChainId.MAINNET],
