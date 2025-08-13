@@ -40,4 +40,5 @@ export const connectorsByName = {
   [Connector.OperaWallet]: injectedConnector,
   [Connector.BitKeep]: injectedConnector,
   [Connector.Browser]: injectedConnector,
+  [Connector.Onyx]: injectedConnector,
 };
