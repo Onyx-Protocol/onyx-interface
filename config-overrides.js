@@ -1,6 +1,11 @@
 const webpack = require('webpack');
 
 module.exports = function override(config) {
+  config.plugins = config.plugins.filter(
+    plugin => plugin.constructor.name !== 'ESLintWebpackPlugin',
+  );
+
+  // Handle fallbacks
   config.resolve.fallback = {
     ...config.resolve.fallback,
     buffer: require.resolve('buffer'),
@@ -13,11 +18,13 @@ module.exports = function override(config) {
     util: require.resolve('util'),
     url: require.resolve('url'),
     assert: require.resolve('assert'),
+    vm: require.resolve('vm-browserify'),
     fs: false,
     net: false,
     tls: false,
   };
 
+  // Add plugins
   config.plugins = [
     ...config.plugins,
     new webpack.ProvidePlugin({
@@ -26,6 +33,7 @@ module.exports = function override(config) {
     }),
   ];
 
+  // Handle .mjs files
   config.module.rules.push({
     test: /\.mjs$/,
     include: /node_modules/,
