@@ -30,10 +30,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       isOpen={isOpen}
       handleClose={onClose}
       noHorizontalPadding={!account}
-      title={
-        // <h4>{!account ? t('authModal.title.connectWallet') : t('authModal.title.yourWallet')}</h4>
-        <h4>{!account ? '' : t('authModal.title.yourWallet')}</h4>
-      }
+      narrow={!account}
+      title={account ? <h4>{t('authModal.title.yourWallet')}</h4> : undefined}
     >
       {!account ? (
         <WalletList onLogin={onLogin} />

@@ -7,9 +7,11 @@ import { ThemeContext } from 'context/ThemeContext';
 export const useModalStyles = ({
   hasTitleComponent,
   noHorizontalPadding,
+  narrow,
 }: {
   hasTitleComponent: boolean;
   noHorizontalPadding?: boolean;
+  narrow?: boolean;
 }) => {
   const theme = useTheme();
   const { mode: themeMode } = React.useContext(ThemeContext);
@@ -39,7 +41,7 @@ export const useModalStyles = ({
         transform: translate(-50%, -50%);
       }
       width: calc(100% - ${theme.spacing(8)});
-      max-width: ${theme.spacing(136)};
+      max-width: ${narrow ? theme.spacing(100) : theme.spacing(136)};
       border-radius: ${theme.spacing(6)};
       overflow: auto;
       max-height: calc(100% - ${theme.spacing(8)});
@@ -83,7 +85,7 @@ export const useModalStyles = ({
       padding-right: ${theme.shape.iconSize.xLarge}px;
       font-size: ${theme.typography.h4.fontSize};
       font-weight: ${theme.typography.h4.fontWeight};
-      margin-top: 25px;
+      margin-top: ${hasTitleComponent ? '25px' : '0'};
     `,
     closeIcon: css`
       right: ${theme.spacing(6)};
