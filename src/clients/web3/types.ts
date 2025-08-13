@@ -1,4 +1,5 @@
 export enum Connector {
+  Onyx = 'Onyx',
   MetaMask = 'MetaMask',
   TrustWallet = 'TrustWallet',
   WalletConnect = 'WalletConnect',

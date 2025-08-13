@@ -11,6 +11,7 @@ import { ReactComponent as MetaMaskLogo } from 'assets/img/wallets/metaMaskLogo.
 import { ReactComponent as OperaWalletLogo } from 'assets/img/wallets/operaWalletLogo.svg';
 import { ReactComponent as TrustWalletLogo } from 'assets/img/wallets/trustWalletLogo.svg';
 import { ReactComponent as WalletConnectLogo } from 'assets/img/wallets/walletConnectLogo.svg';
+import { ReactComponent as LogoNoText } from 'assets/img/xcnLogoPure.svg';
 import { Connector } from 'clients/web3';
 import { isRunningInOperaBrowser } from 'clients/web3/walletDetectionUtils';
 
@@ -19,6 +20,11 @@ import { BaseWallet, IntegratedWallet, Wallet } from './types';
 export const XCN_TERMS_OF_SERVICE_URL = 'https://docs.onyx.org/terms-of-service';
 
 export const WALLETS: Wallet[] = [
+  {
+    name: t('wallets.onyx'),
+    Logo: LogoNoText,
+    connector: Connector.Onyx,
+  },
   {
     name: t('wallets.metamask'),
     Logo: MetaMaskLogo,
