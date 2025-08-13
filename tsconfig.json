@@ -16,7 +16,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "rootDir": "./src",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    // Todo: added (see difference)
+    "types": ["node", "react", "react-dom"]
   },
   "exclude": ["node_modules"],
   "include": ["src"]

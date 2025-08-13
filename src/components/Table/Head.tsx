@@ -4,7 +4,6 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import { visuallyHidden } from '@mui/utils';
 import React from 'react';
 
 import { Icon } from '../Icon';
@@ -75,7 +74,20 @@ function Head<C extends ColProps[]>({
                   </div>
                 )}
                 {active && col.orderable && (
-                  <Box component="span" sx={visuallyHidden}>
+                  <Box
+                    component="span"
+                    sx={{
+                      border: 0,
+                      clip: 'rect(0 0 0 0)',
+                      height: 1,
+                      margin: -1,
+                      overflow: 'hidden',
+                      padding: 0,
+                      position: 'absolute',
+                      top: 20,
+                      width: 1,
+                    }}
+                  >
                     {orderDirection === 'desc' ? 'sorted descending' : 'sorted ascending'}
                   </Box>
                 )}
