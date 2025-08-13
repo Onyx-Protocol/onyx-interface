@@ -8,7 +8,6 @@ import { EthChainId } from 'types';
 import { Connector } from './types';
 import { WalletConnectV2Connector } from './walletconnectV2';
 
-// Support both your app's chain AND the Onyx chain
 export const injectedConnector = new InjectedConnector({
   supportedChainIds: [config.chainId, ONYX_CHAIN_ID],
 });
