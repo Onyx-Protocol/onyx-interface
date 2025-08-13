@@ -6,6 +6,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
+import { useWeb3React } from '@web3-react/core';
+import { ONYX_CHAIN_ID } from 'config';
 import React, { useState } from 'react';
 import { useTranslation } from 'translation';
 
@@ -27,11 +29,16 @@ import { useStyles } from './styles';
 
 export const SidebarUi: React.FC = () => {
   const { mode } = React.useContext(ThemeContext);
+  const { chainId, active: isConnected } = useWeb3React();
+
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [openSubMenuKey, setOpenSubMenuKey] = useState<string | null>(null);
   const open = Boolean(anchorEl);
   const { t } = useTranslation();
   const styles = useStyles();
+
+  const isOnOnyxChain = chainId === ONYX_CHAIN_ID;
+  const shouldShowAddNetwork = isConnected && !isOnOnyxChain;
 
   const openMenu = (event: React.MouseEvent) => {
     setAnchorEl(event.currentTarget);
@@ -45,7 +52,7 @@ export const SidebarUi: React.FC = () => {
     setOpenSubMenuKey(prev => (prev === key ? null : key));
   };
 
-  const renderMenuItem = (menuItem: typeof menuItems[0], isMobile = false) => {
+  const renderMenuItem = (menuItem: (typeof menuItems)[0], isMobile = false) => {
     const hasSubMenu = menuItem.subMenu && menuItem.subMenu.length > 0;
     const isOpen = openSubMenuKey === menuItem.i18nKey;
 
@@ -172,10 +179,12 @@ export const SidebarUi: React.FC = () => {
 
           <List>{menuItems.map(menuItem => renderMenuItem(menuItem))}</List>
         </div>
-        <Box css={styles.addNetworkContainer}>
-          <p>{t('sidebar.addNetworkLabel')}</p>
-          <AddNetworkButton css={styles.addNetworkButton} />
-        </Box>
+        {shouldShowAddNetwork && (
+          <Box css={styles.addNetworkContainer}>
+            <p>{t('sidebar.addNetworkLabel')}</p>
+            <AddNetworkButton css={styles.addNetworkButton} />
+          </Box>
+        )}
       </Drawer>
 
       {/* Mobile menu */}
