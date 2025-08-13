@@ -32,21 +32,19 @@ const getConnectedConnector = (): Connector | undefined => {
 };
 
 const useAuth = () => {
-  const { activate, deactivate, account, chainId } = useWeb3React();
+  const { activate, deactivate, account } = useWeb3React();
   const [connectedConnector, setConnectedConnector] = useState(getConnectedConnector());
 
   const login = useCallback(
     async (connectorID: Connector) => {
       if (connectorID === Connector.Browser) {
-        const provider = await detectProvider(5000);
-
+        const provider = await detectProvider(10000);
         if (!provider) {
           throw new VError({ type: 'interaction', code: 'noProvider' });
         }
       }
 
       const connector = connectorsByName[connectorID];
-
       if (!connector) {
         throw new VError({ type: 'interaction', code: 'unsupportedWallet' });
       }
@@ -57,13 +55,27 @@ const useAuth = () => {
         window.localStorage.setItem(LS_KEY_CONNECTED_CONNECTOR, connectorID);
         setConnectedConnector(connectorID);
 
-        // After successful connection, check if we need to switch to Onyx
-        if (window.ethereum && chainId !== ONYX_CHAIN_ID) {
-          const switched = await switchToOnyx();
+        if (window.ethereum) {
+          await new Promise(resolve => setTimeout(resolve, 500));
 
-          if (!switched) {
-            toast.warning({
-              message: 'Please switch to Onyx network to continue',
+          try {
+            const currentChainIdHex = await window.ethereum.request({
+              method: 'eth_chainId',
+            });
+
+            const currentChainId = parseInt(currentChainIdHex, 16);
+
+            if (currentChainId !== ONYX_CHAIN_ID) {
+              const switched = await switchToOnyx();
+              if (!switched) {
+                toast.warning({
+                  message: 'Please switch to Onyx network in your wallet',
+                });
+              }
+            }
+          } catch (chainError) {
+            toast.info({
+              message: 'Please ensure you are on the Onyx network',
             });
           }
         }
@@ -72,7 +84,6 @@ const useAuth = () => {
           const hasSetup = await setupNetwork();
           if (hasSetup) {
             await activate(connector);
-            // Mark user as logged in after successful setup
             window.localStorage.setItem(LS_KEY_CONNECTED_CONNECTOR, connectorID);
             setConnectedConnector(connectorID);
           }
@@ -108,7 +119,7 @@ const useAuth = () => {
         toast.error({ message: errorMessage });
       }
     },
-    [activate, chainId],
+    [activate],
   );
 
   const loginShowToast = async (connectorID: Connector) => {
