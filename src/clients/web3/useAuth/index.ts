@@ -4,11 +4,11 @@ import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector';
-import config from 'config';
 import { VError, formatVErrorToReadableString } from 'errors';
 import { useCallback, useState } from 'react';
 
 import { detectProvider } from 'clients/web3/walletDetectionUtils';
+import { switchToOnyx } from 'components/Layout/AddNetworkButton/addOnyx2Network';
 import { toast } from 'components/Toast';
 import { LS_KEY_CONNECTED_CONNECTOR } from 'constants/localStorageKeys';
 
@@ -32,31 +32,19 @@ const getConnectedConnector = (): Connector | undefined => {
 };
 
 const useAuth = () => {
-  const { activate, deactivate, account, chainId } = useWeb3React();
+  const { activate, deactivate, account } = useWeb3React();
   const [connectedConnector, setConnectedConnector] = useState(getConnectedConnector());
-
-  const switchToEthereum = async () => {
-    if (!window.ethereum) return false;
-
-    await window.ethereum.request({
-      method: 'wallet_switchEthereumChain',
-      params: [{ chainId: `0x${config.chainId.toString(16)}` }],
-    });
-    return true;
-  };
 
   const login = useCallback(
     async (connectorID: Connector) => {
       if (connectorID === Connector.Browser) {
-        const provider = await detectProvider(5000);
-
+        const provider = await detectProvider(10000);
         if (!provider) {
           throw new VError({ type: 'interaction', code: 'noProvider' });
         }
       }
 
       const connector = connectorsByName[connectorID];
-
       if (!connector) {
         throw new VError({ type: 'interaction', code: 'unsupportedWallet' });
       }
@@ -64,34 +52,40 @@ const useAuth = () => {
       try {
         await activate(connector, undefined, true);
 
-        // After successful connection, check if we're on Onyx chain
-        if (window.ethereum) {
-          // If on Onyx chain, prompt to switch to Ethereum
-          if (chainId === ONYX_CHAIN_ID) {
-            console.log('Connected on Onyx chain, switching to Ethereum...');
-
-            toast.info({
-              message: 'Switching to Ethereum network...',
-            });
-
-            const switched = await switchToEthereum();
-
-            if (!switched) {
-              toast.warning({
-                message: 'Please switch to Ethereum network in your wallet',
-              });
-            }
-          }
-        }
-
-        // Mark user as logged in
         window.localStorage.setItem(LS_KEY_CONNECTED_CONNECTOR, connectorID);
         setConnectedConnector(connectorID);
+
+        if (window.ethereum) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+
+          try {
+            const currentChainIdHex = await window.ethereum.request({
+              method: 'eth_chainId',
+            });
+
+            const currentChainId = parseInt(currentChainIdHex, 16);
+
+            if (currentChainId !== ONYX_CHAIN_ID) {
+              const switched = await switchToOnyx();
+              if (!switched) {
+                toast.warning({
+                  message: 'Please switch to Onyx network in your wallet',
+                });
+              }
+            }
+          } catch (chainError) {
+            toast.info({
+              message: 'Please ensure you are on the Onyx network',
+            });
+          }
+        }
       } catch (error) {
         if (error instanceof UnsupportedChainIdError) {
           const hasSetup = await setupNetwork();
           if (hasSetup) {
             await activate(connector);
+            window.localStorage.setItem(LS_KEY_CONNECTED_CONNECTOR, connectorID);
+            setConnectedConnector(connectorID);
           }
           return;
         }
