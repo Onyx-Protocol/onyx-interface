@@ -7,7 +7,6 @@ import {
 import { VError, formatVErrorToReadableString } from 'errors';
 import { useCallback, useState } from 'react';
 
-import { detectProvider } from 'clients/web3/walletDetectionUtils';
 import { switchToOnyx } from 'components/Layout/AddNetworkButton/addOnyx2Network';
 import { toast } from 'components/Toast';
 import { LS_KEY_CONNECTED_CONNECTOR } from 'constants/localStorageKeys';
@@ -37,13 +36,6 @@ const useAuth = () => {
 
   const login = useCallback(
     async (connectorID: Connector) => {
-      if (connectorID === Connector.Browser) {
-        const provider = await detectProvider(10000);
-        if (!provider) {
-          throw new VError({ type: 'interaction', code: 'noProvider' });
-        }
-      }
-
       const connector = connectorsByName[connectorID];
       if (!connector) {
         throw new VError({ type: 'interaction', code: 'unsupportedWallet' });

@@ -52,7 +52,7 @@ export const SidebarUi: React.FC = () => {
     setOpenSubMenuKey(prev => (prev === key ? null : key));
   };
 
-  const renderMenuItem = (menuItem: (typeof menuItems)[0], isMobile = false) => {
+  const renderMenuItem = (menuItem: typeof menuItems[0], isMobile = false) => {
     const hasSubMenu = menuItem.subMenu && menuItem.subMenu.length > 0;
     const isOpen = openSubMenuKey === menuItem.i18nKey;
 
@@ -223,7 +223,9 @@ export const SidebarUi: React.FC = () => {
 
           <ClaimXcnRewardButton css={styles.claimXcnRewardButton} />
           <div css={styles.mobileButtonsContainer}>
-            <AddNetworkButton small fullWidth css={styles.menuMobileButton} />
+            {shouldShowAddNetwork && (
+              <AddNetworkButton small fullWidth css={styles.menuMobileButton} />
+            )}
             <ConnectButton small fullWidth css={styles.menuMobileButton} />
           </div>
           <LanguageSwitch />
