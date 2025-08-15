@@ -19,6 +19,8 @@ export interface Config {
   apiPointUrl: string;
 }
 
+export const ONYX_CHAIN_ID = 80888;
+
 const chainId: EthChainId = process.env.REACT_APP_CHAIN_ID
   ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   : EthChainId.MAINNET;

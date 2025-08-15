@@ -1,14 +1,13 @@
 import { NoBscProviderError } from '@binance-chain/bsc-connector';
-import { openInfinityWallet } from '@infinitywallet/infinity-connector';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import {
   NoEthereumProviderError,
   UserRejectedRequestError as UserRejectedRequestErrorInjected,
 } from '@web3-react/injected-connector';
-import config from 'config';
 import { VError, formatVErrorToReadableString } from 'errors';
 import { useCallback, useState } from 'react';
 
+import { switchToOnyx } from 'components/Layout/AddNetworkButton/addOnyx2Network';
 import { toast } from 'components/Toast';
 import { LS_KEY_CONNECTED_CONNECTOR } from 'constants/localStorageKeys';
 
@@ -20,7 +19,7 @@ import {
 } from '../walletconnectV2';
 import setupNetwork from './setUpNetwork';
 
-const isRunningInInfinityWalletApp = () => window.ethereum && window.ethereum?.isInfinityWallet;
+const ONYX_CHAIN_ID = 80888;
 
 const getConnectedConnector = (): Connector | undefined => {
   const lsConnectedConnector = window.localStorage.getItem(LS_KEY_CONNECTED_CONNECTOR);
@@ -33,40 +32,53 @@ const getConnectedConnector = (): Connector | undefined => {
 
 const useAuth = () => {
   const { activate, deactivate, account } = useWeb3React();
-
   const [connectedConnector, setConnectedConnector] = useState(getConnectedConnector());
 
   const login = useCallback(
     async (connectorID: Connector) => {
-      // If user are attempting to connect their Infinity wallet but the dApp
-      // isn't currently running in the Infinity Wallet app, open it
-      if (connectorID === Connector.InfinityWallet && !isRunningInInfinityWalletApp()) {
-        openInfinityWallet(window.location.href, config.chainId);
-        return;
-      }
-
       const connector = connectorsByName[connectorID];
       if (!connector) {
-        // TODO: log error (this case should never happen, as it means
-        // an incorrect connectorID was passed to this function)
-
         throw new VError({ type: 'interaction', code: 'unsupportedWallet' });
       }
 
       try {
-        // Log user in
         await activate(connector, undefined, true);
 
-        // Mark user as logged in
         window.localStorage.setItem(LS_KEY_CONNECTED_CONNECTOR, connectorID);
         setConnectedConnector(connectorID);
+
+        if (window.ethereum) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+
+          try {
+            const currentChainIdHex = await window.ethereum.request({
+              method: 'eth_chainId',
+            });
+
+            const currentChainId = parseInt(currentChainIdHex, 16);
+
+            if (currentChainId !== ONYX_CHAIN_ID) {
+              const switched = await switchToOnyx();
+              if (!switched) {
+                toast.warning({
+                  message: 'Please switch to Onyx network in your wallet',
+                });
+              }
+            }
+          } catch (chainError) {
+            toast.info({
+              message: 'Please ensure you are on the Onyx network',
+            });
+          }
+        }
       } catch (error) {
         if (error instanceof UnsupportedChainIdError) {
           const hasSetup = await setupNetwork();
           if (hasSetup) {
             await activate(connector);
+            window.localStorage.setItem(LS_KEY_CONNECTED_CONNECTOR, connectorID);
+            setConnectedConnector(connectorID);
           }
-
           return;
         }
 
@@ -91,7 +103,6 @@ const useAuth = () => {
           error instanceof NoEthereumProviderError ||
           error instanceof NoBscProviderError
         ) {
-          // TODO: log error
           throw new VError({ type: 'interaction', code: 'noProvider' });
         } else {
           errorMessage = (error as Error).message;
@@ -121,13 +132,11 @@ const useAuth = () => {
 
   const logOut = useCallback(() => {
     deactivate();
-    // This localStorage key is set by @web3-react/walletconnect-connector
     if (window.localStorage.getItem('walletconnect')) {
       connectorsByName[Connector.WalletConnect].close();
       connectorsByName[Connector.WalletConnect].walletConnectProvider = undefined;
     }
 
-    // Remove flag indicating user is logged in
     window.localStorage.removeItem(LS_KEY_CONNECTED_CONNECTOR);
     setConnectedConnector(undefined);
   }, [deactivate]);

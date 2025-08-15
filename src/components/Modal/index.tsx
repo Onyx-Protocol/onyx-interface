@@ -15,6 +15,7 @@ export interface ModalProps extends Omit<MUIModalProps, 'title' | 'open'> {
   title?: string | ReactElement | ReactElement[];
   noHorizontalPadding?: boolean;
   showCloseButton?: boolean;
+  narrow?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -26,11 +27,13 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   noHorizontalPadding,
   showCloseButton = true,
+  narrow,
   ...otherModalProps
 }) => {
   const s = useModalStyles({
     hasTitleComponent: Boolean(title),
     noHorizontalPadding,
+    narrow,
   });
   return (
     <MUIModal

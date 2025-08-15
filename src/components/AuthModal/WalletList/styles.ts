@@ -7,7 +7,7 @@ export const useStyles = () => {
   return {
     theme,
     container: css`
-      margin: ${theme.spacing(0, 10)};
+      margin: ${theme.spacing(0, 8)};
 
       ${theme.breakpoints.down('md')} {
         margin: ${theme.spacing(-2, 4, 0)};
@@ -23,49 +23,78 @@ export const useStyles = () => {
       ${theme.breakpoints.down('md')} {
         grid-template-columns: 1fr 1fr;
         row-gap: ${theme.spacing(2)};
-        column-gap: ${theme.spacing(0)};
+        column-gap: ${theme.spacing(3)};
         margin: ${theme.spacing(4)};
       }
     `,
+    logoContainer: css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: ${theme.spacing(3)};
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    `,
+
     getListItem: ({ isActionable }: { isActionable: boolean }) => css`
       box-shadow: none;
-      border: 0;
-      border-radius: ${theme.shape.borderRadius.small}px;
-      padding: ${theme.spacing(2)};
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: ${theme.spacing(1)};
       text-align: center;
-      width: 200px;
-      height: 135px;
-      background-color: #eeeff0;
-      color: #343a41;
+      width: 100%;
+      height: 125px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
       svg {
         margin-top: 5px;
-        fill: #343a41;
+        fill: white;
       }
       margin: 0 auto;
 
       ${theme.breakpoints.down('md')} {
-        width: 150px;
+        width: 100%;
         height: 125px;
       }
 
       ${theme.breakpoints.down('sm')} {
-        width: 125px;
+        width: 100%;
         height: 120px;
       }
 
       ${isActionable &&
       css`
         cursor: pointer;
+        transition: all 0.3s ease;
 
         :hover {
-          background: linear-gradient(123.08deg, rgba(29, 185, 166, 0.2) -33.26%, #1db9a6 88.39%);
+          background: linear-gradient(
+            123.08deg,
+            rgba(29, 185, 166, 0.1) -33.26%,
+            rgba(29, 185, 166, 0.3) 88.39%
+          );
           color: white;
+          transform: translateY(-2px);
 
           svg {
             fill: white;
           }
         }
       `}
+    `,
+    logo: css`
+      display: block;
+      height: 33px;
+      margin: ${theme.spacing(0, 'auto', 4)};
+    `,
+    logoClosed: css`
+      display: none;
+      margin: ${theme.spacing(0, 'auto', 4)};
+      ${theme.breakpoints.down('lg')} {
+        display: block;
+        height: 36px;
+      }
     `,
     walletLogo: css`
       width: ${theme.spacing(12)};

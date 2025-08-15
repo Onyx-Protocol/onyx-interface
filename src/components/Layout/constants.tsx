@@ -100,12 +100,13 @@ export const menuItems: MenuItem[] = [
   // },
   // TO BE ACTIVATED ONCE CALCULATOR IS READY
   // {
-  //     href: Path.GOVERNANCE_LEADER_BOARD,
-  //     // Translation key: do not remove this comment
-  //     // t('layout.menuItems.xcn')
-  //     i18nKey: 'layout.menuItems.leaderboard',
-  //     i18nTitleKey: 'layout.menuItems.leaderboard',
-  //     icon: 'xcnOutlined',
+  //   href: Path.GOVERNANCE_LEADER_BOARD,
+  //   // Translation key: do not remove this comment
+  //   // t('layout.menuItems.xcn')
+  //   i18nKey: 'layout.menuItems.leaderboard',
+  //   i18nTitleKey: 'layout.menuItems.leaderboard',
+  //   isNew: true,
+  //   icon: 'xcnOutlined',
   // },
   {
     href: Path.POINTS,

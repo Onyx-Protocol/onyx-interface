@@ -20,6 +20,15 @@ export const useStyles = () => {
       justify-content: flex-start;
       max-width: ${theme.spacing(50)};
     `,
+    addressLink: css`
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        color: ${theme.palette.interactive.primary};
+        text-decoration: underline;
+      }
+    `,
     textButton: css`
       display: inline-flex;
 

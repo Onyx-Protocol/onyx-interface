@@ -1,4 +1,5 @@
 export enum Connector {
+  Onyx = 'Onyx',
   MetaMask = 'MetaMask',
   TrustWallet = 'TrustWallet',
   WalletConnect = 'WalletConnect',
@@ -8,4 +9,5 @@ export enum Connector {
   InfinityWallet = 'InfinityWallet',
   OperaWallet = 'OperaWallet',
   BitKeep = 'BitKeep',
+  Browser = 'Browser',
 }
