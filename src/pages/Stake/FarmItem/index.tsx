@@ -40,6 +40,7 @@ export interface FarmItemUiProps {
   className?: string;
   xcnBalance: BigNumber;
   apy: number;
+  pointsApr: number;
   totalStaked: BigNumber;
   rewardPerBlock: BigNumber;
   staked: BigNumber;
@@ -57,6 +58,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   className,
   xcnBalance,
   apy,
+  pointsApr,
   totalStaked,
   rewardPerBlock,
   staked,
@@ -178,6 +180,10 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         value: formatToReadablePercentage(apy),
       },
       {
+        title: t('farmItem.pointsApr', { stakeTokenName: '' }),
+        value: formatToReadablePercentage(pointsApr),
+      },
+      {
         title: t('farmItem.dailyEmission'),
         value: (
           <>
@@ -222,7 +228,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         ),
       },
     ],
-    [totalStaked, apy, xcnAsset, i18n.language, treasury, isLoadingTreasury],
+    [totalStaked, apy, pointsApr, xcnAsset, i18n.language, treasury, isLoadingTreasury],
   );
 
   return (
@@ -332,6 +338,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 export interface FarmItemProps {
   xcnBalance: BigNumber;
   apy: number;
+  pointsApr: number;
   totalStaked: BigNumber;
   rewardPerBlock: BigNumber;
   staked: BigNumber;

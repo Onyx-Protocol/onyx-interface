@@ -30,7 +30,11 @@ const getUserPointsSubsquid = (
       }),
     })
       .then(response => response.json())
-      .then(({ data: { user } }) => resolve(user)),
+      .then(({ data: { user } }) => resolve(user))
+      .catch(error => {
+        console.error('Error fetching user points from subsquid:', error);
+        resolve({ points: 0, address: input.address, id: input.address });
+      }),
   );
 };
 

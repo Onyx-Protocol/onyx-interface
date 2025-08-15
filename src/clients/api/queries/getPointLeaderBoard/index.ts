@@ -39,7 +39,6 @@ export const getLeaderBoard = async ({ page, limit }: GetLeaderBoardPayload) => 
 export const getSquidLeaderboard = async ({ page, limit }: GetLeaderBoardPayload) => {
   try {
     const data = await getLeaderboardSubsquid(config.chainId, { page, limit });
-    console.log('data', data);
     return {
       data: data.results as Leaderboard[],
       totalPage: data.meta.totalPages,

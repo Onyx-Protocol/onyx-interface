@@ -57,7 +57,14 @@ const getLeaderboardSubsquid = (
       }),
     })
       .then(response => response.json())
-      .then(({ data: { leaderboard } }) => resolve(leaderboard)),
+      .then(({ data: { leaderboard } }) => resolve(leaderboard))
+      .catch(error => {
+        console.error('Error fetching leaderboard from subsquid:', error);
+        resolve({
+          meta: { limit: 0, total: 0, totalPages: 1, page: 1 },
+          results: [],
+        });
+      }),
   );
 };
 

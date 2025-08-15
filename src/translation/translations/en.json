@@ -684,6 +684,7 @@
     "reward": "Reward:",
     "stakeButton": "Stake",
     "stakingApr": "{{stakeTokenName}} Staking APR",
+    "pointsApr": "{{stakeTokenName}} Points APR",
     "successfulClaimRewardTransactionModal": {
       "description": "You successfully claimed your reward",
       "title": "Your claim was successful"
