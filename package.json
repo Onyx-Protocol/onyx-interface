@@ -6,8 +6,8 @@
     "node": ">=16.x.x"
   },
   "scripts": {
-    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts --max_old_space_size=4096 start",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts --max_old_space_size=4096 build",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "TZ=UTC REACT_APP_CHAIN_ID=5 react-scripts test",
     "eject": "react-scripts eject",
     "pretty": "yarn prettier \"src/**/*.{js,jsx,ts,tsx,html,json,md}\" public/**/*.html --check",
