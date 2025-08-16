@@ -1,3 +1,7 @@
+import { WalletChainIds } from 'types';
+
+import { SUPPORTED_CHAINS } from 'constants/wallet-chains';
+
 import { toast } from '../../Toast';
 
 export interface ChainConfig {
@@ -25,6 +29,16 @@ export const addNetwork = async (chainConfig: ChainConfig) => {
   } else {
     toast.error({ message: 'No ethereum wallet found!' });
   }
+};
+
+const getOnyxConfig = (): ChainConfig => {
+  const onyxChain = SUPPORTED_CHAINS.find(chain => chain.id === WalletChainIds.ONYX);
+
+  if (!onyxChain) {
+    throw new Error('Onyx chain configuration not found');
+  }
+
+  return onyxChain.config;
 };
 
 export const switchToChain = async (chainConfig: ChainConfig) => {
@@ -69,35 +83,12 @@ export const switchToChain = async (chainConfig: ChainConfig) => {
     }
   }
 };
-
-export const addOnyx2Network = async () => {
-  const onyxConfig: ChainConfig = {
-    chainId: '0x13bf8',
-    chainName: 'Onyx',
-    rpcUrls: ['https://rpc.onyx.org'],
-    nativeCurrency: {
-      name: 'XCN',
-      symbol: 'XCN',
-      decimals: 18,
-    },
-    blockExplorerUrls: ['https://explorer.onyx.org'],
-  };
-
+export const addOnyxNetwork = async () => {
+  const onyxConfig = getOnyxConfig();
   await addNetwork(onyxConfig);
 };
 
 export const switchToOnyx = async () => {
-  const onyxConfig: ChainConfig = {
-    chainId: '0x13bf8',
-    chainName: 'Onyx',
-    rpcUrls: ['https://rpc.onyx.org'],
-    nativeCurrency: {
-      name: 'XCN',
-      symbol: 'XCN',
-      decimals: 18,
-    },
-    blockExplorerUrls: ['https://explorer.onyx.org'],
-  };
-
+  const onyxConfig = getOnyxConfig();
   return switchToChain(onyxConfig);
 };

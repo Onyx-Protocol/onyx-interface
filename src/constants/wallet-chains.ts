@@ -36,7 +36,7 @@ export const SUPPORTED_CHAINS: SupportedChain[] = [
     config: {
       chainId: '0x38',
       chainName: 'Binance Smart Chain',
-      rpcUrls: ['https://bscscan.com/'],
+      rpcUrls: ['https://binance.llamarpc.com'],
       nativeCurrency: {
         name: 'Binance Coin',
         symbol: 'BNB',
@@ -53,7 +53,7 @@ export const SUPPORTED_CHAINS: SupportedChain[] = [
     config: {
       chainId: '0x2105',
       chainName: 'Base',
-      rpcUrls: ['https://basescan.org/'],
+      rpcUrls: ['https://base.llamarpc.com'],
       nativeCurrency: {
         name: 'Ether',
         symbol: 'ETH',
@@ -70,7 +70,7 @@ export const SUPPORTED_CHAINS: SupportedChain[] = [
     config: {
       chainId: '0x13bf8',
       chainName: 'Onyx',
-      rpcUrls: ['https://rpc.onyx.org'],
+      rpcUrls: ['https://80888.rpc.thirdweb.com/6518b486fd02052fb8a45dd0e8e6d3d1'],
       nativeCurrency: {
         name: 'XCN',
         symbol: 'XCN',
@@ -87,4 +87,16 @@ export const getChainById = (chainId: number): SupportedChain | undefined =>
 export const getChainByHexId = (hexChainId: string): SupportedChain | undefined => {
   const chainId = parseInt(hexChainId, 16);
   return getChainById(chainId);
+};
+
+export const getRpcUrlsByChainId = (): Record<number, string> => {
+  const rpcMap: Record<number, string> = {};
+
+  SUPPORTED_CHAINS.forEach(chain => {
+    const chainId = parseInt(chain.config.chainId, 16);
+    const [firstRpcUrl] = chain.config.rpcUrls;
+    rpcMap[chainId] = firstRpcUrl;
+  });
+
+  return rpcMap;
 };
