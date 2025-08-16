@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { SelectChangeEvent } from '@mui/material/Select';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'translation';
 
 import { switchToChain } from 'components/Layout/AddNetworkButton/onyxChainUtils';
@@ -8,15 +8,12 @@ import { Select } from 'components/Select';
 import { toast } from 'components/Toast';
 import { SUPPORTED_CHAINS, getChainByHexId } from 'constants/wallet-chains';
 
-interface ChainSwitchDropdownProps {
+interface Props {
   className?: string;
   showOnlyImage?: boolean;
 }
 
-export const ChainSwitchDropdown: React.FC<ChainSwitchDropdownProps> = ({
-  className,
-  showOnlyImage = false,
-}) => {
+export const ChainSwitchDropdown = ({ className, showOnlyImage = false }: Props) => {
   const { t } = useTranslation();
   const [currentChainId, setCurrentChainId] = useState<string>('');
 
