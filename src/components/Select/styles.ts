@@ -8,21 +8,66 @@ export const useStyles = () => {
   const theme = useTheme();
 
   return {
-    root: ({ isOpen }: { isOpen: boolean }) => css`
-      background-color: ${theme.palette.secondary.light};
-      border-radius: ${theme.shape.borderRadius.small}px;
-      border: 1px solid ${isOpen ? theme.palette.interactive.primary : 'transparent'};
-      width: 100%;
-      > div {
-        padding: ${theme.spacing(3, 4)};
+    root: ({ isOpen, buttonVariant, showOnlyImage }: { isOpen: boolean; buttonVariant?: boolean; showOnlyImage?: boolean }) => {
+      let borderColor = 'transparent';
+      if (isOpen) {
+        borderColor = theme.palette.interactive.primary;
+      } else if (buttonVariant) {
+        borderColor = `${theme.palette.button.wallet}60`;
       }
-    `,
+
+      return css`
+        background-color: ${buttonVariant
+          ? `${theme.palette.button.wallet}1A`
+          : theme.palette.secondary.light};
+        border-radius: ${buttonVariant ? '25px' : `${theme.shape.borderRadius.small}px`};
+        border: 1px solid ${borderColor};
+        width: 100%;
+        color: ${buttonVariant ? theme.palette.button.wallet : 'inherit'};
+        transition: ${buttonVariant ? 'all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' : 'none'};
+        ${buttonVariant &&
+        css`
+          box-sizing: border-box;
+          ${showOnlyImage && css`
+            width: 44px;
+            min-width: 44px;
+            padding: 0;
+            
+            > div {
+              padding: ${theme.spacing(2)};
+              justify-content: center;
+            }
+          `}
+        `}
+        > div {
+          padding: ${buttonVariant ? theme.spacing(2, 6) : theme.spacing(3, 4)};
+          display: flex;
+          align-items: center;
+          justify-content: ${showOnlyImage ? 'center' : 'flex-start'};
+        }
+
+        ${buttonVariant &&
+        css`
+          :hover {
+            background-color: ${theme.palette.button.wallet}30;
+            border-color: ${theme.palette.button.wallet}80;
+          }
+        `}
+      `;
+    },
     getArrowIcon: ({ isMenuOpened }: { isMenuOpened: boolean }) => css`
       position: absolute;
       right: ${theme.spacing(4)};
       width: ${theme.spacing(3)};
       transition: transform 0.3s;
       transform: rotate(${isMenuOpened ? '180deg' : '0'});
+    `,
+    image: css`
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 8px;
+      object-fit: cover;
     `,
     menuItem: css`
       display: flex;
@@ -82,16 +127,22 @@ export const useStyles = () => {
 
     /* styles passed as MenuProps are not recognized if we pass them as emotion SerializedStyles */
     menuWrapper: {
-      backgroundColor: theme.palette.secondary.light,
+      backgroundColor: theme.palette.background.paper,
       padding: 0,
-      borderRadius: `${theme.shape.borderRadius.small}px`,
-      marginTop: theme.spacing(1),
+      borderRadius: '12px',
+      marginTop: theme.spacing(2),
+      border: `1px solid ${theme.palette.divider}`,
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+      overflow: 'hidden',
+      width: '170px',
 
       [theme.breakpoints.down('sm')]: {
         minWidth: 'calc(100vw)',
         minHeight: 'calc(100% - 56px) !important',
         backgroundColor: theme.palette.background.paper,
         borderRadius: `${theme.shape.borderRadius.large}px`,
+        boxShadow: 'none',
+        width: 'auto',
       },
     },
   };

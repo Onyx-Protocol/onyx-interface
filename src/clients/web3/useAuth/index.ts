@@ -7,7 +7,7 @@ import {
 import { VError, formatVErrorToReadableString } from 'errors';
 import { useCallback, useState } from 'react';
 
-import { switchToOnyx } from 'components/Layout/AddNetworkButton/addOnyx2Network';
+import { switchToOnyx } from 'components/Layout/AddNetworkButton/onyxChainUtils';
 import { toast } from 'components/Toast';
 import { LS_KEY_CONNECTED_CONNECTOR } from 'constants/localStorageKeys';
 
