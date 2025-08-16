@@ -1,6 +1,6 @@
 import { WalletChainIds } from 'types';
 
-import { ChainConfig } from 'components/Layout/AddNetworkButton/onyx-chain-utils';
+import { ChainConfig } from 'components/Layout/AddNetworkButton/onyxChainUtils';
 
 export interface SupportedChain {
   id: WalletChainIds;
