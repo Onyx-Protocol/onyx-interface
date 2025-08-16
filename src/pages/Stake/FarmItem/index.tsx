@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import BigNumber from 'bignumber.js';
 import { Button, TokenIcon } from 'components';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
 import { Asset } from 'types';
 import {
@@ -16,7 +16,8 @@ import {
 } from 'utilities';
 import type { TransactionReceipt } from 'web3-core/types';
 
-import { useClaimXcn, useGetUserMarketInfo } from 'clients/api';
+import { getBalanceOf, useClaimXcn, useGetUserMarketInfo } from 'clients/api';
+import { useWeb3 } from 'clients/web3';
 import { TOKENS } from 'constants/tokens';
 import { AuthContext } from 'context/AuthContext';
 import useConvertWeiToReadableTokenString from 'hooks/useConvertWeiToReadableTokenString';
@@ -43,7 +44,6 @@ export interface FarmItemUiProps {
   rewardPerBlock: BigNumber;
   staked: BigNumber;
   earned: BigNumber;
-  // tresury: BigNumber;
 }
 
 export const FarmItemUi: React.FC<FarmItemUiProps> = ({
@@ -61,13 +61,40 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   rewardPerBlock,
   staked,
   earned,
-  // tresury,
 }) => {
   const styles = useStyles();
   const { t, i18n } = useTranslation();
+  const web3 = useWeb3();
+  const [treasuryBalance, setTreasuryBalance] = useState<BigNumber>(new BigNumber(0));
+  const [isLoadingTreasury, setIsLoadingTreasury] = useState(true);
+  const treasury = treasuryBalance;
 
-  // Hardcoded treasury value
-  const tresury = new BigNumber('2892464540987794720826443573');
+  const DAO_TREASURY_ADDRESS = '0x28ca9caae31602d0312ebf6466c9dd57fca5da93';
+
+  useEffect(() => {
+    const fetchTreasuryBalance = async () => {
+      if (!web3) return;
+
+      try {
+        setIsLoadingTreasury(true);
+        const balance = await getBalanceOf({
+          web3,
+          token: TOKENS.xcn,
+          accountAddress: DAO_TREASURY_ADDRESS,
+        });
+
+        setTreasuryBalance(balance.balanceWei || new BigNumber(0));
+      } catch (error) {
+        console.error('Error fetching treasury balance:', error);
+        // If getting the treasury fails we only then hardcode the value to 2.63B
+        setTreasuryBalance(new BigNumber('2632464540987794720826443573'));
+      } finally {
+        setIsLoadingTreasury(false);
+      }
+    };
+
+    fetchTreasuryBalance();
+  }, [web3]);
 
   const {
     data: { assets },
@@ -128,17 +155,16 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
     addSymbol: false,
   });
 
-  const readableTresuryValue = formatCentsToReadableValue({
-    value: tresury
-      // .times(100),
+  const readableTreasuryValue = formatCentsToReadableValue({
+    value: treasury
       .div(1e18)
       .times(xcnAsset?.tokenPrice || new BigNumber(0))
       .times(100),
     shortenLargeValue: true,
   });
-  const readableTresuryTokens = convertWeiToTokens({
-    // valueWei: tresury.times(1e18).div(xcnAsset?.tokenPrice || 1) || new BigNumber(0),
-    valueWei: tresury,
+
+  const readableTreasuryTokens = convertWeiToTokens({
+    valueWei: treasury,
     token: stakedToken,
     returnInReadableFormat: true,
     shortenLargeValue: true,
@@ -186,15 +212,17 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
       },
       {
         title: t('market.totalTreasury'),
-        value: (
+        value: isLoadingTreasury ? (
+          <span>Loading...</span>
+        ) : (
           <>
             <TokenIcon css={styles.tokenIcon} token={rewardToken} />
-            {readableTresuryTokens} ({readableTresuryValue})
+            {readableTreasuryTokens} ({readableTreasuryValue})
           </>
         ),
       },
     ],
-    [totalStaked, apy, xcnAsset, i18n.language],
+    [totalStaked, apy, xcnAsset, i18n.language, treasury, isLoadingTreasury],
   );
 
   return (
@@ -308,7 +336,6 @@ export interface FarmItemProps {
   rewardPerBlock: BigNumber;
   staked: BigNumber;
   earned: BigNumber;
-  tresury: BigNumber;
 }
 
 const FarmItem: React.FC<FarmItemProps> = data => {
