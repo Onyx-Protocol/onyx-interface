@@ -10,6 +10,14 @@ export enum EthChainId {
   'TESTNET' = 5,
 }
 
+export enum WalletChainIds {
+  'MAINNET' = EthChainId.MAINNET,
+  'TESTNET' = EthChainId.TESTNET,
+  'BSC' = 56,
+  'BASE' = 8453,
+  'ONYX' = 80888,
+}
+
 export interface User {
   Token: string;
 }

@@ -29,7 +29,8 @@ export const useStyles = () => {
       display: flex;
       align-items: center;
       margin-left: auto;
-      gap: 30px;
+      gap: 16px;
+      flex-shrink: 0;
 
       ${theme.breakpoints.down('md')} {
         display: none;

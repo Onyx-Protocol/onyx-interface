@@ -2,15 +2,18 @@
 import AppBar from '@mui/material/AppBar';
 import React from 'react';
 
+import { AuthContext } from 'context/AuthContext';
+
+import ChainSwitchDropdown from '../../ChainSwitchDropdown';
 import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
 import ConnectButton from '../ConnectButton';
 import { Toolbar } from '../Toolbar';
-// import ThemeSwitch from './ThemeSwitch';
 import Title from './Title';
 import { useStyles } from './styles';
 
 const Header: React.FC = () => {
   const styles = useStyles();
+  const { account } = React.useContext(AuthContext);
 
   return (
     <AppBar position="relative" css={styles.appBar}>
@@ -18,7 +21,7 @@ const Header: React.FC = () => {
         <Title />
         <div css={styles.ctaContainer}>
           <ClaimXcnRewardButton />
-          {/* <ThemeSwitch /> */}
+          {account && <ChainSwitchDropdown />}
           <ConnectButton />
         </div>
       </Toolbar>

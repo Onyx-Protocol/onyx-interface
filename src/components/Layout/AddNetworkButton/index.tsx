@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslation } from 'translation';
 
 import xcn from 'assets/img/xcnLogoPureB.svg';
-import { addOnyx2Network } from 'components/Layout/AddNetworkButton/addOnyx2Network';
+import { addOnyx2Network } from 'components/Layout/AddNetworkButton/onyx-chain-utils';
 
 import { ButtonProps, SecondaryButton } from '../../Button';
 

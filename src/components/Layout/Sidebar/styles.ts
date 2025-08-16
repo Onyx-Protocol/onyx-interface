@@ -261,8 +261,12 @@ export const useStyles = () => {
       }
     `,
     mobileConnectButton: css`
-      margin-left: ${theme.spacing(8)};
+      margin-left: ${theme.spacing(5)};
       margin-right: ${theme.spacing(8)};
+    `,
+    mobileChainDropdown: css`
+      margin-left: ${theme.spacing(4)};
+      margin-right: ${theme.spacing(2)};
     `,
     menuMobileButton: css`
       margin-left: ${theme.spacing(0)};
