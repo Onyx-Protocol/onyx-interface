@@ -31,16 +31,6 @@ export const addNetwork = async (chainConfig: ChainConfig) => {
   }
 };
 
-const getOnyxConfig = (): ChainConfig => {
-  const onyxChain = SUPPORTED_CHAINS.find(chain => chain.id === WalletChainIds.ONYX);
-
-  if (!onyxChain) {
-    throw new Error('Onyx chain configuration not found');
-  }
-
-  return onyxChain.config;
-};
-
 export const switchToChain = async (chainConfig: ChainConfig) => {
   if (!window.ethereum) return false;
 
@@ -83,6 +73,27 @@ export const switchToChain = async (chainConfig: ChainConfig) => {
     }
   }
 };
+
+const getOnyxConfig = (): ChainConfig => {
+  const onyxChain = SUPPORTED_CHAINS.find(chain => chain.id === WalletChainIds.ONYX);
+
+  if (!onyxChain) {
+    throw new Error('Onyx chain configuration not found');
+  }
+
+  return onyxChain.config;
+};
+
+const getEthConfig = (): ChainConfig => {
+  const ethChain = SUPPORTED_CHAINS.find(chain => chain.id === WalletChainIds.MAINNET);
+
+  if (!ethChain) {
+    throw new Error('Ethereum chain configuration not found');
+  }
+
+  return ethChain.config;
+};
+
 export const addOnyxNetwork = async () => {
   const onyxConfig = getOnyxConfig();
   await addNetwork(onyxConfig);
@@ -91,4 +102,9 @@ export const addOnyxNetwork = async () => {
 export const switchToOnyx = async () => {
   const onyxConfig = getOnyxConfig();
   return switchToChain(onyxConfig);
+};
+
+export const switchToEth = async () => {
+  const ethConfig = getEthConfig();
+  return switchToChain(ethConfig);
 };
