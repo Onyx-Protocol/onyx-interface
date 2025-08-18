@@ -25,6 +25,8 @@ export interface SelectProps {
   onChange: (e: SelectChangeEvent) => void;
   ariaLabel: string;
   title: string;
+  buttonVariant?: boolean;
+  showOnlyImage?: boolean;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -34,6 +36,8 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   ariaLabel,
   title,
+  buttonVariant = false,
+  showOnlyImage = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const styles = useStyles();
@@ -45,6 +49,22 @@ export const Select: React.FC<SelectProps> = ({
 
   const handleOpen = () => {
     setIsOpen(true);
+  };
+
+  const renderValue = (selected: string) => {
+    const option = options.find(opt => opt.value === selected);
+    if (!option) return title;
+
+    if (showOnlyImage && option.image) {
+      return <img src={option.image} alt={option.label} css={styles.image} />;
+    }
+
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {option.image && <img src={option.image} alt={option.label} css={styles.image} />}
+        {option.label}
+      </div>
+    );
   };
 
   const menuProps = useMemo(() => {
@@ -73,14 +93,17 @@ export const Select: React.FC<SelectProps> = ({
       onClose={handleClose}
       onOpen={handleOpen}
       className={className}
-      css={styles.root({ isOpen })}
+      css={styles.root({ isOpen, buttonVariant, showOnlyImage })}
       value={value}
       onChange={onChange}
       displayEmpty
       inputProps={{ 'aria-label': ariaLabel }}
-      IconComponent={() => (
-        <Icon css={styles.getArrowIcon({ isMenuOpened: isOpen })} name="arrowUp" />
-      )}
+      renderValue={buttonVariant ? renderValue : undefined}
+      IconComponent={() =>
+        buttonVariant ? null : (
+          <Icon css={styles.getArrowIcon({ isMenuOpened: isOpen })} name="arrowUp" />
+        )
+      }
       MenuProps={menuProps}
       autoWidth={isSmDown}
     >
@@ -99,8 +122,9 @@ export const Select: React.FC<SelectProps> = ({
           classes={{ selected: SELECTED_MENU_ITEM_CLASSNAME }}
           value={v}
         >
-          <div>
-            {image && <img src={image} alt={label} width="20px" />} {label}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {image && <img src={image} alt={label} css={styles.image} />}
+            {label}
           </div>
         </MenuItem>
       ))}

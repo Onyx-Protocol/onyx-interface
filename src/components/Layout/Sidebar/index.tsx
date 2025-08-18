@@ -17,6 +17,7 @@ import { ReactComponent as LogoDesktop } from 'assets/img/xcnLogoWithText.svg';
 import { ReactComponent as LogoDesktopB } from 'assets/img/xcnLogoWithTextB.svg';
 import { ThemeContext } from 'context/ThemeContext';
 
+import ChainSwitchDropdown from '../../ChainSwitchDropdown';
 import { Icon } from '../../Icon';
 import { AddNetworkButton } from '../AddNetworkButton';
 import ClaimXcnRewardButton from '../ClaimXcnRewardButton';
@@ -192,6 +193,7 @@ export const SidebarUi: React.FC = () => {
         <div css={styles.flexRow}>
           <Icon name="logoMobile" css={styles.mobileLogo} />
 
+          {isConnected && <ChainSwitchDropdown showOnlyImage css={styles.mobileChainDropdown} />}
           <ConnectButton small fullWidth css={styles.mobileConnectButton} />
 
           <button type="button" onClick={openMenu} css={styles.actionButton}>

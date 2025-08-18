@@ -1,5 +1,5 @@
 import sample from 'lodash/sample';
-import { EthChainId } from 'types';
+import { EthChainId, WalletChainIds } from 'types';
 
 import {
   API_ENDPOINT_URLS,
@@ -24,6 +24,13 @@ export const ONYX_CHAIN_ID = 80888;
 const chainId: EthChainId = process.env.REACT_APP_CHAIN_ID
   ? parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   : EthChainId.MAINNET;
+
+export const WALLET_SUPPORTED_CHAIN_IDS: number[] = [
+  WalletChainIds.MAINNET,
+  WalletChainIds.BSC,
+  WalletChainIds.BASE,
+  WalletChainIds.ONYX,
+];
 
 const isOnTestnet = chainId === EthChainId.TESTNET;
 const rpcUrl = sample(RPC_URLS[chainId]) as string;

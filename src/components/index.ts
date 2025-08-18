@@ -5,6 +5,7 @@ export * from './charts/ApyChart';
 export * from './charts/InterestRateChart';
 export * from './AuthModal';
 export * from './Button';
+export * from './ChainSwitchDropdown';
 export * from './EthLink';
 export * from './Checkbox';
 export * from './Chip';

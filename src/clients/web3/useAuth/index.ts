@@ -6,8 +6,9 @@ import {
 } from '@web3-react/injected-connector';
 import { VError, formatVErrorToReadableString } from 'errors';
 import { useCallback, useState } from 'react';
+import { EthChainId } from 'types';
 
-import { switchToOnyx } from 'components/Layout/AddNetworkButton/addOnyx2Network';
+import { switchToEth } from 'components/Layout/AddNetworkButton/onyxChainUtils';
 import { toast } from 'components/Toast';
 import { LS_KEY_CONNECTED_CONNECTOR } from 'constants/localStorageKeys';
 
@@ -18,8 +19,6 @@ import {
   WalletConnectV2Connector,
 } from '../walletconnectV2';
 import setupNetwork from './setUpNetwork';
-
-const ONYX_CHAIN_ID = 80888;
 
 const getConnectedConnector = (): Connector | undefined => {
   const lsConnectedConnector = window.localStorage.getItem(LS_KEY_CONNECTED_CONNECTOR);
@@ -57,8 +56,9 @@ const useAuth = () => {
 
             const currentChainId = parseInt(currentChainIdHex, 16);
 
-            if (currentChainId !== ONYX_CHAIN_ID) {
-              const switched = await switchToOnyx();
+            if (currentChainId !== EthChainId.MAINNET) {
+              const switched = await switchToEth();
+
               if (!switched) {
                 toast.warning({
                   message: 'Please switch to Onyx network in your wallet',
