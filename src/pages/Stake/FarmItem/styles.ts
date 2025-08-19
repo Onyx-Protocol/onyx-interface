@@ -104,7 +104,10 @@ export const useStyles = () => {
       }
     `,
     valueWrapper: css`
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 30px;
 
       & + & {
         border-left: 1px solid ${theme.palette.interactive.delimiter};
@@ -121,8 +124,10 @@ export const useStyles = () => {
 
       ${theme.breakpoints.down('sm')} {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        min-height: auto;
       }
     `,
     buttonsWrapper: css`
