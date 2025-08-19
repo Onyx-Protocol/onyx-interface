@@ -2,6 +2,7 @@
 import AppBar from '@mui/material/AppBar';
 import React from 'react';
 
+import { useWalletDetection } from 'clients/web3/useWalletDetection';
 import { AuthContext } from 'context/AuthContext';
 
 import ChainSwitchDropdown from '../../ChainSwitchDropdown';
@@ -14,6 +15,7 @@ import { useStyles } from './styles';
 const Header: React.FC = () => {
   const styles = useStyles();
   const { account } = React.useContext(AuthContext);
+  const { shouldHideChainSwitch } = useWalletDetection(account?.connector);
 
   return (
     <AppBar position="relative" css={styles.appBar}>
@@ -21,7 +23,7 @@ const Header: React.FC = () => {
         <Title />
         <div css={styles.ctaContainer}>
           <ClaimXcnRewardButton />
-          {account && <ChainSwitchDropdown />}
+          {account && !shouldHideChainSwitch && <ChainSwitchDropdown />}
           <ConnectButton />
         </div>
       </Toolbar>

@@ -30,6 +30,11 @@ export const SUBGRAPH_LINKS: { [key: number]: { [key: string]: string } } = {
   },
 };
 
+export const SUBSQUID_LINKS = {
+  [EthChainId.MAINNET]: 'https://pnt-squid.onyx.org/graphql',
+  [EthChainId.TESTNET]: 'https://pnt-squid.onyx.org/graphql',
+};
+
 export const POINTS_API_ENDPOINTS = {
   [EthChainId.MAINNET]: 'https://pnt.onyx.org/api/v1',
   [EthChainId.TESTNET]: 'https://testpnt.onyx.org/api/v1',

@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'translation';
 import { Leaderboard } from 'types';
 
-import useGetLeaderBoard from 'clients/api/queries/getPointLeaderBoard/useGetLeaderBoard';
+import { useGetSquidLeaderboard } from 'clients/api/queries/getPointLeaderBoard/useGetLeaderBoard';
 import { formatPoint } from 'utilities/formatPoints';
 
 import { UserInfo } from '../UserInfo';
@@ -129,7 +129,7 @@ export const LeaderboardTable: React.FC<Props> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [total, setTotal] = useState(0);
   const { data: leaderboardResponse = { data: [], totalPage: 0, page: 0, total: 0 }, isLoading } =
-    useGetLeaderBoard({ page: currentPage, limit });
+    useGetSquidLeaderboard({ page: currentPage, limit });
 
   const [leaderboard, setLeaderboard] = useState<LeaderboardItem[]>([]);
 
