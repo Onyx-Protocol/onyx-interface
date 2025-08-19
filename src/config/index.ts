@@ -27,8 +27,8 @@ const chainId: EthChainId = process.env.REACT_APP_CHAIN_ID
 
 export const WALLET_SUPPORTED_CHAIN_IDS: number[] = [
   WalletChainIds.MAINNET,
-  WalletChainIds.BSC,
-  WalletChainIds.BASE,
+  // WalletChainIds.BSC,
+  // WalletChainIds.BASE,
   WalletChainIds.ONYX,
 ];
 

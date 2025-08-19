@@ -15,6 +15,8 @@ import { ReactComponent as LogoNoText } from 'assets/img/xcnLogoPure.svg';
 import { ReactComponent as LogoNoTextB } from 'assets/img/xcnLogoPureB.svg';
 import { ReactComponent as LogoDesktop } from 'assets/img/xcnLogoWithText.svg';
 import { ReactComponent as LogoDesktopB } from 'assets/img/xcnLogoWithTextB.svg';
+import { useWalletDetection } from 'clients/web3/useWalletDetection';
+import { AuthContext } from 'context/AuthContext';
 import { ThemeContext } from 'context/ThemeContext';
 
 import ChainSwitchDropdown from '../../ChainSwitchDropdown';
@@ -30,6 +32,7 @@ import { useStyles } from './styles';
 
 export const SidebarUi: React.FC = () => {
   const { mode } = React.useContext(ThemeContext);
+  const { account } = React.useContext(AuthContext);
   const { chainId, active: isConnected } = useWeb3React();
 
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
@@ -40,6 +43,8 @@ export const SidebarUi: React.FC = () => {
 
   const isOnOnyxChain = chainId === ONYX_CHAIN_ID;
   const shouldShowAddNetwork = isConnected && !isOnOnyxChain;
+
+  const { shouldHideChainSwitch } = useWalletDetection(account?.connector);
 
   const openMenu = (event: React.MouseEvent) => {
     setAnchorEl(event.currentTarget);
@@ -193,7 +198,9 @@ export const SidebarUi: React.FC = () => {
         <div css={styles.flexRow}>
           <Icon name="logoMobile" css={styles.mobileLogo} />
 
-          {isConnected && <ChainSwitchDropdown showOnlyImage css={styles.mobileChainDropdown} />}
+          {isConnected && !shouldHideChainSwitch && (
+            <ChainSwitchDropdown showOnlyImage css={styles.mobileChainDropdown} />
+          )}
           <ConnectButton small fullWidth css={styles.mobileConnectButton} />
 
           <button type="button" onClick={openMenu} css={styles.actionButton}>
