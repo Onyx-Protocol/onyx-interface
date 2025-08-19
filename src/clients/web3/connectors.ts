@@ -12,16 +12,25 @@ import { WalletConnectV2Connector } from './walletconnectV2';
 
 export const FILTERED_OUT_WALLETS = ['Trust Wallet', 'Coinbase Wallet', 'WalletConnect'];
 
+const rpcMap = getRpcUrlsByChainId();
+rpcMap[WalletChainIds.TESTNET] = 'https://goerli.infura.io/v3/54af4f71d6c44e0ea83badb0886458f9';
+
 export const injectedConnector = new InjectedConnector({
   supportedChainIds: WALLET_SUPPORTED_CHAIN_IDS,
 });
 
+const infinityWalletConnector = new InfinityWalletConnector({
+  supportedChainIds: WALLET_SUPPORTED_CHAIN_IDS,
+});
+
+//
+// Below are the 3 connectors in which onyx chain is not supported,
+// above are all of the multi-chain supported injectors
+//
+
 const trustWalletConnector = new InjectedConnector({
   supportedChainIds: [WalletChainIds.MAINNET],
 });
-
-const rpcMap = getRpcUrlsByChainId();
-rpcMap[WalletChainIds.TESTNET] = 'https://goerli.infura.io/v3/54af4f71d6c44e0ea83badb0886458f9';
 
 const walletConnectConnector = new WalletConnectV2Connector({
   supportedChainIds: [WalletChainIds.MAINNET],
@@ -38,10 +47,6 @@ const coinbaseWalletConnector = new WalletLinkConnector({
   url: config.rpcUrl,
   appName: 'Onyx',
   supportedChainIds: [WalletChainIds.MAINNET],
-});
-
-const infinityWalletConnector = new InfinityWalletConnector({
-  supportedChainIds: WALLET_SUPPORTED_CHAIN_IDS,
 });
 
 export const connectorsByName = {
