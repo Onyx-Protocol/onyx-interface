@@ -1,5 +1,8 @@
+import config from 'config';
 import { VError } from 'errors';
 import { restService } from 'utilities';
+
+import getUserPointsSubsquid from 'utilities/getUserPointsSubsquid';
 
 import formatUserInfoResponse from './formatUserInfoResponse';
 import { GetUserInfoResponse } from './types';
@@ -12,7 +15,7 @@ export interface GetUserInfoOutput {
   points: number;
 }
 
-const getUserInfo = async ({ address }: GetUserInfoInput): Promise<GetUserInfoOutput> => {
+export const getUserInfo = async ({ address }: GetUserInfoInput): Promise<GetUserInfoOutput> => {
   const response = await restService<GetUserInfoResponse>({
     endpoint: `/users/${address}`,
     method: 'GET',
@@ -37,4 +40,7 @@ const getUserInfo = async ({ address }: GetUserInfoInput): Promise<GetUserInfoOu
   return formatUserInfoResponse(payload);
 };
 
-export default getUserInfo;
+export const getUserPoints = async (input: GetUserInfoInput): Promise<GetUserInfoOutput> => {
+  const data = await getUserPointsSubsquid(config.chainId, input);
+  return formatUserInfoResponse(data);
+};

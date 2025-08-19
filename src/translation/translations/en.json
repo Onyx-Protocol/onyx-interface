@@ -384,7 +384,7 @@
     },
     "pointsUser": {
       "descriptionNotConnect": "Connect your wallet to view your points.",
-      "descriptionConnect": "Join the Onyx system now to earn points and win amazing rewards — be part of a growing community of thousands!",
+      "descriptionConnect": "Join the Onyx system now to earn more points on Onyx Chain and win amazing rewards — be part of a growing community of thousands!",
       "pointsSubtitle": "My Onyx Points",
       "enrollButton": "Enroll now!"
     },
@@ -684,6 +684,7 @@
     "reward": "Reward:",
     "stakeButton": "Stake",
     "stakingApr": "{{stakeTokenName}} Staking APR",
+    "pointsApr": "{{stakeTokenName}} Points APR",
     "successfulClaimRewardTransactionModal": {
       "description": "You successfully claimed your reward",
       "title": "Your claim was successful"

@@ -169,6 +169,13 @@ export const useStyles = () => {
       background-image: ${gradientPrimary};
     `,
 
+    pointsUserEnrollContainer: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${theme.spacing(2)};
+      align-items: center;
+      justify-content: center;
+    `,
     pointUserContainer: css`
       position: relative;
       display: flex;
@@ -178,8 +185,8 @@ export const useStyles = () => {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: ${theme.spacing(2)};
-      padding: ${theme.spacing(2)} ${theme.spacing(6.25)};
+      gap: ${theme.spacing(2.5)};
+      padding: ${theme.spacing(2)} ${theme.spacing(6.25)} ${theme.spacing(4)};
       border-radius: ${roundedXl};
       border: 2px solid rgba(255, 255, 255, 0.2);
       background-color: ${alpha(theme.palette.background.default, 0.7)};

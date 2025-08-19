@@ -9,6 +9,7 @@ import { useTranslation } from 'translation';
 
 import { Farm, useGetFarms } from 'clients/api';
 import useGetUserInfo from 'clients/api/queries/getUserInfo/useGetUserInfo';
+import useGetUserPoints from 'clients/api/queries/getUserInfo/useGetUserPoints';
 import ConnectButton from 'components/Layout/ConnectButton';
 import { AuthContext } from 'context/AuthContext';
 import LeaderboardTable from 'pages/PointsLeaderboard/LeaderboardTable';
@@ -43,7 +44,14 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
   const { account } = React.useContext(AuthContext);
   const styles = useStyles();
   const { t } = useTranslation();
-  const { data } = useGetUserInfo({ address: account?.address || '' }, { enabled: !!account });
+  const { data: userEnrolled } = useGetUserInfo(
+    { address: account?.address || '' },
+    { enabled: !!account },
+  );
+  const { data: userStaked } = useGetUserPoints(
+    { address: account?.address || '' },
+    { enabled: !!account },
+  );
 
   const onEnroll = () => {
     setActiveModal('enroll');
@@ -82,49 +90,42 @@ export const PointsUi: React.FC<PointsUiProps> = ({ farms, isInitialLoading }) =
               <ConnectButton small fullWidth css={styles.enrollButton} />
             </Box>
           )}
-          {account && data && (
+          {account && (
             <Box css={styles.pointUserContainer}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 2,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Typography color="text.secondary" sx={{ fontSize: '12px' }}>
+              <Box css={styles.pointsUserEnrollContainer}>
+                <Typography color="text.secondary" fontSize={14}>
                   {t('pointsUi.pointsUser.pointsSubtitle')}
                 </Typography>
                 <Box css={styles.pointsContainer}>
                   <Typography component="h2" css={styles.pointsText}>
-                    {formatPoint(data.points, 2)}
+                    {formatPoint(userStaked?.points || 0, 2)}
                   </Typography>
                   <Typography component="h2" css={styles.liquidText1}>
-                    {formatPoint(data.points, 2)}
+                    {formatPoint(userStaked?.points || 0, 2)}
                   </Typography>
                   <Typography component="h2" css={styles.liquidText2}>
-                    {formatPoint(data.points, 2)}
+                    {formatPoint(userStaked?.points || 0, 2)}
                   </Typography>
                   <Typography component="h2" css={styles.liquidText3}>
-                    {formatPoint(data.points, 2)}
+                    {formatPoint(userStaked?.points || 0, 2)}
                   </Typography>
                 </Box>
               </Box>
-            </Box>
-          )}
-          {account && !data && (
-            <Box css={styles.pointUserContainer}>
-              <Typography color="text.secondary" textAlign="center">
-                {t('pointsUi.pointsUser.descriptionConnect')}
-              </Typography>
-              <Button
-                css={styles.menuMobileButton}
-                variant="secondaryConnectWallet"
-                onClick={onEnroll}
-              >
-                {t('pointsUi.pointsUser.enrollButton')}
-              </Button>
+
+              {!userEnrolled && (
+                <Box css={styles.pointsUserEnrollContainer}>
+                  <Typography color="text.secondary" textAlign="center">
+                    {t('pointsUi.pointsUser.descriptionConnect')}
+                  </Typography>
+                  <Button
+                    css={styles.menuMobileButton}
+                    variant="secondaryConnectWallet"
+                    onClick={onEnroll}
+                  >
+                    {t('pointsUi.pointsUser.enrollButton')}
+                  </Button>
+                </Box>
+              )}
             </Box>
           )}
         </Box>
