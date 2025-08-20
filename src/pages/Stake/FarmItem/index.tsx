@@ -65,7 +65,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   earned,
 }) => {
   const styles = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t, i18n, Trans } = useTranslation();
   const web3 = useWeb3();
   const [treasuryBalance, setTreasuryBalance] = useState<BigNumber>(new BigNumber(0));
   const [isLoadingTreasury, setIsLoadingTreasury] = useState(true);
@@ -180,7 +180,15 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         value: formatToReadablePercentage(apy),
       },
       {
-        title: t('farmItem.pointsApr', { stakeTokenName: '' }),
+        title: (
+          <Trans
+            i18nKey="farmItem.pointsApr"
+            components={{
+              LineBreak: <br css={styles.responsiveLineBreak} />,
+            }}
+            values={{ stakeTokenName: '' }}
+          />
+        ),
         value: formatToReadablePercentage(pointsApr),
       },
       {
