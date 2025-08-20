@@ -393,7 +393,7 @@
       "learnMoreButton": "Learn more",
       "passivePoints": {
         "title": "Passive Points",
-        "description": "Earn PP by simply holding whitelisted assets on XCN Ledger.",
+        "description": "Earn PP by simply holding whitelisted assets on XCN Ledger and/or staking XCN on Ethereum.",
         "actionButton": "Explore assets"
       },
       "activityPoints": {
