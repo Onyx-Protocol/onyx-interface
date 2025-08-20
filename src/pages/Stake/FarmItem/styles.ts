@@ -103,6 +103,11 @@ export const useStyles = () => {
         flex-direction: column;
       }
     `,
+    responsiveLineBreak: css`
+      ${theme.breakpoints.down('sm')} {
+        display: none;
+      }
+    `,
     valueWrapper: css`
       display: flex;
       flex-direction: column;

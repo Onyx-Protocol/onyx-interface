@@ -65,7 +65,7 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
   earned,
 }) => {
   const styles = useStyles();
-  const { t, i18n } = useTranslation();
+  const { t, i18n, Trans } = useTranslation();
   const web3 = useWeb3();
   const [treasuryBalance, setTreasuryBalance] = useState<BigNumber>(new BigNumber(0));
   const [isLoadingTreasury, setIsLoadingTreasury] = useState(true);
@@ -180,7 +180,15 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
         value: formatToReadablePercentage(apy),
       },
       {
-        title: t('farmItem.pointsApr', { stakeTokenName: '' }),
+        title: (
+          <Trans
+            i18nKey="farmItem.pointsApr"
+            components={{
+              LineBreak: <br css={styles.responsiveLineBreak} />,
+            }}
+            values={{ stakeTokenName: '' }}
+          />
+        ),
         value: formatToReadablePercentage(pointsApr),
       },
       {
@@ -290,7 +298,10 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 
         <ul css={styles.dataRow}>
           {dataListItems.map(({ title, value }) => (
-            <li key={title} css={styles.valueWrapper}>
+            <li
+              key={`farm-item-row-${typeof title === 'string' ? title : ''}`}
+              css={styles.valueWrapper}
+            >
               <Typography variant="small2" css={[styles.label, styles.textSmallMobile]}>
                 {title}
               </Typography>
