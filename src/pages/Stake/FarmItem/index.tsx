@@ -298,7 +298,10 @@ export const FarmItemUi: React.FC<FarmItemUiProps> = ({
 
         <ul css={styles.dataRow}>
           {dataListItems.map(({ title, value }) => (
-            <li key={title} css={styles.valueWrapper}>
+            <li
+              key={`farm-item-row-${typeof title === 'string' ? title : ''}`}
+              css={styles.valueWrapper}
+            >
               <Typography variant="small2" css={[styles.label, styles.textSmallMobile]}>
                 {title}
               </Typography>
