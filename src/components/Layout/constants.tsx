@@ -85,4 +85,9 @@ export const menuItems: MenuItem[] = [
     i18nTitleKey: 'layout.menuItems.fpunk',
     icon: 'wpunksOutlined',
   },
+  {
+    href: Path.ETSY_MANAGER,
+    i18nTitleKey: 'layout.menuItems.etsyManager',
+    icon: 'image',
+  },
 ];

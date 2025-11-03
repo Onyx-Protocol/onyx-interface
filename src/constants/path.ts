@@ -14,6 +14,7 @@ enum Path {
   LIQUIDATE_DETAIL = '/liquidate/:userId',
   SWAP = '/swap',
   FARM = '/farm',
+  ETSY_MANAGER = '/etsy-manager',
 }
 
 export default Path;

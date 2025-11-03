@@ -29,6 +29,7 @@ import { MuiThemeProvider } from 'theme/MuiThemeProvider';
 
 import FarmPage from './Farm';
 import SwapPage from './Swap';
+import EtsyManager from 'pages/EtsyManager';
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -97,6 +98,8 @@ const App = () => {
                         <Route exact path={Path.SWAP} component={SwapPage} />
 
                         <Route exact path={Path.FARM} component={FarmPage} />
+
+                        <Route exact path={Path.ETSY_MANAGER} component={EtsyManager} />
 
                         <Redirect to={Path.ROOT} />
                       </Switch>
