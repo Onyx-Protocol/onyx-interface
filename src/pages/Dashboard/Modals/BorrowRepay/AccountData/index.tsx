@@ -153,7 +153,9 @@ const AccountData: React.FC<AccountDataProps> = ({
         iconSrc={asset.token}
         css={styles.getRow({ isLast: false })}
       >
-        {readableBorrowApy}
+        <span style={{ color: '#E93D44' }}>
+          {`-${readableBorrowApy}`}
+        </span>
       </LabeledInlineContent>
 
       <LabeledInlineContent
